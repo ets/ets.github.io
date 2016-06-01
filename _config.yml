@@ -80,4 +80,3 @@ plugins:
 deploy:
   type: git
   repo: https://github.com/ets/ets.github.io.git
-  branch: gh-pages
