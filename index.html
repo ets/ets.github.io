@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Technocracy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Technocracy">
+<meta property="og:url" content="http://ericsimmerman.com/index.html">
+<meta property="og:site_name" content="Technocracy">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Technocracy">
+<meta name="twitter:description">
+  
+    <link rel="alternate" href="/atom.xml" title="Technocracy" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Technocracy</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Posts on whatever your host deems relevant.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://ericsimmerman.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-2013-10-29-plesk-11-upgrade-unable-to-run-perl" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/" class="article-date">
+  <time datetime="2013-10-29T04:00:00.000Z" itemprop="datePublished">2013-10-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/">Plesk 11 Upgrade Unable to run Perl scripts in cgi-bin</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+After an upgrade to Plesk 11, my Perl scripts  located under cgi-bin/ for a specific domain were not executing properly. 
+	Requests generated HTTP response code 500 and my error logs showed the unhelpful message "Premature end of script headers"
+	I verified all permissions and even disabled / re-enabled cgi-bin support through Plesk which installs a test script under cgi-bin/test/test.cgi
+	Even the test script failed to run. It also generated the message "Premature end of script headers: test.cgi"
+	I eventually resolved the issue with two changes:<br><br>
+<ol>
+<li>The domain's root folder in /var/www/vhosts was not owned by the domain user. So I fixed that with a chown command.</li>
+<li>Within the Plesk control panel, I had to disable "Perl" support and enable "CGI" support to get my perl scripts with the ".pl" extension to run under cgi-bin</li>
+</ol>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/" data-id="ciox95ygz004tgkabhl295lqp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2013-04-29-using-istat-2x-on-mountain-lion" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/" class="article-date">
+  <time datetime="2013-04-29T04:00:00.000Z" itemprop="datePublished">2013-04-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/">Using iStat 2.x on Mountain Lion</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+Shawn Hooton wrote a piece on <a href="http://codingogre.wordpress.com/2011/09/12/fix-istat-menus-version-2-to-work-with-os-x-lion/" target="_blank" rel="external">how to use iStat 2.x on Mountain Lion</a> that I've used several times at this point. <a href="http://codingogre.wordpress.com/2011/09/12/fix-istat-menus-version-2-to-work-with-os-x-lion/" target="_blank" rel="external">Linking to it here </a>for posterity.</div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/" data-id="ciox95yh0004vgkabhr57u3hq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2013-03-07-moved-to-blogger" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/03/07/2013-03-07-moved-to-blogger/" class="article-date">
+  <time datetime="2013-03-07T05:00:00.000Z" itemprop="datePublished">2013-03-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/03/07/2013-03-07-moved-to-blogger/">Moved to Blogger</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+I started this <a href="http://www.jroller.com/agileanswers/" target="_blank" rel="external">Agile Answers blog on jroller back in 2006</a> and I lost some of the older content in my move to Posterous. Sadly Twitter is killing Posterous so I've had to move again...this time to Google's Blogger. Alas - I've lost all the Posterous comments and a lot of formatting in the process. As if&nbsp;<a href="https://twitter.com/theSeanCook" target="_blank" rel="external">The Sean Cook</a>&nbsp;working there weren't reason enough, I now have one more reason to hate Twitter.<br><br><br></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2013/03/07/2013-03-07-moved-to-blogger/" data-id="ciox95yh2004xgkabzqn2toli" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2012-12-19-compressing-mysql-client-server" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/12/19/2012-12-19-compressing-mysql-client-server/" class="article-date">
+  <time datetime="2012-12-19T05:00:00.000Z" itemprop="datePublished">2012-12-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/12/19/2012-12-19-compressing-mysql-client-server/">Compressing MySQL client-server communication with Play Framework</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+<p><span> </span><a href="http://foldergrid.com" target="_blank" rel="external">FolderGrid</a> provides a RESTful api that often services requests where over 90% of the entire response time is spent pulling data from a MySQL instance. I was recently working to reduce overall response time for some long running transactions in that bucket.</p><p><span> </span>After optimizing my queries and my database caching - I looked at network transfer time from the dedicated MySQL server to the mysql client on the application server. &nbsp;Simply enabling MySQL zlib compression resulted in a 3x performance boost for many of the larger resultsets.&nbsp;</p><p><span> </span>To configure your Play Framework connection pool to enable MySQL client-server zlib compression, you'll need to use the explicitly defined "db.url" instead of the shortcut "db" configuration key. Your key should look something like this:</p><p>db.url=jdbc:mysql://remotehost/dbname?useUnicode=yes&amp;characterEncoding=UTF-8&amp;connectionCollation=utf8_general_ci&amp;useCompression=true</p><p>&nbsp;</p><p>&nbsp;</p></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2012/12/19/2012-12-19-compressing-mysql-client-server/" data-id="ciox95ygy004sgkabqp2vir7f" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2012-11-19-when-not-to-front-your-application-with" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/11/19/2012-11-19-when-not-to-front-your-application-with/" class="article-date">
+  <time datetime="2012-11-19T05:00:00.000Z" itemprop="datePublished">2012-11-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/11/19/2012-11-19-when-not-to-front-your-application-with/">When not to front your application with nginx HttpProxyModule</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+<p>Throwing nginx (or Apache or lighthttpd) in front of other application stacks is so common that we often don't think twice about the possible costs. This bit me over the weekend when I casually threw up nginx for SSL termination and configured HttpProxyModule to proxy to my Play Framework driven application.</p><p>I failed to heed the first section in the <a href="http://wiki.nginx.org/HttpProxyModule" target="_blank" rel="external">HttpProxyModule</a> docs. See that note about how "<strong>the entire client request will be buffered in nginx before being passed on to the backend proxied servers</strong>" ?</p><p>That's one note you are going to care about when you're handling large requests and can't figure out why your application is so slow to respond to them.</p><p>RTM&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2012/11/19/2012-11-19-when-not-to-front-your-application-with/" data-id="ciox95ygx004qgkabzgq8vvk4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2012-08-07-supporting-multiple-file-upload" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/08/07/2012-08-07-supporting-multiple-file-upload/" class="article-date">
+  <time datetime="2012-08-07T04:00:00.000Z" itemprop="datePublished">2012-08-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/08/07/2012-08-07-supporting-multiple-file-upload/">Supporting multiple file upload runtimes with pupload inside ExtJS 4</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+<p>The reference client I built for <a href="http://foldergrid.com/api/index.html" title="FolderGrid API" target="_blank" rel="external">FolderGrid's API </a>is a zero footprint web client created using <a href="http://www.sencha.com/products/extjs/" target="_blank" rel="external">ExtJS 4</a>. I wanted to support drag &amp; drop file uploads for advanced browsers but degrade nicely all the way back to IE6 for those poor lost souls stuck with tech from the last decade. So I integrated <a href="http://www.plupload.com/" target="_blank" rel="external">plupload</a> and bound the two together with some jquery glue.</p><p>The results are working well in production and <a href="https://bitbucket.org/ets/foldergrid-client-extjs/overview" title="FolderGrid Web Client" target="_blank" rel="external">the client itself is open &amp; licensed under GPL v3</a> per the terms of ExtJS 4. So if you are interested in copying &amp; extending - have at it.</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2012/08/07/2012-08-07-supporting-multiple-file-upload/" data-id="ciox95ygw004ngkabarzfnomn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2012-08-05-automatically-find-trailing-commas-in" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/" class="article-date">
+  <time datetime="2012-08-05T04:00:00.000Z" itemprop="datePublished">2012-08-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/">Automatically find trailing commas in your javascript project</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+<p>These are simply updated instructions based upon <a href="http://www.amaxus.com/cms-blog/automatically-finding-javascript-errors-ie7" target="_blank" rel="external">the original Amaxus writeup here</a>.</p><ul><li>Install Rhino &nbsp;(I used "port install rhino")</li><li>Grab the <a href="https://raw.github.com/mikewest/jslint-utils/master/lib/rhinoed_jslint.js" target="_blank" rel="external">Rhinoized JSLint script here</a>.</li><li>Create a script named checkForJsErrors.sh with the following two lines:</li></ul><p>echo $1<br>rhino&nbsp;rhinoed_jslint.js $1 | fgrep -e 'Unexpected' --color=always&nbsp;</p><ul><li>Create an alias in your bashrc</li></ul><p></p><p>alias checkjs='find . -name '''*.js''' -exec ~/bin/checkForJsErrors.sh {} ;'</p><p><div>Now when you execuate that alias in your project's root directory - all of your .js files will be scanned for trailing commas.</div></p><p><div>You're welcome.</div></p><p>&nbsp;</p></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/" data-id="ciox95ygw004lgkabfk7sqyeh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2012-08-03-orphanremoval-issues-in-play-framework" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/" class="article-date">
+  <time datetime="2012-08-03T04:00:00.000Z" itemprop="datePublished">2012-08-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/">orphanRemoval issues in Play Framework &#39;collection owner not associated with session&#39;</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+<p>I was just burned by an issue in Play Framework's JPA support of orphanRemovals. The issue manifests as a "collection owner not associated with session" JPAException within Play Framework 1.2.x &nbsp;- it was supposed to be <a href="https://play.lighthouseapp.com/projects/57987/tickets/1503-nested-onetomany-relationships-with-orphanremoval-fails-to-commit" target="_blank" rel="external">addressed in 1.2.5 with this patch,</a> but I'm running 1.2.5 and am still running into it.</p><p>I didn't take the time to diagnose or file a report - for now I'm punting by restricting the use of 'orphanRemoval'.</p></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/" data-id="ciox95ygu004hgkabetyc5auh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2012-07-25-cautionary-tale-regarding-cloud-security" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/" class="article-date">
+  <time datetime="2012-07-25T04:00:00.000Z" itemprop="datePublished">2012-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/">Cautionary tale regarding cloud security</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+<p>My work with <a href="http://foldergrid.com" target="_blank" rel="external">FolderGrid</a> has included quite a few very interesting technical problems that have resulted in material for this blog.&nbsp;I just&nbsp;<a href="http://blog.foldergrid.com/2012/07/why-we-stopped&amp;hellip;cloud-services/" target="_blank" rel="external">posted an interesting read for anyone using cloud services</a>&nbsp;to store or transport sensitive data.&nbsp;</p></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/" data-id="ciox95ygv004igkabzd8g3ujo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2012-07-11-compiling-maven-project-with-jnlp-api" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/" class="article-date">
+  <time datetime="2012-07-11T04:00:00.000Z" itemprop="datePublished">2012-07-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/">Compiling Maven project with JNLP API 1.6+ on Mac OS X</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+<p>To compile a project using JNLP API with Maven you'll need javaws.jar in the compile-time classpath. You'll find the jar under the lib folder of your JDK installation. Mine was here:</p><p>/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/javaws.jar</p><p>&nbsp;</p></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/" data-id="ciox95ygt004fgkabvnm0agb0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iso83bstockoptions/">iso83bstockoptions</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/hibernate/">hibernate</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/httpclient/">httpclient</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/httpclient/mindtouch/">mindtouch</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/">macintosh</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/snowleopard/">snowleopard</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/softwaredevelopment/">softwaredevelopment</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/softwaredevelopment/dbunit/">dbunit</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/softwaredevelopment/spring/">spring</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/ubuntu/">ubuntu</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/">macintosh</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/networks/">networks</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/synergy/">synergy</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/networks/">networks</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/openlaszlo/">openlaszlo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/openlaszlo/softwaredevelopment/">softwaredevelopment</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/">ruby</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/softwaredevelopment/php/">php</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/scriptaculous/">scriptaculous</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/scriptaculous/softwaredevelopment/jquery/">jquery</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/">softwaredevelopment</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/eclipse/">eclipse</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/eclipse/subversive/">subversive</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/gnucash/">gnucash</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/keepassx/">keepassx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/php/">php</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/php/cerberus/">cerberus</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/vpn/">vpn</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/synergy/">synergy</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/vpn/">vpn</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/vpn/ubuntu/">ubuntu</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">January 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">October 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/06/">June 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/05/">May 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/10/">October 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/06/">June 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/10/">October 2007</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/">Plesk 11 Upgrade Unable to run Perl scripts in cgi-bin</a>
+          </li>
+        
+          <li>
+            <a href="/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/">Using iStat 2.x on Mountain Lion</a>
+          </li>
+        
+          <li>
+            <a href="/2013/03/07/2013-03-07-moved-to-blogger/">Moved to Blogger</a>
+          </li>
+        
+          <li>
+            <a href="/2012/12/19/2012-12-19-compressing-mysql-client-server/">Compressing MySQL client-server communication with Play Framework</a>
+          </li>
+        
+          <li>
+            <a href="/2012/11/19/2012-11-19-when-not-to-front-your-application-with/">When not to front your application with nginx HttpProxyModule</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Eric Simmerman<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

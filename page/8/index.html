@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Technocracy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Technocracy">
+<meta property="og:url" content="http://ericsimmerman.com/page/8/index.html">
+<meta property="og:site_name" content="Technocracy">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Technocracy">
+<meta name="twitter:description">
+  
+    <link rel="alternate" href="/atom.xml" title="Technocracy" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Technocracy</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Posts on whatever your host deems relevant.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://ericsimmerman.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-2009-05-14-rolling-back-from-subversive-078-in" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/05/14/2009-05-14-rolling-back-from-subversive-078-in/" class="article-date">
+  <time datetime="2009-05-14T04:00:00.000Z" itemprop="datePublished">2009-05-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/softwaredevelopment/">softwaredevelopment</a>►<a class="article-category-link" href="/categories/softwaredevelopment/eclipse/">eclipse</a>►<a class="article-category-link" href="/categories/softwaredevelopment/eclipse/subversive/">subversive</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/05/14/2009-05-14-rolling-back-from-subversive-078-in/">Rolling back from Subversive 0.7.8 in Eclipse Ganymede</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+<p>I've had automatic updates enabled on my Ganymede install of Eclipse. Huge mistake. Today a Subversive upgrade moved me into an unworkable state and I lost some development time recovering. My experience seems similar to <a href="http://dev.eclipse.org/newslists/news.eclipse.technology.equinox/msg06188.html" target="_blank" rel="external">the problem discussed here</a>. Even a fresh install of Eclipse failed to correct the situation. Maddening!</p><p>In any event, here's how I was able to finally recover:</p><ul><li>Open Time Machine</li><li>Restore ~/.eclipse</li><li>Pat self on back for using a Mac</li></ul><p>What? You don't use a Mac? Why?  Well, you might be able to use Eclipse's Software Updates -&gt; Installed Software -&gt; Revert Configuration button to rollback the upgrade. Good luck with that...</p></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2009/05/14/2009-05-14-rolling-back-from-subversive-078-in/" data-id="ciox95yb6000tgkabwn8k0xii" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009-05-13-connecting-to-netscreen-series" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/05/13/2009-05-13-connecting-to-netscreen-series/" class="article-date">
+  <time datetime="2009-05-13T04:00:00.000Z" itemprop="datePublished">2009-05-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vpn/">vpn</a>►<a class="article-category-link" href="/categories/vpn/ubuntu/">ubuntu</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/05/13/2009-05-13-connecting-to-netscreen-series/">Connecting to Netscreen Series (NetScreen-5) VPN with Ubuntu 9.04 (Jaunty - AMD64)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+<p>I recently struggled through the details of establishing a VPN connection from my Ubuntu 64 desktop to a Juniper Networks Netscreen-5. There are a number of ways to skin the VPN cat in linux and I'm not going to detail them all here. I'll just tell you how I solved it.</p>My Netscreen-5 was configured with some typical settings:<div class="CodeRay">  <div class="code"><pre>Phase 1Pre-shared key &quot;your-pre-shared-key-here&quot;Encryption &quot;pre-g2-aes128-sha&quot;Phase 2Encryption &quot;g2-esp-3des-sha&quot;</pre></div></div>To configure the client-side, I decided to use Racoon and KVpnc:<ol><li>On my Jaunty install (Ubuntu 9.04) I first installed the repository version of racoon: <div class="CodeRay">  <div class="code"><pre>apt-get install racoon</pre></div></div></li><li>Then I downloaded the latest build of KVpnc. They only had an intrepid build when I wrote this (kvpnc_0.9.1_intrepid-1_amd64.deb) and it worked for me, but it's worth <a href="http://home.gna.org/kvpnc/en/download.html" target="_blank" rel="external">checking if a Jaunty build is available</a>.</li><li>My Netscreen config translates to the following choices under KVpnc's Racoon options:<ul><li>sha1</li><li>aes</li><li>hmac_sha1</li><li>aes</li><li>agressive</li><li>modp1024</li><li>modp1024</li><li>Remote Identifier Type: asn1dn</li><li>Local Identifier Type: user_fqdn</li><li>Local Identifier Value: (we used email addresses for client ids on the netscreen so the Local Identifier value in KVpnc is an email address)</li></ul></li></ol><p>Your VPN gateway is entered under General and don't forget to complete the Network/General portion of your KVpnc profile as well. That's where your destination network goes (for a Host to Network configuration like mine).</p></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2009/05/13/2009-05-13-connecting-to-netscreen-series/" data-id="ciox95yb2000sgkabrtjyktc6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009-04-13-calling-php-from-ruby-and-reading-stdout" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/04/13/2009-04-13-calling-php-from-ruby-and-reading-stdout/" class="article-date">
+  <time datetime="2009-04-13T04:00:00.000Z" itemprop="datePublished">2009-04-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ruby/">ruby</a>►<a class="article-category-link" href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a>►<a class="article-category-link" href="/categories/ruby/softwaredevelopment/php/">php</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/04/13/2009-04-13-calling-php-from-ruby-and-reading-stdout/">Calling PHP from Ruby and reading STDOUT</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+PHP and Ruby syntax are far enough apart that I was loathe to attempt a port of some working PHP scripts in my arsenal, but I needed to call said scripts from a relatively complex Ruby program. Fast &amp; dirty integration of this type is generally performed using a system call, but unlike most things Ruby I didn't find the Ruby way in this case to be all that intuitive.<br>The %x technique for the system call made it easy to read the output of my PHP program into a variable in the calling script. The real trick was finding the correct syntax for passing a parameter to the %x call as shown below.<br>Learn from my studies grasshopper:<div class="CodeRay">  <div class="code"><pre>avariableparameter = &quot;--o ipso -v lorem&quot;result = %x[php /path/to/script.php &quot;#{avariableparameter}&quot;]</pre></div></div></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2009/04/13/2009-04-13-calling-php-from-ruby-and-reading-stdout/" data-id="ciox95yay000pgkabit2gcb92" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009-04-06-fix-for-keepassx-window-positioning-off" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/04/06/2009-04-06-fix-for-keepassx-window-positioning-off/" class="article-date">
+  <time datetime="2009-04-06T04:00:00.000Z" itemprop="datePublished">2009-04-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/softwaredevelopment/">softwaredevelopment</a>►<a class="article-category-link" href="/categories/softwaredevelopment/keepassx/">keepassx</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/04/06/2009-04-06-fix-for-keepassx-window-positioning-off/">Fix for KeePassX window positioning off screen after changing monitors</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+After removing a secondary monitor from a MacBook, some apps do not properly re-position themselves on your laptop display. KeePassX is one such offender and I was previously manually editing ~/.keepass/config and restarting KeePassX in order to resolve the issue.I came across <a href="http://blog.bittube.com/2008/05/08/moving-application-windows-in-os-x-via-apple-script/comment-page-1/#comment-100554" target="_blank" rel="external">a much nicer solution on bittube</a>. The solution is great, but the source found there is a bit tricky to copy &amp; paste so I've re-posted here for posterity. Enjoy!<div class="CodeRay">  <div class="code"><pre>property processesToIgnore : {}tell application &quot;Finder&quot;set _b to bounds of window of desktopset screen_width to item 3 of _bset screen_height to item 4 of _bend telltell application &quot;System Events&quot;set allProcesses to application processesset _results to &quot;&quot;repeat with i from 1 to count allProcessesset doIt to 1repeat with z from 1 to count processesToIgnoreif process i = process (item z of processesToIgnore) thenset doIt to 0end ifend repeatif doIt = 1 thentell process irepeat with x from 1 to (count windows)set winPos to position of window xset _x to item 1 of winPosset _y to item 2 of winPosif (_x &lt; 0 or _y  screen_width or _y &gt; screen_height) thenset position of window x to {0, 22}end ifend repeatend tellend ifend repeatend tell</pre></div></div></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2009/04/06/2009-04-06-fix-for-keepassx-window-positioning-off/" data-id="ciox95yaw000ngkabeeg1lhyy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009-04-03-resolving-synergy-mouse-issues-with" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/04/03/2009-04-03-resolving-synergy-mouse-issues-with/" class="article-date">
+  <time datetime="2009-04-03T04:00:00.000Z" itemprop="datePublished">2009-04-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ubuntu/">ubuntu</a>►<a class="article-category-link" href="/categories/ubuntu/synergy/">synergy</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/04/03/2009-04-03-resolving-synergy-mouse-issues-with/">Resolving Synergy mouse issues with Firefox after upgrade to Ubuntu 8.04</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+My desktop runs Ubuntu (64-bit) and I use Synergy to drive its keyboard and mouse over to various clients like my MacBook Pro.After my upgrade to Ubuntu 8.04 my Synergy-driven mouse exhibited truly bizarre behavior while interacting with Firefox on my Mac. DHTML didn't function normally, dropdown menus were inaccessible, flash interactions were also hit-or-miss...<p>At first I blamed Firefox since Safari exhibited no such issues, but after a bit of trial and error I decided to compile Synergy server from source on my Ubuntu box. I killed the Ubuntu packaged Synergy server and launched my self-compiled binary. The new server resolved all the issues.</p><p>Another win for open source software...</p></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2009/04/03/2009-04-03-resolving-synergy-mouse-issues-with/" data-id="ciox95yat000mgkabv2xgkjnr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009-02-21-spring-mvc-checkboxes-tag-and-support" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/02/21/2009-02-21-spring-mvc-checkboxes-tag-and-support/" class="article-date">
+  <time datetime="2009-02-21T05:00:00.000Z" itemprop="datePublished">2009-02-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>►<a class="article-category-link" href="/categories/java/softwaredevelopment/">softwaredevelopment</a>►<a class="article-category-link" href="/categories/java/softwaredevelopment/spring/">spring</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/02/21/2009-02-21-spring-mvc-checkboxes-tag-and-support/">Spring MVC&#39;s checkboxes tag and support for enum</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+Using Spring MVC's checkboxes (or radiobuttons) tag to render form inputs for an enum property is easy and clean...once you know how. After a little gnashing of teeth, due to the fact that I needed a specific display order for all options, I found the following solution:<p>Here's the tag in my jsp<div class="CodeRay">  <div class="code"><pre>&lt;form:checkboxes itemValue=&quot;value&quot; itemLabel=&quot;label&quot;  path=&quot;user.degrees&quot; items=&quot;${degreeLabels }&quot; /&gt;</pre></div></div><br>Here's the way I populated my model map to retain ordering. (I placed this code in my FormController's referenceData method)<div class="CodeRay">  <div class="code"><pre>List labelValues = new ArrayList&lt;LabelValue&gt;();        for (Degree d : Degree.values()) {            labelValues.add(new LabelValue(d.name(), d.name()));        }        Map model = new HashMap();        model.put(&quot;degreeLabels&quot;, labelValues);</pre></div></div>FYI, I ripped the LabelValue class used above from Matt Riable's excellent Appfuse project. The constructor takes two arguments which are mapped to the properties "value" and "label" and these properties have the typical pojo getters and setters.<br>You can see from the path on my tag that degrees is a property on my User object...which is the target of my form. Here's what that looks like...I threw in my Hibernate annotations for the curious:<div class="CodeRay">  <div class="code"><pre>private Set&lt;Degree&gt; degrees = new HashSet&lt;Degree&gt;();    @CollectionOfElements    @Enumerated(EnumType.STRING)    public Set&lt;Degree&gt; getDegrees() {        return degrees;    }    public void setDegrees(Set&lt;Degree&gt; degrees) {        this.degrees = degrees;    }</pre></div></div>It's probably obvious, but here's what the Degree enum looks like:<div class="CodeRay">  <div class="code"><pre>public enum Degree {    BA,BS,BN,BSW,MA,MS,MBA,MSN,MSW,MD,JD,PhD,PharmD,PsyD,Other;}</pre></div></div></p></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2009/02/21/2009-02-21-spring-mvc-checkboxes-tag-and-support/" data-id="ciox95yar000kgkabpkgphp5g" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009-02-18-hibernate-annotations" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/02/18/2009-02-18-hibernate-annotations/" class="article-date">
+  <time datetime="2009-02-18T05:00:00.000Z" itemprop="datePublished">2009-02-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>►<a class="article-category-link" href="/categories/java/hibernate/">hibernate</a>►<a class="article-category-link" href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/02/18/2009-02-18-hibernate-annotations/">Hibernate Annotations - IdentifierGenerationException: attempted to assign id from null one-to-one property</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+While using Hibernate annotations to implement a @OneToOne relationship where the entities are joined by primary key (@PrimaryKeyJoinColumn) I kept encountering a relatively infamous Exception:<div class="CodeRay">  <div class="code"><pre>IdentifierGenerationException: attempted to assign id from null one-to-one property</pre></div></div>I discovered that my issue could easily be resolved by adding "optional=false" to the dependent side of the relation. Here's a brief summary of the relevant related code.<div class="CodeRay">  <div class="code"><pre>@Entitypublic class Profile implements Serializable {   @OneToOne(mappedBy=&quot;profile&quot;, optional=false, fetch=FetchType.LAZY)    public Hospital getHospital() {        return hospital;    }    @Id @GeneratedValue(generator=&quot;foreign&quot;)    @GenericGenerator(name=&quot;foreign&quot;, strategy = &quot;foreign&quot;, parameters={            @Parameter(name=&quot;property&quot;, value=&quot;hospital&quot;)    })    public Long getId() {        return this.id;    }}@Entitypublic class Hospital implements Serializable {    @OneToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)    @PrimaryKeyJoinColumn    public Profile getProfile() {        return profile;    }    @Id @GeneratedValue(strategy=GenerationType.AUTO)    public Long getId() {        return id;    }}</pre></div></div></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2009/02/18/2009-02-18-hibernate-annotations/" data-id="ciox95yaq000jgkabroyysng5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009-02-08-import-stock-sales-from-microsoft-money" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/" class="article-date">
+  <time datetime="2009-02-08T05:00:00.000Z" itemprop="datePublished">2009-02-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/softwaredevelopment/">softwaredevelopment</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/">Import stock sales from Microsoft Money into TurboTax Online</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+<a href="http://turbotax.intuit.com/personal-taxes/" target="_blank" rel="external">TurboTax Online</a>'s investment sale (stock, mutual fund, etc sales for capital gains) entry screen is a nice example of braindead design. Although the application provides a "bulk-entry spreadsheet-like interface", there's no import function available. So despite having all of my data in a nice spreadsheet (exported from the MS Money capital gains report) I was still faced with the prospect of manually entering each field from dozens of transactions. Worse still, the interface limits your access to seven rows/transactions per page.<p>Applescript to the rescue! It's an ugly solution, but it saved me a ton of time and helped avoid any manual entry typos:<ol><li>Use your spreadsheet program to arrange your transaction data into columns matching those in TurboTax's interface. You should have five columns. Insure that the dates are formatted as mm/dd/yy</li><li>Copy and paste the data into your favorite text editor as tab-delimited text (I used the excellent TextMate)</li><li>Use search and replace to convert all the tabs into <div class="CodeRay">  <div class="code"><pre>&quot; &amp; tab &amp; &quot;</pre></div></div></li><li>Use search and replace to insert the following at the beginning of every line <div class="CodeRay">  <div class="code"><pre>keystroke &quot;</pre></div></div></li><li>Use search and replace to insert the following at the end of every line <div class="CodeRay">  <div class="code"><pre>&quot; &amp; tab</pre></div></div></li><li>Now each line should look something like this<div class="CodeRay">  <div class="code"><pre>keystroke &quot;ACME Stock&quot; &amp; tab &amp; &quot;11/10/08&quot; &amp; tab &amp; &quot;100.12&quot; &amp; tab &amp; &quot;1/12/05&quot; &amp; tab &amp; &quot;584.12&quot; &amp; tab</pre></div></div></li><li>Paste the following script into the Script Editor application on your Mac<div class="CodeRay">  <div class="code"><pre>tell application &quot;System Events&quot;        tell process &quot;Firefox&quot;--Clearly replace Firefox above if you are using a different browser                set frontmost to true--Transactions go here        end tellend tell</pre></div></div></li><li>Cut 7 lines at a time from your text editor, paste them into the Script Editor and click "Run"</li><li>The script will populate the TurboTax screen with your data. Click "Add more Rows" in TurboTax and repeat!</li></ol>You're welcome.</p></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/" data-id="ciox95yal000hgkabkmrf6f43" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009-01-28-cisco-vpn-fix-for-error-51-unable-to" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/01/28/2009-01-28-cisco-vpn-fix-for-error-51-unable-to/" class="article-date">
+  <time datetime="2009-01-28T05:00:00.000Z" itemprop="datePublished">2009-01-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/softwaredevelopment/">softwaredevelopment</a>►<a class="article-category-link" href="/categories/softwaredevelopment/vpn/">vpn</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/01/28/2009-01-28-cisco-vpn-fix-for-error-51-unable-to/">Cisco VPN - Fix for Error 51: Unable to communicate with the VPN subsystem</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+I run Leopard on my Mac and encountered the dreaded Error 51 issue today. The simple fix that worked for me was to run the following two commands as root:<p><div class="CodeRay">  <div class="code"><pre># ifconfig fw0 down# /System/Library/StartupItems/CiscoVPN/CiscoVPN restart</pre></div></div>Afterwords, the VPN client started just fine...no Error 51.</p></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2009/01/28/2009-01-28-cisco-vpn-fix-for-error-51-unable-to/" data-id="ciox95yaj000fgkabr47g3l78" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009-01-19-linksys-wet54g-bridge-to-verizon-fios" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/01/19/2009-01-19-linksys-wet54g-bridge-to-verizon-fios/" class="article-date">
+  <time datetime="2009-01-19T05:00:00.000Z" itemprop="datePublished">2009-01-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/networks/">networks</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/01/19/2009-01-19-linksys-wet54g-bridge-to-verizon-fios/">Linksys WET54G bridge to Verizon FiOS ActionTec wireless access point</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+So my upgrade to Verizon FiOS included swapping my Linksys WRT54G access point for the Verizon branded ActionTec device that came with the FiOS install. This swap wasn't strictly necessary, but the ActionTec doubles as both the router and access point so I decided I might as well make use of the wireless capabilities since I have to keep it plugged in either way.The only problem I encountered was that my Linksys WRT54G bridge couldn't play nice with the ActionTec. Through trial and error I found that setting both devices to encrypt using WPA2-PSK using AES only (not the default TKIP+AES) resolved my issues.</div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2009/01/19/2009-01-19-linksys-wet54g-bridge-to-verizon-fios/" data-id="ciox95yaf000dgkabo5e25f08" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/7/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iso83bstockoptions/">iso83bstockoptions</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/hibernate/">hibernate</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/httpclient/">httpclient</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/httpclient/mindtouch/">mindtouch</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/">macintosh</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/snowleopard/">snowleopard</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/softwaredevelopment/">softwaredevelopment</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/softwaredevelopment/dbunit/">dbunit</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/softwaredevelopment/spring/">spring</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/ubuntu/">ubuntu</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/">macintosh</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/networks/">networks</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/synergy/">synergy</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/networks/">networks</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/openlaszlo/">openlaszlo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/openlaszlo/softwaredevelopment/">softwaredevelopment</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/">ruby</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/softwaredevelopment/php/">php</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/scriptaculous/">scriptaculous</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/scriptaculous/softwaredevelopment/jquery/">jquery</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/">softwaredevelopment</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/eclipse/">eclipse</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/eclipse/subversive/">subversive</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/gnucash/">gnucash</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/keepassx/">keepassx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/php/">php</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/php/cerberus/">cerberus</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/vpn/">vpn</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/synergy/">synergy</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/vpn/">vpn</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/vpn/ubuntu/">ubuntu</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">January 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">October 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/06/">June 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/05/">May 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/10/">October 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/06/">June 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/10/">October 2007</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/">Plesk 11 Upgrade Unable to run Perl scripts in cgi-bin</a>
+          </li>
+        
+          <li>
+            <a href="/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/">Using iStat 2.x on Mountain Lion</a>
+          </li>
+        
+          <li>
+            <a href="/2013/03/07/2013-03-07-moved-to-blogger/">Moved to Blogger</a>
+          </li>
+        
+          <li>
+            <a href="/2012/12/19/2012-12-19-compressing-mysql-client-server/">Compressing MySQL client-server communication with Play Framework</a>
+          </li>
+        
+          <li>
+            <a href="/2012/11/19/2012-11-19-when-not-to-front-your-application-with/">When not to front your application with nginx HttpProxyModule</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Eric Simmerman<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
