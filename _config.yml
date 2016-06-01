@@ -65,12 +65,19 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: landscape
 
+plugins:
+#- hexo-generator-cname
+- hexo-deployer-git
+- hexo-generator-feed
+- hexo-generator-sitemap
+- hexo-generator-tag
+- hexo-generator-category
+- hexo-renderer-ejs
+- hexo-generator-index
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
   repo: https://github.com/ets/ets.github.io.git
   branch: gh-pages
-
-plugins:
-- hexo-generator-cname
