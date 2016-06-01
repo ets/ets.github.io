@@ -66,7 +66,7 @@ pagination_dir: page
 theme: landscape
 
 plugins:
-#- hexo-generator-cname
+- hexo-generator-cname
 - hexo-deployer-git
 - hexo-generator-feed
 - hexo-generator-sitemap
