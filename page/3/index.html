@@ -55,9 +55,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://ericsimmerman.com"></form>
@@ -97,7 +97,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://ericsimmerman.com/2011/10/17/2011-10-17-mac-1065-snow-leopard-server-ldap-bug/" data-id="ciox95yfw003vgkabewi2sthz" class="article-share-link">Share</a>
+      <a data-url="http://ericsimmerman.com/2011/10/17/2011-10-17-mac-1065-snow-leopard-server-ldap-bug/" data-id="ciox9dgs3003po7abl947fm8x" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -136,46 +136,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://ericsimmerman.com/2011/10/05/2011-10-05-listening-to-sensefm-while-they-fix/" data-id="ciox95yft003tgkab5zrfqcun" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2011-09-22-upgrading-snow-leopard-development" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/09/22/2011-09-22-upgrading-snow-leopard-development/" class="article-date">
-  <time datetime="2011-09-22T04:00:00.000Z" itemprop="datePublished">2011-09-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/09/22/2011-09-22-upgrading-snow-leopard-development/">Upgrading a Snow Leopard development machine to Lion</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-<div class="post">
-<p><span style="font-size:large;">1. Install Lion</span></p><p>If you heard about the small business 20-pack of licences Apple offered when they announced Lion and think you might want to go that route - don't. &nbsp;Trust me. &nbsp;They can take your payment but they just can't fulfill your order ... <a href="http://www.youtube.com/watch?v=A7uvttu8ct0" target="_blank" rel="external">and that's really the most important part</a>. Two months later I have a micro USB drive and am finally starting the upgrades.</p><p><span style="font-size:large;">2. Use App Store to download &amp; install XCode</span></p><p>Annoying. At least they fixed the download process to support resumes. Mine cutoff at 98% of the 4G download but picked back up where it left off on resume.</p><p><span style="font-size:large;">3. Run &nbsp;"/Applications/Install Xcode.app"</span></p><p>So when App Store said it was "Installing Xcode" it meant it was installing the Xcode installer. Sadly, it took me a while to figure this one out ... and <a href="https://discussions.apple.com/thread/2786661?start=0&amp;tstart=0" target="_blank" rel="external">I am not alone</a>.</p><p><span style="font-size:large;">4. Install MacPorts 2.0.3 or greater</span></p><p><a href="https://distfiles.macports.org/MacPorts/MacPorts-2.0.3-10.7-Lion.dmg" target="_blank" rel="external">MacPorts install for Lion</a> worked the first time with no hassle - Apple could learn a thing or two.</p><p><span style="font-size:large;">5. Run "port upgrade outdated"</span></p><p><span style="font-size:large;"><span style="font-size:small;">This takes some time but ran without error for me...nice.</span></span></p><p><span style="font-size:large;">6. Update php.ini</span></p><p><span style="font-size:large;"><span style="font-size:small;"><a href="http://maccrazy.com/lion-upgrade-killed-my-php-site-and-how-i-fixed-it" target="_blank" rel="external">Lion upgrades to PHP 2.3.0 </a>and saves but disables your existing php.ini - at a minimum you'll need to update your mysql socket entries to point to the same place as your my.cnf&nbsp;</span></span></p><p><span style="font-size:large;">7. Install a JDK</span></p><p><span style="font-size:large;"><span style="font-size:small;">I attempted to run a Java driven app (LibreOffice) and Lion magically prompted me to install Java. I let it and the install process flawlessly&nbsp;</span></span><span style="font-size:small;">setup a full JDK instead of just a JRE</span><span style="font-size:small;">&nbsp;- nice job Apple.</span></p><p><span style="font-size:large;">8. Toggle trackpad scroll direction</span></p><p><span style="font-size:small;">If all my devices used Lion I'm certain I'd adapt to the inverted scrolling in just a few hours - but they don't and that causes wheel spinning everytime I begin a Lion based session. &nbsp;I see no net benefit so it's not worth the pain. &nbsp;System Preferences -&gt; Trackpad -&gt; Scroll direction -&gt; unchceck</span></p><p><span style="font-size:large;">9. Install the updated Server tools</span></p><p><span style="font-size:small;">If you run a Mac Server and want to use your Lion workstation to manage its services...you need the <a href="http://support.apple.com/kb/DL1419" target="_blank" rel="external">updated Mac Server Tools</a>.</span></p><p><span style="font-size:large;">10. Disable Dashboard</span></p><p><span style="font-size:small;">I don't care for widgets.</span></p><blockquote class="posterous_short_quote"><p>defaults write com.apple.dashboard mcx-disabled -boolean YES<br>killall Dock</p></blockquote><p><span style="font-size:large;">11. Install JDK source</span></p><p>Grab the Java for Mac OS X 10.7 Developer Package from&nbsp;<a href="http://connect.apple.com/" title="Apple Developer Download" target="_blank" style="vertical-align:baseline;color:#990000;font-family:Verdana, Arial, Helvetica, sans-serif;line-height:23px;padding:0;margin:0;">http://connect.apple.com/<br></a>It'll put the src.jar here</p><p><span style="color:#333333;font-family:Monaco, Courier New, Courier, monospace;font-size:12px;line-height:15px;">/Library/Java/JavaVirtualMachines/1.6.0_26-b03-383.jdk/Contents/Home/src.jar</span></p></div>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://ericsimmerman.com/2011/09/22/2011-09-22-upgrading-snow-leopard-development/" data-id="ciox95yfq003rgkab1la101dk" class="article-share-link">Share</a>
+      <a data-url="http://ericsimmerman.com/2011/10/05/2011-10-05-listening-to-sensefm-while-they-fix/" data-id="ciox9dgrv003lo7ab6ogiepdl" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -214,7 +175,46 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://ericsimmerman.com/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/" data-id="ciox95yfo003ogkabnvy1jozh" class="article-share-link">Share</a>
+      <a data-url="http://ericsimmerman.com/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/" data-id="ciox9dgru003jo7abmxzs4rvy" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2011-09-22-upgrading-snow-leopard-development" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/09/22/2011-09-22-upgrading-snow-leopard-development/" class="article-date">
+  <time datetime="2011-09-22T04:00:00.000Z" itemprop="datePublished">2011-09-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/09/22/2011-09-22-upgrading-snow-leopard-development/">Upgrading a Snow Leopard development machine to Lion</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<div class="post">
+<p><span style="font-size:large;">1. Install Lion</span></p><p>If you heard about the small business 20-pack of licences Apple offered when they announced Lion and think you might want to go that route - don't. &nbsp;Trust me. &nbsp;They can take your payment but they just can't fulfill your order ... <a href="http://www.youtube.com/watch?v=A7uvttu8ct0" target="_blank" rel="external">and that's really the most important part</a>. Two months later I have a micro USB drive and am finally starting the upgrades.</p><p><span style="font-size:large;">2. Use App Store to download &amp; install XCode</span></p><p>Annoying. At least they fixed the download process to support resumes. Mine cutoff at 98% of the 4G download but picked back up where it left off on resume.</p><p><span style="font-size:large;">3. Run &nbsp;"/Applications/Install Xcode.app"</span></p><p>So when App Store said it was "Installing Xcode" it meant it was installing the Xcode installer. Sadly, it took me a while to figure this one out ... and <a href="https://discussions.apple.com/thread/2786661?start=0&amp;tstart=0" target="_blank" rel="external">I am not alone</a>.</p><p><span style="font-size:large;">4. Install MacPorts 2.0.3 or greater</span></p><p><a href="https://distfiles.macports.org/MacPorts/MacPorts-2.0.3-10.7-Lion.dmg" target="_blank" rel="external">MacPorts install for Lion</a> worked the first time with no hassle - Apple could learn a thing or two.</p><p><span style="font-size:large;">5. Run "port upgrade outdated"</span></p><p><span style="font-size:large;"><span style="font-size:small;">This takes some time but ran without error for me...nice.</span></span></p><p><span style="font-size:large;">6. Update php.ini</span></p><p><span style="font-size:large;"><span style="font-size:small;"><a href="http://maccrazy.com/lion-upgrade-killed-my-php-site-and-how-i-fixed-it" target="_blank" rel="external">Lion upgrades to PHP 2.3.0 </a>and saves but disables your existing php.ini - at a minimum you'll need to update your mysql socket entries to point to the same place as your my.cnf&nbsp;</span></span></p><p><span style="font-size:large;">7. Install a JDK</span></p><p><span style="font-size:large;"><span style="font-size:small;">I attempted to run a Java driven app (LibreOffice) and Lion magically prompted me to install Java. I let it and the install process flawlessly&nbsp;</span></span><span style="font-size:small;">setup a full JDK instead of just a JRE</span><span style="font-size:small;">&nbsp;- nice job Apple.</span></p><p><span style="font-size:large;">8. Toggle trackpad scroll direction</span></p><p><span style="font-size:small;">If all my devices used Lion I'm certain I'd adapt to the inverted scrolling in just a few hours - but they don't and that causes wheel spinning everytime I begin a Lion based session. &nbsp;I see no net benefit so it's not worth the pain. &nbsp;System Preferences -&gt; Trackpad -&gt; Scroll direction -&gt; unchceck</span></p><p><span style="font-size:large;">9. Install the updated Server tools</span></p><p><span style="font-size:small;">If you run a Mac Server and want to use your Lion workstation to manage its services...you need the <a href="http://support.apple.com/kb/DL1419" target="_blank" rel="external">updated Mac Server Tools</a>.</span></p><p><span style="font-size:large;">10. Disable Dashboard</span></p><p><span style="font-size:small;">I don't care for widgets.</span></p><blockquote class="posterous_short_quote"><p>defaults write com.apple.dashboard mcx-disabled -boolean YES<br>killall Dock</p></blockquote><p><span style="font-size:large;">11. Install JDK source</span></p><p>Grab the Java for Mac OS X 10.7 Developer Package from&nbsp;<a href="http://connect.apple.com/" title="Apple Developer Download" target="_blank" style="vertical-align:baseline;color:#990000;font-family:Verdana, Arial, Helvetica, sans-serif;line-height:23px;padding:0;margin:0;">http://connect.apple.com/<br></a>It'll put the src.jar here</p><p><span style="color:#333333;font-family:Monaco, Courier New, Courier, monospace;font-size:12px;line-height:15px;">/Library/Java/JavaVirtualMachines/1.6.0_26-b03-383.jdk/Contents/Home/src.jar</span></p></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://ericsimmerman.com/2011/09/22/2011-09-22-upgrading-snow-leopard-development/" data-id="ciox9dgs7003ro7abxojy0w1c" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -253,7 +253,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://ericsimmerman.com/2011/09/13/2011-09-13-winner-takes-all-network-effect/" data-id="ciox95yfl003mgkab7ihdulwx" class="article-share-link">Share</a>
+      <a data-url="http://ericsimmerman.com/2011/09/13/2011-09-13-winner-takes-all-network-effect/" data-id="ciox9dgrr003eo7abxrkz6a62" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -292,7 +292,7 @@ Our CI server (we use Jenkins) recently began bombing on several new tests that 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://ericsimmerman.com/2011/08/26/2011-08-26-resolving-connect-to-window-server-not/" data-id="ciox95yfj003jgkab9nupfzfq" class="article-share-link">Share</a>
+      <a data-url="http://ericsimmerman.com/2011/08/26/2011-08-26-resolving-connect-to-window-server-not/" data-id="ciox9dgrt003go7abimu4pv96" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -331,7 +331,7 @@ Our CI server (we use Jenkins) recently began bombing on several new tests that 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://ericsimmerman.com/2011/08/23/2011-08-23-resolving-has-already-been-called-when/" data-id="ciox95yfi003hgkabcs1xaltr" class="article-share-link">Share</a>
+      <a data-url="http://ericsimmerman.com/2011/08/23/2011-08-23-resolving-has-already-been-called-when/" data-id="ciox9dgrp003bo7abfp6lx647" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -370,7 +370,7 @@ Our CI server (we use Jenkins) recently began bombing on several new tests that 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://ericsimmerman.com/2011/08/19/2011-08-19-jsp-tricks-to-make-templating-easier-on/" data-id="ciox95yfh003egkab4jnrn7mu" class="article-share-link">Share</a>
+      <a data-url="http://ericsimmerman.com/2011/08/19/2011-08-19-jsp-tricks-to-make-templating-easier-on/" data-id="ciox9dgrn0039o7ab4056ciom" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -409,7 +409,7 @@ Our CI server (we use Jenkins) recently began bombing on several new tests that 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://ericsimmerman.com/2011/08/17/2011-08-17-testing-local-web-application-with/" data-id="ciox95yff003cgkabdd6g7e14" class="article-share-link">Share</a>
+      <a data-url="http://ericsimmerman.com/2011/08/17/2011-08-17-testing-local-web-application-with/" data-id="ciox9dgrf0031o7ab1j6fn04n" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -448,7 +448,7 @@ Our CI server (we use Jenkins) recently began bombing on several new tests that 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://ericsimmerman.com/2011/08/06/2011-08-06-macports-mysql-upgrade-from-50x-to-51x/" data-id="ciox95yf40039gkabsscysvdi" class="article-share-link">Share</a>
+      <a data-url="http://ericsimmerman.com/2011/08/06/2011-08-06-macports-mysql-upgrade-from-50x-to-51x/" data-id="ciox9dgrk0036o7ab0fubg5x8" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -469,7 +469,7 @@ Our CI server (we use Jenkins) recently began bombing on several new tests that 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Catégories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iso83bstockoptions/">iso83bstockoptions</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/hibernate/">hibernate</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/httpclient/">httpclient</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/httpclient/mindtouch/">mindtouch</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/">macintosh</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/snowleopard/">snowleopard</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/softwaredevelopment/">softwaredevelopment</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/softwaredevelopment/dbunit/">dbunit</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/softwaredevelopment/spring/">spring</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/ubuntu/">ubuntu</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/">macintosh</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/networks/">networks</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/synergy/">synergy</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/networks/">networks</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/openlaszlo/">openlaszlo</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/openlaszlo/softwaredevelopment/">softwaredevelopment</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/">ruby</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/softwaredevelopment/php/">php</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/scriptaculous/">scriptaculous</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/scriptaculous/softwaredevelopment/jquery/">jquery</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/">softwaredevelopment</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/eclipse/">eclipse</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/eclipse/subversive/">subversive</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/gnucash/">gnucash</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/keepassx/">keepassx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/php/">php</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/php/cerberus/">cerberus</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/vpn/">vpn</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/synergy/">synergy</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/vpn/">vpn</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/vpn/ubuntu/">ubuntu</a></li></ul></li></ul>
     </div>
@@ -494,7 +494,7 @@ Our CI server (we use Jenkins) recently began bombing on several new tests that 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
@@ -531,7 +531,7 @@ Our CI server (we use Jenkins) recently began bombing on several new tests that 
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 Eric Simmerman<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
