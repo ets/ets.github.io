@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://ericsimmerman.com/2016/06/01/hello-world/</loc>
-    
-    <lastmod>2016-06-02T02:31:14.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2011/02/14/2011-02-14-find-conflicting-dependencies-in-maven/</loc>
     
     <lastmod>2016-06-02T01:49:40.000Z</lastmod>
@@ -16,7 +9,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/</loc>
+    <loc>http://ericsimmerman.com/2006/01/01/2006-01-01-migrated-from-jroller/</loc>
     
     <lastmod>2016-06-02T01:49:40.000Z</lastmod>
     
@@ -331,7 +324,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2006/01/01/2006-01-01-migrated-from-jroller/</loc>
+    <loc>http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/</loc>
     
     <lastmod>2016-06-02T01:49:40.000Z</lastmod>
     

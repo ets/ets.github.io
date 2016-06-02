@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ericsimmerman.com/"/>
-  <updated>2016-06-02T02:31:14.000Z</updated>
+  <updated>2016-06-02T01:49:40.000Z</updated>
   <id>http://ericsimmerman.com/</id>
   
   <author>
@@ -14,33 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://ericsimmerman.com/2016/06/01/hello-world/"/>
-    <id>http://ericsimmerman.com/2016/06/01/hello-world/</id>
-    <published>2016-06-02T02:31:14.000Z</published>
-    <updated>2016-06-02T02:31:14.000Z</updated>
-    
-    <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;http://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;http://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;http://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;http://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;http://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;http://hexo.io/docs/generating.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Deploy-to-remote-sites&quot;&gt;&lt;a href=&quot;#Deploy-to-remote-sites&quot; class=&quot;headerlink&quot; title=&quot;Deploy to remote sites&quot;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;http://hexo.io/docs/deployment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;http://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;http://hexo.io
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>MySQL Identifying Blocking Transactions</title>
@@ -494,6 +467,29 @@ Pirated from a long forgotten place...apologies to the respective copyright hold
       
 &lt;div class=&quot;post&quot;&gt;
 &lt;p&gt;During today&#39;s maintenance run of git-gc on our Mac hosted repo I encountered screenfulls of nasty fatal error messag
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Play framework on AWS</title>
+    <link href="http://ericsimmerman.com/2012/01/08/2012-01-08-play-framework-on-aws/"/>
+    <id>http://ericsimmerman.com/2012/01/08/2012-01-08-play-framework-on-aws/</id>
+    <published>2012-01-08T05:00:00.000Z</published>
+    <updated>2016-06-02T01:49:40.000Z</updated>
+    
+    <content type="html">
+&lt;div class=&quot;post&quot;&gt;
+&lt;p&gt;Steps I took to get a Play framework app up and running on a micro AWS instance running Ubuntu 11.10&lt;/p&gt;&lt;ol&gt;&lt;li&gt;sudo add-apt-repository &quot;deb &lt;a href=&quot;http://archive.canonical.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://archive.canonical.com/&lt;/a&gt; lucid partner&quot;&lt;/li&gt;&lt;li&gt;sudo apt-get update&lt;/li&gt;&lt;li&gt;sudo apt-get install sun-java6-jdk unzip&lt;/li&gt;&lt;li&gt;wget &lt;a href=&quot;http://download.playframework.org/releases/play-1.2.4.zip&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://download.playframework.org/releases/play-1.2.4.zip&lt;/a&gt;&lt;/li&gt;&lt;li&gt;sudo unzip play-1.2.4.zip -d /usr/local/share/&lt;/li&gt;&lt;li&gt;install&amp;nbsp;&lt;a href=&quot;https://gist.github.com/1289753&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Dominik Dorn&#39;s startup script&lt;/a&gt;&lt;ol&gt;&lt;li&gt;wget &lt;a href=&quot;https://raw.github.com/gist/1290012/a31b1d079705ea7ccf6d1fdc866027b674e62841/playframework&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://raw.github.com/gist/1290012/a31b1d079705ea7ccf6d1fdc866027b674e62841/...&lt;/a&gt;&lt;/li&gt;&lt;li&gt;sudo mv playframework /etc/init/&lt;/li&gt;&lt;li&gt;update the script with proper paths&amp;nbsp;&lt;/li&gt;&lt;/ol&gt;&lt;/li&gt;&lt;li&gt;useradd username -g www-data -m -d /home/username&amp;nbsp;-s /bin/bash&lt;/li&gt;&lt;li&gt;install your app&lt;/li&gt;&lt;li&gt;initctl start playframework&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;
+</content>
+    
+    <summary type="html">
+    
+      
+&lt;div class=&quot;post&quot;&gt;
+&lt;p&gt;Steps I took to get a Play framework app up and running on a micro AWS instance running Ubuntu 11.10&lt;/p&gt;&lt;ol&gt;&lt;li&gt;sudo 
     
     </summary>
     
