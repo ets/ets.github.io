@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Spring Security ACL intercept-methods with transaction advice | Technocracy</title>
+  <meta name="author" content="Eric Simmerman">
+  
+  <meta name="description" content="I recently used Spring to configure a manager to use Spring Security ACL method-level authorization. Here&#39;s a snip of my initial manager bean config: ">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Spring Security ACL intercept-methods with transaction advice"/>
+  <meta property="og:site_name" content="Technocracy"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Technocracy" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Technocracy</a></h1>
+  <h2><a href="/">Posts on whatever your host deems relevant.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-08-13T04:00:00.000Z"><a href="/2009/08/13/2009-08-13-spring-security-acl-intercept-methods/">2009-08-13</a></time>
+      
+      
+  
+    <h1 class="title">Spring Security ACL intercept-methods with transaction advice</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+I recently used Spring to configure a manager to use Spring Security ACL method-level authorization. Here's a snip of my initial manager bean config:<div class="CodeRay">  <div class="code"><pre>&lt;bean id=&quot;clientManager&quot; class=&quot;com.acme.service.impl.ClientManagerImpl&quot;&gt;    &lt;sec:intercept-methods access-decision-manager-ref=&quot;accessDecisionManager&quot;&gt;        &lt;sec:protect method=&quot;get&quot; access=&quot;AFTER_ACL_READ&quot;/&gt;        &lt;sec:protect method=&quot;save&quot; access=&quot;ROLE_ADMIN,ACL_WRITE&quot;/&gt;    &lt;/sec:intercept-methods&gt;    &lt;constructor-arg ref=&quot;clientDao&quot;/&gt;    &lt;property name=&quot;mutableAclService&quot; ref=&quot;aclService&quot;/&gt;&lt;/bean&gt;</pre></div></div>With this configuration, my unit tests verified that the method-level authorization was working as expected. Next, I applied some declarative transaction management to the same manager:<div class="CodeRay">  <div class="code"><pre>&lt;aop:config&gt;    &lt;aop:advisor id=&quot;managerTx&quot; advice-ref=&quot;txAdvice&quot; pointcut=&quot;execution(* *..service.*Manager.*(..))&quot; order=&quot;0&quot;/&gt;&lt;/aop:config&gt;&lt;tx:advice id=&quot;txAdvice&quot;&gt;    &lt;tx:attributes&gt;        &lt;tx:method name=&quot;get*&quot; read-only=&quot;true&quot;/&gt;        &lt;tx:method name=&quot;save*&quot; rollback-for=&quot;DuplicateNameException,UserExistsException&quot; /&gt;        &lt;tx:method name=&quot;*&quot;/&gt;    &lt;/tx:attributes&gt;&lt;/tx:advice&gt;</pre></div></div>After adding this transaction advice, my unit tests failed method-level authorization checks. I never traced the issue to its absolute root cause, but based upon some open tickets against Spring I believe the error was due to a "double-proxy" type issue. The short story is that proxies are final, and Spring can't proxy a proxy...<p>Regardless of the root cause, I found a reasonable workaround was to revert to one of the "old" (more verbose) methods of transaction demarcation. Here's what my final working configuration looks like:<div class="CodeRay">  <div class="code"><pre>&lt;bean id=&quot;baseTransactionProxy&quot; abstract=&quot;true&quot; class=&quot;org.springframework.transaction.interceptor.TransactionProxyFactoryBean&quot;&gt;    &lt;property name=&quot;transactionManager&quot; ref=&quot;transactionManager&quot;/&gt;    &lt;property name=&quot;transactionAttributes&quot;&gt;        &lt;props&gt;            &lt;prop key=&quot;get*&quot;&gt;PROPAGATION_REQUIRED,readOnly&lt;/prop&gt;            &lt;prop key=&quot;save*&quot;&gt;PROPAGATION_REQUIRED,-DuplicateNameException,-UserExistsException&lt;/prop&gt;            &lt;prop key=&quot;*&quot;&gt;PROPAGATION_REQUIRED&lt;/prop&gt;        &lt;/props&gt;    &lt;/property&gt;&lt;/bean&gt;&lt;bean id=&quot;clientManager&quot; parent=&quot;baseTransactionProxy&quot;&gt;  &lt;property name=&quot;target&quot;&gt;    &lt;bean class=&quot;com.acme.service.impl.ClientManagerImpl&quot;&gt;        &lt;sec:intercept-methods access-decision-manager-ref=&quot;accessDecisionManager&quot;&gt;          &lt;sec:protect method=&quot;get&quot; access=&quot;AFTER_ACL_READ&quot;/&gt;          &lt;sec:protect method=&quot;save&quot; access=&quot;ROLE_ADMIN,ACL_WRITE&quot;/&gt;        &lt;/sec:intercept-methods&gt;        &lt;constructor-arg ref=&quot;clientDao&quot;/&gt;        &lt;property name=&quot;mutableAclService&quot; ref=&quot;aclService&quot;/&gt;   &lt;/bean&gt;  &lt;/property&gt;&lt;/bean&gt;</pre></div></div>By leveraging the TransactionProxyFactoryBean directly instead of relying upon the tx:advice and aop:config tags, I was able to wrap my Spring ACL secured methods with declarative transactions. Nice.</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/java/">java</a>, <a href="/categories/java/softwaredevelopment/">softwaredevelopment</a>
+  </div>
+
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://ericsimmerman.com/2009/08/13/2009-08-13-spring-security-acl-intercept-methods/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:ericsimmerman.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/dbunit/">dbunit</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/">gnucash</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/">hibernate</a><small>2</small></li>
+  
+    <li><a href="/categories/java/httpclient/">httpclient</a><small>1</small></li>
+  
+    <li><a href="/categories/iso83bstockoptions/">iso83bstockoptions</a><small>1</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>12</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/keepassx/">keepassx</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
+  
+    <li><a href="/categories/java/macintosh/">macintosh</a><small>2</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><small>1</small></li>
+  
+    <li><a href="/categories/java/httpclient/mindtouch/">mindtouch</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><small>1</small></li>
+  
+    <li><a href="/categories/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/">openlaszlo</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/">ruby</a><small>1</small></li>
+  
+    <li><a href="/categories/scriptaculous/">scriptaculous</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/">snowleopard</a><small>2</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/synergy/">synergy</a><small>2</small></li>
+  
+    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/">ubuntu</a><small>6</small></li>
+  
+    <li><a href="/categories/java/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/vpn/">vpn</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 Eric Simmerman
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

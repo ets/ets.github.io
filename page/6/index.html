@@ -1,0 +1,534 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Seite 6 | Technocracy</title>
+  <meta name="author" content="Eric Simmerman">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Technocracy"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Technocracy" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Technocracy</a></h1>
+  <h2><a href="/">Posts on whatever your host deems relevant.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-06-13T04:00:00.000Z"><a href="/2010/06/13/2010-06-13-import-gnucash-data-into-moneydance/">2010-06-13</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2010/06/13/2010-06-13-import-gnucash-data-into-moneydance/">Import GnuCash data into MoneyDance</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<a href="http://www.gnucash.org/" target="_blank" rel="external">GnuCash</a> served me well while I was running Ubuntu as my primary desktop but since moving to a Mac Pro I've been disappointed in the performance and non-native nature of the GnuCash Mac port. I decided to migrate to <a href="http://moneydance.com/" target="_blank" rel="external">MoneyDance</a> and was quickly dismayed to discover GnuCash's poor support for standards based exporting.This GnuCash wiki-entry <a href="http://wiki.gnucash.org/wiki/FAQ#Q:_How_can_I_export_data.3F" target="_blank" rel="external">describes a few convoluted approaches to data export</a> but the items it references are hopelessly outdated and generally do not function for the latest stable release - reason enough to ditch GnuCash.MoneyDance hadn't solved the problem on their end either but their wiki does <a href="http://moneydance.com/trac/wiki/Frequently_Asked_Questions#CanIimportmyGnuCashdata" target="_blank" rel="external">reference a Perl script that converts the deprecated GnuCash Postgre storage format into a MoneyDance XML file</a>. Since I knew that the development release of GnuCash supports a SQLite storage format I decided to see if I could update Sid Reed's aforementioned script for this new SQLite container.I'm no Perl Monger, but <a href="http://xkcd.com/208/" target="_blank" rel="external">I do know regular expressions</a>. My updated script worked well for me and seamlessly converted several years of GnuCash data.  Please read the pre-requisites section in the header of this&nbsp;<a href="http://www.ericsimmerman.com/wp-content/uploads/2010/06/GnuCash-MoneyDance-Importer.zip" target="_blank" rel="external">GnuCash to MoneyDance Migration Script</a> before attempting to run it. In addition to the linked zip archive, <a href="http://github.com/ets/MoneyDance-GnuCash-Importer" target="_blank" rel="external">this script is also available on github</a>. Enjoy!</div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-06-08T04:00:00.000Z"><a href="/2010/06/08/2010-06-08-activate-maven-profile-using-hudson/">2010-06-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2010/06/08/2010-06-08-activate-maven-profile-using-hudson/">Activate a Maven Profile using Hudson</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+Environment properties weren't available to me on my Mac server for some reason. The solution I eventually adopted was the one used in the <a href="http://wiki.hudson-ci.org/display/HUDSON/Cobertura+Plugin" target="_blank" rel="external">Cobertura Plugin docs here</a>. Hudson by default defines a property BUILD_NUMBER which is used to enable the profile.<div class="CodeRay">  <div class="code"><pre>&lt;profile&gt;     &lt;id&gt;hudson&lt;/id&gt;     &lt;activation&gt;         &lt;property&gt;             &lt;name&gt;BUILD_NUMBER&lt;/name&gt;         &lt;/property&gt;     &lt;/activation&gt;        ...&lt;/profile&gt;</pre></div></div></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-03-14T05:00:00.000Z"><a href="/2010/03/14/2010-03-14-customize-article-row-count-for/">2010-03-14</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2010/03/14/2010-03-14-customize-article-row-count-for/">Customize article row count for Cerberus public knowledgebase community</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+I've been evaluating the opensource <a href="http://www.cerberusweb.com/" target="_blank" rel="external">Cerberus Helpdesk</a> as an alternative to the closed source Kayako esupport. I like how Cerberus separates the creation of multiple knowledgebases that can then be published across multiple community portals. Instead of one comprehensive knowledgebase presented to all customers, I can use Cerberus to present product specific knowledgebases. It's a nice concept that should make it much easier for a customer to locate support information and thereby reduce the number of support tickets generated.Customizing the public facing portals for my Cerberus installation was straightforward.  The admin console provided a good degree of flexibility, but I wanted a bit more so I manually modified usermeet.core/templates/portal/sc/module/index.tpl in order to insert analytics scripts and some more detailed customization. That was easy, but my next mod proved more difficult. By default, Cerberus displays 10 articles on each page of search results and I wanted to increase that count to 20. Cerberus' architecture actually makes it a bit tricky to determine the control flow used by the community portals but I eventually traced the article retrieval flow to the DAO_KbArticle class in plugins/cerberusweb.kb/api/App.php and changed the default limit on the search method from 10 to 20. The limit is set as a hardcoded constant in the method signature....yuck. After the change, 20 articles were pulled from the database on each request, but there were still only 10 displayed in the portal.It took a lot of searching to find the missing piece and it was yet another hardcoded value in plugins/cerberusweb.kb/api/sc/kb.php where $view-&gt;renderLimit was set to 10. Changing this gave me the desired row count on the portal.The Cerberus team has put together a nice product but given that one of its core competitive features is its opensource nature, I'd like to see the codebase refactored to better facilitate this type of customization. Values like these limits could easily be defined in framework.config.php instead of scattering hardcoded settings across multiple files. That said, at least I had to option to manipulate the software - something I can't do with Kayako's offering.</div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-03-05T05:00:00.000Z"><a href="/2010/03/05/2010-03-05-connecting-to-netscreen-series/">2010-03-05</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2010/03/05/2010-03-05-connecting-to-netscreen-series/">Connecting to Netscreen Series (NetScreen-5) VPN with Mac OS X (Snow Leopard)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+(Followup to my <a href="http://www.ericsimmerman.com/connecting_to_netscreen_series_netscreen/45/" target="_blank" rel="external">NetScreen-5 from Ubuntu article</a>) I recently struggled through the details of establishing a VPN connection from my Mac OS X desktop to a Juniper Networks Netscreen-5. Here's how I solved it. My Netscreen-5 was configured with some typical settings:Phase 1Pre-shared key "your-pre-shared-key-here"Encryption "pre-g2-aes128-sha"Phase 2 Encryption "g2-esp-3des-sha"To configure the client-side using an Ubuntu desktop, I used Racoon and KVpnc but didn't have the luxury of KVpnc on my Mac desktop so I had to manually edit my racoon.conf:<div class="CodeRay">  <div class="code"><pre>log debug2;path pre_shared_key &quot;/etc/racoon/psk.txt&quot;;path certificate &quot;/etc/racoon/certs&quot;;timer{        natt_keepalive 10 sec;}remote VPN.GATEWAY{        exchange_mode aggressive;        nat_traversal on;          ike_frag on;        peers_identifier asn1dn;        proposal_check obey;        my_identifier user_fqdn &quot;YOUR.EMAIL.ADDRESS&quot;;        proposal {                encryption_algorithm aes;                hash_algorithm sha1;                authentication_method pre_shared_key;                dh_group modp1024;        }}sainfo address DESKTOP.IP.ADDRESS/32 any address VPN.GATEWAY/28 any{        pfs_group modp1024;        encryption_algorithm 3des;        authentication_algorithm hmac_sha1;        compression_algorithm deflate;}listen{ adminsock &quot;/var/run/racoon.sock&quot; &quot;root&quot; &quot;operator&quot; 0660;}</pre></div></div></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-02-23T05:00:00.000Z"><a href="/2010/02/23/2010-02-23-select-max-value-of-numeric/">2010-02-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2010/02/23/2010-02-23-select-max-value-of-numeric/">Select max value of numeric CollectionOfElements with Hibernate</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+Consider a numeric CollectionOfElements held by a class Product such as:<div class="CodeRay">  <div class="code"><pre>@Entity(name=&quot;Product&quot;)public class Product {protected Set serialNumbers = new HashSet();@CollectionOfElements@JoinTable(name=&quot;product_serialnumbers&quot;)public Set getSerialNumbers() {  return serialNumbers;}public void setSerialNumbers(Set serialNumbers) {  this.serialNumbers = serialNumbers;}}</pre></div></div>You can use a NamedQuery to determine the maximum SerialNumber held by any Product like this:<div class="CodeRay">  <div class="code"><pre>@Entity(name=&quot;Product&quot;)@NamedQueries ({    @NamedQuery(        name = &quot;maxSerialNumber&quot;,        query = &quot;select max(elements(p.serialNumbers)) as value from Product p&quot;        )})public class Product {protected Set serialNumbers = new HashSet();@CollectionOfElements@JoinTable(name=&quot;product_serialnumbers&quot;)public Set getSerialNumbers() {  return serialNumbers;}public void setSerialNumbers(Set serialNumbers) {  this.serialNumbers = serialNumbers;}}</pre></div></div></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-01-18T05:00:00.000Z"><a href="/2010/01/18/2010-01-18-eclipse-galileo-unable-to-read/">2010-01-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2010/01/18/2010-01-18-eclipse-galileo-unable-to-read/">Eclipse Galileo unable to read Subversion repository</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+After a clean Snow Leopard install on a new machine, I fired up a fresh Galileo Eclipse and pointed it at a copy of my old workspace.&nbsp; I first encountered and resolved the missing Mac OS X JRE issue described in my last post, only to then find that my existing subversion repositories were inaccessible in the new Eclipse install. I hopefully added "-clean" as the first parameter of my eclipse.ini file and restarted but the situation remained unchanged. Undeterred, I launched eclipse from the command line with a -clean startup parameter and this did the trick:/Applications/&lt;your install dir/Eclipse.app/Contents/MacOS/eclipse -clean</div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-01-18T05:00:00.000Z"><a href="/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/">2010-01-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/">Missing MacOS X VM in Eclipse Galileo on Snow Leopard</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+I recently encountered an issue where I was unable to add a JVM to my Eclipse install on Snow Leopard. There was no MacOS X VM option under Installed JREs -&gt; Add and attempting to use the Standard VM resulted in an error. After digging around in Eclipse bug reports, I discovered this is a known issue with the Cocoa build of Galileo with PDT pre-installed.&nbsp; The easy fix is to install Eclipse without PDT (just install the Eclipse IDE for Java - Cocoa 64 bit) and add PDT plugin later. When you take this route, the MacOS X VM will be configured automagically.</div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-12-19T05:00:00.000Z"><a href="/2009/12/19/2009-12-19-copypaste-clipboard-broken-on-snow/">2009-12-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/12/19/2009-12-19-copypaste-clipboard-broken-on-snow/">Copy/Paste clipboard broken on Snow Leopard</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+After a recent Apple update, copy and paste quit functioning on my Snow Leopard install. After a number of red herrings, I eventually traced the issue to <a href="http://synergy2.sourceforge.net/" target="_blank" rel="external">Synergy</a> and noticed that synergyc constantly emptied my clipboard immediately after any copy operation. I was running synergy 1.3.1 at the time which was released back in 2006 - I was hopeful that the latest release of the Synergy fork <a href="http://code.google.com/p/synergy-plus/" target="_blank" rel="external">Synergy Plus</a> might provide a quick solution.An install of synergy-plus 1.3.4 Darwin binary did not resolve the issue and a build of the latest from subversion (r252) would not run for me (separate issue - synergyc unable to resolve server address).I happened upon <a href="http://code.google.com/p/synergy-plus/issues/detail?id=67#c85" target="_blank" rel="external">this thread</a> in my search for an answer and based on comments there decided to build revision 242 for my Mac client and run 252 on my Ubuntu server. Happy to report it resolved my issues.One note - I was thrown for a bit when my first Xcode build resulted in 14 compile time errors. Turns out it was necessary for me to build for i386 as the 64-bit build would not compile for me.UPDATE: After a couple weeks use, I found the synergy-plus binary to be rather buggy and went in search of a solution. MacPorts supports a patched build of synergy 1.3.1 for Snow Leopard and so far it is working beautifully. Assuming you have ports installed, the following will install the tried and true synergy.<blockquote class="posterous_short_quote">port clean synergy ; port install synergy +universal</blockquote></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-11-06T05:00:00.000Z"><a href="/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/">2009-11-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/">Subversion, Jira, Sonar, Hudson &amp; Fisheye on Mac OSX Server with Snow Leopard</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+Here are some notes from the field on setting up all these development services to play nice on Mac OS X Server 10.6:<ul><li>Use <a href="http://developer.apple.com/mac/articles/server/subversionwithxcode3.html" target="_blank" rel="external">this excellent writeup from Apple</a> to get Subversion setup as a webservice. Note the comment about how the DAV setting can revert to DAV no and need correction. I've found that it sometimes reverts to "DAV On" and this will break your subversion service...it must always be set to DAV svn</li><li>Configure Jira using Server Admin's "Sites" panel for configuring the Web service. Under Sites-&gt;Proxy configure an ajp worker to talk to your Jira instance. I installed jira on its own context /jira as opposed to root and therefore set the worker URL path as well as the Proxy Path to /jira</li><li>For running under the same hostname/virtual host any additional balancer groups will need to be configured manually. I was able to configure an ajp balancer for sonar but had to use a http balancer for hudson. Avoid using 8443 for your ports for any customer services as Apple's iCal is configured for this one by default.</li></ul></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-10-23T04:00:00.000Z"><a href="/2009/10/23/2009-10-23-installing-python-mysql-connector/">2009-10-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/10/23/2009-10-23-installing-python-mysql-connector/">Installing python-mysql connector MySQLdb after Snow Leopard upgrade</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+After upgrading to Snow Leopard and all its 64-bit goodness, I discovered that the upgrade to python 2.6.1 64-bit understandably broke my python-mysql connector which was previously compiled against my 32-bit installation of XAMPP with MySQL. I tried several different paths to make the new python play nice with the existing XAMPP installation. Here's the one that worked:<br><ol><li>Insure that you have the MySQL include directory needed for compilation against the XAMPP MySQL binary you are running. I'm running a 5.0.x build of MySQL and to get the proper include dir I simply downloaded the <a href="http://dev.mysql.com/downloads/mysql/5.0.html#macosx-dmg" target="_blank" rel="external">32-bit DMG for Mac from here</a>. After installation, I simply copied the include dir to my xampp installation.<div class="CodeRay">  <div class="code"><pre>cp -R /usr/local/mysql/include /Applications/xampp/xamppfiles/</pre></div></div>Now the xampp version of mysql_config will point to your newly installed include dir, so you are ready to compile against it.</li><li>If you don't already have it, grab the python-mysql connector source. I'm using MySQL-python-1.2.3c1</li><li>Tell your 64-bit python to always run in 32-bit mode <div class="CodeRay">  <div class="code"><pre>defaults write com.apple.versioner.python Prefer-32-Bit -bool yes</pre></div></div></li><li>cd into the MySQL-python source directory and build it for 32-bit mode<div class="CodeRay">  <div class="code"><pre>ARCHFLAGS='-arch i386' python setup.py build</pre></div></div></li><li>install it <div class="CodeRay">  <div class="code"><pre>ARCHFLAGS='-arch i386' python setup.py install</pre></div></div></li><li>exit the source directory "cd ~" and test your new install <div class="CodeRay">  <div class="code"><pre>pythonPython 2.6.1 (r261:67515, Jul  7 2009, 23:51:51)[GCC 4.2.1 (Apple Inc. build 5646)] on darwinType &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.&gt;&gt;&gt; import MySQLdb</pre></div></div>You're welcome.</li></ol></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/page/5/" class="alignleft prev">Vorherige Seite</a>
+  
+  
+    <a href="/page/7/" class="alignright next">Nächste Seite</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:ericsimmerman.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/dbunit/">dbunit</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/">gnucash</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/">hibernate</a><small>2</small></li>
+  
+    <li><a href="/categories/java/httpclient/">httpclient</a><small>1</small></li>
+  
+    <li><a href="/categories/iso83bstockoptions/">iso83bstockoptions</a><small>1</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>12</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/keepassx/">keepassx</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
+  
+    <li><a href="/categories/java/macintosh/">macintosh</a><small>2</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><small>1</small></li>
+  
+    <li><a href="/categories/java/httpclient/mindtouch/">mindtouch</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><small>1</small></li>
+  
+    <li><a href="/categories/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/">openlaszlo</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/">ruby</a><small>1</small></li>
+  
+    <li><a href="/categories/scriptaculous/">scriptaculous</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/">snowleopard</a><small>2</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/synergy/">synergy</a><small>2</small></li>
+  
+    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/">ubuntu</a><small>6</small></li>
+  
+    <li><a href="/categories/java/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/vpn/">vpn</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 Eric Simmerman
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

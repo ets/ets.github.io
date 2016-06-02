@@ -1,0 +1,540 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Technocracy</title>
+  <meta name="author" content="Eric Simmerman">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Technocracy"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Technocracy" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Technocracy</a></h1>
+  <h2><a href="/">Posts on whatever your host deems relevant.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-10-29T04:00:00.000Z"><a href="/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/">2013-10-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/">Plesk 11 Upgrade Unable to run Perl scripts in cgi-bin</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+After an upgrade to Plesk 11, my Perl scripts  located under cgi-bin/ for a specific domain were not executing properly. 
+	Requests generated HTTP response code 500 and my error logs showed the unhelpful message "Premature end of script headers"
+	I verified all permissions and even disabled / re-enabled cgi-bin support through Plesk which installs a test script under cgi-bin/test/test.cgi
+	Even the test script failed to run. It also generated the message "Premature end of script headers: test.cgi"
+	I eventually resolved the issue with two changes:<br><br>
+<ol>
+<li>The domain's root folder in /var/www/vhosts was not owned by the domain user. So I fixed that with a chown command.</li>
+<li>Within the Plesk control panel, I had to disable "Perl" support and enable "CGI" support to get my perl scripts with the ".pl" extension to run under cgi-bin</li>
+</ol>
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-04-29T04:00:00.000Z"><a href="/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/">2013-04-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/">Using iStat 2.x on Mountain Lion</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+Shawn Hooton wrote a piece on <a href="http://codingogre.wordpress.com/2011/09/12/fix-istat-menus-version-2-to-work-with-os-x-lion/" target="_blank" rel="external">how to use iStat 2.x on Mountain Lion</a> that I've used several times at this point. <a href="http://codingogre.wordpress.com/2011/09/12/fix-istat-menus-version-2-to-work-with-os-x-lion/" target="_blank" rel="external">Linking to it here </a>for posterity.</div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-03-07T05:00:00.000Z"><a href="/2013/03/07/2013-03-07-moved-to-blogger/">2013-03-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/03/07/2013-03-07-moved-to-blogger/">Moved to Blogger</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+I started this <a href="http://www.jroller.com/agileanswers/" target="_blank" rel="external">Agile Answers blog on jroller back in 2006</a> and I lost some of the older content in my move to Posterous. Sadly Twitter is killing Posterous so I've had to move again...this time to Google's Blogger. Alas - I've lost all the Posterous comments and a lot of formatting in the process. As if&nbsp;<a href="https://twitter.com/theSeanCook" target="_blank" rel="external">The Sean Cook</a>&nbsp;working there weren't reason enough, I now have one more reason to hate Twitter.<br><br><br></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-12-19T05:00:00.000Z"><a href="/2012/12/19/2012-12-19-compressing-mysql-client-server/">2012-12-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/12/19/2012-12-19-compressing-mysql-client-server/">Compressing MySQL client-server communication with Play Framework</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p><span> </span><a href="http://foldergrid.com" target="_blank" rel="external">FolderGrid</a> provides a RESTful api that often services requests where over 90% of the entire response time is spent pulling data from a MySQL instance. I was recently working to reduce overall response time for some long running transactions in that bucket.</p><p><span> </span>After optimizing my queries and my database caching - I looked at network transfer time from the dedicated MySQL server to the mysql client on the application server. &nbsp;Simply enabling MySQL zlib compression resulted in a 3x performance boost for many of the larger resultsets.&nbsp;</p><p><span> </span>To configure your Play Framework connection pool to enable MySQL client-server zlib compression, you'll need to use the explicitly defined "db.url" instead of the shortcut "db" configuration key. Your key should look something like this:</p><p>db.url=jdbc:mysql://remotehost/dbname?useUnicode=yes&amp;characterEncoding=UTF-8&amp;connectionCollation=utf8_general_ci&amp;useCompression=true</p><p>&nbsp;</p><p>&nbsp;</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-11-19T05:00:00.000Z"><a href="/2012/11/19/2012-11-19-when-not-to-front-your-application-with/">2012-11-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/11/19/2012-11-19-when-not-to-front-your-application-with/">When not to front your application with nginx HttpProxyModule</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>Throwing nginx (or Apache or lighthttpd) in front of other application stacks is so common that we often don't think twice about the possible costs. This bit me over the weekend when I casually threw up nginx for SSL termination and configured HttpProxyModule to proxy to my Play Framework driven application.</p><p>I failed to heed the first section in the <a href="http://wiki.nginx.org/HttpProxyModule" target="_blank" rel="external">HttpProxyModule</a> docs. See that note about how "<strong>the entire client request will be buffered in nginx before being passed on to the backend proxied servers</strong>" ?</p><p>That's one note you are going to care about when you're handling large requests and can't figure out why your application is so slow to respond to them.</p><p>RTM&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-08-07T04:00:00.000Z"><a href="/2012/08/07/2012-08-07-supporting-multiple-file-upload/">2012-08-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/08/07/2012-08-07-supporting-multiple-file-upload/">Supporting multiple file upload runtimes with pupload inside ExtJS 4</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>The reference client I built for <a href="http://foldergrid.com/api/index.html" title="FolderGrid API" target="_blank" rel="external">FolderGrid's API </a>is a zero footprint web client created using <a href="http://www.sencha.com/products/extjs/" target="_blank" rel="external">ExtJS 4</a>. I wanted to support drag &amp; drop file uploads for advanced browsers but degrade nicely all the way back to IE6 for those poor lost souls stuck with tech from the last decade. So I integrated <a href="http://www.plupload.com/" target="_blank" rel="external">plupload</a> and bound the two together with some jquery glue.</p><p>The results are working well in production and <a href="https://bitbucket.org/ets/foldergrid-client-extjs/overview" title="FolderGrid Web Client" target="_blank" rel="external">the client itself is open &amp; licensed under GPL v3</a> per the terms of ExtJS 4. So if you are interested in copying &amp; extending - have at it.</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-08-05T04:00:00.000Z"><a href="/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/">2012-08-05</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/">Automatically find trailing commas in your javascript project</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>These are simply updated instructions based upon <a href="http://www.amaxus.com/cms-blog/automatically-finding-javascript-errors-ie7" target="_blank" rel="external">the original Amaxus writeup here</a>.</p><ul><li>Install Rhino &nbsp;(I used "port install rhino")</li><li>Grab the <a href="https://raw.github.com/mikewest/jslint-utils/master/lib/rhinoed_jslint.js" target="_blank" rel="external">Rhinoized JSLint script here</a>.</li><li>Create a script named checkForJsErrors.sh with the following two lines:</li></ul><p>echo $1<br>rhino&nbsp;rhinoed_jslint.js $1 | fgrep -e 'Unexpected' --color=always&nbsp;</p><ul><li>Create an alias in your bashrc</li></ul><p></p><p>alias checkjs='find . -name '''*.js''' -exec ~/bin/checkForJsErrors.sh {} ;'</p><p><div>Now when you execuate that alias in your project's root directory - all of your .js files will be scanned for trailing commas.</div></p><p><div>You're welcome.</div></p><p>&nbsp;</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-08-03T04:00:00.000Z"><a href="/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/">2012-08-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/">orphanRemoval issues in Play Framework &#39;collection owner not associated with session&#39;</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>I was just burned by an issue in Play Framework's JPA support of orphanRemovals. The issue manifests as a "collection owner not associated with session" JPAException within Play Framework 1.2.x &nbsp;- it was supposed to be <a href="https://play.lighthouseapp.com/projects/57987/tickets/1503-nested-onetomany-relationships-with-orphanremoval-fails-to-commit" target="_blank" rel="external">addressed in 1.2.5 with this patch,</a> but I'm running 1.2.5 and am still running into it.</p><p>I didn't take the time to diagnose or file a report - for now I'm punting by restricting the use of 'orphanRemoval'.</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-07-25T04:00:00.000Z"><a href="/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/">2012-07-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/">Cautionary tale regarding cloud security</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>My work with <a href="http://foldergrid.com" target="_blank" rel="external">FolderGrid</a> has included quite a few very interesting technical problems that have resulted in material for this blog.&nbsp;I just&nbsp;<a href="http://blog.foldergrid.com/2012/07/why-we-stopped&amp;hellip;cloud-services/" target="_blank" rel="external">posted an interesting read for anyone using cloud services</a>&nbsp;to store or transport sensitive data.&nbsp;</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-07-11T04:00:00.000Z"><a href="/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/">2012-07-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/">Compiling Maven project with JNLP API 1.6+ on Mac OS X</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>To compile a project using JNLP API with Maven you'll need javaws.jar in the compile-time classpath. You'll find the jar under the lib folder of your JDK installation. Mine was here:</p><p>/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/javaws.jar</p><p>&nbsp;</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+  
+    <a href="/page/2/" class="alignright next">Nächste Seite</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:ericsimmerman.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/dbunit/">dbunit</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/">gnucash</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/">hibernate</a><small>2</small></li>
+  
+    <li><a href="/categories/java/httpclient/">httpclient</a><small>1</small></li>
+  
+    <li><a href="/categories/iso83bstockoptions/">iso83bstockoptions</a><small>1</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>12</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/keepassx/">keepassx</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
+  
+    <li><a href="/categories/java/macintosh/">macintosh</a><small>2</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><small>1</small></li>
+  
+    <li><a href="/categories/java/httpclient/mindtouch/">mindtouch</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><small>1</small></li>
+  
+    <li><a href="/categories/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/">openlaszlo</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/">ruby</a><small>1</small></li>
+  
+    <li><a href="/categories/scriptaculous/">scriptaculous</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/">snowleopard</a><small>2</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/synergy/">synergy</a><small>2</small></li>
+  
+    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/">ubuntu</a><small>6</small></li>
+  
+    <li><a href="/categories/java/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/vpn/">vpn</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 Eric Simmerman
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

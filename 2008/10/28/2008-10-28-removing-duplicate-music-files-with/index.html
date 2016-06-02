@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Removing duplicate music files with different names from a large directory free | Technocracy</title>
+  <meta name="author" content="Eric Simmerman">
+  
+  <meta name="description" content="During a recent Mac migration, I hosed my iTunes library and unintentionally generated hundreds of duplicate songs (the actual media files). The probl">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Removing duplicate music files with different names from a large directory free"/>
+  <meta property="og:site_name" content="Technocracy"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Technocracy" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Technocracy</a></h1>
+  <h2><a href="/">Posts on whatever your host deems relevant.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2008-10-28T04:00:00.000Z"><a href="/2008/10/28/2008-10-28-removing-duplicate-music-files-with/">2008-10-28</a></time>
+      
+      
+  
+    <h1 class="title">Removing duplicate music files with different names from a large directory free</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+During a recent Mac migration, I hosed my iTunes library and unintentionally generated hundreds of duplicate songs (the actual media files). The problem was exacerbated by the fact that a numeric was generally appended to the duplicate filenames so that I had directories full of files like the following:<div class="CodeRay">  <div class="code"><pre>/artist/album/song.mp3/artist/album/song 1.mp3/artist/album/song 2.mp3</pre></div></div>Apple wasn't doing me any favors by injecting a space in the new names either....what a mess!<p>I stole a few ideas from <a href="http://ubuntuforums.org/archive/index.php/t-97701.html" target="_blank" rel="external">this excellent forum thread</a> and cobbled together a script to remove files based on exact byte counts and md5sum signatures. Here's the good stuff:</p><div class="CodeRay">  <div class="code"><pre>#!/bin/bashfind . ! -empty -type f -printf &quot;%s &quot; -exec ls -dQ {} ; | sort -n | cut -d&quot; &quot; -f2- | xargs md5sum | sort | uniq -w32 -d | cut -c35- | while read filenamedo echo &quot;Removing $filenamen&quot; rm &quot;$filename&quot;done</pre></div></div>Now here's the play-by-play:<ol><li>Prints out the size and filename of each file found on the path and sorts using the filesize as the key</li><li>Trims off the file size in preparation for next stage</li><li>Creates the checksum for the files of the same size and then sorts by result</li><li>Strip out any checksums that are unique, leaving only the duplicates</li><li>Strips out the checksum part, just leaving the duplicate filenames</li><li>Loops through the results removing the first duplicate file of each set.</li></ol>You'll need to run the script multiple times if you've managed to generate more than one copy of any given file. Good luck!</div>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/ubuntu/">ubuntu</a>
+  </div>
+
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://ericsimmerman.com/2008/10/28/2008-10-28-removing-duplicate-music-files-with/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:ericsimmerman.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/dbunit/">dbunit</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/">gnucash</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/">hibernate</a><small>2</small></li>
+  
+    <li><a href="/categories/java/httpclient/">httpclient</a><small>1</small></li>
+  
+    <li><a href="/categories/iso83bstockoptions/">iso83bstockoptions</a><small>1</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>12</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/keepassx/">keepassx</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
+  
+    <li><a href="/categories/java/macintosh/">macintosh</a><small>2</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><small>1</small></li>
+  
+    <li><a href="/categories/java/httpclient/mindtouch/">mindtouch</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><small>1</small></li>
+  
+    <li><a href="/categories/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/">openlaszlo</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/">ruby</a><small>1</small></li>
+  
+    <li><a href="/categories/scriptaculous/">scriptaculous</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/">snowleopard</a><small>2</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/synergy/">synergy</a><small>2</small></li>
+  
+    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/">ubuntu</a><small>6</small></li>
+  
+    <li><a href="/categories/java/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/vpn/">vpn</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 Eric Simmerman
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

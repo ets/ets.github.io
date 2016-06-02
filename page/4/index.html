@@ -1,0 +1,534 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Seite 4 | Technocracy</title>
+  <meta name="author" content="Eric Simmerman">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Technocracy"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Technocracy" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Technocracy</a></h1>
+  <h2><a href="/">Posts on whatever your host deems relevant.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-07-30T04:00:00.000Z"><a href="/2011/07/30/2011-07-30-publish-openlaszlo-swf-using-swfobject2/">2011-07-30</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/07/30/2011-07-30-publish-openlaszlo-swf-using-swfobject2/">Publish OpenLaszlo swf using swfobject2 for better progress indicator with IE</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>Default "Loading..." progress indicator for OpenLaszlo swfs leaves much to be desired in IE and the embed scripts that come bundled with OpenLaszlo are kludgy when compared with a <a href="http://code.google.com/p/swfobject/" target="_blank" rel="external">SWFObject2</a> solution. Here's how I publish OpenLaszlo apps using SWFObject2. This technique includes a x-platform compatible javascript driven percentage loaded indicator.</p><p>Note that this solution does not currently support calls to lz.BrowserService.<span class="term">callJS() </span></p><p><br><code>&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"&gt;&lt;/script&gt;&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"&gt;&lt;/script&gt;&lt;script type="text/javascript"&gt;function callbackFn() {&nbsp;&nbsp;&nbsp; try{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; swfobject.addDomLoadEvent(pageloaded);&nbsp;&nbsp;&nbsp; }catch(error){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setTimeout("swfloaded()",1500);&nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }function pageloaded() {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var percentLoaded = swfobject.getObjectById("ObjId").PercentLoaded();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $('#lzsplashtext').html("Percent Loaded: "+percentLoaded+"% ...");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(percentLoaded &lt; 100){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setTimeout("pageloaded()",150);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }else{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; swfloaded();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }catch(error){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setTimeout("swfloaded()",1500);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;&nbsp; }function swfloaded() {&nbsp;&nbsp;&nbsp; $('#lzsplash').hide();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;&nbsp; swfobject.registerObject("ObjId", "10.3.0", "/expressInstall.swf",callbackFn);&lt;/script&gt;...&lt;div id="lzsplash" style="z-index: 10000000; top: 0; left: 0; width: 100%; height: 100%; position: fixed; display: table"&gt;&lt;p style="display: table-cell; vertical-align: middle; align: center;"&gt;&lt;div id="lzsplashtext" style="display: block; margin: 20% auto; font-size:24px; font-family:Helvetica,sans-serif;" align="center"&gt;Loading, please wait...&lt;/div&gt;&lt;/p&gt;&lt;/div&gt;&nbsp;&nbsp;&nbsp; &lt;div style="height:100%;"&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;!--&lt;![endif]--&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/object&gt;&nbsp;&nbsp;&nbsp; &lt;/div&gt;</code></p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-07-05T04:00:00.000Z"><a href="/2011/07/05/2011-07-05-mindtouch-sso-using-httpclient-41-with/">2011-07-05</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/07/05/2011-07-05-mindtouch-sso-using-httpclient-41-with/">MindTouch SSO using HttpClient 4.1 with Java</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>Most of the <a href="http://www.mindtouch.com/" target="_blank" rel="external">MindTouch</a> sample code available in the wild is in PHP or C# so integrating with a Java stack can be painful. Here's a snip of the code we used to support SSO with our Java-based SaaS platform. The HttpClient framework is version 4.1 of <a href="http://hc.apache.org/" target="_blank" rel="external">Apache's HttpClient</a></p><p><strong>Update</strong>: Modified to skip Cookie parsing based upon bjorg's comment</p><p><code>private boolean parseAndSetMindtouchCookie(final HttpServletResponse response,final DefaultHttpClient client,final User user) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StringBuffer buf = new StringBuffer("http://");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; buf.append(this.MINDTOUCH_HOST).append(this.MINDTOUCH_BASEURI).append("users/authenticate?authprovider=1&amp;apikey=").append(MINDTOUCH_APIKEY);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HttpGet get = new HttpGet(buf.toString());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ResponseHandler&lt;String&gt; responseHandler = new BasicResponseHandler();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String responseBody = client.execute(get, responseHandler);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; javax.servlet.http.Cookie cookie = new javax.servlet.http.Cookie("authtoken", responseBody);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cookie.setDomain(".example.com");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cookie.setSecure(false);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cookie.setPath("/");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cookie.setMaxAge(3600); // 1 hour&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.addCookie(cookie);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; log.debug("Successfully set mindtouch auth cookie");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.sendRedirect("http://"+MINDTOUCH_HOST);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return true;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }catch(HttpResponseException hre){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(hre.getStatusCode() == HttpStatus.SC_UNAUTHORIZED ){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; log.debug("User has no Mindtouch account.");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }else{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; log.error("Unable to auth user.",hre);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (Exception e) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; log.error("Unable to authenticate user",e);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return false;&nbsp;&nbsp;&nbsp; }</code></p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-05-06T04:00:00.000Z"><a href="/2011/05/06/2011-05-06-running-tomcat-on-ubuntu-10042-server/">2011-05-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/05/06/2011-05-06-running-tomcat-on-ubuntu-10042-server/">Running Tomcat on Ubuntu 10.04.2 Server</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>1. Install Oracle's JDK using the following commands:</p><p><code>sudo apt-get install python-software-propertiessudo add-apt-repository ppa:sun-java-community-team/sun-java6sudo apt-get updatesudo apt-get install sun-java6-jdk</code></p><p>2. Install APR:</p><p><code>wget http://www.ecoficial.com/apachemirror//apr/apr-1.4.2.tar.gztar -xzf apr-1.4.2.tar.gzrm apr-1.4.2.tar.gzcd apr-1.4.2/sudo apt-get install makesudo ./configuresudo makesudo make install</code></p><p>3. apt-get install libssl-dev</p><p>4. Configure and Install the jni/native package that comes with your Tomcat tarball</p><p>&nbsp;</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-04-13T04:00:00.000Z"><a href="/2011/04/13/2011-04-13-stopping-tcp-split-handshake-spoof/">2011-04-13</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/04/13/2011-04-13-stopping-tcp-split-handshake-spoof/">Stopping a TCP Split Handshake Spoof Attack with SonicWALL</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<div class="posterous_bookmarklet_entry">      <div class="posterous_quote_citation">via <a href="http://www.youtube.com/watch?v=5YR3zCznmYY" target="_blank" rel="external">youtube.com</a></div>    <p>I prefer "howto" articles to videos but this was the first source I found demonstrating how to harden my SonicWall against the <a href="http://www.networkworld.com/news/2011/041211-hacker-exploit-firewalls.html" target="_blank" rel="external">TCP/IP Handshake hole</a> making the rounds this week. Skip to 35 seconds in for the useful stuff...</p></div></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-04-11T04:00:00.000Z"><a href="/2011/04/11/2011-04-11-resolving-firefox-4-issues-on-mac-os-x/">2011-04-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/04/11/2011-04-11-resolving-firefox-4-issues-on-mac-os-x/">Resolving Firefox 4 issues on Mac OS X Snow Leopard</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+I encountered all types of strange behavior using Firefox 4 after my recent upgrade. The nastiest bug prevented me from accessing any windows other than the primary Firefox window. So all popups, while listed on the Windows menu, were completely inaccessible. I tried all the typical workarounds like disabling Addons and running in Safemode. But nothing permanently fixed the issue.<p>  Finally - I simply created a new Firefox profile and <a href="http://kb.mozillazine.org/Transferring_data_to_a_new_profile_-_Firefox" target="_blank" rel="external">transferred the bookmarks, passwords</a>, etc... that I wanted to carryover. This resolved my issues completely. So before you throw away FF4 in frustration - try creating a clean profile. Probably not a bad idea anyway - I noticed FF3.0 cruft in my profile that I shed as part of this process.</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-04-08T04:00:00.000Z"><a href="/2011/04/08/2011-04-08-enhanced-mysqldump-to-support-data/">2011-04-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/04/08/2011-04-08-enhanced-mysqldump-to-support-data/">Enhanced mysqldump to support data cleansing compliance requirements by nullifying specific fields</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>At Pascal Metrics, my team collects large sets of data including ePHI. That subjects us to <a href="http://en.wikipedia.org/wiki/Health_Insurance_Portability_and_Accountability_Act" target="_blank" rel="external">HIPAA</a> and federal law dictates how we handle said data. Before I can even consider moving a database export out of our hardened production environment, I need to cleanse the export of any personally identifying information - including but not limited to any ePHI.</p><p>There are number of ways to achieve that aim, but once our database crossed the threshold into "large" territory - cleansing the data became a real chore. I decided to roll my own mysqldump binary and add a parameter called "nullify-field" which is based upon the "ignore-table" parameter from the official release.</p><p>I've posted my modified source to <a href="https://github.com/ets/mysqldump" target="_blank" rel="external">my GitHub account</a> for any who may be interested.</p><p>You'll have to compile your own copy - but that's relatively easy:</p><ol><li>Grab <a href="http://dev.mysql.com/downloads/mysql/5.0.html" target="_blank" rel="external">the latest mysql 5.0.X source</a>&nbsp;</li><li>Copy my 2 modified source files over the ones that come with your source tarball</li><li>Run "./configure --without-server" to build just the mysql clients</li><li>Run "make" to generate your custom mysqldump under ./client/</li></ol><p>Example Usage:</p><p><code> ./client/mysqldump -u backupuser -p --nullify-field=my_db.my_sensitive_table.name --nullify-field=my_db.my_sensitive_table.email my_db  </code></p><p>I love open source software.</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-04-06T04:00:00.000Z"><a href="/2011/04/06/2011-04-06-minimizing-expense-when-testing-webapps/">2011-04-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/04/06/2011-04-06-minimizing-expense-when-testing-webapps/">Minimizing expense when testing webapps on Internet Explorer</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+Currently - my favorite methods of testing web applications for Internet Explorer compatibility at minimal expenditure of time, money, and pain are:<br> <ul> <li><a href="http://www.virtualbox.org/" target="_blank" rel="external">Virtualbox</a> installations <br> </li> <ul> <li>PROS: Great performance and virtually zero hassle after initial setup<br> </li> <li>CONS: These are not easily shared, so every developer needs his own virtual machine which needs to be individually licensed<br> </li> </ul> <li><a href="http://www.gogrid.com/" target="_blank" rel="external">GoGrid</a> on-demand servers</li> <ul> <li>PROS: Instances can be shared by multiple developers so you only need to configure each virtual machine environment once. MS Windows Licensing is built into the on-demand pricing. <br> </li> <li>CONS: Performance is adequate, but screen refreshes are slow enough to be distracting. It takes about 15 minutes to spin an instance up. <br> </li> </ul> </ul> With either method of obtaining a virtual machine, you'll have to decide how to handle testing for all the permutations you need to support. The "brute force" method is to create a virtual machine for each permutation of OS, Browser, Flash Player, etc...&nbsp; There are some other options though:<br> <ul> <ul> <li><a href="http://www.softpedia.com/get/Internet/WEB-Design/Web-Design-related/Expression-Web-SuperPreview.shtml" target="_blank" rel="external">Microsoft Expression Web SuperPreview</a> for Windows Internet Explorer&nbsp;</li> <ul> <li>can be used to test basic IE6 support on a machine with a more recent version installed - but not a terribly accurate emulator<br> </li> </ul> <li>Internet Explorer 8 with Developer Tools installed <br> </li> <ul> <li>using "Compatibility" mode to emulate IE7 works well enough to debug javascript</li> </ul> </ul> </ul></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-03-28T04:00:00.000Z"><a href="/2011/03/28/2011-03-28-solution-for-firefox-4-installation/">2011-03-28</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/03/28/2011-03-28-solution-for-firefox-4-installation/">Solution for Firefox 4 installation failure on Mac OS X due to &#39;libsmime3.dylib is in use&#39; error</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>If you're attempting to upgrade to Firefox 4 on Mac and encounter this beauty <div class="p_embed p_image_embed"><img alt="Firefox4_lib_error" height="108" src="http://ericsimmerman.files.wordpress.com/2011/03/firefox4_lib_error-scaled500.png?w=300" width="399"></div> then you'll need to perform the following terminal commands as an easy workaround.</p><div class="CodeRay">  <div class="code"><pre>cd /Library/LaunchDaemons/    sudo launchctl stop com.cisco.anyconnect.vpnagentd    sudo launchctl unload com.cisco.anyconnect.vpnagentd.plist    killall vpnagentd</pre></div></div><p>Now attempt to install FireFox 4 again before issuing the following to reconfigure VPNAgent:</p><div class="CodeRay">  <div class="code"><pre>launchctl load com.cisco.anyconnect.vpnagentd.plist</pre></div></div><p>I've seen some other posts online suggesting that the killall command is sufficient, but that didn't work for me because vpnagentd was setup to automatically restart. The process I outlined here prevents that.</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-03-25T04:00:00.000Z"><a href="/2011/03/25/2011-03-25-installing-gerrit2-on-mac-os-x-server/">2011-03-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/03/25/2011-03-25-installing-gerrit2-on-mac-os-x-server/">Installing gerrit2 on Mac OS X Server (Snow Leopard)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>I'm using the default runtime container of gerrit (Jetty) configured for SSL proxy behind the Mac Server apache2 instance. I've configured direct LDAP integration and am using the Mac Server mysql instance.</p><p>Here's what the init parameters look like:</p><p><code>&nbsp;java -jar gerrit.war init -d review_site*** Gerrit Code Review 2.1.6.1***&nbsp;&nbsp;*** Git Repositories***&nbsp;Location of Git repositories &nbsp; [/Library/Git/repositories/]:&nbsp;Import existing repositories &nbsp; [Y/n]?&nbsp;*** SQL Database***&nbsp;Database server type &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [MYSQL/?]:&nbsp;Server hostname &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[localhost]:&nbsp;Server port &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[(MYSQL default)]:&nbsp;Database name &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[reviewdb]:&nbsp;Database username &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[gerrit2]:&nbsp;Change gerrit2's password &nbsp; &nbsp; &nbsp;[y/N]?&nbsp;*** User Authentication***&nbsp;Authentication method &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[LDAP/?]:&nbsp;LDAP server &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[ldaps://my.server.fqdn]:&nbsp;LDAP username &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[]:&nbsp;anonymous's password &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;confirm password :&nbsp;Account BaseDN &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [cn=users,dc=hostname,dc=pascalmetrics,dc=com]:&nbsp;Group BaseDN &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [cn=groups,dc=hostname,dc=pascalmetrics,dc=com]:&nbsp;*** Email Delivery***&nbsp;SMTP server hostname &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [localhost]:&nbsp;SMTP server port &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [(default)]:&nbsp;SMTP encryption &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[NONE/?]:&nbsp;SMTP username &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:&nbsp;*** Container Process***&nbsp;Run as &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [gerrituser]:&nbsp;Java runtime &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home]:&nbsp;&nbsp;Upgrade /opt/gerrit-2.1.6.1/review_site/bin/gerrit.war [Y/n]?&nbsp;Copying gerrit.war to /opt/gerrit-2.1.6.1/review_site/bin/gerrit.war&nbsp;*** SSH Daemon***&nbsp;&nbsp;Listen on address &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[*]:&nbsp;Listen on port &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [29418]:&nbsp;&nbsp;*** HTTP Daemon***&nbsp;&nbsp;Behind reverse proxy &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [Y/n]?&nbsp;Proxy uses SSL (https://) &nbsp; &nbsp; &nbsp;[Y/n]?&nbsp;Subdirectory on proxy server &nbsp; [/gerrit]:&nbsp;Listen on address &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[*]:&nbsp;Listen on port &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [9028]:&nbsp;&nbsp;Scanning /Library/Git/repositories&nbsp;&nbsp;</code></p><p>I had to tweak one my.cnf setting to allow gerrit to complete my initial install. I needed to set</p><p><span style="color:#555555;font-family:verdana, arial, helvetica, sans-serif;font-size:14px;line-height:14px;"> </span></p><div class="CodeRay">  <div class="code"><pre>log_bin_trust_function_creators=1</pre></div></div><p>&nbsp;</p><p>&nbsp;</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-03-11T05:00:00.000Z"><a href="/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/">2011-03-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/">Why you might want to exercise your vested ISOs this year...</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<div class="posterous_bookmarklet_entry"><blockquote><div><p>The Small Business Jobs Act of 2010 (the "Jobs Act"), which was enacted September 27, 2010, contains a brief window of opportunity for non-corporate taxpayers to purchase Qualified Small Business ("QSB") stock (also known as "section 1202 stock") that, if the taxpayer holds the stock for more than five years, is <em>eligible for a 100 percent exclusion of capital gains from sale. This tax break only applies to QSB stock purchased after September 27, 2010 and before January 1, 2011.</em></p></div></blockquote><div class="posterous_quote_citation">via <a href="http://www.reedsmith.com/publications/search_publications.cfm?widCall1=customWidgets.content_view_1&amp;cit_id=29693" target="_blank" rel="external">reedsmith.com</a></div><p>The exclusion described above has been <a href="http://www.natlawreview.com/article/extension-100-gain-exclusion-qualified-small-business-stock" target="_blank" rel="external">extended to the end of 2011</a>.</p></div></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/page/3/" class="alignleft prev">Vorherige Seite</a>
+  
+  
+    <a href="/page/5/" class="alignright next">Nächste Seite</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:ericsimmerman.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/dbunit/">dbunit</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/">gnucash</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/">hibernate</a><small>2</small></li>
+  
+    <li><a href="/categories/java/httpclient/">httpclient</a><small>1</small></li>
+  
+    <li><a href="/categories/iso83bstockoptions/">iso83bstockoptions</a><small>1</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>12</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/keepassx/">keepassx</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
+  
+    <li><a href="/categories/java/macintosh/">macintosh</a><small>2</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><small>1</small></li>
+  
+    <li><a href="/categories/java/httpclient/mindtouch/">mindtouch</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><small>1</small></li>
+  
+    <li><a href="/categories/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/">openlaszlo</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/">ruby</a><small>1</small></li>
+  
+    <li><a href="/categories/scriptaculous/">scriptaculous</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/">snowleopard</a><small>2</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/synergy/">synergy</a><small>2</small></li>
+  
+    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/">ubuntu</a><small>6</small></li>
+  
+    <li><a href="/categories/java/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/vpn/">vpn</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 Eric Simmerman
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

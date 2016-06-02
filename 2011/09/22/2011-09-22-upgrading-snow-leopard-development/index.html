@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Upgrading a Snow Leopard development machine to Lion | Technocracy</title>
+  <meta name="author" content="Eric Simmerman">
+  
+  <meta name="description" content="1. Install LionIf you heard about the small business 20-pack of licences Apple offered when they announced Lion and think you might want to go that ro">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Upgrading a Snow Leopard development machine to Lion"/>
+  <meta property="og:site_name" content="Technocracy"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Technocracy" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Technocracy</a></h1>
+  <h2><a href="/">Posts on whatever your host deems relevant.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-09-22T04:00:00.000Z"><a href="/2011/09/22/2011-09-22-upgrading-snow-leopard-development/">2011-09-22</a></time>
+      
+      
+  
+    <h1 class="title">Upgrading a Snow Leopard development machine to Lion</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p><span style="font-size:large;">1. Install Lion</span></p><p>If you heard about the small business 20-pack of licences Apple offered when they announced Lion and think you might want to go that route - don't. &nbsp;Trust me. &nbsp;They can take your payment but they just can't fulfill your order ... <a href="http://www.youtube.com/watch?v=A7uvttu8ct0" target="_blank" rel="external">and that's really the most important part</a>. Two months later I have a micro USB drive and am finally starting the upgrades.</p><p><span style="font-size:large;">2. Use App Store to download &amp; install XCode</span></p><p>Annoying. At least they fixed the download process to support resumes. Mine cutoff at 98% of the 4G download but picked back up where it left off on resume.</p><p><span style="font-size:large;">3. Run &nbsp;"/Applications/Install Xcode.app"</span></p><p>So when App Store said it was "Installing Xcode" it meant it was installing the Xcode installer. Sadly, it took me a while to figure this one out ... and <a href="https://discussions.apple.com/thread/2786661?start=0&amp;tstart=0" target="_blank" rel="external">I am not alone</a>.</p><p><span style="font-size:large;">4. Install MacPorts 2.0.3 or greater</span></p><p><a href="https://distfiles.macports.org/MacPorts/MacPorts-2.0.3-10.7-Lion.dmg" target="_blank" rel="external">MacPorts install for Lion</a> worked the first time with no hassle - Apple could learn a thing or two.</p><p><span style="font-size:large;">5. Run "port upgrade outdated"</span></p><p><span style="font-size:large;"><span style="font-size:small;">This takes some time but ran without error for me...nice.</span></span></p><p><span style="font-size:large;">6. Update php.ini</span></p><p><span style="font-size:large;"><span style="font-size:small;"><a href="http://maccrazy.com/lion-upgrade-killed-my-php-site-and-how-i-fixed-it" target="_blank" rel="external">Lion upgrades to PHP 2.3.0 </a>and saves but disables your existing php.ini - at a minimum you'll need to update your mysql socket entries to point to the same place as your my.cnf&nbsp;</span></span></p><p><span style="font-size:large;">7. Install a JDK</span></p><p><span style="font-size:large;"><span style="font-size:small;">I attempted to run a Java driven app (LibreOffice) and Lion magically prompted me to install Java. I let it and the install process flawlessly&nbsp;</span></span><span style="font-size:small;">setup a full JDK instead of just a JRE</span><span style="font-size:small;">&nbsp;- nice job Apple.</span></p><p><span style="font-size:large;">8. Toggle trackpad scroll direction</span></p><p><span style="font-size:small;">If all my devices used Lion I'm certain I'd adapt to the inverted scrolling in just a few hours - but they don't and that causes wheel spinning everytime I begin a Lion based session. &nbsp;I see no net benefit so it's not worth the pain. &nbsp;System Preferences -&gt; Trackpad -&gt; Scroll direction -&gt; unchceck</span></p><p><span style="font-size:large;">9. Install the updated Server tools</span></p><p><span style="font-size:small;">If you run a Mac Server and want to use your Lion workstation to manage its services...you need the <a href="http://support.apple.com/kb/DL1419" target="_blank" rel="external">updated Mac Server Tools</a>.</span></p><p><span style="font-size:large;">10. Disable Dashboard</span></p><p><span style="font-size:small;">I don't care for widgets.</span></p><blockquote class="posterous_short_quote"><p>defaults write com.apple.dashboard mcx-disabled -boolean YES<br>killall Dock</p></blockquote><p><span style="font-size:large;">11. Install JDK source</span></p><p>Grab the Java for Mac OS X 10.7 Developer Package from&nbsp;<a href="http://connect.apple.com/" title="Apple Developer Download" target="_blank" style="vertical-align:baseline;color:#990000;font-family:Verdana, Arial, Helvetica, sans-serif;line-height:23px;padding:0;margin:0;">http://connect.apple.com/<br></a>It'll put the src.jar here</p><p><span style="color:#333333;font-family:Monaco, Courier New, Courier, monospace;font-size:12px;line-height:15px;">/Library/Java/JavaVirtualMachines/1.6.0_26-b03-383.jdk/Contents/Home/src.jar</span></p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://ericsimmerman.com/2011/09/22/2011-09-22-upgrading-snow-leopard-development/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:ericsimmerman.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/dbunit/">dbunit</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/">gnucash</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/">hibernate</a><small>2</small></li>
+  
+    <li><a href="/categories/java/httpclient/">httpclient</a><small>1</small></li>
+  
+    <li><a href="/categories/iso83bstockoptions/">iso83bstockoptions</a><small>1</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>12</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/keepassx/">keepassx</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
+  
+    <li><a href="/categories/java/macintosh/">macintosh</a><small>2</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><small>1</small></li>
+  
+    <li><a href="/categories/java/httpclient/mindtouch/">mindtouch</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><small>1</small></li>
+  
+    <li><a href="/categories/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/">openlaszlo</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/">ruby</a><small>1</small></li>
+  
+    <li><a href="/categories/scriptaculous/">scriptaculous</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/">snowleopard</a><small>2</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/synergy/">synergy</a><small>2</small></li>
+  
+    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/">ubuntu</a><small>6</small></li>
+  
+    <li><a href="/categories/java/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/vpn/">vpn</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 Eric Simmerman
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

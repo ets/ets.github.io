@@ -1,0 +1,462 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Seite 9 | Technocracy</title>
+  <meta name="author" content="Eric Simmerman">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Technocracy"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Technocracy" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Technocracy</a></h1>
+  <h2><a href="/">Posts on whatever your host deems relevant.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2008-10-28T04:00:00.000Z"><a href="/2008/10/28/2008-10-28-removing-duplicate-music-files-with/">2008-10-28</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2008/10/28/2008-10-28-removing-duplicate-music-files-with/">Removing duplicate music files with different names from a large directory free</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+During a recent Mac migration, I hosed my iTunes library and unintentionally generated hundreds of duplicate songs (the actual media files). The problem was exacerbated by the fact that a numeric was generally appended to the duplicate filenames so that I had directories full of files like the following:<div class="CodeRay">  <div class="code"><pre>/artist/album/song.mp3/artist/album/song 1.mp3/artist/album/song 2.mp3</pre></div></div>Apple wasn't doing me any favors by injecting a space in the new names either....what a mess!<p>I stole a few ideas from <a href="http://ubuntuforums.org/archive/index.php/t-97701.html" target="_blank" rel="external">this excellent forum thread</a> and cobbled together a script to remove files based on exact byte counts and md5sum signatures. Here's the good stuff:</p><div class="CodeRay">  <div class="code"><pre>#!/bin/bashfind . ! -empty -type f -printf &quot;%s &quot; -exec ls -dQ {} ; | sort -n | cut -d&quot; &quot; -f2- | xargs md5sum | sort | uniq -w32 -d | cut -c35- | while read filenamedo echo &quot;Removing $filenamen&quot; rm &quot;$filename&quot;done</pre></div></div>Now here's the play-by-play:<ol><li>Prints out the size and filename of each file found on the path and sorts using the filesize as the key</li><li>Trims off the file size in preparation for next stage</li><li>Creates the checksum for the files of the same size and then sorts by result</li><li>Strip out any checksums that are unique, leaving only the duplicates</li><li>Strips out the checksum part, just leaving the duplicate filenames</li><li>Loops through the results removing the first duplicate file of each set.</li></ol>You'll need to run the script multiple times if you've managed to generate more than one copy of any given file. Good luck!</div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2008-09-17T04:00:00.000Z"><a href="/2008/09/17/2008-09-17-running-synergy-client-automatically/">2008-09-17</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2008/09/17/2008-09-17-running-synergy-client-automatically/">Running Synergy client automatically under Mac OS X 10.5</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+There is a bug in Synergy 1.3.1 causing it to crash when started as a daemon under Mac OS X 10.5.<p>Here's the <a href="http://sourceforge.net/forum/message.php?msg_id=5021604" target="_blank" rel="external">fix you want</a>.</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2008-06-06T04:00:00.000Z"><a href="/2008/06/06/2008-06-06-avahi-daemon-blocks-nfsd-on-ubuntu/">2008-06-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2008/06/06/2008-06-06-avahi-daemon-blocks-nfsd-on-ubuntu/">avahi-daemon blocks nfsd on Ubuntu</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+I just spent a morning attempting to fix a <a href="http://www.jroller.com/agileanswers/entry/mounting_an_ubuntu_nfs_share" target="_blank" rel="external">NFS mounting configuration</a> that had been working flawlessly for over 6 months. My daemon log was showing this:<div class="CodeRay">  <div class="code"><pre>nfssvc: writing fds to kernel failed: errno 98 (Address already in use)</pre></div></div><br>After much angst, I finally stumbled upon <a href="http://lists.debian.org/debian-user/2007/01/msg00343.html" target="_blank" rel="external">this posting</a> that mentioned a conflict between avahi-daemon and NFSd. After a quick "apt-get remove avahi-daemon", all is well with the world.</div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2008-06-05T04:00:00.000Z"><a href="/2008/06/05/2008-06-05-mathml-support-in-openlaszlo/">2008-06-05</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2008/06/05/2008-06-05-mathml-support-in-openlaszlo/">MathML support in OpenLaszlo</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>I'm happy to announce that my company (<a href="http://www.tempeststrings.com" target="_blank" rel="external">Tempest Strings Enterprises</a>) has sponsored my development and release of a <a href="http://www.w3.org/Math/" target="_blank" rel="external">MathML</a> library for <a href="http://www.openlaszlo.org/" target="_blank" rel="external">OpenLaszlo</a>. I'll be working through the OpenLaszlo contributor process, but imagine that it could take a considerable amount of time before you see this work in their repository since I've not yet made any effort to adhere to any coding guidelines. There is very little documentation in the source, no consistent style, and no support for any runtime except SWF. Nevertheless, I've already successfully integrated the library with a larger application and it is functioning well in our beta release.</p><br><p>This library is based upon the <a href="http://www.learn-math.info/mathml.htm?action=formula" target="_blank" rel="external">Flash Actionscript library</a> that ionel-alexandru (Sourceforge username) of learn-math.info donated to the public domain. I make heavy use of Alex's object tree and MathML rendering logic (thanks Alex!). I've built upon OpenLaszlo's Drawview class from their SVN trunk and added support for rendering stand-alone MathML from a datasource as well as formulas placed inline with other text.</p><p><br></p><p>Note that the full set of MathML has not yet been implemented (ex: no support for &lt;mtable&gt;) but here are some examples of supported formulas:</p><p></p><div class="CodeRay">  <div class="code"><pre>&lt;dataset name=&quot;example1&quot;&gt;&lt;math&gt;&lt;mrow&gt;&lt;msqrt&gt;        &lt;mrow&gt;                &lt;msup&gt;                        &lt;mn&gt;2&lt;/mn&gt;                        &lt;mrow&gt;                                &lt;msup&gt;                                        &lt;mi&gt;x&lt;/mi&gt;                                        &lt;mn&gt;2&lt;/mn&gt;                                &lt;/msup&gt;                                &lt;mo&gt;+&lt;/mo&gt;                                &lt;mrow&gt;                                        &lt;mn&gt;4&lt;/mn&gt;                                        &lt;mi&gt;x&lt;/mi&gt;                                &lt;/mrow&gt;                                &lt;mo&gt;+&lt;/mo&gt;                                &lt;mn&gt;4&lt;/mn&gt;                        &lt;/mrow&gt;                &lt;/msup&gt;                &lt;mo&gt;+&lt;/mo&gt;                &lt;mrow&gt;                        &lt;mn&gt;4&lt;/mn&gt;                        &lt;mi&gt;x&lt;/mi&gt;                &lt;/mrow&gt;                &lt;mo&gt;+&lt;/mo&gt;                &lt;mn&gt;45&lt;/mn&gt;        &lt;/mrow&gt;&lt;/msqrt&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mroot linethickness=&quot;3&quot;&gt;&lt;mrow&gt;        &lt;msub&gt;                &lt;mi&gt;log&lt;/mi&gt;                &lt;mn&gt;2&lt;/mn&gt;        &lt;/msub&gt;&lt;/mrow&gt;&lt;mi&gt;5&lt;/mi&gt;&lt;/mroot&gt;&lt;/mrow&gt;&lt;/math&gt;&lt;/dataset&gt;</pre></div></div>renders with the library as:<div class="p_embed p_image_embed"><img alt="Media_httpwwwjrollerc_nhdgt" height="80" src="http://getfile1.posterous.com/getfile/files.posterous.com/import-flpo/FgiCmfCHGswdohEzpfneJkocEqgAqtgycfGxbwqwtoloiebqEuhwukxqjdys/media_httpwwwjrollerc_nHDgt.jpg.scaled500.jpg" width="382"></div><p></p><div class="CodeRay">  <div class="code"><pre>&lt;dataset name=&quot;example2&quot;&gt;&lt;math&gt;        &lt;mrow&gt;                &lt;mo&gt; ( &lt;/mo&gt;                &lt;mfrac linethickness=&quot;0&quot; color=&quot;#006699&quot;&gt;                        &lt;mi fontstyle=&quot;bold&quot;&gt; a + b +c &lt;/mi&gt;                        &lt;mi color=&quot;#ff0000&quot;&gt; b &lt;/mi&gt;                &lt;/mfrac&gt;                &lt;mo&gt; ) &lt;/mo&gt;        &lt;/mrow&gt;        &lt;mfrac linethickness=&quot;2&quot; fontstyle=&quot;italic&quot; &gt;                &lt;mrow&gt;&lt;mi color=&quot;#00ff00&quot;&gt;3456&lt;/mi&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mfrac&gt;                        &lt;mi&gt; a &lt;/mi&gt;                        &lt;mi fontsize=&quot;8&quot;&gt; b + c + d&lt;/mi&gt;                &lt;/mfrac&gt;                &lt;/mrow&gt;&lt;mrow&gt;&lt;mn&gt;3&lt;/mn&gt;        &lt;mfrac color=&quot;#ffff00&quot;&gt;                        &lt;mi&gt; c + d &lt;/mi&gt;                        &lt;mi color=&quot;#ff0000&quot;&gt; d &lt;/mi&gt;                &lt;/mfrac&gt;        &lt;/mrow&gt;        &lt;/mfrac&gt;&lt;/math&gt;&lt;/dataset&gt;</pre></div></div>makes use of node-level styling to render as<div class="p_embed p_image_embed"><img alt="Media_httpwwwjrollerc_nhcbg" height="115" src="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_nhcbg-scaled500.jpg?w=300" width="343"></div><p>The next one really shows off some of the fancy rendering capabilities:</p><div class="CodeRay">  <div class="code"><pre>&lt;dataset name=&quot;example3&quot;&gt;&lt;math&gt;        &lt;msubsup&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mn&gt;56&lt;/mn&gt;        &lt;/msubsup&gt;        &lt;msup&gt;                &lt;mi&gt;x&lt;/mi&gt;                &lt;mn&gt;2&lt;/mn&gt;        &lt;/msup&gt;        &lt;mtext fontstyle='italic'&gt;dx&lt;/mtext&gt;&lt;mo&gt;+&lt;/mo&gt;        &lt;msubsup&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;                &lt;mi&gt;-&lt;![CDATA[&amp;infinity;]]&gt;&lt;/mi&gt;                &lt;mi&gt;&lt;![CDATA[&amp;infinity;]]&gt;&lt;/mi&gt;        &lt;/msubsup&gt;        &lt;msup&gt;                &lt;mi&gt;e&lt;/mi&gt;                &lt;mn&gt;x&lt;/mn&gt;        &lt;/msup&gt;        &lt;mtext fontstyle='italic'&gt;dx&lt;/mtext&gt;&lt;mo&gt;+&lt;/mo&gt;        &lt;munderover&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;                &lt;mrow&gt;                        &lt;mi&gt;x&lt;/mi&gt;                        &lt;mo&gt;=&lt;/mo&gt;                        &lt;mn&gt;0&lt;/mn&gt;                &lt;/mrow&gt;                &lt;mn&gt;56&lt;/mn&gt;        &lt;/munderover&gt;        &lt;msup&gt;                &lt;mi&gt;x&lt;/mi&gt;                &lt;mn&gt;2&lt;/mn&gt;        &lt;/msup&gt;        &lt;mo&gt;+&lt;/mo&gt;        &lt;munderover&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;                &lt;mrow&gt;                        &lt;mi&gt;x&lt;/mi&gt;                        &lt;mo&gt;=&lt;/mo&gt;                        &lt;mn&gt;0&lt;/mn&gt;                &lt;/mrow&gt;                &lt;mi&gt;&lt;![CDATA[&amp;infinity;]]&gt;&lt;/mi&gt;        &lt;/munderover&gt;        &lt;msup&gt;                &lt;mi&gt;x&lt;/mi&gt;                &lt;mn&gt;2&lt;/mn&gt;        &lt;/msup&gt;        &lt;mo&gt;+&lt;/mo&gt;        &lt;munderover&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;        &lt;mrow&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;        &lt;mi&gt;n&lt;/mi&gt;&lt;/munderover&gt;&lt;mrow&gt;        &lt;mi&gt;x&lt;/mi&gt;&lt;/mrow&gt;&lt;mo&gt;+&lt;/mo&gt;        &lt;munder&gt;                &lt;mrow&gt;                        &lt;mi&gt;lim&lt;/mi&gt;                &lt;/mrow&gt;                &lt;mrow&gt;                        &lt;mi&gt;x&lt;/mi&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;                &lt;mn&gt;0&lt;/mn&gt;        &lt;/mrow&gt;&lt;/munder&gt;&lt;mrow&gt;        &lt;mi&gt;x&lt;/mi&gt;&lt;/mrow&gt;&lt;/math&gt;&lt;/dataset&gt;</pre></div></div><div class="p_embed p_image_embed"><a href="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_hjpgi-scaled1000.jpg" target="_blank" rel="external"><img alt="Media_httpwwwjrollerc_hjpgi" height="60" src="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_hjpgi-scaled1000.jpg?w=300" width="500"></a></div><p>This last example is demonstrating inline rendering with text:</p><div class="CodeRay">  <div class="code"><pre>&lt;dataset name=&quot;myFormula&quot;&gt;&lt;![CDATA[T<br>his is an example of pseudo inline MathML:&lt;math&gt;                &lt;mrow&gt;                  &lt;mi&gt;x&lt;/mi&gt;                  &lt;mo&gt;+&lt;/mo&gt;                  &lt;msup&gt;                    &lt;mi&gt;y&lt;/mi&gt;                    &lt;mfrac&gt;                      &lt;mn&gt;2&lt;/mn&gt;                      &lt;mrow&gt;                        &lt;mi&gt;k&lt;/mi&gt;                        &lt;mo&gt;+&lt;/mo&gt;                        &lt;mn&gt;1&lt;/mn&gt;                      &lt;/mrow&gt;                    &lt;/mfrac&gt;                  &lt;/msup&gt;                &lt;/mrow&gt;                &lt;/math&gt;How do you like them apples?]]&gt;&lt;/dataset&gt;</pre></div></div><div class="p_embed p_image_embed"><a href="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_hdktp-scaled1000.jpg" target="_blank" rel="external"><img alt="Media_httpwwwjrollerc_hdktp" height="23" src="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_hdktp-scaled1000.jpg?w=300" width="500"></a></div><p>All of the formulas above were displayed using the same MathML view using the datasets listed. Here's the view declaration:</p><div class="CodeRay">  <div class="code"><pre>&lt;mathmlview font=&quot;sans-serif&quot; fontsize=&quot;24&quot; fgcolor=&quot;#000000&quot; id=&quot;math&quot; x=&quot;10&quot; y=&quot;10&quot; width=&quot;800&quot; height=&quot;500&quot; datapath=&quot;myFormula:/&quot;/&gt;</pre></div></div>The current source is released under the MIT Open Source License and available on <a href="https://github.com/ets/OpenLaszloMathML" target="_blank" rel="external">github</a>. Enjoy!</div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2008-05-28T04:00:00.000Z"><a href="/2008/05/28/2008-05-28-spring-jms-remoting-support-for-async/">2008-05-28</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2008/05/28/2008-05-28-spring-jms-remoting-support-for-async/">Spring JMS Remoting support for async calls and methods with void return types</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+I've submitted a patch to the Spring Framework to give their <a href="http://jira.springframework.org/browse/SPR-4427" target="_blank" rel="external">JMS remoting feature support for async calls and methods with void return types</a>. The associated Jira ticket (<a href="http://jira.springframework.org/browse/SPR-4427" target="_blank" rel="external">SPR-4427</a>) could use a few votes if you are so inclined.</div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2008-01-15T05:00:00.000Z"><a href="/2008/01/15/2008-01-15-hilight-current-post-on-threaded-view/">2008-01-15</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2008/01/15/2008-01-15-hilight-current-post-on-threaded-view/">Hilight current post on threaded view in Fireboard 1.0.4</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+In the 1.0.4 release, there is no indicator of which post you are currently viewing within a threaded tree of posts. Here's my hack to implement such an indicator.<p>Under your chosen template directory (ex: components/com_fireboard/templates/default), edit the thread.php file. Look for the TR with class="fb_threadview_row" and modify it like so:<br><div class="CodeRay">  <div class="code"><pre>&lt;tr class=&quot;fb_threadview_row&quot; &lt;? if($leaf-&gt;id == (int)$id){ echo &quot;style='background-color:yellow'&quot;; } ?&gt; &gt;</pre></div></div>You can use any background-color value you desire. I used "yellow" in the above example.</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2007-10-29T04:00:00.000Z"><a href="/2007/10/29/2007-10-29-java-webbrowser-plugin-for-amd64-ubuntu/">2007-10-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2007/10/29/2007-10-29-java-webbrowser-plugin-for-amd64-ubuntu/">Java webbrowser plugin for AMD64 Ubuntu</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+There is now (finally) a fix for Java applet support on AMD64 Ubuntu. Try the following:<div class="CodeRay">  <div class="code"><pre>sudo apt-get build-dep icedtea-java7-pluginsudo apt-get -b source icedtea-java7-plugin icedtea-java7-bin icedtea-java7-jre icedtea-java7-jdksudo dpkg -i icedtea-java7-*deb</pre></div></div>Thanks to Fabien Lusseau for the tip in his comment <a href="https://bugs.launchpad.net/ubuntu/+source/icedtea-java7/+bug/152362" target="_blank" rel="external">here</a></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2007-10-20T04:00:00.000Z"><a href="/2007/10/20/2007-10-20-mounting-ubuntu-nfs-share-on-redhat/">2007-10-20</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2007/10/20/2007-10-20-mounting-ubuntu-nfs-share-on-redhat/">Mounting an Ubuntu NFS share on RedHat Enterprise with firewalls on both</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+It can be tough making NFS play nice amongst different distros and firewalls. I'm sharing my Eclipse workspace on my Ubuntu (Debian) desktop with my CentOS (Redhat Enterprise) server. (That's not a mistake, my server is actually my NFS client in this scenario. You could easily swap these roles if you wish)<div class="CodeRay">  <div class="code"><pre>DEBIAN:I used port numbers and config instructions at http://wiki.debian.org/?SecuringNFSFollow those instructions exactly and you'll have a NFS server configuration that uses static ports (instead of random assignements)REDHAT:1. Create the file &quot;/etc/sysconfig/nfs&quot; and add the following contents:STATD_PORT=32765STATD_OUTGOING_PORT=32766LOCKD_TCPPORT=32768LOCKD_UDPPORT=32768MOUNTD_PORT=327672. (Probably not necessary for most, but here for completeness) Append the following to the file &quot;/etc/services&quot;:rquotad 32769/tcp # rpc.rquotad tcp portrquotad 32769/udp # rpc.rquotad udp port3. Restart the nfslock service:/etc/init.d/nfslock restart4. Run /usr/sbin/rpcinfo -p and make sure all the ports above have changed and match their ubuntu numbers. (/usr/bin/rpcinfo on ubuntu)5. I run firestarter on Ubuntu which is exporting my NFS share. I added the following policy rules for inbound traffic:Allow 32767 (from my client machine's IP)Allow 2049 (from my client machine's IP)Allow 111 (from my client machine's IP)</pre></div></div>Assuming you allow all outbound traffic on your client (I recommend this excellent iptables config file <a href="http://www.linuxguruz.com/iptables/scripts/rc.firewall_023.txt" target="_blank" rel="external">rc.firewall_023.txt</a>), you should now be able to mount the NFS share on the Redhat box.</div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/page/8/" class="alignleft prev">Vorherige Seite</a>
+  
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:ericsimmerman.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/dbunit/">dbunit</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/">gnucash</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/">hibernate</a><small>2</small></li>
+  
+    <li><a href="/categories/java/httpclient/">httpclient</a><small>1</small></li>
+  
+    <li><a href="/categories/iso83bstockoptions/">iso83bstockoptions</a><small>1</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>12</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/keepassx/">keepassx</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
+  
+    <li><a href="/categories/java/macintosh/">macintosh</a><small>2</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><small>1</small></li>
+  
+    <li><a href="/categories/java/httpclient/mindtouch/">mindtouch</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><small>1</small></li>
+  
+    <li><a href="/categories/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/">openlaszlo</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/">ruby</a><small>1</small></li>
+  
+    <li><a href="/categories/scriptaculous/">scriptaculous</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/">snowleopard</a><small>2</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/synergy/">synergy</a><small>2</small></li>
+  
+    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/">ubuntu</a><small>6</small></li>
+  
+    <li><a href="/categories/java/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/vpn/">vpn</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 Eric Simmerman
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

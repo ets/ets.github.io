@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>MathML support in OpenLaszlo | Technocracy</title>
+  <meta name="author" content="Eric Simmerman">
+  
+  <meta name="description" content="I&#39;m happy to announce that my company (Tempest Strings Enterprises) has sponsored my development and release of a MathML library for OpenLaszlo. I&#39;ll ">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="MathML support in OpenLaszlo"/>
+  <meta property="og:site_name" content="Technocracy"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Technocracy" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Technocracy</a></h1>
+  <h2><a href="/">Posts on whatever your host deems relevant.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2008-06-05T04:00:00.000Z"><a href="/2008/06/05/2008-06-05-mathml-support-in-openlaszlo/">2008-06-05</a></time>
+      
+      
+  
+    <h1 class="title">MathML support in OpenLaszlo</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>I'm happy to announce that my company (<a href="http://www.tempeststrings.com" target="_blank" rel="external">Tempest Strings Enterprises</a>) has sponsored my development and release of a <a href="http://www.w3.org/Math/" target="_blank" rel="external">MathML</a> library for <a href="http://www.openlaszlo.org/" target="_blank" rel="external">OpenLaszlo</a>. I'll be working through the OpenLaszlo contributor process, but imagine that it could take a considerable amount of time before you see this work in their repository since I've not yet made any effort to adhere to any coding guidelines. There is very little documentation in the source, no consistent style, and no support for any runtime except SWF. Nevertheless, I've already successfully integrated the library with a larger application and it is functioning well in our beta release.</p><br><p>This library is based upon the <a href="http://www.learn-math.info/mathml.htm?action=formula" target="_blank" rel="external">Flash Actionscript library</a> that ionel-alexandru (Sourceforge username) of learn-math.info donated to the public domain. I make heavy use of Alex's object tree and MathML rendering logic (thanks Alex!). I've built upon OpenLaszlo's Drawview class from their SVN trunk and added support for rendering stand-alone MathML from a datasource as well as formulas placed inline with other text.</p><p><br></p><p>Note that the full set of MathML has not yet been implemented (ex: no support for &lt;mtable&gt;) but here are some examples of supported formulas:</p><p></p><div class="CodeRay">  <div class="code"><pre>&lt;dataset name=&quot;example1&quot;&gt;&lt;math&gt;&lt;mrow&gt;&lt;msqrt&gt;        &lt;mrow&gt;                &lt;msup&gt;                        &lt;mn&gt;2&lt;/mn&gt;                        &lt;mrow&gt;                                &lt;msup&gt;                                        &lt;mi&gt;x&lt;/mi&gt;                                        &lt;mn&gt;2&lt;/mn&gt;                                &lt;/msup&gt;                                &lt;mo&gt;+&lt;/mo&gt;                                &lt;mrow&gt;                                        &lt;mn&gt;4&lt;/mn&gt;                                        &lt;mi&gt;x&lt;/mi&gt;                                &lt;/mrow&gt;                                &lt;mo&gt;+&lt;/mo&gt;                                &lt;mn&gt;4&lt;/mn&gt;                        &lt;/mrow&gt;                &lt;/msup&gt;                &lt;mo&gt;+&lt;/mo&gt;                &lt;mrow&gt;                        &lt;mn&gt;4&lt;/mn&gt;                        &lt;mi&gt;x&lt;/mi&gt;                &lt;/mrow&gt;                &lt;mo&gt;+&lt;/mo&gt;                &lt;mn&gt;45&lt;/mn&gt;        &lt;/mrow&gt;&lt;/msqrt&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mroot linethickness=&quot;3&quot;&gt;&lt;mrow&gt;        &lt;msub&gt;                &lt;mi&gt;log&lt;/mi&gt;                &lt;mn&gt;2&lt;/mn&gt;        &lt;/msub&gt;&lt;/mrow&gt;&lt;mi&gt;5&lt;/mi&gt;&lt;/mroot&gt;&lt;/mrow&gt;&lt;/math&gt;&lt;/dataset&gt;</pre></div></div>renders with the library as:<div class="p_embed p_image_embed"><img alt="Media_httpwwwjrollerc_nhdgt" height="80" src="http://getfile1.posterous.com/getfile/files.posterous.com/import-flpo/FgiCmfCHGswdohEzpfneJkocEqgAqtgycfGxbwqwtoloiebqEuhwukxqjdys/media_httpwwwjrollerc_nHDgt.jpg.scaled500.jpg" width="382"></div><p></p><div class="CodeRay">  <div class="code"><pre>&lt;dataset name=&quot;example2&quot;&gt;&lt;math&gt;        &lt;mrow&gt;                &lt;mo&gt; ( &lt;/mo&gt;                &lt;mfrac linethickness=&quot;0&quot; color=&quot;#006699&quot;&gt;                        &lt;mi fontstyle=&quot;bold&quot;&gt; a + b +c &lt;/mi&gt;                        &lt;mi color=&quot;#ff0000&quot;&gt; b &lt;/mi&gt;                &lt;/mfrac&gt;                &lt;mo&gt; ) &lt;/mo&gt;        &lt;/mrow&gt;        &lt;mfrac linethickness=&quot;2&quot; fontstyle=&quot;italic&quot; &gt;                &lt;mrow&gt;&lt;mi color=&quot;#00ff00&quot;&gt;3456&lt;/mi&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mfrac&gt;                        &lt;mi&gt; a &lt;/mi&gt;                        &lt;mi fontsize=&quot;8&quot;&gt; b + c + d&lt;/mi&gt;                &lt;/mfrac&gt;                &lt;/mrow&gt;&lt;mrow&gt;&lt;mn&gt;3&lt;/mn&gt;        &lt;mfrac color=&quot;#ffff00&quot;&gt;                        &lt;mi&gt; c + d &lt;/mi&gt;                        &lt;mi color=&quot;#ff0000&quot;&gt; d &lt;/mi&gt;                &lt;/mfrac&gt;        &lt;/mrow&gt;        &lt;/mfrac&gt;&lt;/math&gt;&lt;/dataset&gt;</pre></div></div>makes use of node-level styling to render as<div class="p_embed p_image_embed"><img alt="Media_httpwwwjrollerc_nhcbg" height="115" src="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_nhcbg-scaled500.jpg?w=300" width="343"></div><p>The next one really shows off some of the fancy rendering capabilities:</p><div class="CodeRay">  <div class="code"><pre>&lt;dataset name=&quot;example3&quot;&gt;&lt;math&gt;        &lt;msubsup&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mn&gt;56&lt;/mn&gt;        &lt;/msubsup&gt;        &lt;msup&gt;                &lt;mi&gt;x&lt;/mi&gt;                &lt;mn&gt;2&lt;/mn&gt;        &lt;/msup&gt;        &lt;mtext fontstyle='italic'&gt;dx&lt;/mtext&gt;&lt;mo&gt;+&lt;/mo&gt;        &lt;msubsup&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;                &lt;mi&gt;-&lt;![CDATA[&amp;infinity;]]&gt;&lt;/mi&gt;                &lt;mi&gt;&lt;![CDATA[&amp;infinity;]]&gt;&lt;/mi&gt;        &lt;/msubsup&gt;        &lt;msup&gt;                &lt;mi&gt;e&lt;/mi&gt;                &lt;mn&gt;x&lt;/mn&gt;        &lt;/msup&gt;        &lt;mtext fontstyle='italic'&gt;dx&lt;/mtext&gt;&lt;mo&gt;+&lt;/mo&gt;        &lt;munderover&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;                &lt;mrow&gt;                        &lt;mi&gt;x&lt;/mi&gt;                        &lt;mo&gt;=&lt;/mo&gt;                        &lt;mn&gt;0&lt;/mn&gt;                &lt;/mrow&gt;                &lt;mn&gt;56&lt;/mn&gt;        &lt;/munderover&gt;        &lt;msup&gt;                &lt;mi&gt;x&lt;/mi&gt;                &lt;mn&gt;2&lt;/mn&gt;        &lt;/msup&gt;        &lt;mo&gt;+&lt;/mo&gt;        &lt;munderover&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;                &lt;mrow&gt;                        &lt;mi&gt;x&lt;/mi&gt;                        &lt;mo&gt;=&lt;/mo&gt;                        &lt;mn&gt;0&lt;/mn&gt;                &lt;/mrow&gt;                &lt;mi&gt;&lt;![CDATA[&amp;infinity;]]&gt;&lt;/mi&gt;        &lt;/munderover&gt;        &lt;msup&gt;                &lt;mi&gt;x&lt;/mi&gt;                &lt;mn&gt;2&lt;/mn&gt;        &lt;/msup&gt;        &lt;mo&gt;+&lt;/mo&gt;        &lt;munderover&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;        &lt;mrow&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;        &lt;mi&gt;n&lt;/mi&gt;&lt;/munderover&gt;&lt;mrow&gt;        &lt;mi&gt;x&lt;/mi&gt;&lt;/mrow&gt;&lt;mo&gt;+&lt;/mo&gt;        &lt;munder&gt;                &lt;mrow&gt;                        &lt;mi&gt;lim&lt;/mi&gt;                &lt;/mrow&gt;                &lt;mrow&gt;                        &lt;mi&gt;x&lt;/mi&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;                &lt;mn&gt;0&lt;/mn&gt;        &lt;/mrow&gt;&lt;/munder&gt;&lt;mrow&gt;        &lt;mi&gt;x&lt;/mi&gt;&lt;/mrow&gt;&lt;/math&gt;&lt;/dataset&gt;</pre></div></div><div class="p_embed p_image_embed"><a href="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_hjpgi-scaled1000.jpg" target="_blank" rel="external"><img alt="Media_httpwwwjrollerc_hjpgi" height="60" src="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_hjpgi-scaled1000.jpg?w=300" width="500"></a></div><p>This last example is demonstrating inline rendering with text:</p><div class="CodeRay">  <div class="code"><pre>&lt;dataset name=&quot;myFormula&quot;&gt;&lt;![CDATA[T<br>his is an example of pseudo inline MathML:&lt;math&gt;                &lt;mrow&gt;                  &lt;mi&gt;x&lt;/mi&gt;                  &lt;mo&gt;+&lt;/mo&gt;                  &lt;msup&gt;                    &lt;mi&gt;y&lt;/mi&gt;                    &lt;mfrac&gt;                      &lt;mn&gt;2&lt;/mn&gt;                      &lt;mrow&gt;                        &lt;mi&gt;k&lt;/mi&gt;                        &lt;mo&gt;+&lt;/mo&gt;                        &lt;mn&gt;1&lt;/mn&gt;                      &lt;/mrow&gt;                    &lt;/mfrac&gt;                  &lt;/msup&gt;                &lt;/mrow&gt;                &lt;/math&gt;How do you like them apples?]]&gt;&lt;/dataset&gt;</pre></div></div><div class="p_embed p_image_embed"><a href="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_hdktp-scaled1000.jpg" target="_blank" rel="external"><img alt="Media_httpwwwjrollerc_hdktp" height="23" src="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_hdktp-scaled1000.jpg?w=300" width="500"></a></div><p>All of the formulas above were displayed using the same MathML view using the datasets listed. Here's the view declaration:</p><div class="CodeRay">  <div class="code"><pre>&lt;mathmlview font=&quot;sans-serif&quot; fontsize=&quot;24&quot; fgcolor=&quot;#000000&quot; id=&quot;math&quot; x=&quot;10&quot; y=&quot;10&quot; width=&quot;800&quot; height=&quot;500&quot; datapath=&quot;myFormula:/&quot;/&gt;</pre></div></div>The current source is released under the MIT Open Source License and available on <a href="https://github.com/ets/OpenLaszloMathML" target="_blank" rel="external">github</a>. Enjoy!</div>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/openlaszlo/">openlaszlo</a>, <a href="/categories/openlaszlo/softwaredevelopment/">softwaredevelopment</a>, <a href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a>
+  </div>
+
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://ericsimmerman.com/2008/06/05/2008-06-05-mathml-support-in-openlaszlo/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:ericsimmerman.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/dbunit/">dbunit</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/">gnucash</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/">hibernate</a><small>2</small></li>
+  
+    <li><a href="/categories/java/httpclient/">httpclient</a><small>1</small></li>
+  
+    <li><a href="/categories/iso83bstockoptions/">iso83bstockoptions</a><small>1</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>12</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/keepassx/">keepassx</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
+  
+    <li><a href="/categories/java/macintosh/">macintosh</a><small>2</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><small>1</small></li>
+  
+    <li><a href="/categories/java/httpclient/mindtouch/">mindtouch</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><small>1</small></li>
+  
+    <li><a href="/categories/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/">openlaszlo</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/">ruby</a><small>1</small></li>
+  
+    <li><a href="/categories/scriptaculous/">scriptaculous</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/">snowleopard</a><small>2</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/synergy/">synergy</a><small>2</small></li>
+  
+    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/">ubuntu</a><small>6</small></li>
+  
+    <li><a href="/categories/java/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/vpn/">vpn</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 Eric Simmerman
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

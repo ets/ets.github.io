@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Install PHP 5.3.5 with FPM (FastCGI Process Manager) support on Apache2/Centos 5.5 | Technocracy</title>
+  <meta name="author" content="Eric Simmerman">
+  
+  <meta name="description" content="$&amp;gt; yum upgrade$&amp;gt; yum groupinstall &quot;Development Tools&quot;$&amp;gt; wget http://us2.php.net/get/php-5.3.5.tar.bz2/from/us.php.net/mirror$&amp;gt; tar xvf php">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Install PHP 5.3.5 with FPM (FastCGI Process Manager) support on Apache2/Centos 5.5"/>
+  <meta property="og:site_name" content="Technocracy"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Technocracy" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Technocracy</a></h1>
+  <h2><a href="/">Posts on whatever your host deems relevant.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-01-21T05:00:00.000Z"><a href="/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/">2011-01-21</a></time>
+      
+      
+  
+    <h1 class="title">Install PHP 5.3.5 with FPM (FastCGI Process Manager) support on Apache2/Centos 5.5</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>$&gt; yum upgrade<br>$&gt; yum groupinstall "Development Tools"<br>$&gt; wget <a href="http://us2.php.net/get/php-5.3.5.tar.bz2/from/us.php.net/mirror" target="_blank" rel="external">http://us2.php.net/get/php-5.3.5.tar.bz2/from/us.php.net/mirror</a><br>$&gt; tar xvf php-5.3.5.tar.bz2<br>$&gt; yum install mysql-server httpd-devel-* libxml2-devel-* openssl-devel* xmlsec1-openssl-devel-* libpng* libjpeg* curl-devel libmcrypt* mysql-devel* mysql.* libevent libevent-devel libtool-ltdl-devel libtool apr-devel apr<br>$&gt; cd php-5.3.5<br>$&gt; ./configure --with-mysql=shared --with-openssl --enable-pdo --with-pdo-mysql=shared --with-mhash=shared --enable-soap=shared --with-config-file-path=/etc/ --with-mysqli --enable-zip --enable-shared --with-curl --enable-mbstring=all --enable-maintainer-zts --with-jpeg-dir=/usr/lib/ --with-libdir=lib64 --enable-soap --with-pdo-mysql --with-gd --with-mcrypt --enable-fpm --with-config-file-scan-dir=/etc/php.d<br>$&gt; make; make install;<br>$&gt; chmod 705 /var/log/httpd</p><p>Edit your php.ini to point to your new PHP's extension directory (printed as part of make install above):<br><code>extension_dir = "/usr/local/lib/php/extensions/no-debug-zts-20090626/"</code></p><p>Make certain your /etc/php.d directory is only loading extensions that have been built against your new php. I only load mysql and apc</p><p>Now you need to tell Apache to use php-fpm via mod_fastcgi.<br># wget <a href="http://www.fastcgi.com/dist/mod_fastcgi-current.tar.gz" target="_blank" rel="external">http://www.fastcgi.com/dist/mod_fastcgi-current.tar.gz</a><br># tar -zxvf mod_fastcgi-current.tar.gz<br># cd mod_fastcgi-2.4.6/<br># cp Makefile.AP2 Makefile</p><p>Compile and install mod_fastcgi for 32 bit system, enter:<br># make top_dir=/usr/lib/httpd<br># make install top_dir=/usr/lib/httpd</p><p>Compile and install mod_fastcgi for 64 bit system, enter:<br># make top_dir=/usr/lib64/httpd<br># make install top_dir=/usr/lib64/httpd</p><p>Sample output:<br><code>make install top_dir=/usr/lib64/httpdmake[1]: Entering directory `/tmp/mod_fastcgi-2.4.6'/usr/lib64/apr-1/build/libtool --silent --mode=install cp mod_fastcgi.la /usr/lib64/httpd/modules/make[1]: Leaving directory `/tmp/mod_fastcgi-2.4.6'</code></p><p>Edit your Apache config to configure mod_fastcgi:<br><code># mods-enabled/fastcgi.conf&lt;IfModule mod_fastcgi.c&gt;FastCGIExternalServer /usr/local/sbin/php-fpm -socket /tmp/php-fpm.sockAddHandler php-fastcgi .phpAction php-fastcgi /usr/local/sbin/php-fpm.fcgiScriptAlias /usr/local/sbin/php-fpm.fcgi /usr/local/sbin/php-fpm&lt;Directory /usr/local/sbin&gt;Options ExecCGI FollowSymLinksSetHandler fastcgi-scriptOrder allow,denyAllow from all&lt;/Directory&gt;&lt;/IfModule&gt;</code></p><p>Now edit your /usr/local/etc/php-fpm config file using settings like these:<br><code>[www]# socketlisten = /tmp/php-fpm.socklisten.owner = apachelisten.group = apachelisten.mode = 0666# user ID/GIDuser = apachegroup = apache</code></p><p>Finally, <a href="http://us2.php.net/manual/en/install.fpm.php" target="_blank" rel="external">configure an autostart script for your php-fpm daemon using these instructions</a>.</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://ericsimmerman.com/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:ericsimmerman.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/dbunit/">dbunit</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/">gnucash</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/">hibernate</a><small>2</small></li>
+  
+    <li><a href="/categories/java/httpclient/">httpclient</a><small>1</small></li>
+  
+    <li><a href="/categories/iso83bstockoptions/">iso83bstockoptions</a><small>1</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>12</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/keepassx/">keepassx</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
+  
+    <li><a href="/categories/java/macintosh/">macintosh</a><small>2</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><small>1</small></li>
+  
+    <li><a href="/categories/java/httpclient/mindtouch/">mindtouch</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><small>1</small></li>
+  
+    <li><a href="/categories/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/">openlaszlo</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/">ruby</a><small>1</small></li>
+  
+    <li><a href="/categories/scriptaculous/">scriptaculous</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/">snowleopard</a><small>2</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/synergy/">synergy</a><small>2</small></li>
+  
+    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/">ubuntu</a><small>6</small></li>
+  
+    <li><a href="/categories/java/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/vpn/">vpn</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 Eric Simmerman
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
