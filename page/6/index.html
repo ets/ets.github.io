@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Seite 6 | Technocracy</title>
+  <title>第 6 頁 | Technocracy</title>
   <meta name="author" content="Eric Simmerman">
   
   
@@ -44,6 +44,181 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-11-28T05:00:00.000Z"><a href="/2010/11/28/2010-11-28-ditch-mamp-on-snow-leopard/">2010-11-28</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2010/11/28/2010-11-28-ditch-mamp-on-snow-leopard/">Ditch MAMP on Snow Leopard</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+I was fond of the stack <a href="http://www.apachefriends.org/en/xampp.html" target="_blank" rel="external">XAMPP</a> offered when I developed on Windows and lazily continued used <a href="http://www.mamp.info/en/index.html" target="_blank" rel="external">XAMPP/MAMP</a> once I moved to a Mac OS X based workstation. Unfortunately, the latest releases of MAMP have attempted to restrict the utility of the stack in an effort to raise revenue through a less restricted "Pro" version. Developers on Snow Leopard are much better off moving to standalone installations of everything MAMP offers.There are many ways to install PHP, MySQL, Apache, and phpMyAdmin - all with a list of pros/cons. Without debating the merits, here's what I did to replace MAMP:<h2>1. Dump your MAMP Mysql databases and save them for import into your standalone MySQL install</h2><code>mysqldump --all-databases &gt; ~/old-mysql-data.sql</code><h2>2. Install a more recent copy of MySQL server than the one delivered with Snow Leopard</h2>I already had <a href="http://www.macports.org/" target="_blank" rel="external">macports</a> installed, so the choice here was easy. The following command installs the mysql binaries under /opt/local/bin/<code>port install mysql5 mysql5-server</code><h2>3. Import your data into your new MySQL database</h2>First, be certain to shutdown all the MAMP servers (MySQL, Apache, etc...) - then start your new standalone MySQL<code>sudo /opt/local/bin/mysqld_safe5 &amp;</code>Finally, run the following:<code>mysql <h2>4. Install phpMyAdmin on the SL delivered Apache installation</h2>Install it fresh, or just copy your MAMP installation to ~/Sites where it will be available under http://localhost/~your-username/<h2>5. Enable PHP5 on the SL delivered Apache installation</h2>Open /etc/apache2/httpd.conf and enable the line: "#LoadModule php5_module libexec/apache2/libphp5.so" by removing the pound. Then in the Mac System Pref -&gt; Sharing, turn on (or if it was already on, turn off/on) Web Sharing. If you need to move any vhost or SSL config directives from MAMP to the SL Apache install, you'll make those changes to files in /etc/apache2/extra/<h2>6. Optional - Configure PHP by creating a php.ini under /etc</h2>I'm content to use the PHP installation already delivered by SL, but there is no default php.ini - simply create one under /etc and it'll be read automatically.You can now remove the MAMP training wheels and proceed developing with full standalone versions of your stack - happy trails.</code></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-11-02T04:00:00.000Z"><a href="/2010/11/02/2010-11-02-support-chroot-for-scp-connections-on/">2010-11-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2010/11/02/2010-11-02-support-chroot-for-scp-connections-on/">Support chroot for SCP connections on CentOS 5.5</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>Many thanks to <a href="http://www.linuxquestions.org/questions/red-hat-31/my-version-of-ssh-doesnt-support-match-and-forcecommand-819436/" target="_blank" rel="external">anomie for posting this great writeup</a>. I've pasted it below to help spread the wealth.</p><p>-------</p><p>Here's a quick recipe for your chrooted sftp daemon:</p><p>1. Create the sftp init script - &lt;strong&gt;/etc/init.d/sftpfoo&lt;/strong&gt;<br><code>#!/bin/bash## chkconfig: 35 60 25# description: OpenSSH chrooted sftp only daemon## Note that /usr/sbin/sftpfoo is simply a symlink to /usr/sbin/sshd#</code></p><p>pidfile='/var/run/sftpfoo.pid'</p><p>case "${1}" in</p><p>start&nbsp; ) exec -a /usr/sbin/sftpfoo /usr/sbin/sshd -f /etc/ssh/sftpfoo_config<br>;;<br>stop&nbsp;&nbsp; ) kill -9 $(cat ${pidfile})<br>;;<br>restart) stop<br>sleep 3<br>start<br>;;<br>*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ) echo "Usage: ${0} (start|stop|restart)"<br>;;</p><p>esac</p><p>exit 0</p><p>2. Add it to chkconfig(8) consciousness and set up a symlink you'll need later.</p><p><code># chkconfig --add sftpfoo# ln -s /usr/sbin/sshd /usr/sbin/sftpfoo</code></p><p>3. Create your sftp config file - &lt;strong&gt;/etc/ssh/sftpfoo_config&lt;/strong&gt;</p><p><code>Port 8822Protocol 2AddressFamily inet</code></p><p>SyslogFacility AUTHPRIV<br>LogLevel INFO</p><p>PermitRootLogin no</p><p>RSAAuthentication no<br>PubkeyAuthentication no<br>RhostsRSAAuthentication no<br>HostbasedAuthentication no<br>PasswordAuthentication yes<br>PermitEmptyPasswords no<br>ChallengeResponseAuthentication no<br>KerberosAuthentication no<br>GSSAPIAuthentication no</p><p>UsePAM no</p><p>PidFile /var/run/sftpfoo.pid</p><p>ChrootDirectory /home/chrooted<br>Subsystem sftp internal-sftp</p><p>4. Create your first sftp-only user</p><p><code># useradd -d /nowhere -M -s /sbin/nologin baruser</code></p><p>5. Create the chroot directory</p><p><code># mkdir -p /home/chrooted &amp;amp;&amp;amp; chmod 755 /home/chrooted</code></p><p>6. Start the sftp service</p><p><code># service sftpfoo start</code><br>-------</p><p>Now, log in remotely as baruser, specifying port 8822. (Remember to poke a hole in your firewall for this port.)</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-10-29T04:00:00.000Z"><a href="/2010/10/29/2010-10-29-resolving-sleep-issues-with-seagate/">2010-10-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2010/10/29/2010-10-29-resolving-sleep-issues-with-seagate/">Resolving sleep issues with Seagate GoFlex Desk on Mac Snow Leopard</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+There are number of posts on Seagate's user forums describing <a href="http://forums.seagate.com/t5/FreeAgent-Products/How-to-stop-Seagate-FreeAgent-Desktop-Drives-from-going-to-sleep/m-p/8812" target="_blank" rel="external">frustration with the GoFlex line of external harddrive</a> and its <a href="http://forums.seagate.com/t5/FreeAgent-Products/FreeAgent-for-Mac-and-sleep/m-p/34138" target="_blank" rel="external">tendency to periodically eject/sleep</a> on Mac's Snow Leopard. I'm using the 2TB GoFlex as my Time Machine drive and needed to resolve this annoyance as well. I've opened a ticket with Seagate Support directly, but so far they've been unable to completely resolve the issue.The only thing that seems to help is to go into System Prefs -&gt; Energy Saver and turn off the feature that puts Hard Drives to sleep. With that power saving feature disabled the Seagate only complains when my Mac actually wakes from sleep - that's an improvement but still no love.</div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-08-26T04:00:00.000Z"><a href="/2010/08/26/2010-08-26-how-to-undo-svn-commit-from-command-line/">2010-08-26</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2010/08/26/2010-08-26-how-to-undo-svn-commit-from-command-line/">How to undo a SVN commit from the command line</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>SVN 1.4 added a feature to support easy rollback of a SVN commit. It's documented in SVN help, but unfortunately SVN help only makes sense if you already understand what it's trying to explain. Here's the easy commit revert command to run against your working copy:</p><p>svn merge -c -[REV] [REPO]</p><p>Replace the brackets with the offending revision number and your SVN repository respectively. For example, to undo the changes made by revision 42:</p><p>svn merge -c -42 <a href="http://example.com/svn/trunk" target="_blank" rel="external">http://example.com/svn/trunk</a> .</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-08-19T04:00:00.000Z"><a href="/2010/08/19/2010-08-19-i-big-in-brazil/">2010-08-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2010/08/19/2010-08-19-i-big-in-brazil/">I&#39;m big in Brazil</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<div class="p_embed p_image_embed"><img alt="Media_httpwwwericsimm_ndffj" height="224" src="http://ericsimmerman.files.wordpress.com/2010/08/media_httpwwwericsimm_ndffj-scaled500.jpg?w=300" width="300"></div></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -219,202 +394,27 @@ Consider a numeric CollectionOfElements held by a class Product such as:<div cla
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2010-01-18T05:00:00.000Z"><a href="/2010/01/18/2010-01-18-eclipse-galileo-unable-to-read/">2010-01-18</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2010/01/18/2010-01-18-eclipse-galileo-unable-to-read/">Eclipse Galileo unable to read Subversion repository</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-After a clean Snow Leopard install on a new machine, I fired up a fresh Galileo Eclipse and pointed it at a copy of my old workspace.&nbsp; I first encountered and resolved the missing Mac OS X JRE issue described in my last post, only to then find that my existing subversion repositories were inaccessible in the new Eclipse install. I hopefully added "-clean" as the first parameter of my eclipse.ini file and restarted but the situation remained unchanged. Undeterred, I launched eclipse from the command line with a -clean startup parameter and this did the trick:/Applications/&lt;your install dir/Eclipse.app/Contents/MacOS/eclipse -clean</div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2010-01-18T05:00:00.000Z"><a href="/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/">2010-01-18</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/">Missing MacOS X VM in Eclipse Galileo on Snow Leopard</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-I recently encountered an issue where I was unable to add a JVM to my Eclipse install on Snow Leopard. There was no MacOS X VM option under Installed JREs -&gt; Add and attempting to use the Standard VM resulted in an error. After digging around in Eclipse bug reports, I discovered this is a known issue with the Cocoa build of Galileo with PDT pre-installed.&nbsp; The easy fix is to install Eclipse without PDT (just install the Eclipse IDE for Java - Cocoa 64 bit) and add PDT plugin later. When you take this route, the MacOS X VM will be configured automagically.</div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2009-12-19T05:00:00.000Z"><a href="/2009/12/19/2009-12-19-copypaste-clipboard-broken-on-snow/">2009-12-19</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2009/12/19/2009-12-19-copypaste-clipboard-broken-on-snow/">Copy/Paste clipboard broken on Snow Leopard</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-After a recent Apple update, copy and paste quit functioning on my Snow Leopard install. After a number of red herrings, I eventually traced the issue to <a href="http://synergy2.sourceforge.net/" target="_blank" rel="external">Synergy</a> and noticed that synergyc constantly emptied my clipboard immediately after any copy operation. I was running synergy 1.3.1 at the time which was released back in 2006 - I was hopeful that the latest release of the Synergy fork <a href="http://code.google.com/p/synergy-plus/" target="_blank" rel="external">Synergy Plus</a> might provide a quick solution.An install of synergy-plus 1.3.4 Darwin binary did not resolve the issue and a build of the latest from subversion (r252) would not run for me (separate issue - synergyc unable to resolve server address).I happened upon <a href="http://code.google.com/p/synergy-plus/issues/detail?id=67#c85" target="_blank" rel="external">this thread</a> in my search for an answer and based on comments there decided to build revision 242 for my Mac client and run 252 on my Ubuntu server. Happy to report it resolved my issues.One note - I was thrown for a bit when my first Xcode build resulted in 14 compile time errors. Turns out it was necessary for me to build for i386 as the 64-bit build would not compile for me.UPDATE: After a couple weeks use, I found the synergy-plus binary to be rather buggy and went in search of a solution. MacPorts supports a patched build of synergy 1.3.1 for Snow Leopard and so far it is working beautifully. Assuming you have ports installed, the following will install the tried and true synergy.<blockquote class="posterous_short_quote">port clean synergy ; port install synergy +universal</blockquote></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2009-11-06T05:00:00.000Z"><a href="/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/">2009-11-06</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/">Subversion, Jira, Sonar, Hudson &amp; Fisheye on Mac OSX Server with Snow Leopard</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-Here are some notes from the field on setting up all these development services to play nice on Mac OS X Server 10.6:<ul><li>Use <a href="http://developer.apple.com/mac/articles/server/subversionwithxcode3.html" target="_blank" rel="external">this excellent writeup from Apple</a> to get Subversion setup as a webservice. Note the comment about how the DAV setting can revert to DAV no and need correction. I've found that it sometimes reverts to "DAV On" and this will break your subversion service...it must always be set to DAV svn</li><li>Configure Jira using Server Admin's "Sites" panel for configuring the Web service. Under Sites-&gt;Proxy configure an ajp worker to talk to your Jira instance. I installed jira on its own context /jira as opposed to root and therefore set the worker URL path as well as the Proxy Path to /jira</li><li>For running under the same hostname/virtual host any additional balancer groups will need to be configured manually. I was able to configure an ajp balancer for sonar but had to use a http balancer for hudson. Avoid using 8443 for your ports for any customer services as Apple's iCal is configured for this one by default.</li></ul></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2009-10-23T04:00:00.000Z"><a href="/2009/10/23/2009-10-23-installing-python-mysql-connector/">2009-10-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2009/10/23/2009-10-23-installing-python-mysql-connector/">Installing python-mysql connector MySQLdb after Snow Leopard upgrade</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-After upgrading to Snow Leopard and all its 64-bit goodness, I discovered that the upgrade to python 2.6.1 64-bit understandably broke my python-mysql connector which was previously compiled against my 32-bit installation of XAMPP with MySQL. I tried several different paths to make the new python play nice with the existing XAMPP installation. Here's the one that worked:<br><ol><li>Insure that you have the MySQL include directory needed for compilation against the XAMPP MySQL binary you are running. I'm running a 5.0.x build of MySQL and to get the proper include dir I simply downloaded the <a href="http://dev.mysql.com/downloads/mysql/5.0.html#macosx-dmg" target="_blank" rel="external">32-bit DMG for Mac from here</a>. After installation, I simply copied the include dir to my xampp installation.<div class="CodeRay">  <div class="code"><pre>cp -R /usr/local/mysql/include /Applications/xampp/xamppfiles/</pre></div></div>Now the xampp version of mysql_config will point to your newly installed include dir, so you are ready to compile against it.</li><li>If you don't already have it, grab the python-mysql connector source. I'm using MySQL-python-1.2.3c1</li><li>Tell your 64-bit python to always run in 32-bit mode <div class="CodeRay">  <div class="code"><pre>defaults write com.apple.versioner.python Prefer-32-Bit -bool yes</pre></div></div></li><li>cd into the MySQL-python source directory and build it for 32-bit mode<div class="CodeRay">  <div class="code"><pre>ARCHFLAGS='-arch i386' python setup.py build</pre></div></div></li><li>install it <div class="CodeRay">  <div class="code"><pre>ARCHFLAGS='-arch i386' python setup.py install</pre></div></div></li><li>exit the source directory "cd ~" and test your new install <div class="CodeRay">  <div class="code"><pre>pythonPython 2.6.1 (r261:67515, Jul  7 2009, 23:51:51)[GCC 4.2.1 (Apple Inc. build 5646)] on darwinType &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.&gt;&gt;&gt; import MySQLdb</pre></div></div>You're welcome.</li></ol></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
-    <a href="/page/5/" class="alignleft prev">Vorherige Seite</a>
+    <a href="/page/5/" class="alignleft prev">上一頁</a>
   
   
-    <a href="/page/7/" class="alignright next">Nächste Seite</a>
+    <a href="/page/7/" class="alignright next">下一頁</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="search" name="q" results="0" placeholder="搜尋">
     <input type="hidden" name="q" value="site:ericsimmerman.com">
   </form>
 </div>
 
   
 <div class="widget tag">
-  <h3 class="title">Kategorien</h3>
+  <h3 class="title">分類</h3>
   <ul class="entry">
   
     <li><a href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><small>1</small></li>
@@ -439,9 +439,9 @@ After upgrading to Snow Leopard and all its 64-bit goodness, I discovered that t
   
     <li><a href="/categories/softwaredevelopment/keepassx/">keepassx</a><small>1</small></li>
   
-    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
-  
     <li><a href="/categories/java/macintosh/">macintosh</a><small>2</small></li>
+  
+    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
   
     <li><a href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><small>1</small></li>
   
@@ -449,17 +449,17 @@ After upgrading to Snow Leopard and all its 64-bit goodness, I discovered that t
   
     <li><a href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><small>1</small></li>
   
-    <li><a href="/categories/networks/">networks</a><small>1</small></li>
-  
     <li><a href="/categories/macintosh/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/networks/">networks</a><small>1</small></li>
   
     <li><a href="/categories/openlaszlo/">openlaszlo</a><small>1</small></li>
   
     <li><a href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><small>1</small></li>
   
-    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
-  
     <li><a href="/categories/ruby/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
   
     <li><a href="/categories/ruby/">ruby</a><small>1</small></li>
   
@@ -469,13 +469,13 @@ After upgrading to Snow Leopard and all its 64-bit goodness, I discovered that t
   
     <li><a href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
-    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
-  
-    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
+    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
     <li><a href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
-    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
   
     <li><a href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
@@ -487,19 +487,19 @@ After upgrading to Snow Leopard and all its 64-bit goodness, I discovered that t
   
     <li><a href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><small>1</small></li>
   
-    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
-  
     <li><a href="/categories/macintosh/synergy/">synergy</a><small>2</small></li>
   
-    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
   
     <li><a href="/categories/ubuntu/">ubuntu</a><small>6</small></li>
   
+    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+  
     <li><a href="/categories/java/ubuntu/">ubuntu</a><small>1</small></li>
   
-    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
-  
     <li><a href="/categories/softwaredevelopment/vpn/">vpn</a><small>1</small></li>
+  
+    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
   
   </ul>
 </div>

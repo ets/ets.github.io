@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Seite 5 | Technocracy</title>
+  <title>第 5 頁 | Technocracy</title>
   <meta name="author" content="Eric Simmerman">
   
   
@@ -44,6 +44,181 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-04-08T04:00:00.000Z"><a href="/2011/04/08/2011-04-08-enhanced-mysqldump-to-support-data/">2011-04-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/04/08/2011-04-08-enhanced-mysqldump-to-support-data/">Enhanced mysqldump to support data cleansing compliance requirements by nullifying specific fields</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>At Pascal Metrics, my team collects large sets of data including ePHI. That subjects us to <a href="http://en.wikipedia.org/wiki/Health_Insurance_Portability_and_Accountability_Act" target="_blank" rel="external">HIPAA</a> and federal law dictates how we handle said data. Before I can even consider moving a database export out of our hardened production environment, I need to cleanse the export of any personally identifying information - including but not limited to any ePHI.</p><p>There are number of ways to achieve that aim, but once our database crossed the threshold into "large" territory - cleansing the data became a real chore. I decided to roll my own mysqldump binary and add a parameter called "nullify-field" which is based upon the "ignore-table" parameter from the official release.</p><p>I've posted my modified source to <a href="https://github.com/ets/mysqldump" target="_blank" rel="external">my GitHub account</a> for any who may be interested.</p><p>You'll have to compile your own copy - but that's relatively easy:</p><ol><li>Grab <a href="http://dev.mysql.com/downloads/mysql/5.0.html" target="_blank" rel="external">the latest mysql 5.0.X source</a>&nbsp;</li><li>Copy my 2 modified source files over the ones that come with your source tarball</li><li>Run "./configure --without-server" to build just the mysql clients</li><li>Run "make" to generate your custom mysqldump under ./client/</li></ol><p>Example Usage:</p><p><code> ./client/mysqldump -u backupuser -p --nullify-field=my_db.my_sensitive_table.name --nullify-field=my_db.my_sensitive_table.email my_db  </code></p><p>I love open source software.</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-04-06T04:00:00.000Z"><a href="/2011/04/06/2011-04-06-minimizing-expense-when-testing-webapps/">2011-04-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/04/06/2011-04-06-minimizing-expense-when-testing-webapps/">Minimizing expense when testing webapps on Internet Explorer</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+Currently - my favorite methods of testing web applications for Internet Explorer compatibility at minimal expenditure of time, money, and pain are:<br> <ul> <li><a href="http://www.virtualbox.org/" target="_blank" rel="external">Virtualbox</a> installations <br> </li> <ul> <li>PROS: Great performance and virtually zero hassle after initial setup<br> </li> <li>CONS: These are not easily shared, so every developer needs his own virtual machine which needs to be individually licensed<br> </li> </ul> <li><a href="http://www.gogrid.com/" target="_blank" rel="external">GoGrid</a> on-demand servers</li> <ul> <li>PROS: Instances can be shared by multiple developers so you only need to configure each virtual machine environment once. MS Windows Licensing is built into the on-demand pricing. <br> </li> <li>CONS: Performance is adequate, but screen refreshes are slow enough to be distracting. It takes about 15 minutes to spin an instance up. <br> </li> </ul> </ul> With either method of obtaining a virtual machine, you'll have to decide how to handle testing for all the permutations you need to support. The "brute force" method is to create a virtual machine for each permutation of OS, Browser, Flash Player, etc...&nbsp; There are some other options though:<br> <ul> <ul> <li><a href="http://www.softpedia.com/get/Internet/WEB-Design/Web-Design-related/Expression-Web-SuperPreview.shtml" target="_blank" rel="external">Microsoft Expression Web SuperPreview</a> for Windows Internet Explorer&nbsp;</li> <ul> <li>can be used to test basic IE6 support on a machine with a more recent version installed - but not a terribly accurate emulator<br> </li> </ul> <li>Internet Explorer 8 with Developer Tools installed <br> </li> <ul> <li>using "Compatibility" mode to emulate IE7 works well enough to debug javascript</li> </ul> </ul> </ul></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-03-28T04:00:00.000Z"><a href="/2011/03/28/2011-03-28-solution-for-firefox-4-installation/">2011-03-28</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/03/28/2011-03-28-solution-for-firefox-4-installation/">Solution for Firefox 4 installation failure on Mac OS X due to &#39;libsmime3.dylib is in use&#39; error</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>If you're attempting to upgrade to Firefox 4 on Mac and encounter this beauty <div class="p_embed p_image_embed"><img alt="Firefox4_lib_error" height="108" src="http://ericsimmerman.files.wordpress.com/2011/03/firefox4_lib_error-scaled500.png?w=300" width="399"></div> then you'll need to perform the following terminal commands as an easy workaround.</p><div class="CodeRay">  <div class="code"><pre>cd /Library/LaunchDaemons/    sudo launchctl stop com.cisco.anyconnect.vpnagentd    sudo launchctl unload com.cisco.anyconnect.vpnagentd.plist    killall vpnagentd</pre></div></div><p>Now attempt to install FireFox 4 again before issuing the following to reconfigure VPNAgent:</p><div class="CodeRay">  <div class="code"><pre>launchctl load com.cisco.anyconnect.vpnagentd.plist</pre></div></div><p>I've seen some other posts online suggesting that the killall command is sufficient, but that didn't work for me because vpnagentd was setup to automatically restart. The process I outlined here prevents that.</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-03-25T04:00:00.000Z"><a href="/2011/03/25/2011-03-25-installing-gerrit2-on-mac-os-x-server/">2011-03-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/03/25/2011-03-25-installing-gerrit2-on-mac-os-x-server/">Installing gerrit2 on Mac OS X Server (Snow Leopard)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>I'm using the default runtime container of gerrit (Jetty) configured for SSL proxy behind the Mac Server apache2 instance. I've configured direct LDAP integration and am using the Mac Server mysql instance.</p><p>Here's what the init parameters look like:</p><p><code>&nbsp;java -jar gerrit.war init -d review_site*** Gerrit Code Review 2.1.6.1***&nbsp;&nbsp;*** Git Repositories***&nbsp;Location of Git repositories &nbsp; [/Library/Git/repositories/]:&nbsp;Import existing repositories &nbsp; [Y/n]?&nbsp;*** SQL Database***&nbsp;Database server type &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [MYSQL/?]:&nbsp;Server hostname &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[localhost]:&nbsp;Server port &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[(MYSQL default)]:&nbsp;Database name &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[reviewdb]:&nbsp;Database username &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[gerrit2]:&nbsp;Change gerrit2's password &nbsp; &nbsp; &nbsp;[y/N]?&nbsp;*** User Authentication***&nbsp;Authentication method &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[LDAP/?]:&nbsp;LDAP server &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[ldaps://my.server.fqdn]:&nbsp;LDAP username &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[]:&nbsp;anonymous's password &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;confirm password :&nbsp;Account BaseDN &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [cn=users,dc=hostname,dc=pascalmetrics,dc=com]:&nbsp;Group BaseDN &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [cn=groups,dc=hostname,dc=pascalmetrics,dc=com]:&nbsp;*** Email Delivery***&nbsp;SMTP server hostname &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [localhost]:&nbsp;SMTP server port &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [(default)]:&nbsp;SMTP encryption &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[NONE/?]:&nbsp;SMTP username &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:&nbsp;*** Container Process***&nbsp;Run as &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [gerrituser]:&nbsp;Java runtime &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home]:&nbsp;&nbsp;Upgrade /opt/gerrit-2.1.6.1/review_site/bin/gerrit.war [Y/n]?&nbsp;Copying gerrit.war to /opt/gerrit-2.1.6.1/review_site/bin/gerrit.war&nbsp;*** SSH Daemon***&nbsp;&nbsp;Listen on address &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[*]:&nbsp;Listen on port &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [29418]:&nbsp;&nbsp;*** HTTP Daemon***&nbsp;&nbsp;Behind reverse proxy &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [Y/n]?&nbsp;Proxy uses SSL (https://) &nbsp; &nbsp; &nbsp;[Y/n]?&nbsp;Subdirectory on proxy server &nbsp; [/gerrit]:&nbsp;Listen on address &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[*]:&nbsp;Listen on port &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [9028]:&nbsp;&nbsp;Scanning /Library/Git/repositories&nbsp;&nbsp;</code></p><p>I had to tweak one my.cnf setting to allow gerrit to complete my initial install. I needed to set</p><p><span style="color:#555555;font-family:verdana, arial, helvetica, sans-serif;font-size:14px;line-height:14px;"> </span></p><div class="CodeRay">  <div class="code"><pre>log_bin_trust_function_creators=1</pre></div></div><p>&nbsp;</p><p>&nbsp;</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-03-11T05:00:00.000Z"><a href="/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/">2011-03-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/">Why you might want to exercise your vested ISOs this year...</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<div class="posterous_bookmarklet_entry"><blockquote><div><p>The Small Business Jobs Act of 2010 (the "Jobs Act"), which was enacted September 27, 2010, contains a brief window of opportunity for non-corporate taxpayers to purchase Qualified Small Business ("QSB") stock (also known as "section 1202 stock") that, if the taxpayer holds the stock for more than five years, is <em>eligible for a 100 percent exclusion of capital gains from sale. This tax break only applies to QSB stock purchased after September 27, 2010 and before January 1, 2011.</em></p></div></blockquote><div class="posterous_quote_citation">via <a href="http://www.reedsmith.com/publications/search_publications.cfm?widCall1=customWidgets.content_view_1&amp;cit_id=29693" target="_blank" rel="external">reedsmith.com</a></div><p>The exclusion described above has been <a href="http://www.natlawreview.com/article/extension-100-gain-exclusion-qualified-small-business-stock" target="_blank" rel="external">extended to the end of 2011</a>.</p></div></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -120,11 +295,11 @@ The Maven dependency plugin provides nice support for resolving dependency confl
     <header>
       
         <div class="icon"></div>
-        <time datetime="2011-01-21T05:00:00.000Z"><a href="/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/">2011-01-21</a></time>
+        <time datetime="2011-01-21T05:00:00.000Z"><a href="/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/">2011-01-21</a></time>
       
       
   
-    <h1 class="title"><a href="/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/">Install Nexus 1.8.0.1 on Tomcat 6</a></h1>
+    <h1 class="title"><a href="/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/">Install PHP 5.3.5 with FPM (FastCGI Process Manager) support on Apache2/Centos 5.5</a></h1>
   
 
     </header>
@@ -132,7 +307,7 @@ The Maven dependency plugin provides nice support for resolving dependency confl
       
         
 <div class="post">
-I installed on a Mac OS X server with Snow Leopard, but this applies to any Tomcat 6 installation. As discussed <a href="https://issues.sonatype.org/browse/NEXUS-3003" target="_blank" rel="external">here</a>, <a href="http://stackoverflow.com/questions/1277378/how-to-configure-java-securitymanager-to-allow-to-read-all-properties-from-given" target="_blank" rel="external">here</a>, and lots of other places across the interwebs - the latest release of Nexus can't read its own plexus.properties under Tomcat 6. Rather than disabling the Tomcat Security Manager as a workaround, I recommend setting the applicable properties through system properties at startup. Just add something like the following to your tomcat's bin/setenv.sh script<code>-Dplexus.nexus-work=/opt/sonatype-work/nexus</code></div>
+<p>$&gt; yum upgrade<br>$&gt; yum groupinstall "Development Tools"<br>$&gt; wget <a href="http://us2.php.net/get/php-5.3.5.tar.bz2/from/us.php.net/mirror" target="_blank" rel="external">http://us2.php.net/get/php-5.3.5.tar.bz2/from/us.php.net/mirror</a><br>$&gt; tar xvf php-5.3.5.tar.bz2<br>$&gt; yum install mysql-server httpd-devel-* libxml2-devel-* openssl-devel* xmlsec1-openssl-devel-* libpng* libjpeg* curl-devel libmcrypt* mysql-devel* mysql.* libevent libevent-devel libtool-ltdl-devel libtool apr-devel apr<br>$&gt; cd php-5.3.5<br>$&gt; ./configure --with-mysql=shared --with-openssl --enable-pdo --with-pdo-mysql=shared --with-mhash=shared --enable-soap=shared --with-config-file-path=/etc/ --with-mysqli --enable-zip --enable-shared --with-curl --enable-mbstring=all --enable-maintainer-zts --with-jpeg-dir=/usr/lib/ --with-libdir=lib64 --enable-soap --with-pdo-mysql --with-gd --with-mcrypt --enable-fpm --with-config-file-scan-dir=/etc/php.d<br>$&gt; make; make install;<br>$&gt; chmod 705 /var/log/httpd</p><p>Edit your php.ini to point to your new PHP's extension directory (printed as part of make install above):<br><code>extension_dir = "/usr/local/lib/php/extensions/no-debug-zts-20090626/"</code></p><p>Make certain your /etc/php.d directory is only loading extensions that have been built against your new php. I only load mysql and apc</p><p>Now you need to tell Apache to use php-fpm via mod_fastcgi.<br># wget <a href="http://www.fastcgi.com/dist/mod_fastcgi-current.tar.gz" target="_blank" rel="external">http://www.fastcgi.com/dist/mod_fastcgi-current.tar.gz</a><br># tar -zxvf mod_fastcgi-current.tar.gz<br># cd mod_fastcgi-2.4.6/<br># cp Makefile.AP2 Makefile</p><p>Compile and install mod_fastcgi for 32 bit system, enter:<br># make top_dir=/usr/lib/httpd<br># make install top_dir=/usr/lib/httpd</p><p>Compile and install mod_fastcgi for 64 bit system, enter:<br># make top_dir=/usr/lib64/httpd<br># make install top_dir=/usr/lib64/httpd</p><p>Sample output:<br><code>make install top_dir=/usr/lib64/httpdmake[1]: Entering directory `/tmp/mod_fastcgi-2.4.6'/usr/lib64/apr-1/build/libtool --silent --mode=install cp mod_fastcgi.la /usr/lib64/httpd/modules/make[1]: Leaving directory `/tmp/mod_fastcgi-2.4.6'</code></p><p>Edit your Apache config to configure mod_fastcgi:<br><code># mods-enabled/fastcgi.conf&lt;IfModule mod_fastcgi.c&gt;FastCGIExternalServer /usr/local/sbin/php-fpm -socket /tmp/php-fpm.sockAddHandler php-fastcgi .phpAction php-fastcgi /usr/local/sbin/php-fpm.fcgiScriptAlias /usr/local/sbin/php-fpm.fcgi /usr/local/sbin/php-fpm&lt;Directory /usr/local/sbin&gt;Options ExecCGI FollowSymLinksSetHandler fastcgi-scriptOrder allow,denyAllow from all&lt;/Directory&gt;&lt;/IfModule&gt;</code></p><p>Now edit your /usr/local/etc/php-fpm config file using settings like these:<br><code>[www]# socketlisten = /tmp/php-fpm.socklisten.owner = apachelisten.group = apachelisten.mode = 0666# user ID/GIDuser = apachegroup = apache</code></p><p>Finally, <a href="http://us2.php.net/manual/en/install.fpm.php" target="_blank" rel="external">configure an autostart script for your php-fpm daemon using these instructions</a>.</p></div>
 
       
     </div>
@@ -155,11 +330,11 @@ I installed on a Mac OS X server with Snow Leopard, but this applies to any Tomc
     <header>
       
         <div class="icon"></div>
-        <time datetime="2011-01-21T05:00:00.000Z"><a href="/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/">2011-01-21</a></time>
+        <time datetime="2011-01-21T05:00:00.000Z"><a href="/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/">2011-01-21</a></time>
       
       
   
-    <h1 class="title"><a href="/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/">Install PHP 5.3.5 with FPM (FastCGI Process Manager) support on Apache2/Centos 5.5</a></h1>
+    <h1 class="title"><a href="/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/">Install Nexus 1.8.0.1 on Tomcat 6</a></h1>
   
 
     </header>
@@ -167,7 +342,7 @@ I installed on a Mac OS X server with Snow Leopard, but this applies to any Tomc
       
         
 <div class="post">
-<p>$&gt; yum upgrade<br>$&gt; yum groupinstall "Development Tools"<br>$&gt; wget <a href="http://us2.php.net/get/php-5.3.5.tar.bz2/from/us.php.net/mirror" target="_blank" rel="external">http://us2.php.net/get/php-5.3.5.tar.bz2/from/us.php.net/mirror</a><br>$&gt; tar xvf php-5.3.5.tar.bz2<br>$&gt; yum install mysql-server httpd-devel-* libxml2-devel-* openssl-devel* xmlsec1-openssl-devel-* libpng* libjpeg* curl-devel libmcrypt* mysql-devel* mysql.* libevent libevent-devel libtool-ltdl-devel libtool apr-devel apr<br>$&gt; cd php-5.3.5<br>$&gt; ./configure --with-mysql=shared --with-openssl --enable-pdo --with-pdo-mysql=shared --with-mhash=shared --enable-soap=shared --with-config-file-path=/etc/ --with-mysqli --enable-zip --enable-shared --with-curl --enable-mbstring=all --enable-maintainer-zts --with-jpeg-dir=/usr/lib/ --with-libdir=lib64 --enable-soap --with-pdo-mysql --with-gd --with-mcrypt --enable-fpm --with-config-file-scan-dir=/etc/php.d<br>$&gt; make; make install;<br>$&gt; chmod 705 /var/log/httpd</p><p>Edit your php.ini to point to your new PHP's extension directory (printed as part of make install above):<br><code>extension_dir = "/usr/local/lib/php/extensions/no-debug-zts-20090626/"</code></p><p>Make certain your /etc/php.d directory is only loading extensions that have been built against your new php. I only load mysql and apc</p><p>Now you need to tell Apache to use php-fpm via mod_fastcgi.<br># wget <a href="http://www.fastcgi.com/dist/mod_fastcgi-current.tar.gz" target="_blank" rel="external">http://www.fastcgi.com/dist/mod_fastcgi-current.tar.gz</a><br># tar -zxvf mod_fastcgi-current.tar.gz<br># cd mod_fastcgi-2.4.6/<br># cp Makefile.AP2 Makefile</p><p>Compile and install mod_fastcgi for 32 bit system, enter:<br># make top_dir=/usr/lib/httpd<br># make install top_dir=/usr/lib/httpd</p><p>Compile and install mod_fastcgi for 64 bit system, enter:<br># make top_dir=/usr/lib64/httpd<br># make install top_dir=/usr/lib64/httpd</p><p>Sample output:<br><code>make install top_dir=/usr/lib64/httpdmake[1]: Entering directory `/tmp/mod_fastcgi-2.4.6'/usr/lib64/apr-1/build/libtool --silent --mode=install cp mod_fastcgi.la /usr/lib64/httpd/modules/make[1]: Leaving directory `/tmp/mod_fastcgi-2.4.6'</code></p><p>Edit your Apache config to configure mod_fastcgi:<br><code># mods-enabled/fastcgi.conf&lt;IfModule mod_fastcgi.c&gt;FastCGIExternalServer /usr/local/sbin/php-fpm -socket /tmp/php-fpm.sockAddHandler php-fastcgi .phpAction php-fastcgi /usr/local/sbin/php-fpm.fcgiScriptAlias /usr/local/sbin/php-fpm.fcgi /usr/local/sbin/php-fpm&lt;Directory /usr/local/sbin&gt;Options ExecCGI FollowSymLinksSetHandler fastcgi-scriptOrder allow,denyAllow from all&lt;/Directory&gt;&lt;/IfModule&gt;</code></p><p>Now edit your /usr/local/etc/php-fpm config file using settings like these:<br><code>[www]# socketlisten = /tmp/php-fpm.socklisten.owner = apachelisten.group = apachelisten.mode = 0666# user ID/GIDuser = apachegroup = apache</code></p><p>Finally, <a href="http://us2.php.net/manual/en/install.fpm.php" target="_blank" rel="external">configure an autostart script for your php-fpm daemon using these instructions</a>.</p></div>
+I installed on a Mac OS X server with Snow Leopard, but this applies to any Tomcat 6 installation. As discussed <a href="https://issues.sonatype.org/browse/NEXUS-3003" target="_blank" rel="external">here</a>, <a href="http://stackoverflow.com/questions/1277378/how-to-configure-java-securitymanager-to-allow-to-read-all-properties-from-given" target="_blank" rel="external">here</a>, and lots of other places across the interwebs - the latest release of Nexus can't read its own plexus.properties under Tomcat 6. Rather than disabling the Tomcat Security Manager as a workaround, I recommend setting the applicable properties through system properties at startup. Just add something like the following to your tomcat's bin/setenv.sh script<code>-Dplexus.nexus-work=/opt/sonatype-work/nexus</code></div>
 
       
     </div>
@@ -219,202 +394,27 @@ I installed on a Mac OS X server with Snow Leopard, but this applies to any Tomc
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2010-11-28T05:00:00.000Z"><a href="/2010/11/28/2010-11-28-ditch-mamp-on-snow-leopard/">2010-11-28</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2010/11/28/2010-11-28-ditch-mamp-on-snow-leopard/">Ditch MAMP on Snow Leopard</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-I was fond of the stack <a href="http://www.apachefriends.org/en/xampp.html" target="_blank" rel="external">XAMPP</a> offered when I developed on Windows and lazily continued used <a href="http://www.mamp.info/en/index.html" target="_blank" rel="external">XAMPP/MAMP</a> once I moved to a Mac OS X based workstation. Unfortunately, the latest releases of MAMP have attempted to restrict the utility of the stack in an effort to raise revenue through a less restricted "Pro" version. Developers on Snow Leopard are much better off moving to standalone installations of everything MAMP offers.There are many ways to install PHP, MySQL, Apache, and phpMyAdmin - all with a list of pros/cons. Without debating the merits, here's what I did to replace MAMP:<h2>1. Dump your MAMP Mysql databases and save them for import into your standalone MySQL install</h2><code>mysqldump --all-databases &gt; ~/old-mysql-data.sql</code><h2>2. Install a more recent copy of MySQL server than the one delivered with Snow Leopard</h2>I already had <a href="http://www.macports.org/" target="_blank" rel="external">macports</a> installed, so the choice here was easy. The following command installs the mysql binaries under /opt/local/bin/<code>port install mysql5 mysql5-server</code><h2>3. Import your data into your new MySQL database</h2>First, be certain to shutdown all the MAMP servers (MySQL, Apache, etc...) - then start your new standalone MySQL<code>sudo /opt/local/bin/mysqld_safe5 &amp;</code>Finally, run the following:<code>mysql <h2>4. Install phpMyAdmin on the SL delivered Apache installation</h2>Install it fresh, or just copy your MAMP installation to ~/Sites where it will be available under http://localhost/~your-username/<h2>5. Enable PHP5 on the SL delivered Apache installation</h2>Open /etc/apache2/httpd.conf and enable the line: "#LoadModule php5_module libexec/apache2/libphp5.so" by removing the pound. Then in the Mac System Pref -&gt; Sharing, turn on (or if it was already on, turn off/on) Web Sharing. If you need to move any vhost or SSL config directives from MAMP to the SL Apache install, you'll make those changes to files in /etc/apache2/extra/<h2>6. Optional - Configure PHP by creating a php.ini under /etc</h2>I'm content to use the PHP installation already delivered by SL, but there is no default php.ini - simply create one under /etc and it'll be read automatically.You can now remove the MAMP training wheels and proceed developing with full standalone versions of your stack - happy trails.</code></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2010-11-02T04:00:00.000Z"><a href="/2010/11/02/2010-11-02-support-chroot-for-scp-connections-on/">2010-11-02</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2010/11/02/2010-11-02-support-chroot-for-scp-connections-on/">Support chroot for SCP connections on CentOS 5.5</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-<p>Many thanks to <a href="http://www.linuxquestions.org/questions/red-hat-31/my-version-of-ssh-doesnt-support-match-and-forcecommand-819436/" target="_blank" rel="external">anomie for posting this great writeup</a>. I've pasted it below to help spread the wealth.</p><p>-------</p><p>Here's a quick recipe for your chrooted sftp daemon:</p><p>1. Create the sftp init script - &lt;strong&gt;/etc/init.d/sftpfoo&lt;/strong&gt;<br><code>#!/bin/bash## chkconfig: 35 60 25# description: OpenSSH chrooted sftp only daemon## Note that /usr/sbin/sftpfoo is simply a symlink to /usr/sbin/sshd#</code></p><p>pidfile='/var/run/sftpfoo.pid'</p><p>case "${1}" in</p><p>start&nbsp; ) exec -a /usr/sbin/sftpfoo /usr/sbin/sshd -f /etc/ssh/sftpfoo_config<br>;;<br>stop&nbsp;&nbsp; ) kill -9 $(cat ${pidfile})<br>;;<br>restart) stop<br>sleep 3<br>start<br>;;<br>*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ) echo "Usage: ${0} (start|stop|restart)"<br>;;</p><p>esac</p><p>exit 0</p><p>2. Add it to chkconfig(8) consciousness and set up a symlink you'll need later.</p><p><code># chkconfig --add sftpfoo# ln -s /usr/sbin/sshd /usr/sbin/sftpfoo</code></p><p>3. Create your sftp config file - &lt;strong&gt;/etc/ssh/sftpfoo_config&lt;/strong&gt;</p><p><code>Port 8822Protocol 2AddressFamily inet</code></p><p>SyslogFacility AUTHPRIV<br>LogLevel INFO</p><p>PermitRootLogin no</p><p>RSAAuthentication no<br>PubkeyAuthentication no<br>RhostsRSAAuthentication no<br>HostbasedAuthentication no<br>PasswordAuthentication yes<br>PermitEmptyPasswords no<br>ChallengeResponseAuthentication no<br>KerberosAuthentication no<br>GSSAPIAuthentication no</p><p>UsePAM no</p><p>PidFile /var/run/sftpfoo.pid</p><p>ChrootDirectory /home/chrooted<br>Subsystem sftp internal-sftp</p><p>4. Create your first sftp-only user</p><p><code># useradd -d /nowhere -M -s /sbin/nologin baruser</code></p><p>5. Create the chroot directory</p><p><code># mkdir -p /home/chrooted &amp;amp;&amp;amp; chmod 755 /home/chrooted</code></p><p>6. Start the sftp service</p><p><code># service sftpfoo start</code><br>-------</p><p>Now, log in remotely as baruser, specifying port 8822. (Remember to poke a hole in your firewall for this port.)</p></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2010-10-29T04:00:00.000Z"><a href="/2010/10/29/2010-10-29-resolving-sleep-issues-with-seagate/">2010-10-29</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2010/10/29/2010-10-29-resolving-sleep-issues-with-seagate/">Resolving sleep issues with Seagate GoFlex Desk on Mac Snow Leopard</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-There are number of posts on Seagate's user forums describing <a href="http://forums.seagate.com/t5/FreeAgent-Products/How-to-stop-Seagate-FreeAgent-Desktop-Drives-from-going-to-sleep/m-p/8812" target="_blank" rel="external">frustration with the GoFlex line of external harddrive</a> and its <a href="http://forums.seagate.com/t5/FreeAgent-Products/FreeAgent-for-Mac-and-sleep/m-p/34138" target="_blank" rel="external">tendency to periodically eject/sleep</a> on Mac's Snow Leopard. I'm using the 2TB GoFlex as my Time Machine drive and needed to resolve this annoyance as well. I've opened a ticket with Seagate Support directly, but so far they've been unable to completely resolve the issue.The only thing that seems to help is to go into System Prefs -&gt; Energy Saver and turn off the feature that puts Hard Drives to sleep. With that power saving feature disabled the Seagate only complains when my Mac actually wakes from sleep - that's an improvement but still no love.</div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2010-08-26T04:00:00.000Z"><a href="/2010/08/26/2010-08-26-how-to-undo-svn-commit-from-command-line/">2010-08-26</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2010/08/26/2010-08-26-how-to-undo-svn-commit-from-command-line/">How to undo a SVN commit from the command line</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-<p>SVN 1.4 added a feature to support easy rollback of a SVN commit. It's documented in SVN help, but unfortunately SVN help only makes sense if you already understand what it's trying to explain. Here's the easy commit revert command to run against your working copy:</p><p>svn merge -c -[REV] [REPO]</p><p>Replace the brackets with the offending revision number and your SVN repository respectively. For example, to undo the changes made by revision 42:</p><p>svn merge -c -42 <a href="http://example.com/svn/trunk" target="_blank" rel="external">http://example.com/svn/trunk</a> .</p></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2010-08-19T04:00:00.000Z"><a href="/2010/08/19/2010-08-19-i-big-in-brazil/">2010-08-19</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2010/08/19/2010-08-19-i-big-in-brazil/">I&#39;m big in Brazil</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-<div class="p_embed p_image_embed"><img alt="Media_httpwwwericsimm_ndffj" height="224" src="http://ericsimmerman.files.wordpress.com/2010/08/media_httpwwwericsimm_ndffj-scaled500.jpg?w=300" width="300"></div></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
-    <a href="/page/4/" class="alignleft prev">Vorherige Seite</a>
+    <a href="/page/4/" class="alignleft prev">上一頁</a>
   
   
-    <a href="/page/6/" class="alignright next">Nächste Seite</a>
+    <a href="/page/6/" class="alignright next">下一頁</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="search" name="q" results="0" placeholder="搜尋">
     <input type="hidden" name="q" value="site:ericsimmerman.com">
   </form>
 </div>
 
   
 <div class="widget tag">
-  <h3 class="title">Kategorien</h3>
+  <h3 class="title">分類</h3>
   <ul class="entry">
   
     <li><a href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><small>1</small></li>
@@ -439,9 +439,9 @@ There are number of posts on Seagate's user forums describing <a href="http://fo
   
     <li><a href="/categories/softwaredevelopment/keepassx/">keepassx</a><small>1</small></li>
   
-    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
-  
     <li><a href="/categories/java/macintosh/">macintosh</a><small>2</small></li>
+  
+    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
   
     <li><a href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><small>1</small></li>
   
@@ -449,17 +449,17 @@ There are number of posts on Seagate's user forums describing <a href="http://fo
   
     <li><a href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><small>1</small></li>
   
-    <li><a href="/categories/networks/">networks</a><small>1</small></li>
-  
     <li><a href="/categories/macintosh/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/networks/">networks</a><small>1</small></li>
   
     <li><a href="/categories/openlaszlo/">openlaszlo</a><small>1</small></li>
   
     <li><a href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><small>1</small></li>
   
-    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
-  
     <li><a href="/categories/ruby/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
   
     <li><a href="/categories/ruby/">ruby</a><small>1</small></li>
   
@@ -469,13 +469,13 @@ There are number of posts on Seagate's user forums describing <a href="http://fo
   
     <li><a href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
-    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
-  
-    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
+    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
     <li><a href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
-    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
   
     <li><a href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
@@ -487,19 +487,19 @@ There are number of posts on Seagate's user forums describing <a href="http://fo
   
     <li><a href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><small>1</small></li>
   
-    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
-  
     <li><a href="/categories/macintosh/synergy/">synergy</a><small>2</small></li>
   
-    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
   
     <li><a href="/categories/ubuntu/">ubuntu</a><small>6</small></li>
   
+    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+  
     <li><a href="/categories/java/ubuntu/">ubuntu</a><small>1</small></li>
   
-    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
-  
     <li><a href="/categories/softwaredevelopment/vpn/">vpn</a><small>1</small></li>
+  
+    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
   
   </ul>
 </div>

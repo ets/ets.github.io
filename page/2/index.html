@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Seite 2 | Technocracy</title>
+  <title>第 2 頁 | Technocracy</title>
   <meta name="author" content="Eric Simmerman">
   
   
@@ -44,6 +44,181 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-08-07T04:00:00.000Z"><a href="/2012/08/07/2012-08-07-supporting-multiple-file-upload/">2012-08-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/08/07/2012-08-07-supporting-multiple-file-upload/">Supporting multiple file upload runtimes with pupload inside ExtJS 4</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>The reference client I built for <a href="http://foldergrid.com/api/index.html" title="FolderGrid API" target="_blank" rel="external">FolderGrid's API </a>is a zero footprint web client created using <a href="http://www.sencha.com/products/extjs/" target="_blank" rel="external">ExtJS 4</a>. I wanted to support drag &amp; drop file uploads for advanced browsers but degrade nicely all the way back to IE6 for those poor lost souls stuck with tech from the last decade. So I integrated <a href="http://www.plupload.com/" target="_blank" rel="external">plupload</a> and bound the two together with some jquery glue.</p><p>The results are working well in production and <a href="https://bitbucket.org/ets/foldergrid-client-extjs/overview" title="FolderGrid Web Client" target="_blank" rel="external">the client itself is open &amp; licensed under GPL v3</a> per the terms of ExtJS 4. So if you are interested in copying &amp; extending - have at it.</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-08-05T04:00:00.000Z"><a href="/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/">2012-08-05</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/">Automatically find trailing commas in your javascript project</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>These are simply updated instructions based upon <a href="http://www.amaxus.com/cms-blog/automatically-finding-javascript-errors-ie7" target="_blank" rel="external">the original Amaxus writeup here</a>.</p><ul><li>Install Rhino &nbsp;(I used "port install rhino")</li><li>Grab the <a href="https://raw.github.com/mikewest/jslint-utils/master/lib/rhinoed_jslint.js" target="_blank" rel="external">Rhinoized JSLint script here</a>.</li><li>Create a script named checkForJsErrors.sh with the following two lines:</li></ul><p>echo $1<br>rhino&nbsp;rhinoed_jslint.js $1 | fgrep -e 'Unexpected' --color=always&nbsp;</p><ul><li>Create an alias in your bashrc</li></ul><p></p><p>alias checkjs='find . -name '''*.js''' -exec ~/bin/checkForJsErrors.sh {} ;'</p><p><div>Now when you execuate that alias in your project's root directory - all of your .js files will be scanned for trailing commas.</div></p><p><div>You're welcome.</div></p><p>&nbsp;</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-08-03T04:00:00.000Z"><a href="/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/">2012-08-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/">orphanRemoval issues in Play Framework &#39;collection owner not associated with session&#39;</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>I was just burned by an issue in Play Framework's JPA support of orphanRemovals. The issue manifests as a "collection owner not associated with session" JPAException within Play Framework 1.2.x &nbsp;- it was supposed to be <a href="https://play.lighthouseapp.com/projects/57987/tickets/1503-nested-onetomany-relationships-with-orphanremoval-fails-to-commit" target="_blank" rel="external">addressed in 1.2.5 with this patch,</a> but I'm running 1.2.5 and am still running into it.</p><p>I didn't take the time to diagnose or file a report - for now I'm punting by restricting the use of 'orphanRemoval'.</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-07-25T04:00:00.000Z"><a href="/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/">2012-07-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/">Cautionary tale regarding cloud security</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>My work with <a href="http://foldergrid.com" target="_blank" rel="external">FolderGrid</a> has included quite a few very interesting technical problems that have resulted in material for this blog.&nbsp;I just&nbsp;<a href="http://blog.foldergrid.com/2012/07/why-we-stopped&amp;hellip;cloud-services/" target="_blank" rel="external">posted an interesting read for anyone using cloud services</a>&nbsp;to store or transport sensitive data.&nbsp;</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-07-11T04:00:00.000Z"><a href="/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/">2012-07-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/">Compiling Maven project with JNLP API 1.6+ on Mac OS X</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>To compile a project using JNLP API with Maven you'll need javaws.jar in the compile-time classpath. You'll find the jar under the lib folder of your JDK installation. Mine was here:</p><p>/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/javaws.jar</p><p>&nbsp;</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -219,202 +394,27 @@ Pirated from a long forgotten place...apologies to the respective copyright hold
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-01-08T05:00:00.000Z"><a href="/2012/01/08/2012-01-08-play-framework-on-aws/">2012-01-08</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/01/08/2012-01-08-play-framework-on-aws/">Play framework on AWS</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-<p>Steps I took to get a Play framework app up and running on a micro AWS instance running Ubuntu 11.10</p><ol><li>sudo add-apt-repository "deb <a href="http://archive.canonical.com/" target="_blank" rel="external">http://archive.canonical.com/</a> lucid partner"</li><li>sudo apt-get update</li><li>sudo apt-get install sun-java6-jdk unzip</li><li>wget <a href="http://download.playframework.org/releases/play-1.2.4.zip" target="_blank" rel="external">http://download.playframework.org/releases/play-1.2.4.zip</a></li><li>sudo unzip play-1.2.4.zip -d /usr/local/share/</li><li>install&nbsp;<a href="https://gist.github.com/1289753" target="_blank" rel="external">Dominik Dorn's startup script</a><ol><li>wget <a href="https://raw.github.com/gist/1290012/a31b1d079705ea7ccf6d1fdc866027b674e62841/playframework" target="_blank" rel="external">https://raw.github.com/gist/1290012/a31b1d079705ea7ccf6d1fdc866027b674e62841/...</a></li><li>sudo mv playframework /etc/init/</li><li>update the script with proper paths&nbsp;</li></ol></li><li>useradd username -g www-data -m -d /home/username&nbsp;-s /bin/bash</li><li>install your app</li><li>initctl start playframework</li></ol></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-01-05T05:00:00.000Z"><a href="/2012/01/05/2012-01-05-install-apc-on-centos-56/">2012-01-05</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/01/05/2012-01-05-install-apc-on-centos-56/">Install APC on CentOS 5.6</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-<div>The following resolved a few gotchas I encountered installing APC on an old instance of CentOS 5.6</div><p><ol><li><span style="font-family:Verdana, Arial, Helvetica, sans-serif;background-color:#e6e6e6;font-size:small;">mount -o remount,exec /tmp</span></li><li><span style="font-family:Verdana, Arial, Helvetica, sans-serif;background-color:#e6e6e6;font-size:small;"><span style="color:#333333;font-family:Georgia, Bitstream Charter, serif;line-height:24px;background-color:#ffffff;">yum install pcre-devel</span></span></li><li><span style="font-family:Verdana, Arial, Helvetica, sans-serif;background-color:#e6e6e6;font-size:small;"><span style="color:#333333;font-family:Georgia, Bitstream Charter, serif;line-height:24px;background-color:#ffffff;">pecl install apc</span></span></li><li><span style="font-family:Verdana, Arial, Helvetica, sans-serif;background-color:#e6e6e6;font-size:small;"><span style="color:#333333;font-family:Georgia, Bitstream Charter, serif;line-height:24px;background-color:#ffffff;"><span style="color:#000000;font-family:Verdana, Arial, Helvetica, sans-serif;line-height:normal;background-color:#e6e6e6;">mount -o remount,noexec /tmp</span></span></span></li></ol></p></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2011-12-11T05:00:00.000Z"><a href="/2011/12/11/2011-12-11-loading-fixtures-for-functionaltest-in/">2011-12-11</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2011/12/11/2011-12-11-loading-fixtures-for-functionaltest-in/">Loading Fixtures for FunctionalTest in Play Framework</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-<p></p><p>There are three possible gotchas with FunctionalTest on Play Framework 1.2.4:</p><ol><li>Ensure your db is configured for READ_UNCOMMITED transactions. See <a href="http://www.playframework.org/documentation/1.2.1/releasenotes-1.2&quot;" target="_blank" rel="external">the release notes for more</a>...</li><li>Make certain that you import junit's @Before and **NOT** play.mvc.Before</li><li>Load your Fixtures in a Job. See the example below.</li></ol><p></p><p>&nbsp;</p><p></p> <div class="gistLoad" data-id="1461398" id="gist-1461398">Loading ....</div><script src="https://raw.github.com/moski/gist-Blogger/master/public/gistLoader.js" type="text/javascript"></script></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2011-11-14T05:00:00.000Z"><a href="/2011/11/14/2011-11-14-gae-price-increases-lead-to-hard/">2011-11-14</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2011/11/14/2011-11-14-gae-price-increases-lead-to-hard/">GAE price increases lead to a hard learned lesson regarding platform lockin</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-<p>Google's <a href="http://www.informationweek.com/news/cloud-computing/platform/231600672" target="_blank" rel="external">pricing changes for GAE</a>&nbsp;have increased the cost of my two very small applications tenfold. &nbsp;<a href="https://plus.google.com/104961845171318028721/posts/DamjzZBVxd7" target="_blank" rel="external">I'm not alone</a>. As a result, I've dropped them to the <a href="https://groups.google.com/forum/#!topic/google-appengine/rSh8mgw2f3c" target="_blank" rel="external">free tier on GAE</a> - making them practically useless.&nbsp;So long GAE, I hardly knew thee...</p></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2011-11-05T04:00:00.000Z"><a href="/2011/11/05/2011-11-05-secure-file-storage-in-the/">2011-11-05</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2011/11/05/2011-11-05-secure-file-storage-in-the/">Secure file storage in the &#39;cloud&#39;</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-<p>In my quest for the perfect sync for the relatively small set of sensitive files I want available from all my workstations I've tried several cloud based services: Dropbox, JungleDisk,&nbsp;Wuala, and Egnyte just to name a few.</p><p>Dropbox and JungleDisk both require custom-rolled workarounds (like using a <a href="http://www.truecrypt.org/" target="_blank" rel="external">TrueCrypt</a> volume) to keep sensitive files secured. Egnyt encrypts your data at rest but they use a common key which means you are reliant upon their business practices for data security. Wuala encrypts your data with a private key before transmitting it, but their client is quite cumbersome. I've found&nbsp;<a href="https://spideroak.com/download/referral/5f97e6c2cc2ab96167bc1ed3c92b9c09" target="_blank" rel="external">SpiderOak</a> to be the best fit for my needs.</p><ul><li>Native Mac client that starts automatically and runs quietly in the tray</li><li>Zero-knowledge encryption of all my files</li><li>Supports a smart folder sync&nbsp;</li><li>Free entry-level account with 2G of space</li></ul><p>&nbsp;</p></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
-    <a href="/" class="alignleft prev">Vorherige Seite</a>
+    <a href="/" class="alignleft prev">上一頁</a>
   
   
-    <a href="/page/3/" class="alignright next">Nächste Seite</a>
+    <a href="/page/3/" class="alignright next">下一頁</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="search" name="q" results="0" placeholder="搜尋">
     <input type="hidden" name="q" value="site:ericsimmerman.com">
   </form>
 </div>
 
   
 <div class="widget tag">
-  <h3 class="title">Kategorien</h3>
+  <h3 class="title">分類</h3>
   <ul class="entry">
   
     <li><a href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><small>1</small></li>
@@ -439,9 +439,9 @@ Pirated from a long forgotten place...apologies to the respective copyright hold
   
     <li><a href="/categories/softwaredevelopment/keepassx/">keepassx</a><small>1</small></li>
   
-    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
-  
     <li><a href="/categories/java/macintosh/">macintosh</a><small>2</small></li>
+  
+    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
   
     <li><a href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><small>1</small></li>
   
@@ -449,17 +449,17 @@ Pirated from a long forgotten place...apologies to the respective copyright hold
   
     <li><a href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><small>1</small></li>
   
-    <li><a href="/categories/networks/">networks</a><small>1</small></li>
-  
     <li><a href="/categories/macintosh/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/networks/">networks</a><small>1</small></li>
   
     <li><a href="/categories/openlaszlo/">openlaszlo</a><small>1</small></li>
   
     <li><a href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><small>1</small></li>
   
-    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
-  
     <li><a href="/categories/ruby/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
   
     <li><a href="/categories/ruby/">ruby</a><small>1</small></li>
   
@@ -469,13 +469,13 @@ Pirated from a long forgotten place...apologies to the respective copyright hold
   
     <li><a href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
-    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
-  
-    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
+    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
     <li><a href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
-    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
   
     <li><a href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
@@ -487,19 +487,19 @@ Pirated from a long forgotten place...apologies to the respective copyright hold
   
     <li><a href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><small>1</small></li>
   
-    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
-  
     <li><a href="/categories/macintosh/synergy/">synergy</a><small>2</small></li>
   
-    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
   
     <li><a href="/categories/ubuntu/">ubuntu</a><small>6</small></li>
   
+    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+  
     <li><a href="/categories/java/ubuntu/">ubuntu</a><small>1</small></li>
   
-    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
-  
     <li><a href="/categories/softwaredevelopment/vpn/">vpn</a><small>1</small></li>
+  
+    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
   
   </ul>
 </div>

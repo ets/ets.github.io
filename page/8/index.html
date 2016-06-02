@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Seite 8 | Technocracy</title>
+  <title>第 8 頁 | Technocracy</title>
   <meta name="author" content="Eric Simmerman">
   
   
@@ -44,6 +44,181 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-07-23T04:00:00.000Z"><a href="/2009/07/23/2009-07-23-openssl-alert-40-handshake-error-common/">2009-07-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/07/23/2009-07-23-openssl-alert-40-handshake-error-common/">OpenSSL alert 40 Handshake error &#39;no common encryption algorithms&#39; with Caucho&#39;s Resin</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>Setting up my new QA server should have been simple, but a cryptic issue with Resin cost me five hours. Here's the rundown so you can learn from my pain.</p><p>I copied my production copy of Resin over to a new QA server which is more or less identical - both run RHEL5 with the same version of openssl and same Java runtime. It fired up an ran perfectly...there were only two things I wanted to change. I wanted to:</p><ul><li>Upgrade to the latest version of Resin - from 3.1.7 to 3.1.9</li><li>Install a new SSL certificate to match the QA server's hostname</li></ul>The task at hand looked so simple I decided to make both changes at once without testing in between....big mistake. I flew through the upgrade process and grabbed a new certificate from GoDaddy (the same CA used for the existing certificate). When I fired up the new Resin it started with no errors but when I attempted to pull a page over SSL my browser returned a "no common encryption algorithms" error.<p>I thought support for certain algorithms must have changed in the latest release and thus spent an inordinate amount of time chasing my tail in the belief that the issue was related to the Resin minor version upgrade. After recognizing that dead-end, I ran through every openssl test I knew and learned a few more along the way. After much trial and error I finally noticed my mistake. I was still using the certificate-chain-file associated with the production certificate.</p><p>The first certificate in a certificate chain file is <b>your</b> server/domain certificate. Thus, I needed to replace the first certificate in the chain in order to use it with my QA server. That took two minutes...then all was well with SSL support in my new QA server.</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-07-18T04:00:00.000Z"><a href="/2009/07/18/2009-07-18-malfunctioning-mouse-after-upgrade-to/">2009-07-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/07/18/2009-07-18-malfunctioning-mouse-after-upgrade-to/">Malfunctioning mouse after upgrade to Ubuntu 8.10</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>I experienced some intermittent and infuriating mouse malfunctions after my upgrade to Ubuntu 8.10. Single-clicks were interpreted as double-clicks, hilighted selections would lose focus, etc...</p><p>The root cause was an incomplete transition to HAL. Upgrade manager attempted but failed to comment out all my pointer and keyboard configuration in xorg.conf and my mouse was thus configured twice (once using the old-school xorg method and a second time by HAL). The fix was simple:</p><ul><li>Edit /etc/X11/xorg.conf and remove any references to keyboard or mouse devices in the "ServerLayout" section<ul><li>InputDevice    "Generic Keyboard"</li><li>InputDevice    "Configured Mouse"</li></ul></li><li>Also remove any Keyboard or Mouse sections within the xorg.conf</li><li>Hit Ctrl+Alt+F1 to drop to a shell and type "sudo xinit -- :2" to test your new config<ul><li>Correct any errors as needed until the above starts a new windows session with a simple command prompt</li></ul></li><li>Hit Ctrl+Alt+F1 to switch back to your test session and Ctrl-C to kill the second windows instance</li><li>Restart your primary GDM with your new config "sudo /etc/init.d/gdm restart"</li></ul></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-06-28T04:00:00.000Z"><a href="/2009/06/28/2009-06-28-belkin-surge-protector-fire-hazard/">2009-06-28</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/06/28/2009-06-28-belkin-surge-protector-fire-hazard/">Belkin Surge Protector Fire Hazard</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+Dear US Consumer Product Safety Commission<br>CC: everyone<br><p>    On the morning of June 27th 2009, electrical power to my household was briefly disrupted around 3:30am by several breaks in service over a period of about 20 seconds. Approximately 5 minutes after the disruption, I noticed thick black smoke billowing from a room housing several electronic devices. I was able to enter the room and identify the source of the smoke as the burning plastic of my Belkin "Conceal" Surge Protector. I was thankfully able to quickly terminate power to the device and remove the smoldering plastic from my home.</p><p>As the attached photos demonstrate, the heat from the Belkin burned several holes into the baseboard of the wall behind it and charred the surrounding floor and wall. At the time of the incident, there were only three devices plugged into the Belkin: a speaker, halogen lamp, and laptop computer. Both the speaker and lamp were powered off and the laptop was only drawing power as needed to replenish its battery. Aside from damage to their power cords all three devices were unharmed. I purchased this Belkin Surge Protector from Staples on July 25th 2007 (I have the original receipt) and it was never damaged, repaired, or modified in any way prior to this incident.</p><p>My wife &amp; eight-week old daughter were present in our home with me at the time of this incident. In addition to the obvious structural damage pictured, the room suffered significant smoke damage &amp; lingering odors from the toxic fumes. Clearly my family and I are lucky to have only experienced this relatively minor loss from such a potentially harmful incident. I am writing you today in the hope that this information may prevent other consumers from exposure to this potentially lethal &amp; hazardous product.</p><p>I have kept the product and would be happy to submit it for your inspection. The particulars of my Belkin are:<br>Model: BZ 111234-10<br>File No: E89769<br>Serial: 061016716-18079<br>Manufactured: Sept 02, 2006<br>Made in China<br></p><div class="p_embed p_image_embed"><img alt="Media_httpwwwjrollerc_ccgcz" height="640" src="http://ericsimmerman.files.wordpress.com/2009/06/media_httpwwwjrollerc_ccgcz-scaled500.jpg?w=225" width="480"></div><div class="p_embed p_image_embed"><a href="http://ericsimmerman.files.wordpress.com/2009/06/media_httpwwwjrollerc_vhtil-scaled1000.jpg" target="_blank" rel="external"><img alt="Media_httpwwwjrollerc_vhtil" height="375" src="http://ericsimmerman.files.wordpress.com/2009/06/media_httpwwwjrollerc_vhtil-scaled1000.jpg?w=300" width="500"></a></div><div class="p_embed p_image_embed"><a href="http://ericsimmerman.files.wordpress.com/2009/06/media_httpwwwjrollerc_juddz-scaled1000.jpg" target="_blank" rel="external"><img alt="Media_httpwwwjrollerc_juddz" height="375" src="http://ericsimmerman.files.wordpress.com/2009/06/media_httpwwwjrollerc_juddz-scaled1000.jpg?w=300" width="500"></a></div></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-06-17T04:00:00.000Z"><a href="/2009/06/17/2009-06-17-resolve-foreign-key-constraint/">2009-06-17</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/06/17/2009-06-17-resolve-foreign-key-constraint/">Resolve foreign key constraint error/conflict with DBUnit CLEAN_INSERT operation (MySQLIntegrityConstraintViolationException)</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>If DBUnit starts throwing MySQLIntegrityConstraintViolationException while performing a CLEAN_INSERT you can lose quite a bit of sleep attempting to resolve it or you can cheat and get back to work. The shortcut is to simply disable constraints for the INSERT operation by disabling constraints for DBUnit altogether. You can do that by adding sessionVariables=FOREIGN_KEY_CHECKS=0 to your JDBC connection string to MySQL. I use maven and in pom.xml my configuration for the dbunit plugin looks like this</p><div class="CodeRay">  <div class="code"><pre>&lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;&lt;artifactId&gt;dbunit-maven-plugin&lt;/artifactId&gt;&lt;version&gt;1.0-beta-1&lt;/version&gt;&lt;configuration&gt;    &lt;dataTypeFactoryName&gt;${dbunit.dataTypeFactoryName}&lt;/dataTypeFactoryName&gt;    &lt;driver&gt;${jdbc.driverClassName}&lt;/driver&gt;    &lt;username&gt;${jdbc.username}&lt;/username&gt;    &lt;password&gt;${jdbc.password}&lt;/password&gt;    &lt;url&gt;${jdbc.url}&amp;amp;sessionVariables=FOREIGN_KEY_CHECKS=0&lt;/url&gt;    &lt;src&gt;src/test/resources/sample-data.xml&lt;/src&gt;    &lt;type&gt;${dbunit.operation.type}&lt;/type&gt;    &lt;schema&gt;${dbunit.schema}&lt;/schema&gt;    &lt;skip&gt;${maven.test.skip}&lt;/skip&gt;&lt;/configuration&gt;</pre></div></div><p>Keep in mind that if you choose to do this your dbunit tests will run with constraints disabled....generally not a recommended approach. Caveat Emptor.</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-06-01T04:00:00.000Z"><a href="/2009/06/01/2009-06-01-using-jquery-and-scriptaculousprototype/">2009-06-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/06/01/2009-06-01-using-jquery-and-scriptaculousprototype/">Using jQuery and Scriptaculous/prototype together</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<p>Congratulations to the jQuery crew for <a href="http://docs.jquery.com/Using_jQuery_with_Other_Libraries" target="_blank" rel="external">properly documenting this one in their official documentation</a>. However, I didn't find that page with my first search so consider this post my effort to propagate the knowledge.</p><p>jQuery uses "$" as a shortcut for "jQuery" and that is generally its only point of conflict with other javascript libraries. You can override that behavior so that jQuery will play nice with others by calling</p><div class="CodeRay">  <div class="code"><pre>jQuery.noConflict();</pre></div></div>and then explicitly calling "jQuery" where you would have used "$" to invoke jQuery behavior. Read more on the page referenced above.</div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -219,202 +394,27 @@ My desktop runs Ubuntu (64-bit) and I use Synergy to drive its keyboard and mous
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2009-02-21T05:00:00.000Z"><a href="/2009/02/21/2009-02-21-spring-mvc-checkboxes-tag-and-support/">2009-02-21</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2009/02/21/2009-02-21-spring-mvc-checkboxes-tag-and-support/">Spring MVC&#39;s checkboxes tag and support for enum</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-Using Spring MVC's checkboxes (or radiobuttons) tag to render form inputs for an enum property is easy and clean...once you know how. After a little gnashing of teeth, due to the fact that I needed a specific display order for all options, I found the following solution:<p>Here's the tag in my jsp<div class="CodeRay">  <div class="code"><pre>&lt;form:checkboxes itemValue=&quot;value&quot; itemLabel=&quot;label&quot;  path=&quot;user.degrees&quot; items=&quot;${degreeLabels }&quot; /&gt;</pre></div></div><br>Here's the way I populated my model map to retain ordering. (I placed this code in my FormController's referenceData method)<div class="CodeRay">  <div class="code"><pre>List labelValues = new ArrayList&lt;LabelValue&gt;();        for (Degree d : Degree.values()) {            labelValues.add(new LabelValue(d.name(), d.name()));        }        Map model = new HashMap();        model.put(&quot;degreeLabels&quot;, labelValues);</pre></div></div>FYI, I ripped the LabelValue class used above from Matt Riable's excellent Appfuse project. The constructor takes two arguments which are mapped to the properties "value" and "label" and these properties have the typical pojo getters and setters.<br>You can see from the path on my tag that degrees is a property on my User object...which is the target of my form. Here's what that looks like...I threw in my Hibernate annotations for the curious:<div class="CodeRay">  <div class="code"><pre>private Set&lt;Degree&gt; degrees = new HashSet&lt;Degree&gt;();    @CollectionOfElements    @Enumerated(EnumType.STRING)    public Set&lt;Degree&gt; getDegrees() {        return degrees;    }    public void setDegrees(Set&lt;Degree&gt; degrees) {        this.degrees = degrees;    }</pre></div></div>It's probably obvious, but here's what the Degree enum looks like:<div class="CodeRay">  <div class="code"><pre>public enum Degree {    BA,BS,BN,BSW,MA,MS,MBA,MSN,MSW,MD,JD,PhD,PharmD,PsyD,Other;}</pre></div></div></p></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2009-02-18T05:00:00.000Z"><a href="/2009/02/18/2009-02-18-hibernate-annotations/">2009-02-18</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2009/02/18/2009-02-18-hibernate-annotations/">Hibernate Annotations - IdentifierGenerationException: attempted to assign id from null one-to-one property</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-While using Hibernate annotations to implement a @OneToOne relationship where the entities are joined by primary key (@PrimaryKeyJoinColumn) I kept encountering a relatively infamous Exception:<div class="CodeRay">  <div class="code"><pre>IdentifierGenerationException: attempted to assign id from null one-to-one property</pre></div></div>I discovered that my issue could easily be resolved by adding "optional=false" to the dependent side of the relation. Here's a brief summary of the relevant related code.<div class="CodeRay">  <div class="code"><pre>@Entitypublic class Profile implements Serializable {   @OneToOne(mappedBy=&quot;profile&quot;, optional=false, fetch=FetchType.LAZY)    public Hospital getHospital() {        return hospital;    }    @Id @GeneratedValue(generator=&quot;foreign&quot;)    @GenericGenerator(name=&quot;foreign&quot;, strategy = &quot;foreign&quot;, parameters={            @Parameter(name=&quot;property&quot;, value=&quot;hospital&quot;)    })    public Long getId() {        return this.id;    }}@Entitypublic class Hospital implements Serializable {    @OneToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)    @PrimaryKeyJoinColumn    public Profile getProfile() {        return profile;    }    @Id @GeneratedValue(strategy=GenerationType.AUTO)    public Long getId() {        return id;    }}</pre></div></div></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2009-02-08T05:00:00.000Z"><a href="/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/">2009-02-08</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/">Import stock sales from Microsoft Money into TurboTax Online</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-<a href="http://turbotax.intuit.com/personal-taxes/" target="_blank" rel="external">TurboTax Online</a>'s investment sale (stock, mutual fund, etc sales for capital gains) entry screen is a nice example of braindead design. Although the application provides a "bulk-entry spreadsheet-like interface", there's no import function available. So despite having all of my data in a nice spreadsheet (exported from the MS Money capital gains report) I was still faced with the prospect of manually entering each field from dozens of transactions. Worse still, the interface limits your access to seven rows/transactions per page.<p>Applescript to the rescue! It's an ugly solution, but it saved me a ton of time and helped avoid any manual entry typos:<ol><li>Use your spreadsheet program to arrange your transaction data into columns matching those in TurboTax's interface. You should have five columns. Insure that the dates are formatted as mm/dd/yy</li><li>Copy and paste the data into your favorite text editor as tab-delimited text (I used the excellent TextMate)</li><li>Use search and replace to convert all the tabs into <div class="CodeRay">  <div class="code"><pre>&quot; &amp; tab &amp; &quot;</pre></div></div></li><li>Use search and replace to insert the following at the beginning of every line <div class="CodeRay">  <div class="code"><pre>keystroke &quot;</pre></div></div></li><li>Use search and replace to insert the following at the end of every line <div class="CodeRay">  <div class="code"><pre>&quot; &amp; tab</pre></div></div></li><li>Now each line should look something like this<div class="CodeRay">  <div class="code"><pre>keystroke &quot;ACME Stock&quot; &amp; tab &amp; &quot;11/10/08&quot; &amp; tab &amp; &quot;100.12&quot; &amp; tab &amp; &quot;1/12/05&quot; &amp; tab &amp; &quot;584.12&quot; &amp; tab</pre></div></div></li><li>Paste the following script into the Script Editor application on your Mac<div class="CodeRay">  <div class="code"><pre>tell application &quot;System Events&quot;        tell process &quot;Firefox&quot;--Clearly replace Firefox above if you are using a different browser                set frontmost to true--Transactions go here        end tellend tell</pre></div></div></li><li>Cut 7 lines at a time from your text editor, paste them into the Script Editor and click "Run"</li><li>The script will populate the TurboTax screen with your data. Click "Add more Rows" in TurboTax and repeat!</li></ol>You're welcome.</p></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2009-01-28T05:00:00.000Z"><a href="/2009/01/28/2009-01-28-cisco-vpn-fix-for-error-51-unable-to/">2009-01-28</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2009/01/28/2009-01-28-cisco-vpn-fix-for-error-51-unable-to/">Cisco VPN - Fix for Error 51: Unable to communicate with the VPN subsystem</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-I run Leopard on my Mac and encountered the dreaded Error 51 issue today. The simple fix that worked for me was to run the following two commands as root:<p><div class="CodeRay">  <div class="code"><pre># ifconfig fw0 down# /System/Library/StartupItems/CiscoVPN/CiscoVPN restart</pre></div></div>Afterwords, the VPN client started just fine...no Error 51.</p></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2009-01-19T05:00:00.000Z"><a href="/2009/01/19/2009-01-19-linksys-wet54g-bridge-to-verizon-fios/">2009-01-19</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2009/01/19/2009-01-19-linksys-wet54g-bridge-to-verizon-fios/">Linksys WET54G bridge to Verizon FiOS ActionTec wireless access point</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-So my upgrade to Verizon FiOS included swapping my Linksys WRT54G access point for the Verizon branded ActionTec device that came with the FiOS install. This swap wasn't strictly necessary, but the ActionTec doubles as both the router and access point so I decided I might as well make use of the wireless capabilities since I have to keep it plugged in either way.The only problem I encountered was that my Linksys WRT54G bridge couldn't play nice with the ActionTec. Through trial and error I found that setting both devices to encrypt using WPA2-PSK using AES only (not the default TKIP+AES) resolved my issues.</div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
-    <a href="/page/7/" class="alignleft prev">Vorherige Seite</a>
+    <a href="/page/7/" class="alignleft prev">上一頁</a>
   
   
-    <a href="/page/9/" class="alignright next">Nächste Seite</a>
+    <a href="/page/9/" class="alignright next">下一頁</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="search" name="q" results="0" placeholder="搜尋">
     <input type="hidden" name="q" value="site:ericsimmerman.com">
   </form>
 </div>
 
   
 <div class="widget tag">
-  <h3 class="title">Kategorien</h3>
+  <h3 class="title">分類</h3>
   <ul class="entry">
   
     <li><a href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><small>1</small></li>
@@ -439,9 +439,9 @@ So my upgrade to Verizon FiOS included swapping my Linksys WRT54G access point f
   
     <li><a href="/categories/softwaredevelopment/keepassx/">keepassx</a><small>1</small></li>
   
-    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
-  
     <li><a href="/categories/java/macintosh/">macintosh</a><small>2</small></li>
+  
+    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
   
     <li><a href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><small>1</small></li>
   
@@ -449,17 +449,17 @@ So my upgrade to Verizon FiOS included swapping my Linksys WRT54G access point f
   
     <li><a href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><small>1</small></li>
   
-    <li><a href="/categories/networks/">networks</a><small>1</small></li>
-  
     <li><a href="/categories/macintosh/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/networks/">networks</a><small>1</small></li>
   
     <li><a href="/categories/openlaszlo/">openlaszlo</a><small>1</small></li>
   
     <li><a href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><small>1</small></li>
   
-    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
-  
     <li><a href="/categories/ruby/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
   
     <li><a href="/categories/ruby/">ruby</a><small>1</small></li>
   
@@ -469,13 +469,13 @@ So my upgrade to Verizon FiOS included swapping my Linksys WRT54G access point f
   
     <li><a href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
-    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
-  
-    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
+    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
     <li><a href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
-    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
   
     <li><a href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
@@ -487,19 +487,19 @@ So my upgrade to Verizon FiOS included swapping my Linksys WRT54G access point f
   
     <li><a href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><small>1</small></li>
   
-    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
-  
     <li><a href="/categories/macintosh/synergy/">synergy</a><small>2</small></li>
   
-    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
   
     <li><a href="/categories/ubuntu/">ubuntu</a><small>6</small></li>
   
+    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+  
     <li><a href="/categories/java/ubuntu/">ubuntu</a><small>1</small></li>
   
-    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
-  
     <li><a href="/categories/softwaredevelopment/vpn/">vpn</a><small>1</small></li>
+  
+    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
   
   </ul>
 </div>

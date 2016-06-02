@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ericsimmerman.com/"/>
-  <updated>2016-06-02T01:49:40.000Z</updated>
+  <updated>2016-06-02T02:31:14.000Z</updated>
   <id>http://ericsimmerman.com/</id>
   
   <author>
@@ -14,6 +14,138 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://ericsimmerman.com/2016/06/01/hello-world/"/>
+    <id>http://ericsimmerman.com/2016/06/01/hello-world/</id>
+    <published>2016-06-02T02:31:14.000Z</published>
+    <updated>2016-06-02T02:31:14.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;http://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;http://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;http://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;http://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;http://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;http://hexo.io/docs/generating.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Deploy-to-remote-sites&quot;&gt;&lt;a href=&quot;#Deploy-to-remote-sites&quot; class=&quot;headerlink&quot; title=&quot;Deploy to remote sites&quot;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;http://hexo.io/docs/deployment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;http://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;http://hexo.io
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL Identifying Blocking Transactions</title>
+    <link href="http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/"/>
+    <id>http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/</id>
+    <published>2015-08-10T16:29:15.000Z</published>
+    <updated>2016-06-02T01:49:40.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Recording this incredibly helpful query from &lt;a href=&quot;https://stackoverflow.com/questions/22046390/still-seeing-lock-wait-timeouts-when-deleting-from-large-tables-using-primary-ke/22131972#22131972&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Bill Karwin’s post to SO&lt;/a&gt;&lt;br&gt;You can find the source query that’s blocking your DELETE by using the INFORMATION_SCHEMA.LOCK_WAITS and INNODB_TRX tables.&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;SELECT r.trx_id waiting_trx_id,  &amp;#10;       r.trx_mysql_thread_id waiting_thread,&amp;#10;       r.trx_query waiting_query,&amp;#10;       b.trx_id blocking_trx_id,&amp;#10;       b.trx_mysql_thread_id blocking_thread,&amp;#10;       b.trx_query blocking_query&amp;#10;   FROM       information_schema.innodb_lock_waits w&amp;#10;   INNER JOIN information_schema.innodb_trx b  ON  &amp;#10;    b.trx_id = w.blocking_trx_id&amp;#10;  INNER JOIN information_schema.innodb_trx r  ON  &amp;#10;    r.trx_id = w.requesting_trx_id;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;See more information at &lt;a href=&quot;http://dev.mysql.com/doc/refman/5.5/en/innodb-information-schema.html#innodb-information-schema-examples&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://dev.mysql.com/doc/refman/5.5/en/innodb-information-schema.html#innodb-information-schema-examples&lt;/a&gt;, under “Example 14.2 Identifying Blocking Transactions”.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Recording this incredibly helpful query from &lt;a href=&quot;https://stackoverflow.com/questions/22046390/still-seeing-lock-wait-timeouts-when-d
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Fix YAML parsing errors in WebGen</title>
+    <link href="http://ericsimmerman.com/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/"/>
+    <id>http://ericsimmerman.com/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/</id>
+    <published>2015-01-07T17:20:34.000Z</published>
+    <updated>2016-06-02T01:49:40.000Z</updated>
+    
+    <content type="html">&lt;p&gt;After a clean install of Mac OS X Yosemite I’ve had to reinstall much of my development environment. This process was mostly beneficial as I moved to the latest and greatest tooling but several of my static websites leverage the prior major version of &lt;a href=&quot;http://webgen.gettalong.org/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Thomas Leitner’s Webgen&lt;/a&gt; and getting version 0.5.x up and running has been a challenge.  &lt;/p&gt;
+&lt;p&gt;After working through several Ruby &amp;amp; Gem issues I ran into a particularly opaque error when executing webgen on a project that previously generated without issue: “(&lt;unknown&gt;): found character that cannot start any token while scanning for the next token”&lt;/unknown&gt;&lt;/p&gt;
+&lt;p&gt;This error is usually a sign that your content contains tab characters but I’d already ensured that wasn’t the case.  Instead of diving deep into the workings of the libraries at play I was able to use &lt;a href=&quot;https://groups.google.com/d/msg/webgen-users/wYYWrwljJ1Y/Q8G4SzG_lEcJ&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;this post from Thomas to resolve the issue&lt;/a&gt; by reverting to the syck TAML implementation instead of its replacement.  Problem solved!&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;After a clean install of Mac OS X Yosemite I’ve had to reinstall much of my development environment. This process was mostly beneficial a
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Resolving H2 table lock during JUnitRunner test</title>
+    <link href="http://ericsimmerman.com/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/"/>
+    <id>http://ericsimmerman.com/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/</id>
+    <published>2014-02-01T20:36:00.000Z</published>
+    <updated>2016-06-02T01:49:40.000Z</updated>
+    
+    <content type="html">&lt;p&gt;After adding a new test to a project that uses Play Framework 1.2.X and thus leverages H2 for Junit functional testing, I began encountering a table lock during setup() when the framework was attempting to delete the contents of an entity table.&lt;/p&gt;
+&lt;p&gt;I initially blamed the lock on bad model design and wasted a significant amount of time tweaking JPA entity relationships and corresponding CRUD operations in an attempt to resolve it. I ultimately resolved the issue after realizing it was in fact caused by a badly designed test.&lt;/p&gt;
+&lt;p&gt;I was directly modifying entities within the transaction that wrapped my functional test and then emulating API calls that relied upon the state of those same entities. Long story short, my test was attempting something similar to this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class FunctionalTest { //Runs entire test in the same transaction
+
+    setup(){
+        //reset H2 datastore in an distinct transaction
+    }
+
+    atest(){ 
+        User u = User.findById(1);
+        u.address = new Address();
+        u.save();
+
+        //test continues
+    }
+
+    btest(){
+        Request req = GET(&amp;quot;/user/1&amp;quot;);
+
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In my contrived example above, after Junit runs atest() and just before running btest() - it will call setup() and attempt to reset the database in a separate transaction. But, atest() claimed a lock for insert on User and in H2 that locks the entire table by default thus setup() will be unable to reset the User table and will fail with a lock timeout.&lt;/p&gt;
+&lt;p&gt;To resolve this - you’ll either need to redesign your test to avoid manipulating entities directly in the testcase or run each test in a distinct transaction. &lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;After adding a new test to a project that uses Play Framework 1.2.X and thus leverages H2 for Junit functional testing, I began encounter
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Moved again ... this time to github.io</title>
+    <link href="http://ericsimmerman.com/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/"/>
+    <id>http://ericsimmerman.com/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/</id>
+    <published>2013-11-27T00:22:00.000Z</published>
+    <updated>2016-06-02T01:49:40.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Blogger was just too ugly &amp;amp; clumsy so I used a fork of &lt;a href=&quot;https://gist.github.com/juniorz/1564581&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;juniorz’s import.rb&lt;/a&gt; to migrate from blogger to Octopress. Here’s my fork:&lt;/p&gt;
+&lt;script src=&quot;https://gist.github.com/ets/7662898.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;I found &lt;a href=&quot;https://gist.github.com/MeetDom/1713910&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MeetDom’s gist helpful while installing all the dependencies&lt;/a&gt; required by the import script.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Blogger was just too ugly &amp;amp; clumsy so I used a fork of &lt;a href=&quot;https://gist.github.com/juniorz/1564581&quot; target=&quot;_blank&quot; rel=&quot;externa
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Plesk 11 Upgrade Unable to run Perl scripts in cgi-bin</title>
@@ -362,121 +494,6 @@ Pirated from a long forgotten place...apologies to the respective copyright hold
       
 &lt;div class=&quot;post&quot;&gt;
 &lt;p&gt;During today&#39;s maintenance run of git-gc on our Mac hosted repo I encountered screenfulls of nasty fatal error messag
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Play framework on AWS</title>
-    <link href="http://ericsimmerman.com/2012/01/08/2012-01-08-play-framework-on-aws/"/>
-    <id>http://ericsimmerman.com/2012/01/08/2012-01-08-play-framework-on-aws/</id>
-    <published>2012-01-08T05:00:00.000Z</published>
-    <updated>2016-06-02T01:49:40.000Z</updated>
-    
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;Steps I took to get a Play framework app up and running on a micro AWS instance running Ubuntu 11.10&lt;/p&gt;&lt;ol&gt;&lt;li&gt;sudo add-apt-repository &quot;deb &lt;a href=&quot;http://archive.canonical.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://archive.canonical.com/&lt;/a&gt; lucid partner&quot;&lt;/li&gt;&lt;li&gt;sudo apt-get update&lt;/li&gt;&lt;li&gt;sudo apt-get install sun-java6-jdk unzip&lt;/li&gt;&lt;li&gt;wget &lt;a href=&quot;http://download.playframework.org/releases/play-1.2.4.zip&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://download.playframework.org/releases/play-1.2.4.zip&lt;/a&gt;&lt;/li&gt;&lt;li&gt;sudo unzip play-1.2.4.zip -d /usr/local/share/&lt;/li&gt;&lt;li&gt;install&amp;nbsp;&lt;a href=&quot;https://gist.github.com/1289753&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Dominik Dorn&#39;s startup script&lt;/a&gt;&lt;ol&gt;&lt;li&gt;wget &lt;a href=&quot;https://raw.github.com/gist/1290012/a31b1d079705ea7ccf6d1fdc866027b674e62841/playframework&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://raw.github.com/gist/1290012/a31b1d079705ea7ccf6d1fdc866027b674e62841/...&lt;/a&gt;&lt;/li&gt;&lt;li&gt;sudo mv playframework /etc/init/&lt;/li&gt;&lt;li&gt;update the script with proper paths&amp;nbsp;&lt;/li&gt;&lt;/ol&gt;&lt;/li&gt;&lt;li&gt;useradd username -g www-data -m -d /home/username&amp;nbsp;-s /bin/bash&lt;/li&gt;&lt;li&gt;install your app&lt;/li&gt;&lt;li&gt;initctl start playframework&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;
-</content>
-    
-    <summary type="html">
-    
-      
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;Steps I took to get a Play framework app up and running on a micro AWS instance running Ubuntu 11.10&lt;/p&gt;&lt;ol&gt;&lt;li&gt;sudo 
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Install APC on CentOS 5.6</title>
-    <link href="http://ericsimmerman.com/2012/01/05/2012-01-05-install-apc-on-centos-56/"/>
-    <id>http://ericsimmerman.com/2012/01/05/2012-01-05-install-apc-on-centos-56/</id>
-    <published>2012-01-05T05:00:00.000Z</published>
-    <updated>2016-06-02T01:49:40.000Z</updated>
-    
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-&lt;div&gt;The following resolved a few gotchas I encountered installing APC on an old instance of CentOS 5.6&lt;/div&gt;&lt;p&gt;&lt;ol&gt;&lt;li&gt;&lt;span style=&quot;font-family:Verdana, Arial, Helvetica, sans-serif;background-color:#e6e6e6;font-size:small;&quot;&gt;mount -o remount,exec /tmp&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-family:Verdana, Arial, Helvetica, sans-serif;background-color:#e6e6e6;font-size:small;&quot;&gt;&lt;span style=&quot;color:#333333;font-family:Georgia, Bitstream Charter, serif;line-height:24px;background-color:#ffffff;&quot;&gt;yum install pcre-devel&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-family:Verdana, Arial, Helvetica, sans-serif;background-color:#e6e6e6;font-size:small;&quot;&gt;&lt;span style=&quot;color:#333333;font-family:Georgia, Bitstream Charter, serif;line-height:24px;background-color:#ffffff;&quot;&gt;pecl install apc&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-family:Verdana, Arial, Helvetica, sans-serif;background-color:#e6e6e6;font-size:small;&quot;&gt;&lt;span style=&quot;color:#333333;font-family:Georgia, Bitstream Charter, serif;line-height:24px;background-color:#ffffff;&quot;&gt;&lt;span style=&quot;color:#000000;font-family:Verdana, Arial, Helvetica, sans-serif;line-height:normal;background-color:#e6e6e6;&quot;&gt;mount -o remount,noexec /tmp&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/p&gt;&lt;/div&gt;
-</content>
-    
-    <summary type="html">
-    
-      
-&lt;div class=&quot;post&quot;&gt;
-&lt;div&gt;The following resolved a few gotchas I encountered installing APC on an old instance of CentOS 5.6&lt;/div&gt;&lt;p&gt;&lt;ol&gt;&lt;li&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Loading Fixtures for FunctionalTest in Play Framework</title>
-    <link href="http://ericsimmerman.com/2011/12/11/2011-12-11-loading-fixtures-for-functionaltest-in/"/>
-    <id>http://ericsimmerman.com/2011/12/11/2011-12-11-loading-fixtures-for-functionaltest-in/</id>
-    <published>2011-12-11T05:00:00.000Z</published>
-    <updated>2016-06-02T01:49:40.000Z</updated>
-    
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;&lt;/p&gt;&lt;p&gt;There are three possible gotchas with FunctionalTest on Play Framework 1.2.4:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Ensure your db is configured for READ_UNCOMMITED transactions. See &lt;a href=&quot;http://www.playframework.org/documentation/1.2.1/releasenotes-1.2&amp;quot;&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;the release notes for more&lt;/a&gt;...&lt;/li&gt;&lt;li&gt;Make certain that you import junit&#39;s @Before and **NOT** play.mvc.Before&lt;/li&gt;&lt;li&gt;Load your Fixtures in a Job. See the example below.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;/p&gt; &lt;div class=&quot;gistLoad&quot; data-id=&quot;1461398&quot; id=&quot;gist-1461398&quot;&gt;Loading ....&lt;/div&gt;&lt;script src=&quot;https://raw.github.com/moski/gist-Blogger/master/public/gistLoader.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&lt;/div&gt;
-</content>
-    
-    <summary type="html">
-    
-      
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;&lt;/p&gt;&lt;p&gt;There are three possible gotchas with FunctionalTest on Play Framework 1.2.4:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Ensure your db is con
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>GAE price increases lead to a hard learned lesson regarding platform lockin</title>
-    <link href="http://ericsimmerman.com/2011/11/14/2011-11-14-gae-price-increases-lead-to-hard/"/>
-    <id>http://ericsimmerman.com/2011/11/14/2011-11-14-gae-price-increases-lead-to-hard/</id>
-    <published>2011-11-14T05:00:00.000Z</published>
-    <updated>2016-06-02T01:49:40.000Z</updated>
-    
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;Google&#39;s &lt;a href=&quot;http://www.informationweek.com/news/cloud-computing/platform/231600672&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pricing changes for GAE&lt;/a&gt;&amp;nbsp;have increased the cost of my two very small applications tenfold. &amp;nbsp;&lt;a href=&quot;https://plus.google.com/104961845171318028721/posts/DamjzZBVxd7&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;I&#39;m not alone&lt;/a&gt;. As a result, I&#39;ve dropped them to the &lt;a href=&quot;https://groups.google.com/forum/#!topic/google-appengine/rSh8mgw2f3c&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;free tier on GAE&lt;/a&gt; - making them practically useless.&amp;nbsp;So long GAE, I hardly knew thee...&lt;/p&gt;&lt;/div&gt;
-</content>
-    
-    <summary type="html">
-    
-      
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;Google&#39;s &lt;a href=&quot;http://www.informationweek.com/news/cloud-computing/platform/231600672&quot; target=&quot;_blank&quot; rel=&quot;extern
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Secure file storage in the &#39;cloud&#39;</title>
-    <link href="http://ericsimmerman.com/2011/11/05/2011-11-05-secure-file-storage-in-the/"/>
-    <id>http://ericsimmerman.com/2011/11/05/2011-11-05-secure-file-storage-in-the/</id>
-    <published>2011-11-05T04:00:00.000Z</published>
-    <updated>2016-06-02T01:49:40.000Z</updated>
-    
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;In my quest for the perfect sync for the relatively small set of sensitive files I want available from all my workstations I&#39;ve tried several cloud based services: Dropbox, JungleDisk,&amp;nbsp;Wuala, and Egnyte just to name a few.&lt;/p&gt;&lt;p&gt;Dropbox and JungleDisk both require custom-rolled workarounds (like using a &lt;a href=&quot;http://www.truecrypt.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;TrueCrypt&lt;/a&gt; volume) to keep sensitive files secured. Egnyt encrypts your data at rest but they use a common key which means you are reliant upon their business practices for data security. Wuala encrypts your data with a private key before transmitting it, but their client is quite cumbersome. I&#39;ve found&amp;nbsp;&lt;a href=&quot;https://spideroak.com/download/referral/5f97e6c2cc2ab96167bc1ed3c92b9c09&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SpiderOak&lt;/a&gt; to be the best fit for my needs.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Native Mac client that starts automatically and runs quietly in the tray&lt;/li&gt;&lt;li&gt;Zero-knowledge encryption of all my files&lt;/li&gt;&lt;li&gt;Supports a smart folder sync&amp;nbsp;&lt;/li&gt;&lt;li&gt;Free entry-level account with 2G of space&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/div&gt;
-</content>
-    
-    <summary type="html">
-    
-      
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;In my quest for the perfect sync for the relatively small set of sensitive files I want available from all my worksta
     
     </summary>
     

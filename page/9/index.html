@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Seite 9 | Technocracy</title>
+  <title>第 9 頁 | Technocracy</title>
   <meta name="author" content="Eric Simmerman">
   
   
@@ -44,6 +44,181 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-02-21T05:00:00.000Z"><a href="/2009/02/21/2009-02-21-spring-mvc-checkboxes-tag-and-support/">2009-02-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/02/21/2009-02-21-spring-mvc-checkboxes-tag-and-support/">Spring MVC&#39;s checkboxes tag and support for enum</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+Using Spring MVC's checkboxes (or radiobuttons) tag to render form inputs for an enum property is easy and clean...once you know how. After a little gnashing of teeth, due to the fact that I needed a specific display order for all options, I found the following solution:<p>Here's the tag in my jsp<div class="CodeRay">  <div class="code"><pre>&lt;form:checkboxes itemValue=&quot;value&quot; itemLabel=&quot;label&quot;  path=&quot;user.degrees&quot; items=&quot;${degreeLabels }&quot; /&gt;</pre></div></div><br>Here's the way I populated my model map to retain ordering. (I placed this code in my FormController's referenceData method)<div class="CodeRay">  <div class="code"><pre>List labelValues = new ArrayList&lt;LabelValue&gt;();        for (Degree d : Degree.values()) {            labelValues.add(new LabelValue(d.name(), d.name()));        }        Map model = new HashMap();        model.put(&quot;degreeLabels&quot;, labelValues);</pre></div></div>FYI, I ripped the LabelValue class used above from Matt Riable's excellent Appfuse project. The constructor takes two arguments which are mapped to the properties "value" and "label" and these properties have the typical pojo getters and setters.<br>You can see from the path on my tag that degrees is a property on my User object...which is the target of my form. Here's what that looks like...I threw in my Hibernate annotations for the curious:<div class="CodeRay">  <div class="code"><pre>private Set&lt;Degree&gt; degrees = new HashSet&lt;Degree&gt;();    @CollectionOfElements    @Enumerated(EnumType.STRING)    public Set&lt;Degree&gt; getDegrees() {        return degrees;    }    public void setDegrees(Set&lt;Degree&gt; degrees) {        this.degrees = degrees;    }</pre></div></div>It's probably obvious, but here's what the Degree enum looks like:<div class="CodeRay">  <div class="code"><pre>public enum Degree {    BA,BS,BN,BSW,MA,MS,MBA,MSN,MSW,MD,JD,PhD,PharmD,PsyD,Other;}</pre></div></div></p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-02-18T05:00:00.000Z"><a href="/2009/02/18/2009-02-18-hibernate-annotations/">2009-02-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/02/18/2009-02-18-hibernate-annotations/">Hibernate Annotations - IdentifierGenerationException: attempted to assign id from null one-to-one property</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+While using Hibernate annotations to implement a @OneToOne relationship where the entities are joined by primary key (@PrimaryKeyJoinColumn) I kept encountering a relatively infamous Exception:<div class="CodeRay">  <div class="code"><pre>IdentifierGenerationException: attempted to assign id from null one-to-one property</pre></div></div>I discovered that my issue could easily be resolved by adding "optional=false" to the dependent side of the relation. Here's a brief summary of the relevant related code.<div class="CodeRay">  <div class="code"><pre>@Entitypublic class Profile implements Serializable {   @OneToOne(mappedBy=&quot;profile&quot;, optional=false, fetch=FetchType.LAZY)    public Hospital getHospital() {        return hospital;    }    @Id @GeneratedValue(generator=&quot;foreign&quot;)    @GenericGenerator(name=&quot;foreign&quot;, strategy = &quot;foreign&quot;, parameters={            @Parameter(name=&quot;property&quot;, value=&quot;hospital&quot;)    })    public Long getId() {        return this.id;    }}@Entitypublic class Hospital implements Serializable {    @OneToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)    @PrimaryKeyJoinColumn    public Profile getProfile() {        return profile;    }    @Id @GeneratedValue(strategy=GenerationType.AUTO)    public Long getId() {        return id;    }}</pre></div></div></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-02-08T05:00:00.000Z"><a href="/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/">2009-02-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/">Import stock sales from Microsoft Money into TurboTax Online</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+<a href="http://turbotax.intuit.com/personal-taxes/" target="_blank" rel="external">TurboTax Online</a>'s investment sale (stock, mutual fund, etc sales for capital gains) entry screen is a nice example of braindead design. Although the application provides a "bulk-entry spreadsheet-like interface", there's no import function available. So despite having all of my data in a nice spreadsheet (exported from the MS Money capital gains report) I was still faced with the prospect of manually entering each field from dozens of transactions. Worse still, the interface limits your access to seven rows/transactions per page.<p>Applescript to the rescue! It's an ugly solution, but it saved me a ton of time and helped avoid any manual entry typos:<ol><li>Use your spreadsheet program to arrange your transaction data into columns matching those in TurboTax's interface. You should have five columns. Insure that the dates are formatted as mm/dd/yy</li><li>Copy and paste the data into your favorite text editor as tab-delimited text (I used the excellent TextMate)</li><li>Use search and replace to convert all the tabs into <div class="CodeRay">  <div class="code"><pre>&quot; &amp; tab &amp; &quot;</pre></div></div></li><li>Use search and replace to insert the following at the beginning of every line <div class="CodeRay">  <div class="code"><pre>keystroke &quot;</pre></div></div></li><li>Use search and replace to insert the following at the end of every line <div class="CodeRay">  <div class="code"><pre>&quot; &amp; tab</pre></div></div></li><li>Now each line should look something like this<div class="CodeRay">  <div class="code"><pre>keystroke &quot;ACME Stock&quot; &amp; tab &amp; &quot;11/10/08&quot; &amp; tab &amp; &quot;100.12&quot; &amp; tab &amp; &quot;1/12/05&quot; &amp; tab &amp; &quot;584.12&quot; &amp; tab</pre></div></div></li><li>Paste the following script into the Script Editor application on your Mac<div class="CodeRay">  <div class="code"><pre>tell application &quot;System Events&quot;        tell process &quot;Firefox&quot;--Clearly replace Firefox above if you are using a different browser                set frontmost to true--Transactions go here        end tellend tell</pre></div></div></li><li>Cut 7 lines at a time from your text editor, paste them into the Script Editor and click "Run"</li><li>The script will populate the TurboTax screen with your data. Click "Add more Rows" in TurboTax and repeat!</li></ol>You're welcome.</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-01-28T05:00:00.000Z"><a href="/2009/01/28/2009-01-28-cisco-vpn-fix-for-error-51-unable-to/">2009-01-28</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/01/28/2009-01-28-cisco-vpn-fix-for-error-51-unable-to/">Cisco VPN - Fix for Error 51: Unable to communicate with the VPN subsystem</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+I run Leopard on my Mac and encountered the dreaded Error 51 issue today. The simple fix that worked for me was to run the following two commands as root:<p><div class="CodeRay">  <div class="code"><pre># ifconfig fw0 down# /System/Library/StartupItems/CiscoVPN/CiscoVPN restart</pre></div></div>Afterwords, the VPN client started just fine...no Error 51.</p></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-01-19T05:00:00.000Z"><a href="/2009/01/19/2009-01-19-linksys-wet54g-bridge-to-verizon-fios/">2009-01-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/01/19/2009-01-19-linksys-wet54g-bridge-to-verizon-fios/">Linksys WET54G bridge to Verizon FiOS ActionTec wireless access point</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+So my upgrade to Verizon FiOS included swapping my Linksys WRT54G access point for the Verizon branded ActionTec device that came with the FiOS install. This swap wasn't strictly necessary, but the ActionTec doubles as both the router and access point so I decided I might as well make use of the wireless capabilities since I have to keep it plugged in either way.The only problem I encountered was that my Linksys WRT54G bridge couldn't play nice with the ActionTec. Through trial and error I found that setting both devices to encrypt using WPA2-PSK using AES only (not the default TKIP+AES) resolved my issues.</div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -219,130 +394,27 @@ I've submitted a patch to the Spring Framework to give their <a href="http://jir
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2008-01-15T05:00:00.000Z"><a href="/2008/01/15/2008-01-15-hilight-current-post-on-threaded-view/">2008-01-15</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2008/01/15/2008-01-15-hilight-current-post-on-threaded-view/">Hilight current post on threaded view in Fireboard 1.0.4</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-In the 1.0.4 release, there is no indicator of which post you are currently viewing within a threaded tree of posts. Here's my hack to implement such an indicator.<p>Under your chosen template directory (ex: components/com_fireboard/templates/default), edit the thread.php file. Look for the TR with class="fb_threadview_row" and modify it like so:<br><div class="CodeRay">  <div class="code"><pre>&lt;tr class=&quot;fb_threadview_row&quot; &lt;? if($leaf-&gt;id == (int)$id){ echo &quot;style='background-color:yellow'&quot;; } ?&gt; &gt;</pre></div></div>You can use any background-color value you desire. I used "yellow" in the above example.</p></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2007-10-29T04:00:00.000Z"><a href="/2007/10/29/2007-10-29-java-webbrowser-plugin-for-amd64-ubuntu/">2007-10-29</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2007/10/29/2007-10-29-java-webbrowser-plugin-for-amd64-ubuntu/">Java webbrowser plugin for AMD64 Ubuntu</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-There is now (finally) a fix for Java applet support on AMD64 Ubuntu. Try the following:<div class="CodeRay">  <div class="code"><pre>sudo apt-get build-dep icedtea-java7-pluginsudo apt-get -b source icedtea-java7-plugin icedtea-java7-bin icedtea-java7-jre icedtea-java7-jdksudo dpkg -i icedtea-java7-*deb</pre></div></div>Thanks to Fabien Lusseau for the tip in his comment <a href="https://bugs.launchpad.net/ubuntu/+source/icedtea-java7/+bug/152362" target="_blank" rel="external">here</a></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2007-10-20T04:00:00.000Z"><a href="/2007/10/20/2007-10-20-mounting-ubuntu-nfs-share-on-redhat/">2007-10-20</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2007/10/20/2007-10-20-mounting-ubuntu-nfs-share-on-redhat/">Mounting an Ubuntu NFS share on RedHat Enterprise with firewalls on both</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-It can be tough making NFS play nice amongst different distros and firewalls. I'm sharing my Eclipse workspace on my Ubuntu (Debian) desktop with my CentOS (Redhat Enterprise) server. (That's not a mistake, my server is actually my NFS client in this scenario. You could easily swap these roles if you wish)<div class="CodeRay">  <div class="code"><pre>DEBIAN:I used port numbers and config instructions at http://wiki.debian.org/?SecuringNFSFollow those instructions exactly and you'll have a NFS server configuration that uses static ports (instead of random assignements)REDHAT:1. Create the file &quot;/etc/sysconfig/nfs&quot; and add the following contents:STATD_PORT=32765STATD_OUTGOING_PORT=32766LOCKD_TCPPORT=32768LOCKD_UDPPORT=32768MOUNTD_PORT=327672. (Probably not necessary for most, but here for completeness) Append the following to the file &quot;/etc/services&quot;:rquotad 32769/tcp # rpc.rquotad tcp portrquotad 32769/udp # rpc.rquotad udp port3. Restart the nfslock service:/etc/init.d/nfslock restart4. Run /usr/sbin/rpcinfo -p and make sure all the ports above have changed and match their ubuntu numbers. (/usr/bin/rpcinfo on ubuntu)5. I run firestarter on Ubuntu which is exporting my NFS share. I added the following policy rules for inbound traffic:Allow 32767 (from my client machine's IP)Allow 2049 (from my client machine's IP)Allow 111 (from my client machine's IP)</pre></div></div>Assuming you allow all outbound traffic on your client (I recommend this excellent iptables config file <a href="http://www.linuxguruz.com/iptables/scripts/rc.firewall_023.txt" target="_blank" rel="external">rc.firewall_023.txt</a>), you should now be able to mount the NFS share on the Redhat box.</div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
-    <a href="/page/8/" class="alignleft prev">Vorherige Seite</a>
+    <a href="/page/8/" class="alignleft prev">上一頁</a>
   
+  
+    <a href="/page/10/" class="alignright next">下一頁</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="search" name="q" results="0" placeholder="搜尋">
     <input type="hidden" name="q" value="site:ericsimmerman.com">
   </form>
 </div>
 
   
 <div class="widget tag">
-  <h3 class="title">Kategorien</h3>
+  <h3 class="title">分類</h3>
   <ul class="entry">
   
     <li><a href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><small>1</small></li>
@@ -367,9 +439,9 @@ It can be tough making NFS play nice amongst different distros and firewalls. I'
   
     <li><a href="/categories/softwaredevelopment/keepassx/">keepassx</a><small>1</small></li>
   
-    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
-  
     <li><a href="/categories/java/macintosh/">macintosh</a><small>2</small></li>
+  
+    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
   
     <li><a href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><small>1</small></li>
   
@@ -377,17 +449,17 @@ It can be tough making NFS play nice amongst different distros and firewalls. I'
   
     <li><a href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><small>1</small></li>
   
-    <li><a href="/categories/networks/">networks</a><small>1</small></li>
-  
     <li><a href="/categories/macintosh/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/networks/">networks</a><small>1</small></li>
   
     <li><a href="/categories/openlaszlo/">openlaszlo</a><small>1</small></li>
   
     <li><a href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><small>1</small></li>
   
-    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
-  
     <li><a href="/categories/ruby/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
   
     <li><a href="/categories/ruby/">ruby</a><small>1</small></li>
   
@@ -397,13 +469,13 @@ It can be tough making NFS play nice amongst different distros and firewalls. I'
   
     <li><a href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
-    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
-  
-    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
+    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
     <li><a href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
-    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
   
     <li><a href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
@@ -415,19 +487,19 @@ It can be tough making NFS play nice amongst different distros and firewalls. I'
   
     <li><a href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><small>1</small></li>
   
-    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
-  
     <li><a href="/categories/macintosh/synergy/">synergy</a><small>2</small></li>
   
-    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
   
     <li><a href="/categories/ubuntu/">ubuntu</a><small>6</small></li>
   
+    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+  
     <li><a href="/categories/java/ubuntu/">ubuntu</a><small>1</small></li>
   
-    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
-  
     <li><a href="/categories/softwaredevelopment/vpn/">vpn</a><small>1</small></li>
+  
+    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
   
   </ul>
 </div>

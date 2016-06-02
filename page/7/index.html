@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Seite 7 | Technocracy</title>
+  <title>第 7 頁 | Technocracy</title>
   <meta name="author" content="Eric Simmerman">
   
   
@@ -44,6 +44,181 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-01-18T05:00:00.000Z"><a href="/2010/01/18/2010-01-18-eclipse-galileo-unable-to-read/">2010-01-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2010/01/18/2010-01-18-eclipse-galileo-unable-to-read/">Eclipse Galileo unable to read Subversion repository</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+After a clean Snow Leopard install on a new machine, I fired up a fresh Galileo Eclipse and pointed it at a copy of my old workspace.&nbsp; I first encountered and resolved the missing Mac OS X JRE issue described in my last post, only to then find that my existing subversion repositories were inaccessible in the new Eclipse install. I hopefully added "-clean" as the first parameter of my eclipse.ini file and restarted but the situation remained unchanged. Undeterred, I launched eclipse from the command line with a -clean startup parameter and this did the trick:/Applications/&lt;your install dir/Eclipse.app/Contents/MacOS/eclipse -clean</div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-01-18T05:00:00.000Z"><a href="/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/">2010-01-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/">Missing MacOS X VM in Eclipse Galileo on Snow Leopard</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+I recently encountered an issue where I was unable to add a JVM to my Eclipse install on Snow Leopard. There was no MacOS X VM option under Installed JREs -&gt; Add and attempting to use the Standard VM resulted in an error. After digging around in Eclipse bug reports, I discovered this is a known issue with the Cocoa build of Galileo with PDT pre-installed.&nbsp; The easy fix is to install Eclipse without PDT (just install the Eclipse IDE for Java - Cocoa 64 bit) and add PDT plugin later. When you take this route, the MacOS X VM will be configured automagically.</div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-12-19T05:00:00.000Z"><a href="/2009/12/19/2009-12-19-copypaste-clipboard-broken-on-snow/">2009-12-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/12/19/2009-12-19-copypaste-clipboard-broken-on-snow/">Copy/Paste clipboard broken on Snow Leopard</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+After a recent Apple update, copy and paste quit functioning on my Snow Leopard install. After a number of red herrings, I eventually traced the issue to <a href="http://synergy2.sourceforge.net/" target="_blank" rel="external">Synergy</a> and noticed that synergyc constantly emptied my clipboard immediately after any copy operation. I was running synergy 1.3.1 at the time which was released back in 2006 - I was hopeful that the latest release of the Synergy fork <a href="http://code.google.com/p/synergy-plus/" target="_blank" rel="external">Synergy Plus</a> might provide a quick solution.An install of synergy-plus 1.3.4 Darwin binary did not resolve the issue and a build of the latest from subversion (r252) would not run for me (separate issue - synergyc unable to resolve server address).I happened upon <a href="http://code.google.com/p/synergy-plus/issues/detail?id=67#c85" target="_blank" rel="external">this thread</a> in my search for an answer and based on comments there decided to build revision 242 for my Mac client and run 252 on my Ubuntu server. Happy to report it resolved my issues.One note - I was thrown for a bit when my first Xcode build resulted in 14 compile time errors. Turns out it was necessary for me to build for i386 as the 64-bit build would not compile for me.UPDATE: After a couple weeks use, I found the synergy-plus binary to be rather buggy and went in search of a solution. MacPorts supports a patched build of synergy 1.3.1 for Snow Leopard and so far it is working beautifully. Assuming you have ports installed, the following will install the tried and true synergy.<blockquote class="posterous_short_quote">port clean synergy ; port install synergy +universal</blockquote></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-11-06T05:00:00.000Z"><a href="/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/">2009-11-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/">Subversion, Jira, Sonar, Hudson &amp; Fisheye on Mac OSX Server with Snow Leopard</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+Here are some notes from the field on setting up all these development services to play nice on Mac OS X Server 10.6:<ul><li>Use <a href="http://developer.apple.com/mac/articles/server/subversionwithxcode3.html" target="_blank" rel="external">this excellent writeup from Apple</a> to get Subversion setup as a webservice. Note the comment about how the DAV setting can revert to DAV no and need correction. I've found that it sometimes reverts to "DAV On" and this will break your subversion service...it must always be set to DAV svn</li><li>Configure Jira using Server Admin's "Sites" panel for configuring the Web service. Under Sites-&gt;Proxy configure an ajp worker to talk to your Jira instance. I installed jira on its own context /jira as opposed to root and therefore set the worker URL path as well as the Proxy Path to /jira</li><li>For running under the same hostname/virtual host any additional balancer groups will need to be configured manually. I was able to configure an ajp balancer for sonar but had to use a http balancer for hudson. Avoid using 8443 for your ports for any customer services as Apple's iCal is configured for this one by default.</li></ul></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-10-23T04:00:00.000Z"><a href="/2009/10/23/2009-10-23-installing-python-mysql-connector/">2009-10-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/10/23/2009-10-23-installing-python-mysql-connector/">Installing python-mysql connector MySQLdb after Snow Leopard upgrade</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+<div class="post">
+After upgrading to Snow Leopard and all its 64-bit goodness, I discovered that the upgrade to python 2.6.1 64-bit understandably broke my python-mysql connector which was previously compiled against my 32-bit installation of XAMPP with MySQL. I tried several different paths to make the new python play nice with the existing XAMPP installation. Here's the one that worked:<br><ol><li>Insure that you have the MySQL include directory needed for compilation against the XAMPP MySQL binary you are running. I'm running a 5.0.x build of MySQL and to get the proper include dir I simply downloaded the <a href="http://dev.mysql.com/downloads/mysql/5.0.html#macosx-dmg" target="_blank" rel="external">32-bit DMG for Mac from here</a>. After installation, I simply copied the include dir to my xampp installation.<div class="CodeRay">  <div class="code"><pre>cp -R /usr/local/mysql/include /Applications/xampp/xamppfiles/</pre></div></div>Now the xampp version of mysql_config will point to your newly installed include dir, so you are ready to compile against it.</li><li>If you don't already have it, grab the python-mysql connector source. I'm using MySQL-python-1.2.3c1</li><li>Tell your 64-bit python to always run in 32-bit mode <div class="CodeRay">  <div class="code"><pre>defaults write com.apple.versioner.python Prefer-32-Bit -bool yes</pre></div></div></li><li>cd into the MySQL-python source directory and build it for 32-bit mode<div class="CodeRay">  <div class="code"><pre>ARCHFLAGS='-arch i386' python setup.py build</pre></div></div></li><li>install it <div class="CodeRay">  <div class="code"><pre>ARCHFLAGS='-arch i386' python setup.py install</pre></div></div></li><li>exit the source directory "cd ~" and test your new install <div class="CodeRay">  <div class="code"><pre>pythonPython 2.6.1 (r261:67515, Jul  7 2009, 23:51:51)[GCC 4.2.1 (Apple Inc. build 5646)] on darwinType &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.&gt;&gt;&gt; import MySQLdb</pre></div></div>You're welcome.</li></ol></div>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -219,202 +394,27 @@ I recently used Spring to configure a manager to use Spring Security ACL method-
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2009-07-23T04:00:00.000Z"><a href="/2009/07/23/2009-07-23-openssl-alert-40-handshake-error-common/">2009-07-23</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2009/07/23/2009-07-23-openssl-alert-40-handshake-error-common/">OpenSSL alert 40 Handshake error &#39;no common encryption algorithms&#39; with Caucho&#39;s Resin</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-<p>Setting up my new QA server should have been simple, but a cryptic issue with Resin cost me five hours. Here's the rundown so you can learn from my pain.</p><p>I copied my production copy of Resin over to a new QA server which is more or less identical - both run RHEL5 with the same version of openssl and same Java runtime. It fired up an ran perfectly...there were only two things I wanted to change. I wanted to:</p><ul><li>Upgrade to the latest version of Resin - from 3.1.7 to 3.1.9</li><li>Install a new SSL certificate to match the QA server's hostname</li></ul>The task at hand looked so simple I decided to make both changes at once without testing in between....big mistake. I flew through the upgrade process and grabbed a new certificate from GoDaddy (the same CA used for the existing certificate). When I fired up the new Resin it started with no errors but when I attempted to pull a page over SSL my browser returned a "no common encryption algorithms" error.<p>I thought support for certain algorithms must have changed in the latest release and thus spent an inordinate amount of time chasing my tail in the belief that the issue was related to the Resin minor version upgrade. After recognizing that dead-end, I ran through every openssl test I knew and learned a few more along the way. After much trial and error I finally noticed my mistake. I was still using the certificate-chain-file associated with the production certificate.</p><p>The first certificate in a certificate chain file is <b>your</b> server/domain certificate. Thus, I needed to replace the first certificate in the chain in order to use it with my QA server. That took two minutes...then all was well with SSL support in my new QA server.</p></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2009-07-18T04:00:00.000Z"><a href="/2009/07/18/2009-07-18-malfunctioning-mouse-after-upgrade-to/">2009-07-18</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2009/07/18/2009-07-18-malfunctioning-mouse-after-upgrade-to/">Malfunctioning mouse after upgrade to Ubuntu 8.10</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-<p>I experienced some intermittent and infuriating mouse malfunctions after my upgrade to Ubuntu 8.10. Single-clicks were interpreted as double-clicks, hilighted selections would lose focus, etc...</p><p>The root cause was an incomplete transition to HAL. Upgrade manager attempted but failed to comment out all my pointer and keyboard configuration in xorg.conf and my mouse was thus configured twice (once using the old-school xorg method and a second time by HAL). The fix was simple:</p><ul><li>Edit /etc/X11/xorg.conf and remove any references to keyboard or mouse devices in the "ServerLayout" section<ul><li>InputDevice    "Generic Keyboard"</li><li>InputDevice    "Configured Mouse"</li></ul></li><li>Also remove any Keyboard or Mouse sections within the xorg.conf</li><li>Hit Ctrl+Alt+F1 to drop to a shell and type "sudo xinit -- :2" to test your new config<ul><li>Correct any errors as needed until the above starts a new windows session with a simple command prompt</li></ul></li><li>Hit Ctrl+Alt+F1 to switch back to your test session and Ctrl-C to kill the second windows instance</li><li>Restart your primary GDM with your new config "sudo /etc/init.d/gdm restart"</li></ul></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2009-06-28T04:00:00.000Z"><a href="/2009/06/28/2009-06-28-belkin-surge-protector-fire-hazard/">2009-06-28</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2009/06/28/2009-06-28-belkin-surge-protector-fire-hazard/">Belkin Surge Protector Fire Hazard</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-Dear US Consumer Product Safety Commission<br>CC: everyone<br><p>    On the morning of June 27th 2009, electrical power to my household was briefly disrupted around 3:30am by several breaks in service over a period of about 20 seconds. Approximately 5 minutes after the disruption, I noticed thick black smoke billowing from a room housing several electronic devices. I was able to enter the room and identify the source of the smoke as the burning plastic of my Belkin "Conceal" Surge Protector. I was thankfully able to quickly terminate power to the device and remove the smoldering plastic from my home.</p><p>As the attached photos demonstrate, the heat from the Belkin burned several holes into the baseboard of the wall behind it and charred the surrounding floor and wall. At the time of the incident, there were only three devices plugged into the Belkin: a speaker, halogen lamp, and laptop computer. Both the speaker and lamp were powered off and the laptop was only drawing power as needed to replenish its battery. Aside from damage to their power cords all three devices were unharmed. I purchased this Belkin Surge Protector from Staples on July 25th 2007 (I have the original receipt) and it was never damaged, repaired, or modified in any way prior to this incident.</p><p>My wife &amp; eight-week old daughter were present in our home with me at the time of this incident. In addition to the obvious structural damage pictured, the room suffered significant smoke damage &amp; lingering odors from the toxic fumes. Clearly my family and I are lucky to have only experienced this relatively minor loss from such a potentially harmful incident. I am writing you today in the hope that this information may prevent other consumers from exposure to this potentially lethal &amp; hazardous product.</p><p>I have kept the product and would be happy to submit it for your inspection. The particulars of my Belkin are:<br>Model: BZ 111234-10<br>File No: E89769<br>Serial: 061016716-18079<br>Manufactured: Sept 02, 2006<br>Made in China<br></p><div class="p_embed p_image_embed"><img alt="Media_httpwwwjrollerc_ccgcz" height="640" src="http://ericsimmerman.files.wordpress.com/2009/06/media_httpwwwjrollerc_ccgcz-scaled500.jpg?w=225" width="480"></div><div class="p_embed p_image_embed"><a href="http://ericsimmerman.files.wordpress.com/2009/06/media_httpwwwjrollerc_vhtil-scaled1000.jpg" target="_blank" rel="external"><img alt="Media_httpwwwjrollerc_vhtil" height="375" src="http://ericsimmerman.files.wordpress.com/2009/06/media_httpwwwjrollerc_vhtil-scaled1000.jpg?w=300" width="500"></a></div><div class="p_embed p_image_embed"><a href="http://ericsimmerman.files.wordpress.com/2009/06/media_httpwwwjrollerc_juddz-scaled1000.jpg" target="_blank" rel="external"><img alt="Media_httpwwwjrollerc_juddz" height="375" src="http://ericsimmerman.files.wordpress.com/2009/06/media_httpwwwjrollerc_juddz-scaled1000.jpg?w=300" width="500"></a></div></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2009-06-17T04:00:00.000Z"><a href="/2009/06/17/2009-06-17-resolve-foreign-key-constraint/">2009-06-17</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2009/06/17/2009-06-17-resolve-foreign-key-constraint/">Resolve foreign key constraint error/conflict with DBUnit CLEAN_INSERT operation (MySQLIntegrityConstraintViolationException)</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-<p>If DBUnit starts throwing MySQLIntegrityConstraintViolationException while performing a CLEAN_INSERT you can lose quite a bit of sleep attempting to resolve it or you can cheat and get back to work. The shortcut is to simply disable constraints for the INSERT operation by disabling constraints for DBUnit altogether. You can do that by adding sessionVariables=FOREIGN_KEY_CHECKS=0 to your JDBC connection string to MySQL. I use maven and in pom.xml my configuration for the dbunit plugin looks like this</p><div class="CodeRay">  <div class="code"><pre>&lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;&lt;artifactId&gt;dbunit-maven-plugin&lt;/artifactId&gt;&lt;version&gt;1.0-beta-1&lt;/version&gt;&lt;configuration&gt;    &lt;dataTypeFactoryName&gt;${dbunit.dataTypeFactoryName}&lt;/dataTypeFactoryName&gt;    &lt;driver&gt;${jdbc.driverClassName}&lt;/driver&gt;    &lt;username&gt;${jdbc.username}&lt;/username&gt;    &lt;password&gt;${jdbc.password}&lt;/password&gt;    &lt;url&gt;${jdbc.url}&amp;amp;sessionVariables=FOREIGN_KEY_CHECKS=0&lt;/url&gt;    &lt;src&gt;src/test/resources/sample-data.xml&lt;/src&gt;    &lt;type&gt;${dbunit.operation.type}&lt;/type&gt;    &lt;schema&gt;${dbunit.schema}&lt;/schema&gt;    &lt;skip&gt;${maven.test.skip}&lt;/skip&gt;&lt;/configuration&gt;</pre></div></div><p>Keep in mind that if you choose to do this your dbunit tests will run with constraints disabled....generally not a recommended approach. Caveat Emptor.</p></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2009-06-01T04:00:00.000Z"><a href="/2009/06/01/2009-06-01-using-jquery-and-scriptaculousprototype/">2009-06-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2009/06/01/2009-06-01-using-jquery-and-scriptaculousprototype/">Using jQuery and Scriptaculous/prototype together</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-<div class="post">
-<p>Congratulations to the jQuery crew for <a href="http://docs.jquery.com/Using_jQuery_with_Other_Libraries" target="_blank" rel="external">properly documenting this one in their official documentation</a>. However, I didn't find that page with my first search so consider this post my effort to propagate the knowledge.</p><p>jQuery uses "$" as a shortcut for "jQuery" and that is generally its only point of conflict with other javascript libraries. You can override that behavior so that jQuery will play nice with others by calling</p><div class="CodeRay">  <div class="code"><pre>jQuery.noConflict();</pre></div></div>and then explicitly calling "jQuery" where you would have used "$" to invoke jQuery behavior. Read more on the page referenced above.</div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
-    <a href="/page/6/" class="alignleft prev">Vorherige Seite</a>
+    <a href="/page/6/" class="alignleft prev">上一頁</a>
   
   
-    <a href="/page/8/" class="alignright next">Nächste Seite</a>
+    <a href="/page/8/" class="alignright next">下一頁</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="search" name="q" results="0" placeholder="搜尋">
     <input type="hidden" name="q" value="site:ericsimmerman.com">
   </form>
 </div>
 
   
 <div class="widget tag">
-  <h3 class="title">Kategorien</h3>
+  <h3 class="title">分類</h3>
   <ul class="entry">
   
     <li><a href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><small>1</small></li>
@@ -439,9 +439,9 @@ Dear US Consumer Product Safety Commission<br>CC: everyone<br><p>    On the morn
   
     <li><a href="/categories/softwaredevelopment/keepassx/">keepassx</a><small>1</small></li>
   
-    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
-  
     <li><a href="/categories/java/macintosh/">macintosh</a><small>2</small></li>
+  
+    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
   
     <li><a href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><small>1</small></li>
   
@@ -449,17 +449,17 @@ Dear US Consumer Product Safety Commission<br>CC: everyone<br><p>    On the morn
   
     <li><a href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><small>1</small></li>
   
-    <li><a href="/categories/networks/">networks</a><small>1</small></li>
-  
     <li><a href="/categories/macintosh/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/networks/">networks</a><small>1</small></li>
   
     <li><a href="/categories/openlaszlo/">openlaszlo</a><small>1</small></li>
   
     <li><a href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><small>1</small></li>
   
-    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
-  
     <li><a href="/categories/ruby/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
   
     <li><a href="/categories/ruby/">ruby</a><small>1</small></li>
   
@@ -469,13 +469,13 @@ Dear US Consumer Product Safety Commission<br>CC: everyone<br><p>    On the morn
   
     <li><a href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
-    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
-  
-    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
+    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
     <li><a href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
-    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
   
     <li><a href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
   
@@ -487,19 +487,19 @@ Dear US Consumer Product Safety Commission<br>CC: everyone<br><p>    On the morn
   
     <li><a href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><small>1</small></li>
   
-    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
-  
     <li><a href="/categories/macintosh/synergy/">synergy</a><small>2</small></li>
   
-    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
   
     <li><a href="/categories/ubuntu/">ubuntu</a><small>6</small></li>
   
+    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+  
     <li><a href="/categories/java/ubuntu/">ubuntu</a><small>1</small></li>
   
-    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
-  
     <li><a href="/categories/softwaredevelopment/vpn/">vpn</a><small>1</small></li>
+  
+    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
   
   </ul>
 </div>

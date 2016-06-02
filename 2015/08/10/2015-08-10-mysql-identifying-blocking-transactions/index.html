@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>MySQL Identifying Blocking Transactions | Technocracy</title>
+  <meta name="author" content="Eric Simmerman">
+  
+  <meta name="description" content="Recording this incredibly helpful query from Bill Karwin’s post to SOYou can find the source query that’s blocking your DELETE by using the INFORMATIO">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="MySQL Identifying Blocking Transactions"/>
+  <meta property="og:site_name" content="Technocracy"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Technocracy" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Technocracy</a></h1>
+  <h2><a href="/">Posts on whatever your host deems relevant.</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-08-10T16:29:15.000Z"><a href="/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/">2015-08-10</a></time>
+      
+      
+  
+    <h1 class="title">MySQL Identifying Blocking Transactions</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Recording this incredibly helpful query from <a href="https://stackoverflow.com/questions/22046390/still-seeing-lock-wait-timeouts-when-deleting-from-large-tables-using-primary-ke/22131972#22131972" target="_blank" rel="external">Bill Karwin’s post to SO</a><br>You can find the source query that’s blocking your DELETE by using the INFORMATION_SCHEMA.LOCK_WAITS and INNODB_TRX tables.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT r.trx_id waiting_trx_id,  &#10;       r.trx_mysql_thread_id waiting_thread,&#10;       r.trx_query waiting_query,&#10;       b.trx_id blocking_trx_id,&#10;       b.trx_mysql_thread_id blocking_thread,&#10;       b.trx_query blocking_query&#10;   FROM       information_schema.innodb_lock_waits w&#10;   INNER JOIN information_schema.innodb_trx b  ON  &#10;    b.trx_id = w.blocking_trx_id&#10;  INNER JOIN information_schema.innodb_trx r  ON  &#10;    r.trx_id = w.requesting_trx_id;</span><br></pre></td></tr></table></figure></p>
+<p>See more information at <a href="http://dev.mysql.com/doc/refman/5.5/en/innodb-information-schema.html#innodb-information-schema-examples" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.5/en/innodb-information-schema.html#innodb-information-schema-examples</a>, under “Example 14.2 Identifying Blocking Transactions”.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="q" value="site:ericsimmerman.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分類</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/dbunit/">dbunit</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/">eclipse</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/">gnucash</a><small>1</small></li>
+  
+    <li><a href="/categories/java/hibernate/">hibernate</a><small>2</small></li>
+  
+    <li><a href="/categories/java/httpclient/">httpclient</a><small>1</small></li>
+  
+    <li><a href="/categories/iso83bstockoptions/">iso83bstockoptions</a><small>1</small></li>
+  
+    <li><a href="/categories/java/">java</a><small>12</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/jquery/">jquery</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/keepassx/">keepassx</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/">macintosh</a><small>2</small></li>
+  
+    <li><a href="/categories/macintosh/">macintosh</a><small>7</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><small>1</small></li>
+  
+    <li><a href="/categories/java/httpclient/mindtouch/">mindtouch</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/networks/">networks</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/">openlaszlo</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/php/">php</a><small>1</small></li>
+  
+    <li><a href="/categories/ruby/">ruby</a><small>1</small></li>
+  
+    <li><a href="/categories/scriptaculous/">scriptaculous</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/">snowleopard</a><small>2</small></li>
+  
+    <li><a href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/">softwaredevelopment</a><small>6</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/">softwaredevelopment</a><small>8</small></li>
+  
+    <li><a href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/openlaszlo/softwaredevelopment/">softwaredevelopment</a><small>1</small></li>
+  
+    <li><a href="/categories/java/softwaredevelopment/spring/">spring</a><small>2</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><small>1</small></li>
+  
+    <li><a href="/categories/macintosh/synergy/">synergy</a><small>2</small></li>
+  
+    <li><a href="/categories/ubuntu/synergy/">synergy</a><small>1</small></li>
+  
+    <li><a href="/categories/ubuntu/">ubuntu</a><small>6</small></li>
+  
+    <li><a href="/categories/vpn/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/java/ubuntu/">ubuntu</a><small>1</small></li>
+  
+    <li><a href="/categories/softwaredevelopment/vpn/">vpn</a><small>1</small></li>
+  
+    <li><a href="/categories/vpn/">vpn</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 Eric Simmerman
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
