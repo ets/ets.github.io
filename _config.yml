@@ -7,7 +7,7 @@ title: Technocracy
 subtitle: Posts on whatever your host deems relevant.
 description:
 author: Eric Simmerman
-language: en-US
+language: en
 timezone: America/New_York
 
 # URL
@@ -64,7 +64,8 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 #theme: landscape
-theme: freemind
+#theme: freemind
+theme: icarus
 
 plugins:
 - hexo-generator-cname
