@@ -2,9 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://ericsimmerman.com/2011/02/14/2011-02-14-find-conflicting-dependencies-in-maven/</loc>
+    <loc>http://ericsimmerman.com/about/index.html</loc>
     
-    <lastmod>2016-06-02T01:49:40.000Z</lastmod>
+    <lastmod>2016-06-21T03:03:23.000Z</lastmod>
     
   </url>
   
@@ -324,14 +324,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/</loc>
+    <loc>http://ericsimmerman.com/2011/02/14/2011-02-14-find-conflicting-dependencies-in-maven/</loc>
     
     <lastmod>2016-06-02T01:49:40.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/</loc>
+    <loc>http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/</loc>
     
     <lastmod>2016-06-02T01:49:40.000Z</lastmod>
     
@@ -647,6 +647,13 @@
   
   <url>
     <loc>http://ericsimmerman.com/2007/10/20/2007-10-20-mounting-ubuntu-nfs-share-on-redhat/</loc>
+    
+    <lastmod>2016-06-02T01:49:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/</loc>
     
     <lastmod>2016-06-02T01:49:40.000Z</lastmod>
     
