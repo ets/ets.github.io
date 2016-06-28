@@ -83,3 +83,8 @@ deploy:
   type: git
   repo: https://github.com/ets/ets.github.io.git
 
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
