@@ -2095,6 +2095,9 @@ ol.toc {
 .article-entry .highlight {
   margin: 1.6em 0;
 }
+.article-entry .highlight .line {
+  height: 1.6em;
+}
 .highlight {
   color: #ddd;
   background: #272822;
