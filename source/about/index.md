@@ -10,3 +10,4 @@ date: 2016-06-20 23:03:23
 [I code here](https://bitbucket.org/ets/ "Atlassian rocks!") and [here](https://github.com/ets/ "who doesn't ?")
 
 [My LinkedIn Profile](https://www.linkedin.com/in/ericsimmerman)
+[My GPG Key](https://keybase.io/ets)
