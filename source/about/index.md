@@ -11,3 +11,13 @@ date: 2016-06-20 23:03:23
 
 [My LinkedIn Profile](https://www.linkedin.com/in/ericsimmerman)
 [My GPG Key](https://keybase.io/ets)
+
+# Content Discovery
+Some of my favorite sources - in no particular order:
+
+* [Aeon.co](https://aeon.co/)
+* [Edge.org](https://www.edge.org/)
+* [Wait but Why](http://waitbutwhy.com/)
+* [Stratechery](https://stratechery.com/)
+* [The Atlantic](http://www.theatlantic.com/)
+* [Rands in Repose](http://randsinrepose.com/)
