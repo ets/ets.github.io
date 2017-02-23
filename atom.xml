@@ -4,9 +4,9 @@
   <subtitle>Posts on whatever your host deems relevant.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://ericsimmerman.com/"/>
+  <link href="https://ets.github.io/"/>
   <updated>2016-09-21T02:50:43.000Z</updated>
-  <id>http://ericsimmerman.com/</id>
+  <id>https://ets.github.io/</id>
   
   <author>
     <name>Eric Simmerman</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>MySQL Identifying Blocking Transactions</title>
-    <link href="http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/"/>
-    <id>http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/</id>
+    <link href="https://ets.github.io/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/"/>
+    <id>https://ets.github.io/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/</id>
     <published>2015-08-10T16:29:15.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -37,8 +37,8 @@
   
   <entry>
     <title>Fix YAML parsing errors in WebGen</title>
-    <link href="http://ericsimmerman.com/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/"/>
-    <id>http://ericsimmerman.com/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/</id>
+    <link href="https://ets.github.io/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/"/>
+    <id>https://ets.github.io/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/</id>
     <published>2015-01-07T17:20:34.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -58,8 +58,8 @@
   
   <entry>
     <title>Resolving H2 table lock during JUnitRunner test</title>
-    <link href="http://ericsimmerman.com/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/"/>
-    <id>http://ericsimmerman.com/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/</id>
+    <link href="https://ets.github.io/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/"/>
+    <id>https://ets.github.io/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/</id>
     <published>2014-02-01T20:36:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -100,8 +100,8 @@
   
   <entry>
     <title>Moved again ... this time to github.io</title>
-    <link href="http://ericsimmerman.com/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/"/>
-    <id>http://ericsimmerman.com/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/</id>
+    <link href="https://ets.github.io/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/"/>
+    <id>https://ets.github.io/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/</id>
     <published>2013-11-27T00:22:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -122,8 +122,8 @@
   
   <entry>
     <title>Plesk 11 Upgrade Unable to run Perl scripts in cgi-bin</title>
-    <link href="http://ericsimmerman.com/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/"/>
-    <id>http://ericsimmerman.com/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/</id>
+    <link href="https://ets.github.io/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/"/>
+    <id>https://ets.github.io/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/</id>
     <published>2013-10-29T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -153,8 +153,8 @@ After an upgrade to Plesk 11, my Perl scripts  located under cgi-bin/ for a spec
   
   <entry>
     <title>Using iStat 2.x on Mountain Lion</title>
-    <link href="http://ericsimmerman.com/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/"/>
-    <id>http://ericsimmerman.com/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/</id>
+    <link href="https://ets.github.io/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/"/>
+    <id>https://ets.github.io/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/</id>
     <published>2013-04-29T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -176,8 +176,8 @@ Shawn Hooton wrote a piece on &lt;a href=&quot;http://codingogre.wordpress.com/2
   
   <entry>
     <title>Moved to Blogger</title>
-    <link href="http://ericsimmerman.com/2013/03/07/2013-03-07-moved-to-blogger/"/>
-    <id>http://ericsimmerman.com/2013/03/07/2013-03-07-moved-to-blogger/</id>
+    <link href="https://ets.github.io/2013/03/07/2013-03-07-moved-to-blogger/"/>
+    <id>https://ets.github.io/2013/03/07/2013-03-07-moved-to-blogger/</id>
     <published>2013-03-07T05:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -199,8 +199,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>Compressing MySQL client-server communication with Play Framework</title>
-    <link href="http://ericsimmerman.com/2012/12/19/2012-12-19-compressing-mysql-client-server/"/>
-    <id>http://ericsimmerman.com/2012/12/19/2012-12-19-compressing-mysql-client-server/</id>
+    <link href="https://ets.github.io/2012/12/19/2012-12-19-compressing-mysql-client-server/"/>
+    <id>https://ets.github.io/2012/12/19/2012-12-19-compressing-mysql-client-server/</id>
     <published>2012-12-19T05:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -222,8 +222,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>When not to front your application with nginx HttpProxyModule</title>
-    <link href="http://ericsimmerman.com/2012/11/19/2012-11-19-when-not-to-front-your-application-with/"/>
-    <id>http://ericsimmerman.com/2012/11/19/2012-11-19-when-not-to-front-your-application-with/</id>
+    <link href="https://ets.github.io/2012/11/19/2012-11-19-when-not-to-front-your-application-with/"/>
+    <id>https://ets.github.io/2012/11/19/2012-11-19-when-not-to-front-your-application-with/</id>
     <published>2012-11-19T05:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -245,8 +245,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>Supporting multiple file upload runtimes with pupload inside ExtJS 4</title>
-    <link href="http://ericsimmerman.com/2012/08/07/2012-08-07-supporting-multiple-file-upload/"/>
-    <id>http://ericsimmerman.com/2012/08/07/2012-08-07-supporting-multiple-file-upload/</id>
+    <link href="https://ets.github.io/2012/08/07/2012-08-07-supporting-multiple-file-upload/"/>
+    <id>https://ets.github.io/2012/08/07/2012-08-07-supporting-multiple-file-upload/</id>
     <published>2012-08-07T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -268,8 +268,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>Automatically find trailing commas in your javascript project</title>
-    <link href="http://ericsimmerman.com/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/"/>
-    <id>http://ericsimmerman.com/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/</id>
+    <link href="https://ets.github.io/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/"/>
+    <id>https://ets.github.io/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/</id>
     <published>2012-08-05T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -291,8 +291,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>orphanRemoval issues in Play Framework &#39;collection owner not associated with session&#39;</title>
-    <link href="http://ericsimmerman.com/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/"/>
-    <id>http://ericsimmerman.com/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/</id>
+    <link href="https://ets.github.io/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/"/>
+    <id>https://ets.github.io/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/</id>
     <published>2012-08-03T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -314,8 +314,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>Cautionary tale regarding cloud security</title>
-    <link href="http://ericsimmerman.com/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/"/>
-    <id>http://ericsimmerman.com/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/</id>
+    <link href="https://ets.github.io/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/"/>
+    <id>https://ets.github.io/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/</id>
     <published>2012-07-25T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -337,8 +337,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>Compiling Maven project with JNLP API 1.6+ on Mac OS X</title>
-    <link href="http://ericsimmerman.com/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/"/>
-    <id>http://ericsimmerman.com/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/</id>
+    <link href="https://ets.github.io/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/"/>
+    <id>https://ets.github.io/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/</id>
     <published>2012-07-11T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -360,8 +360,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>Resolving Spring Security ACL deadlock in MySQL</title>
-    <link href="http://ericsimmerman.com/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/"/>
-    <id>http://ericsimmerman.com/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/</id>
+    <link href="https://ets.github.io/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/"/>
+    <id>https://ets.github.io/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/</id>
     <published>2012-06-30T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -383,8 +383,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>Great explanation of the &#39;The Infamous Loop Problem&#39; in javascript</title>
-    <link href="http://ericsimmerman.com/2012/05/21/2012-05-21-great-explanation-of-infamous-loop/"/>
-    <id>http://ericsimmerman.com/2012/05/21/2012-05-21-great-explanation-of-infamous-loop/</id>
+    <link href="https://ets.github.io/2012/05/21/2012-05-21-great-explanation-of-infamous-loop/"/>
+    <id>https://ets.github.io/2012/05/21/2012-05-21-great-explanation-of-infamous-loop/</id>
     <published>2012-05-21T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -406,8 +406,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>By popular demand ... my git-aware bash prompt</title>
-    <link href="http://ericsimmerman.com/2012/02/16/2012-02-16-by-popular-demand-my-git-aware-bash/"/>
-    <id>http://ericsimmerman.com/2012/02/16/2012-02-16-by-popular-demand-my-git-aware-bash/</id>
+    <link href="https://ets.github.io/2012/02/16/2012-02-16-by-popular-demand-my-git-aware-bash/"/>
+    <id>https://ets.github.io/2012/02/16/2012-02-16-by-popular-demand-my-git-aware-bash/</id>
     <published>2012-02-16T05:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -429,8 +429,8 @@ Pirated from a long forgotten place...apologies to the respective copyright hold
   
   <entry>
     <title>Configure my Amazon EC2 instances to only accept traffic from the Elastic Load Balancer</title>
-    <link href="http://ericsimmerman.com/2012/01/24/2012-01-24-configure-my-amazon-ec2-instances-to/"/>
-    <id>http://ericsimmerman.com/2012/01/24/2012-01-24-configure-my-amazon-ec2-instances-to/</id>
+    <link href="https://ets.github.io/2012/01/24/2012-01-24-configure-my-amazon-ec2-instances-to/"/>
+    <id>https://ets.github.io/2012/01/24/2012-01-24-configure-my-amazon-ec2-instances-to/</id>
     <published>2012-01-24T05:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -452,8 +452,8 @@ Pirated from a long forgotten place...apologies to the respective copyright hold
   
   <entry>
     <title>Resolving git-gc error on Mac</title>
-    <link href="http://ericsimmerman.com/2012/01/19/2012-01-19-resolving-git-gc-error-on-mac/"/>
-    <id>http://ericsimmerman.com/2012/01/19/2012-01-19-resolving-git-gc-error-on-mac/</id>
+    <link href="https://ets.github.io/2012/01/19/2012-01-19-resolving-git-gc-error-on-mac/"/>
+    <id>https://ets.github.io/2012/01/19/2012-01-19-resolving-git-gc-error-on-mac/</id>
     <published>2012-01-19T05:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -475,8 +475,8 @@ Pirated from a long forgotten place...apologies to the respective copyright hold
   
   <entry>
     <title>Play framework on AWS</title>
-    <link href="http://ericsimmerman.com/2012/01/08/2012-01-08-play-framework-on-aws/"/>
-    <id>http://ericsimmerman.com/2012/01/08/2012-01-08-play-framework-on-aws/</id>
+    <link href="https://ets.github.io/2012/01/08/2012-01-08-play-framework-on-aws/"/>
+    <id>https://ets.github.io/2012/01/08/2012-01-08-play-framework-on-aws/</id>
     <published>2012-01-08T05:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
