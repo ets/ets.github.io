@@ -1,0 +1,8 @@
+## After fresh local clone:
+npm install hexo-cli -g
+npm install
+git clone https://github.com/ets/hexo-theme-icarus.git themes/icarus
+cd themes/icarus
+git co origin/ericsimmerman-blog
+cd ../..
+hexo generate
