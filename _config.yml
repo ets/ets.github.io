@@ -12,7 +12,7 @@ timezone: America/New_York
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://ets.github.io
+url: http://ericsimmerman.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -68,7 +68,7 @@ pagination_dir: page
 theme: icarus
 
 plugins:
-  #- hexo-generator-cname
+- hexo-generator-cname
 - hexo-deployer-git
 - hexo-generator-feed
 - hexo-generator-sitemap
