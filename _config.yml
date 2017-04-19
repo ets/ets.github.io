@@ -68,23 +68,32 @@ pagination_dir: page
 theme: icarus
 
 plugins:
-- hexo-generator-cname
 - hexo-deployer-git
+- hexo-generator-archive
+- hexo-generator-category
+- hexo-generator-cname
 - hexo-generator-feed
+- hexo-generator-index
+- hexo-generator-json-content
+- hexo-generator-search
 - hexo-generator-sitemap
 - hexo-generator-tag
-- hexo-generator-category
 - hexo-renderer-ejs
-- hexo-renderer-stylus
 - hexo-renderer-marked
-- hexo-generator-index
+- hexo-renderer-stylus
 - hexo-server
+- hexo-tag-bootstrap
 
-# Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
   repo: https://github.com/ets/ets.github.io.git
+
+archive_generator:
+    per_page: 10
+    yearly: true
+    monthly: true
+    daily: false
 
 feed:
   type: atom
