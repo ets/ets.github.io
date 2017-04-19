@@ -76,6 +76,7 @@ plugins:
 - hexo-generator-category
 - hexo-renderer-ejs
 - hexo-renderer-stylus
+- hexo-renderer-marked
 - hexo-generator-index
 - hexo-server
 
