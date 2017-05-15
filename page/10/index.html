@@ -8,7 +8,7 @@
     <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Technocracy">
-<meta property="og:url" content="https://ets.github.io/page/10/index.html">
+<meta property="og:url" content="http://ericsimmerman.com/page/10/index.html">
 <meta property="og:site_name" content="Technocracy">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -144,7 +144,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                93
+                97
                 <span>posts</span>
             </div>
             <div class="article-info-block">
@@ -197,6 +197,509 @@
 
             
             <section id="main">
+    <article id="post-2008-06-06-avahi-daemon-blocks-nfsd-on-ubuntu" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2008/06/06/2008-06-06-avahi-daemon-blocks-nfsd-on-ubuntu/">avahi-daemon blocks nfsd on Ubuntu</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2008/06/06/2008-06-06-avahi-daemon-blocks-nfsd-on-ubuntu/">
+            <time datetime="2008-06-06T04:00:00.000Z" itemprop="datePublished">2008-06-06</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/ubuntu/">ubuntu</a>
+    </div>
+
+                        
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+<div class="post">
+I just spent a morning attempting to fix a <a href="http://www.jroller.com/agileanswers/entry/mounting_an_ubuntu_nfs_share" target="_blank" rel="external">NFS mounting configuration</a> that had been working flawlessly for over 6 months. My daemon log was showing this:<div class="CodeRay">  <div class="code"><pre>nfssvc: writing fds to kernel failed: errno 98 (Address already in use)</pre></div></div><br>After much angst, I finally stumbled upon <a href="http://lists.debian.org/debian-user/2007/01/msg00343.html" target="_blank" rel="external">this posting</a> that mentioned a conflict between avahi-daemon and NFSd. After a quick "apt-get remove avahi-daemon", all is well with the world.</div>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/2008/06/06/2008-06-06-avahi-daemon-blocks-nfsd-on-ubuntu/" data-id="cj2pcr0z1005ljqouvl88bbff" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-2008-06-05-mathml-support-in-openlaszlo" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2008/06/05/2008-06-05-mathml-support-in-openlaszlo/">MathML support in OpenLaszlo</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2008/06/05/2008-06-05-mathml-support-in-openlaszlo/">
+            <time datetime="2008-06-05T04:00:00.000Z" itemprop="datePublished">2008-06-05</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/openlaszlo/">openlaszlo</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/openlaszlo/softwaredevelopment/">softwaredevelopment</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a>
+    </div>
+
+                        
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+<div class="post">
+<p>I'm happy to announce that my company (<a href="http://www.tempeststrings.com" target="_blank" rel="external">Tempest Strings Enterprises</a>) has sponsored my development and release of a <a href="http://www.w3.org/Math/" target="_blank" rel="external">MathML</a> library for <a href="http://www.openlaszlo.org/" target="_blank" rel="external">OpenLaszlo</a>. I'll be working through the OpenLaszlo contributor process, but imagine that it could take a considerable amount of time before you see this work in their repository since I've not yet made any effort to adhere to any coding guidelines. There is very little documentation in the source, no consistent style, and no support for any runtime except SWF. Nevertheless, I've already successfully integrated the library with a larger application and it is functioning well in our beta release.</p><br><p>This library is based upon the <a href="http://www.learn-math.info/mathml.htm?action=formula" target="_blank" rel="external">Flash Actionscript library</a> that ionel-alexandru (Sourceforge username) of learn-math.info donated to the public domain. I make heavy use of Alex's object tree and MathML rendering logic (thanks Alex!). I've built upon OpenLaszlo's Drawview class from their SVN trunk and added support for rendering stand-alone MathML from a datasource as well as formulas placed inline with other text.</p><p><br></p><p>Note that the full set of MathML has not yet been implemented (ex: no support for &lt;mtable&gt;) but here are some examples of supported formulas:</p><p></p><div class="CodeRay">  <div class="code"><pre>&lt;dataset name=&quot;example1&quot;&gt;&lt;math&gt;&lt;mrow&gt;&lt;msqrt&gt;        &lt;mrow&gt;                &lt;msup&gt;                        &lt;mn&gt;2&lt;/mn&gt;                        &lt;mrow&gt;                                &lt;msup&gt;                                        &lt;mi&gt;x&lt;/mi&gt;                                        &lt;mn&gt;2&lt;/mn&gt;                                &lt;/msup&gt;                                &lt;mo&gt;+&lt;/mo&gt;                                &lt;mrow&gt;                                        &lt;mn&gt;4&lt;/mn&gt;                                        &lt;mi&gt;x&lt;/mi&gt;                                &lt;/mrow&gt;                                &lt;mo&gt;+&lt;/mo&gt;                                &lt;mn&gt;4&lt;/mn&gt;                        &lt;/mrow&gt;                &lt;/msup&gt;                &lt;mo&gt;+&lt;/mo&gt;                &lt;mrow&gt;                        &lt;mn&gt;4&lt;/mn&gt;                        &lt;mi&gt;x&lt;/mi&gt;                &lt;/mrow&gt;                &lt;mo&gt;+&lt;/mo&gt;                &lt;mn&gt;45&lt;/mn&gt;        &lt;/mrow&gt;&lt;/msqrt&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mroot linethickness=&quot;3&quot;&gt;&lt;mrow&gt;        &lt;msub&gt;                &lt;mi&gt;log&lt;/mi&gt;                &lt;mn&gt;2&lt;/mn&gt;        &lt;/msub&gt;&lt;/mrow&gt;&lt;mi&gt;5&lt;/mi&gt;&lt;/mroot&gt;&lt;/mrow&gt;&lt;/math&gt;&lt;/dataset&gt;</pre></div></div>renders with the library as:<div class="p_embed p_image_embed"><img alt="Media_httpwwwjrollerc_nhdgt" height="80" src="http://getfile1.posterous.com/getfile/files.posterous.com/import-flpo/FgiCmfCHGswdohEzpfneJkocEqgAqtgycfGxbwqwtoloiebqEuhwukxqjdys/media_httpwwwjrollerc_nHDgt.jpg.scaled500.jpg" width="382"></div><p></p><div class="CodeRay">  <div class="code"><pre>&lt;dataset name=&quot;example2&quot;&gt;&lt;math&gt;        &lt;mrow&gt;                &lt;mo&gt; ( &lt;/mo&gt;                &lt;mfrac linethickness=&quot;0&quot; color=&quot;#006699&quot;&gt;                        &lt;mi fontstyle=&quot;bold&quot;&gt; a + b +c &lt;/mi&gt;                        &lt;mi color=&quot;#ff0000&quot;&gt; b &lt;/mi&gt;                &lt;/mfrac&gt;                &lt;mo&gt; ) &lt;/mo&gt;        &lt;/mrow&gt;        &lt;mfrac linethickness=&quot;2&quot; fontstyle=&quot;italic&quot; &gt;                &lt;mrow&gt;&lt;mi color=&quot;#00ff00&quot;&gt;3456&lt;/mi&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mfrac&gt;                        &lt;mi&gt; a &lt;/mi&gt;                        &lt;mi fontsize=&quot;8&quot;&gt; b + c + d&lt;/mi&gt;                &lt;/mfrac&gt;                &lt;/mrow&gt;&lt;mrow&gt;&lt;mn&gt;3&lt;/mn&gt;        &lt;mfrac color=&quot;#ffff00&quot;&gt;                        &lt;mi&gt; c + d &lt;/mi&gt;                        &lt;mi color=&quot;#ff0000&quot;&gt; d &lt;/mi&gt;                &lt;/mfrac&gt;        &lt;/mrow&gt;        &lt;/mfrac&gt;&lt;/math&gt;&lt;/dataset&gt;</pre></div></div>makes use of node-level styling to render as<div class="p_embed p_image_embed"><img alt="Media_httpwwwjrollerc_nhcbg" height="115" src="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_nhcbg-scaled500.jpg?w=300" width="343"></div><p>The next one really shows off some of the fancy rendering capabilities:</p><div class="CodeRay">  <div class="code"><pre>&lt;dataset name=&quot;example3&quot;&gt;&lt;math&gt;        &lt;msubsup&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mn&gt;56&lt;/mn&gt;        &lt;/msubsup&gt;        &lt;msup&gt;                &lt;mi&gt;x&lt;/mi&gt;                &lt;mn&gt;2&lt;/mn&gt;        &lt;/msup&gt;        &lt;mtext fontstyle='italic'&gt;dx&lt;/mtext&gt;&lt;mo&gt;+&lt;/mo&gt;        &lt;msubsup&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;                &lt;mi&gt;-&lt;![CDATA[&amp;infinity;]]&gt;&lt;/mi&gt;                &lt;mi&gt;&lt;![CDATA[&amp;infinity;]]&gt;&lt;/mi&gt;        &lt;/msubsup&gt;        &lt;msup&gt;                &lt;mi&gt;e&lt;/mi&gt;                &lt;mn&gt;x&lt;/mn&gt;        &lt;/msup&gt;        &lt;mtext fontstyle='italic'&gt;dx&lt;/mtext&gt;&lt;mo&gt;+&lt;/mo&gt;        &lt;munderover&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;                &lt;mrow&gt;                        &lt;mi&gt;x&lt;/mi&gt;                        &lt;mo&gt;=&lt;/mo&gt;                        &lt;mn&gt;0&lt;/mn&gt;                &lt;/mrow&gt;                &lt;mn&gt;56&lt;/mn&gt;        &lt;/munderover&gt;        &lt;msup&gt;                &lt;mi&gt;x&lt;/mi&gt;                &lt;mn&gt;2&lt;/mn&gt;        &lt;/msup&gt;        &lt;mo&gt;+&lt;/mo&gt;        &lt;munderover&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;                &lt;mrow&gt;                        &lt;mi&gt;x&lt;/mi&gt;                        &lt;mo&gt;=&lt;/mo&gt;                        &lt;mn&gt;0&lt;/mn&gt;                &lt;/mrow&gt;                &lt;mi&gt;&lt;![CDATA[&amp;infinity;]]&gt;&lt;/mi&gt;        &lt;/munderover&gt;        &lt;msup&gt;                &lt;mi&gt;x&lt;/mi&gt;                &lt;mn&gt;2&lt;/mn&gt;        &lt;/msup&gt;        &lt;mo&gt;+&lt;/mo&gt;        &lt;munderover&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;        &lt;mrow&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;        &lt;mi&gt;n&lt;/mi&gt;&lt;/munderover&gt;&lt;mrow&gt;        &lt;mi&gt;x&lt;/mi&gt;&lt;/mrow&gt;&lt;mo&gt;+&lt;/mo&gt;        &lt;munder&gt;                &lt;mrow&gt;                        &lt;mi&gt;lim&lt;/mi&gt;                &lt;/mrow&gt;                &lt;mrow&gt;                        &lt;mi&gt;x&lt;/mi&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;                &lt;mn&gt;0&lt;/mn&gt;        &lt;/mrow&gt;&lt;/munder&gt;&lt;mrow&gt;        &lt;mi&gt;x&lt;/mi&gt;&lt;/mrow&gt;&lt;/math&gt;&lt;/dataset&gt;</pre></div></div><div class="p_embed p_image_embed"><a href="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_hjpgi-scaled1000.jpg" target="_blank" rel="external"><img alt="Media_httpwwwjrollerc_hjpgi" height="60" src="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_hjpgi-scaled1000.jpg?w=300" width="500"></a></div><p>This last example is demonstrating inline rendering with text:</p><div class="CodeRay">  <div class="code"><pre>&lt;dataset name=&quot;myFormula&quot;&gt;&lt;![CDATA[T<br>his is an example of pseudo inline MathML:&lt;math&gt;                &lt;mrow&gt;                  &lt;mi&gt;x&lt;/mi&gt;                  &lt;mo&gt;+&lt;/mo&gt;                  &lt;msup&gt;                    &lt;mi&gt;y&lt;/mi&gt;                    &lt;mfrac&gt;                      &lt;mn&gt;2&lt;/mn&gt;                      &lt;mrow&gt;                        &lt;mi&gt;k&lt;/mi&gt;                        &lt;mo&gt;+&lt;/mo&gt;                        &lt;mn&gt;1&lt;/mn&gt;                      &lt;/mrow&gt;                    &lt;/mfrac&gt;                  &lt;/msup&gt;                &lt;/mrow&gt;                &lt;/math&gt;How do you like them apples?]]&gt;&lt;/dataset&gt;</pre></div></div><div class="p_embed p_image_embed"><a href="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_hdktp-scaled1000.jpg" target="_blank" rel="external"><img alt="Media_httpwwwjrollerc_hdktp" height="23" src="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_hdktp-scaled1000.jpg?w=300" width="500"></a></div><p>All of the formulas above were displayed using the same MathML view using the datasets listed. Here's the view declaration:</p><div class="CodeRay">  <div class="code"><pre>&lt;mathmlview font=&quot;sans-serif&quot; fontsize=&quot;24&quot; fgcolor=&quot;#000000&quot; id=&quot;math&quot; x=&quot;10&quot; y=&quot;10&quot; width=&quot;800&quot; height=&quot;500&quot; datapath=&quot;myFormula:/&quot;/&gt;</pre></div></div>The current source is released under the MIT Open Source License and available on <a href="https://github.com/ets/OpenLaszloMathML" target="_blank" rel="external">github</a>. Enjoy!</div>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/2008/06/05/2008-06-05-mathml-support-in-openlaszlo/" data-id="cj2pcr0z3005njqou20irzw8o" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-2008-05-28-spring-jms-remoting-support-for-async" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2008/05/28/2008-05-28-spring-jms-remoting-support-for-async/">Spring JMS Remoting support for async calls and methods with void return types</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2008/05/28/2008-05-28-spring-jms-remoting-support-for-async/">
+            <time datetime="2008-05-28T04:00:00.000Z" itemprop="datePublished">2008-05-28</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/java/">java</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/softwaredevelopment/">softwaredevelopment</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/softwaredevelopment/spring/">spring</a>
+    </div>
+
+                        
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+<div class="post">
+I've submitted a patch to the Spring Framework to give their <a href="http://jira.springframework.org/browse/SPR-4427" target="_blank" rel="external">JMS remoting feature support for async calls and methods with void return types</a>. The associated Jira ticket (<a href="http://jira.springframework.org/browse/SPR-4427" target="_blank" rel="external">SPR-4427</a>) could use a few votes if you are so inclined.</div>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/2008/05/28/2008-05-28-spring-jms-remoting-support-for-async/" data-id="cj2pcr0z7005ujqouxi3qjbph" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-2008-01-15-hilight-current-post-on-threaded-view" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2008/01/15/2008-01-15-hilight-current-post-on-threaded-view/">Hilight current post on threaded view in Fireboard 1.0.4</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2008/01/15/2008-01-15-hilight-current-post-on-threaded-view/">
+            <time datetime="2008-01-15T05:00:00.000Z" itemprop="datePublished">2008-01-15</time>
+        </a>
+    </div>
+
+
+                        
+                        
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+<div class="post">
+In the 1.0.4 release, there is no indicator of which post you are currently viewing within a threaded tree of posts. Here's my hack to implement such an indicator.<p>Under your chosen template directory (ex: components/com_fireboard/templates/default), edit the thread.php file. Look for the TR with class="fb_threadview_row" and modify it like so:<br><div class="CodeRay">  <div class="code"><pre>&lt;tr class=&quot;fb_threadview_row&quot; &lt;? if($leaf-&gt;id == (int)$id){ echo &quot;style='background-color:yellow'&quot;; } ?&gt; &gt;</pre></div></div>You can use any background-color value you desire. I used "yellow" in the above example.</p></div>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/2008/01/15/2008-01-15-hilight-current-post-on-threaded-view/" data-id="cj2pcr0zb005yjqoucdp0i8n2" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-2007-10-29-java-webbrowser-plugin-for-amd64-ubuntu" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -248,7 +751,7 @@ There is now (finally) a fix for Java applet support on AMD64 Ubuntu. Try the fo
 
 </div>
 
-    <a data-url="https://ets.github.io/2007/10/29/2007-10-29-java-webbrowser-plugin-for-amd64-ubuntu/" data-id="cizhtz6ap005wpkoullv2g4n4" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2007/10/29/2007-10-29-java-webbrowser-plugin-for-amd64-ubuntu/" data-id="cj2pcr0zd005zjqou1mjahdj0" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -375,7 +878,7 @@ It can be tough making NFS play nice amongst different distros and firewalls. I'
 
 </div>
 
-    <a data-url="https://ets.github.io/2007/10/20/2007-10-20-mounting-ubuntu-nfs-share-on-redhat/" data-id="cizhtz6ar0060pkouj9uly7q3" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2007/10/20/2007-10-20-mounting-ubuntu-nfs-share-on-redhat/" data-id="cj2pcr0zg0063jqoufnfqdadc" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -495,7 +998,7 @@ It can be tough making NFS play nice amongst different distros and firewalls. I'
 
 </div>
 
-    <a data-url="https://ets.github.io/2006/01/01/2006-01-01-migrated-from-jroller/" data-id="cizhtz60x0000pkouqu1uslx4" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2006/01/01/2006-01-01-migrated-from-jroller/" data-id="cj2pcr0i80000jqouk7x2uyjc" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -588,44 +1091,44 @@ It can be tough making NFS play nice amongst different distros and firewalls. I'
                         
                         <div class="item-inner">
                             <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/05/11/2017-01-23-Social-Tables-Retrospective/" class="title">Social Tables Retrospective</a></p>
+                            <p class="item-date"><time datetime="2017-05-11T15:29:10.000Z" itemprop="datePublished">2017-05-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/" class="title">Explaining Docker to suits</a></p>
+                            <p class="item-date"><time datetime="2016-05-14T23:18:04.000Z" itemprop="datePublished">2016-05-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/" class="title">Explaining Query Tuning to suits</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T23:18:04.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/" class="title">Explaining SDF to suits</a></p>
+                            <p class="item-date"><time datetime="2016-04-06T23:18:04.000Z" itemprop="datePublished">2016-04-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
                             <p class="item-title"><a href="/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/" class="title">MySQL Identifying Blocking Transactions</a></p>
                             <p class="item-date"><time datetime="2015-08-10T16:29:15.000Z" itemprop="datePublished">2015-08-10</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/" class="title">Fix YAML parsing errors in WebGen</a></p>
-                            <p class="item-date"><time datetime="2015-01-07T17:20:34.000Z" itemprop="datePublished">2015-01-07</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/" class="title">Resolving H2 table lock during JUnitRunner test</a></p>
-                            <p class="item-date"><time datetime="2014-02-01T20:36:00.000Z" itemprop="datePublished">2014-02-01</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/" class="title">Moved again ... this time to github.io</a></p>
-                            <p class="item-date"><time datetime="2013-11-27T00:22:00.000Z" itemprop="datePublished">2013-11-26</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/" class="title">Plesk 11 Upgrade Unable to run Perl scripts in cgi-bin</a></p>
-                            <p class="item-date"><time datetime="2013-10-29T04:00:00.000Z" itemprop="datePublished">2013-10-29</time></p>
                         </div>
                     </li>
                 
@@ -647,7 +1150,7 @@ It can be tough making NFS play nice amongst different distros and firewalls. I'
     <div class="widget-wrap">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">January 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">October 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/06/">June 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/05/">May 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/10/">October 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/06/">June 2008</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/10/">October 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/01/">January 2006</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">January 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">October 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/06/">June 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/05/">May 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/10/">October 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/06/">June 2008</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/10/">October 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/01/">January 2006</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 

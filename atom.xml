@@ -4,9 +4,9 @@
   <subtitle>Posts on whatever your host deems relevant.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://ets.github.io/"/>
-  <updated>2016-09-21T02:50:43.000Z</updated>
-  <id>https://ets.github.io/</id>
+  <link href="http://ericsimmerman.com/"/>
+  <updated>2017-05-15T01:05:10.000Z</updated>
+  <id>http://ericsimmerman.com/</id>
   
   <author>
     <name>Eric Simmerman</name>
@@ -16,9 +16,119 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Social Tables Retrospective</title>
+    <link href="http://ericsimmerman.com/2017/05/11/2017-01-23-Social-Tables-Retrospective/"/>
+    <id>http://ericsimmerman.com/2017/05/11/2017-01-23-Social-Tables-Retrospective/</id>
+    <published>2017-05-11T15:29:10.000Z</published>
+    <updated>2017-05-15T01:05:10.000Z</updated>
+    
+    <content type="html">&lt;p&gt;My last post was over a year and a half ago - just after I joined an interesting &lt;a href=&quot;https://www.bvp.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Bessemer Ventures&lt;/a&gt; backed firm in the Hospitality sector called &lt;a href=&quot;https://www.socialtables.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Social Tables&lt;/a&gt;.&lt;br&gt;My role here has been 95% people / 5% tech and always intense. I’m retroactively posting some of the internal content I circulated as the technology leader at Social Tables - mostly high-level explanations of what my team was up to at the time.&lt;/p&gt;
+&lt;p&gt;It’s been a fun ride with unique challenges and &lt;a href=&quot;https://healthprize.com/about-us/press-releases/healthprize-technologies-announces-new-chief-technology-officer/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;as I move on to my next post&lt;/a&gt;, I wanted to capture a few takeaways for posterity:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Don’t rewrite.&lt;/strong&gt; Just don’t. While I certainly &lt;a href=&quot;https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;agree with what Joel says about this&lt;/a&gt;, I’ll add one more point of support - that a rewrite is a fight on two fronts. It’s up against the formidable foes of &lt;a href=&quot;https://smile.amazon.com/Who-Moved-My-Cheese-Amazing/dp/0399144463&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;customer adoption of a new thing&lt;/a&gt; and the golden project phenomenon - where a golden (too big to fail) project’s scope continually increases without bound.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hire for squads and fire quickly on non-fit.&lt;/strong&gt; My worst HR calls at Social Tables involved attempts to reassign an employee to a different team in an attempt to establish fit. This is especially difficult where the employee in question was inherited as opposed to hired under my watch. There’s a strong desire to give the inherited employee multiple chances to demonstrate fit. Don’t do it - if the employee is not a good enough for the first team she joins (or is assigned to) then do her and the rest of the team a favor - cut her loose with dignity. Such an evaluation might rightly not be considered fair - c’est la vie.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Adopt 2-3 cutting-edge technologies, but no more.&lt;/strong&gt; This worked really well for us - especially on the recruiting tip. Our best hires came through our broadcast of niche (at the time) tech such as WebGL, React, and RethinkDB. But it’s a double-edged sword. Our worst tech adoption failures came from naive pushes into Falcor, Dynamo, and Horizon.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Onward &amp;amp; Upward!&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;My last post was over a year and a half ago - just after I joined an interesting &lt;a href=&quot;https://www.bvp.com/&quot; target=&quot;_blank&quot; rel=&quot;exte
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Explaining Docker to suits</title>
+    <link href="http://ericsimmerman.com/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/"/>
+    <id>http://ericsimmerman.com/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/</id>
+    <published>2016-05-14T23:18:04.000Z</published>
+    <updated>2017-05-15T00:54:56.000Z</updated>
+    
+    <content type="html">&lt;p&gt;I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;What’s Docker you say? Glad you asked…&lt;/p&gt;
+&lt;h2 id=&quot;What’s-Docker&quot;&gt;&lt;a href=&quot;#What’s-Docker&quot; class=&quot;headerlink&quot; title=&quot;What’s Docker?&quot;&gt;&lt;/a&gt;What’s Docker?&lt;/h2&gt;&lt;p&gt;Docker’s a technology that allows us to wrap our applications &amp;amp; services as self-contained deliverables that are isolated from the host operating system upon which they are deployed.&lt;/p&gt;
+&lt;h2 id=&quot;What’s-Docker-…-in-English-preferably-with-pictures&quot;&gt;&lt;a href=&quot;#What’s-Docker-…-in-English-preferably-with-pictures&quot; class=&quot;headerlink&quot; title=&quot;What’s Docker … in English (preferably with pictures)?&quot;&gt;&lt;/a&gt;What’s Docker … in English (preferably with pictures)?&lt;/h2&gt;&lt;p&gt;So…visualize a long-haul shipping container.&lt;br&gt;&lt;img style=&quot;width: 300px;&quot; src=&quot;https://1.bp.blogspot.com/_AvH7DyWzLAw/TOxzUtSAAFI/AAAAAAAAAI0/Xr5Kw8idq14/s1600/shipping_container.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Appreciate how much easier it makes moving cargo between ship, train, and truck.&lt;/p&gt;
+&lt;p&gt;&lt;img style=&quot;width: 300px;&quot; src=&quot;https://ci4.googleusercontent.com/proxy/7IF86okF1edMCaJtAFquqvc2GGEp1yFJCsFxWSpaQ762OX2jELXauoZ5RtplNVjsghrOgg974OOX8FJCDIpJAmENoWQtA4kgHyUAwhas2wgpdaHFYWjldnEEZbE=s0-d-e1-ft#http://freightraters.com/wp-content/uploads/2015/12/Container-Ship.jpg&quot;&gt;&lt;br&gt;&lt;img style=&quot;width: 300px;&quot; src=&quot;https://ci3.googleusercontent.com/proxy/62RnISrdBXn6Zcvl319DEyXAEhGSY-W2VfjDklsIMxc4zzmwhJenwHdu64J5Ya8CIh9znArXrtenXxBmQAU1_Bzh4pk1cuU=s0-d-e1-ft#http://truck-photos.net.s3.amazonaws.com/2382.jpg&quot;&gt;&lt;br&gt;&lt;img style=&quot;width: 300px;&quot; src=&quot;https://ci3.googleusercontent.com/proxy/iS-4s1QGtOk3ihosATc8r0HeJxZbhiRDbOOr6F6cb0C0_0Wkl4iiK9GZgKX1MxrsZ6--at9bX67L8wRZJ_vMCAWgRCB_OByzFXpKwPyXMxKvPnvIWKaSSF2lHE2wYJpR8A8N5DTgmxAbP_KjLotm9lHZzqJXV4x3OhLdU6ybhQ=s0-d-e1-ft#https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Cajon_Intermodal.jpg/300px-Cajon_Intermodal.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;In a similar way, Docker helps us package our software into shipping containers and we can then run that software unchanged on a laptop, a dedicated server, or a cloud platform.&lt;/p&gt;
+&lt;h2 id=&quot;So-that’s-a-good-thing&quot;&gt;&lt;a href=&quot;#So-that’s-a-good-thing&quot; class=&quot;headerlink&quot; title=&quot;So that’s a good thing?&quot;&gt;&lt;/a&gt;So that’s a good thing?&lt;/h2&gt;&lt;p&gt;Yes.  Plus Docker’s mascot is a cute whale.&lt;br&gt;&lt;img style=&quot;width: 300px;&quot; alt=&quot;Who doesn&#39;t like a cute whale?&quot; src=&quot;https://ci3.googleusercontent.com/proxy/EX95kH7NTNZ0lvyz3Q699LzNB7B_VC7USLrbwsKVJ79oZrKXlTvt9mNEc7HH2y_Cdfbw9u9fmIotkMRv3p91RrTiVBQqH1MAkGl1e4uY1uIIbHH7KLZtQ1Vz9Ype=s0-d-e1-ft#https://blog.docker.com/wp-content/uploads/2015/07/moby_art-300x189.png&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was 
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Explaining Query Tuning to suits</title>
+    <link href="http://ericsimmerman.com/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/"/>
+    <id>http://ericsimmerman.com/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/</id>
+    <published>2016-04-20T23:18:04.000Z</published>
+    <updated>2017-05-15T01:01:00.000Z</updated>
+    
+    <content type="html">&lt;p&gt;I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Today we’re going to talk briefly about query tuning - a black art in the craft of software engineering that &lt;a href=&quot;http://dl.acm.org/citation.cfm?doid=582095.582099&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;predates the Internet&lt;/a&gt; but is still incredibly relevant. I don’t mean relevant in the “you should really pay attention to national politics” sense.  I mean relevant as in “this can (when done poorly) wreck your whole day.”&lt;/p&gt;
+&lt;h2 id=&quot;What’s-query-tuning&quot;&gt;&lt;a href=&quot;#What’s-query-tuning&quot; class=&quot;headerlink&quot; title=&quot;What’s query tuning?&quot;&gt;&lt;/a&gt;What’s query tuning?&lt;/h2&gt;&lt;p&gt;A query is a request for information from a database. It can be as simple as “find the email address of the Social Tables user named Inigo Montoya”, or more complex like “find the ASP of all Social Tables opportunities closed on Fridays that followed a Thursday evening Happy Hour.”&lt;/p&gt;
+&lt;p&gt;Since database structures are complex, in most cases, and especially for not-very-simple queries, the needed data for a query can be collected from a database by accessing it in different ways, through different data-structures, and in different orders. Each different way typically requires different processing time. Processing times of the same query may have large variance, from a fraction of a second to hours, depending on the way selected. The purpose of query tuning, is to find the way to process a given query in minimum time.&lt;/p&gt;
+&lt;h2 id=&quot;What’s-query-tuning-…-in-English-preferably-with-pictures-and-how-can-it-wreck-my-whole-day&quot;&gt;&lt;a href=&quot;#What’s-query-tuning-…-in-English-preferably-with-pictures-and-how-can-it-wreck-my-whole-day&quot; class=&quot;headerlink&quot; title=&quot;What’s query tuning … in English (preferably with pictures) and how can it wreck my whole day?&quot;&gt;&lt;/a&gt;What’s query tuning … in English (preferably with pictures) and how can it wreck my whole day?&lt;/h2&gt;&lt;p&gt;Query tuning is an effort to minimize the work performed while answering a query. If done poorly, database queries execute slowly and your application responds slowly. When your application responds slowly bad things happen - like Mary posting a screenshot to #devops (aka your whole day is wrecked).&lt;/p&gt;
+&lt;p&gt;Last week, Michael Dumont spent some time tuning several queries in our platform and his visuals of that effort are worth &amp;gt; 1,000 words:&lt;/p&gt;
+&lt;p&gt;Orange = a measure of platform activity&lt;br&gt;Blue = a measure of how hard the database is working&lt;br&gt;&lt;img src=&quot;https://mail.google.com/mail/u/0/?ui=2&amp;ik=4be6722e5b&amp;view=fimg&amp;th=1543543588cd7db8&amp;attid=0.1&amp;disp=emb&amp;realattid=ii_154352436974512a&amp;attbid=ANGjdJ_8dUL3vkw5EmPb00yEY5WrUywqx_yu5mzd7WXNnUezIR178a1eOiLvkBKVrtIO22Eenqc35sta6KV7b3DIsgetemRL_s9ewy7McKioOclVTD8AOGQbg796l14&amp;sz=w1088-h506&amp;ats=1494795285989&amp;rm=1543543588cd7db8&amp;zw&amp;atsh=1&quot;&gt;&lt;br&gt;Note: unlike Social Tables’ Engineers, our database refuses to work harder than 100% … so those blue peaks are signs of unhappy Social Tables users.&lt;/p&gt;
+&lt;p&gt;Here are the same measurements after tuning:&lt;br&gt;&lt;img src=&quot;https://mail.google.com/mail/u/0/?ui=2&amp;ik=4be6722e5b&amp;view=fimg&amp;th=1543543588cd7db8&amp;attid=0.2&amp;disp=emb&amp;realattid=ii_1543524f5f5251a7&amp;attbid=ANGjdJ9P9-aDB8by1WaHgUgiJJgzZpyFbE0NrlwLmQgfwbY7eBv6r2LzEr-QdHLlmRhkE_mOS9T6E2d7mrhGYn41D6Q-Q1ZCxp3UXVkgAuk_cYp3ZhJjDrRJ9mf_51s&amp;sz=w1088-h500&amp;ats=1494795285990&amp;rm=1543543588cd7db8&amp;zw&amp;atsh=1&quot;&gt;&lt;br&gt;Happier database === Happier users&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was 
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Explaining SDF to suits</title>
+    <link href="http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/"/>
+    <id>http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/</id>
+    <published>2016-04-06T23:18:04.000Z</published>
+    <updated>2017-05-15T00:58:42.000Z</updated>
+    
+    <content type="html">&lt;p&gt;I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;We’ve got a special subject this issue to take the edge off that geek-withdrawal : “Drawing Text with Signed Distance Fields” or using SDF text rendering for those in the know.&lt;/p&gt;
+&lt;h2 id=&quot;What’s-SDF&quot;&gt;&lt;a href=&quot;#What’s-SDF&quot; class=&quot;headerlink&quot; title=&quot;What’s SDF?&quot;&gt;&lt;/a&gt;What’s SDF?&lt;/h2&gt;&lt;p&gt;Signed distance field (SDF) is a technique for rendering bitmap fonts without jagged edges even at high magnifications. It was first introduced in 2007 with this bit of light reading by Valve and couples the use of a bitmap and glyphs with a GLSL shader that can sample and sharpen said glyphs.&lt;/p&gt;
+&lt;h2 id=&quot;What’s-SDF-…-in-English-preferably-with-pictures&quot;&gt;&lt;a href=&quot;#What’s-SDF-…-in-English-preferably-with-pictures&quot; class=&quot;headerlink&quot; title=&quot;What’s SDF … in English (preferably with pictures)?&quot;&gt;&lt;/a&gt;What’s SDF … in English (preferably with pictures)?&lt;/h2&gt;&lt;p&gt;So…you know what sounds easy but is really really hard? Drawing legible letters in Venue Mapper. Wait - what? Why’s that hard you ask?&lt;/p&gt;
+&lt;p&gt;Here’s a screenshot of “Social Tables” rendered in 12pt font by Microsoft Word:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://mail.google.com/mail/u/0/?ui=2&amp;ik=4be6722e5b&amp;view=fimg&amp;th=1543543d1cce453f&amp;attid=0.1&amp;disp=emb&amp;realattid=ii_153ecb6a29e16a81&amp;attbid=ANGjdJ-f2oYILbnL19O-tmZ6EsDcXaYiAGDJ07nPhJijtx2YgYZYDdawK_Id8ieoYWzSoC9o9XuaAXj04eAmGE0JO-I1Ja5kyFDZI1S0zrK3pYGxhm4ZtAZD6BYOOfk&amp;sz=w156-h40&amp;ats=1494809715654&amp;rm=1543543d1cce453f&amp;zw&amp;atsh=1&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Completely legible. But here’s that exact same image after I zoom in a few times:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://mail.google.com/mail/u/0/?ui=2&amp;ik=4be6722e5b&amp;view=fimg&amp;th=1543543d1cce453f&amp;attid=0.2&amp;disp=emb&amp;realattid=ii_153ecb76b4f32354&amp;attbid=ANGjdJ-hYMp9cspdZYnXIyGJYRtgDsU2-rmyfbcYCd7kW0yJBqfT9F95-sewd_2rD4h2PGheyjmi9AhD0EKG5KT7s4H7WZW92yaYuB-j4Aub_o7Qw0F_TPFZ2Rl19fg&amp;sz=w958-h224&amp;ats=1494809715654&amp;rm=1543543d1cce453f&amp;zw&amp;atsh=1&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Not so great. Possibly legible but if we rendered text like this as users zoom in and out in Venue Mapper we’d have to bundle subscriptions with aspirin.&lt;/p&gt;
+&lt;p&gt;SDF is a technique we’ve just begun using to more efficiently render text in Venue Mapper 3 - it performs better (app is faster) and looks prettier than the techniques we’ve used previously.&lt;/p&gt;
+&lt;p&gt;Here’s a &lt;a href=&quot;https://youtu.be/8yt7kSftNU4&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;movie of SDF in action in VM3 courtesy of our own Van Drunen&lt;/a&gt;.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was 
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>MySQL Identifying Blocking Transactions</title>
-    <link href="https://ets.github.io/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/"/>
-    <id>https://ets.github.io/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/</id>
+    <link href="http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/"/>
+    <id>http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/</id>
     <published>2015-08-10T16:29:15.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -37,8 +147,8 @@
   
   <entry>
     <title>Fix YAML parsing errors in WebGen</title>
-    <link href="https://ets.github.io/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/"/>
-    <id>https://ets.github.io/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/</id>
+    <link href="http://ericsimmerman.com/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/"/>
+    <id>http://ericsimmerman.com/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/</id>
     <published>2015-01-07T17:20:34.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -58,8 +168,8 @@
   
   <entry>
     <title>Resolving H2 table lock during JUnitRunner test</title>
-    <link href="https://ets.github.io/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/"/>
-    <id>https://ets.github.io/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/</id>
+    <link href="http://ericsimmerman.com/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/"/>
+    <id>http://ericsimmerman.com/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/</id>
     <published>2014-02-01T20:36:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -100,8 +210,8 @@
   
   <entry>
     <title>Moved again ... this time to github.io</title>
-    <link href="https://ets.github.io/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/"/>
-    <id>https://ets.github.io/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/</id>
+    <link href="http://ericsimmerman.com/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/"/>
+    <id>http://ericsimmerman.com/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/</id>
     <published>2013-11-27T00:22:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -122,8 +232,8 @@
   
   <entry>
     <title>Plesk 11 Upgrade Unable to run Perl scripts in cgi-bin</title>
-    <link href="https://ets.github.io/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/"/>
-    <id>https://ets.github.io/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/</id>
+    <link href="http://ericsimmerman.com/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/"/>
+    <id>http://ericsimmerman.com/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/</id>
     <published>2013-10-29T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -153,8 +263,8 @@ After an upgrade to Plesk 11, my Perl scripts  located under cgi-bin/ for a spec
   
   <entry>
     <title>Using iStat 2.x on Mountain Lion</title>
-    <link href="https://ets.github.io/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/"/>
-    <id>https://ets.github.io/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/</id>
+    <link href="http://ericsimmerman.com/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/"/>
+    <id>http://ericsimmerman.com/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/</id>
     <published>2013-04-29T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -176,8 +286,8 @@ Shawn Hooton wrote a piece on &lt;a href=&quot;http://codingogre.wordpress.com/2
   
   <entry>
     <title>Moved to Blogger</title>
-    <link href="https://ets.github.io/2013/03/07/2013-03-07-moved-to-blogger/"/>
-    <id>https://ets.github.io/2013/03/07/2013-03-07-moved-to-blogger/</id>
+    <link href="http://ericsimmerman.com/2013/03/07/2013-03-07-moved-to-blogger/"/>
+    <id>http://ericsimmerman.com/2013/03/07/2013-03-07-moved-to-blogger/</id>
     <published>2013-03-07T05:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -199,8 +309,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>Compressing MySQL client-server communication with Play Framework</title>
-    <link href="https://ets.github.io/2012/12/19/2012-12-19-compressing-mysql-client-server/"/>
-    <id>https://ets.github.io/2012/12/19/2012-12-19-compressing-mysql-client-server/</id>
+    <link href="http://ericsimmerman.com/2012/12/19/2012-12-19-compressing-mysql-client-server/"/>
+    <id>http://ericsimmerman.com/2012/12/19/2012-12-19-compressing-mysql-client-server/</id>
     <published>2012-12-19T05:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -222,8 +332,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>When not to front your application with nginx HttpProxyModule</title>
-    <link href="https://ets.github.io/2012/11/19/2012-11-19-when-not-to-front-your-application-with/"/>
-    <id>https://ets.github.io/2012/11/19/2012-11-19-when-not-to-front-your-application-with/</id>
+    <link href="http://ericsimmerman.com/2012/11/19/2012-11-19-when-not-to-front-your-application-with/"/>
+    <id>http://ericsimmerman.com/2012/11/19/2012-11-19-when-not-to-front-your-application-with/</id>
     <published>2012-11-19T05:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -245,8 +355,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>Supporting multiple file upload runtimes with pupload inside ExtJS 4</title>
-    <link href="https://ets.github.io/2012/08/07/2012-08-07-supporting-multiple-file-upload/"/>
-    <id>https://ets.github.io/2012/08/07/2012-08-07-supporting-multiple-file-upload/</id>
+    <link href="http://ericsimmerman.com/2012/08/07/2012-08-07-supporting-multiple-file-upload/"/>
+    <id>http://ericsimmerman.com/2012/08/07/2012-08-07-supporting-multiple-file-upload/</id>
     <published>2012-08-07T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -268,8 +378,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>Automatically find trailing commas in your javascript project</title>
-    <link href="https://ets.github.io/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/"/>
-    <id>https://ets.github.io/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/</id>
+    <link href="http://ericsimmerman.com/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/"/>
+    <id>http://ericsimmerman.com/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/</id>
     <published>2012-08-05T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -291,8 +401,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>orphanRemoval issues in Play Framework &#39;collection owner not associated with session&#39;</title>
-    <link href="https://ets.github.io/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/"/>
-    <id>https://ets.github.io/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/</id>
+    <link href="http://ericsimmerman.com/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/"/>
+    <id>http://ericsimmerman.com/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/</id>
     <published>2012-08-03T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -314,8 +424,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>Cautionary tale regarding cloud security</title>
-    <link href="https://ets.github.io/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/"/>
-    <id>https://ets.github.io/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/</id>
+    <link href="http://ericsimmerman.com/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/"/>
+    <id>http://ericsimmerman.com/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/</id>
     <published>2012-07-25T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -337,8 +447,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>Compiling Maven project with JNLP API 1.6+ on Mac OS X</title>
-    <link href="https://ets.github.io/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/"/>
-    <id>https://ets.github.io/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/</id>
+    <link href="http://ericsimmerman.com/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/"/>
+    <id>http://ericsimmerman.com/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/</id>
     <published>2012-07-11T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -360,8 +470,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>Resolving Spring Security ACL deadlock in MySQL</title>
-    <link href="https://ets.github.io/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/"/>
-    <id>https://ets.github.io/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/</id>
+    <link href="http://ericsimmerman.com/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/"/>
+    <id>http://ericsimmerman.com/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/</id>
     <published>2012-06-30T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -383,8 +493,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
   
   <entry>
     <title>Great explanation of the &#39;The Infamous Loop Problem&#39; in javascript</title>
-    <link href="https://ets.github.io/2012/05/21/2012-05-21-great-explanation-of-infamous-loop/"/>
-    <id>https://ets.github.io/2012/05/21/2012-05-21-great-explanation-of-infamous-loop/</id>
+    <link href="http://ericsimmerman.com/2012/05/21/2012-05-21-great-explanation-of-infamous-loop/"/>
+    <id>http://ericsimmerman.com/2012/05/21/2012-05-21-great-explanation-of-infamous-loop/</id>
     <published>2012-05-21T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
@@ -398,98 +508,6 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
       
 &lt;div class=&quot;post&quot;&gt;
 &lt;p&gt;Thanks Robert Nyman for your &lt;a href=&quot;http://robertnyman.com/2008/10/09/explaining-javascript-scope-and-closures/&quot; ta
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>By popular demand ... my git-aware bash prompt</title>
-    <link href="https://ets.github.io/2012/02/16/2012-02-16-by-popular-demand-my-git-aware-bash/"/>
-    <id>https://ets.github.io/2012/02/16/2012-02-16-by-popular-demand-my-git-aware-bash/</id>
-    <published>2012-02-16T05:00:00.000Z</published>
-    <updated>2016-09-21T02:50:43.000Z</updated>
-    
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-Pirated from a long forgotten place...apologies to the respective copyright holders. Just paste this in your .bashrc for git-aware goodness:&lt;br&gt;&lt;div class=&quot;gistLoad&quot; data-id=&quot;1850712&quot; id=&quot;gist-1850712&quot;&gt;Loading ....&lt;/div&gt;&lt;script src=&quot;https://raw.github.com/moski/gist-Blogger/master/public/gistLoader.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&lt;/div&gt;
-</content>
-    
-    <summary type="html">
-    
-      
-&lt;div class=&quot;post&quot;&gt;
-Pirated from a long forgotten place...apologies to the respective copyright holders. Just paste this in your .bashrc for
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Configure my Amazon EC2 instances to only accept traffic from the Elastic Load Balancer</title>
-    <link href="https://ets.github.io/2012/01/24/2012-01-24-configure-my-amazon-ec2-instances-to/"/>
-    <id>https://ets.github.io/2012/01/24/2012-01-24-configure-my-amazon-ec2-instances-to/</id>
-    <published>2012-01-24T05:00:00.000Z</published>
-    <updated>2016-09-21T02:50:43.000Z</updated>
-    
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;The AWS&amp;nbsp;Elastic Load Balancing FAQ has this very relevant question:&lt;/p&gt;&lt;blockquote class=&quot;posterous_short_quote&quot;&gt;&lt;p&gt;Can I configure my Amazon EC2 instances to only accept traffic from the Elastic Load Balancer?&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;followed by an ever so helpful response:&lt;/p&gt;&lt;blockquote class=&quot;posterous_short_quote&quot;&gt;&lt;p&gt;Yes.&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;Seriously - no links, no reference to documentation, nothing. With such a tremendous investment in infrastructure you&#39;d think Amazon might spend a day or two on documentation...alas.&lt;/p&gt;&lt;p&gt;Insult to injury it&#39;s also not at all obvious what you need to do to configure your Security Group to support this very commonly desired configuration. I&#39;m here to help.&lt;/p&gt;&lt;p&gt;Use the not-so-documented &#39;amazon-elb/amazon-elb-sg&#39; Security Group name as the Inbound Source for your Security Group rule to filter on traffic coming from your AWS ELB. Enjoy!&lt;/p&gt;&lt;/div&gt;
-</content>
-    
-    <summary type="html">
-    
-      
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;The AWS&amp;nbsp;Elastic Load Balancing FAQ has this very relevant question:&lt;/p&gt;&lt;blockquote class=&quot;posterous_short_quote&quot;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Resolving git-gc error on Mac</title>
-    <link href="https://ets.github.io/2012/01/19/2012-01-19-resolving-git-gc-error-on-mac/"/>
-    <id>https://ets.github.io/2012/01/19/2012-01-19-resolving-git-gc-error-on-mac/</id>
-    <published>2012-01-19T05:00:00.000Z</published>
-    <updated>2016-09-21T02:50:43.000Z</updated>
-    
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;During today&#39;s maintenance run of git-gc on our Mac hosted repo I encountered screenfulls of nasty fatal error messages - but the last two were a clue to the root cause:&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;fatal: Unable to create temporary file: Too many open files&lt;br&gt;error: failed to run repack&lt;/p&gt;&lt;p&gt;This &lt;a href=&quot;http://git.661346.n2.nabble.com/Intriguing-error-with-Git-1-6-3-1-Too-many-open-files-td7174697.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;related post helped me&lt;/a&gt; find a quick cure which involved simply bumping the ulimit up temporarily.&lt;/p&gt;&lt;p&gt;# ulimit -n 10024&lt;br&gt;&amp;gt; git gc&lt;/p&gt;&lt;p&gt;Easy fix for a potentially bad day.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;
-</content>
-    
-    <summary type="html">
-    
-      
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;During today&#39;s maintenance run of git-gc on our Mac hosted repo I encountered screenfulls of nasty fatal error messag
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Play framework on AWS</title>
-    <link href="https://ets.github.io/2012/01/08/2012-01-08-play-framework-on-aws/"/>
-    <id>https://ets.github.io/2012/01/08/2012-01-08-play-framework-on-aws/</id>
-    <published>2012-01-08T05:00:00.000Z</published>
-    <updated>2016-09-21T02:50:43.000Z</updated>
-    
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;Steps I took to get a Play framework app up and running on a micro AWS instance running Ubuntu 11.10&lt;/p&gt;&lt;ol&gt;&lt;li&gt;sudo add-apt-repository &quot;deb &lt;a href=&quot;http://archive.canonical.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://archive.canonical.com/&lt;/a&gt; lucid partner&quot;&lt;/li&gt;&lt;li&gt;sudo apt-get update&lt;/li&gt;&lt;li&gt;sudo apt-get install sun-java6-jdk unzip&lt;/li&gt;&lt;li&gt;wget &lt;a href=&quot;http://download.playframework.org/releases/play-1.2.4.zip&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://download.playframework.org/releases/play-1.2.4.zip&lt;/a&gt;&lt;/li&gt;&lt;li&gt;sudo unzip play-1.2.4.zip -d /usr/local/share/&lt;/li&gt;&lt;li&gt;install&amp;nbsp;&lt;a href=&quot;https://gist.github.com/1289753&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Dominik Dorn&#39;s startup script&lt;/a&gt;&lt;ol&gt;&lt;li&gt;wget &lt;a href=&quot;https://raw.github.com/gist/1290012/a31b1d079705ea7ccf6d1fdc866027b674e62841/playframework&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://raw.github.com/gist/1290012/a31b1d079705ea7ccf6d1fdc866027b674e62841/...&lt;/a&gt;&lt;/li&gt;&lt;li&gt;sudo mv playframework /etc/init/&lt;/li&gt;&lt;li&gt;update the script with proper paths&amp;nbsp;&lt;/li&gt;&lt;/ol&gt;&lt;/li&gt;&lt;li&gt;useradd username -g www-data -m -d /home/username&amp;nbsp;-s /bin/bash&lt;/li&gt;&lt;li&gt;install your app&lt;/li&gt;&lt;li&gt;initctl start playframework&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;
-</content>
-    
-    <summary type="html">
-    
-      
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;Steps I took to get a Play framework app up and running on a micro AWS instance running Ubuntu 11.10&lt;/p&gt;&lt;ol&gt;&lt;li&gt;sudo 
     
     </summary>
     

@@ -8,7 +8,7 @@
     <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Technocracy">
-<meta property="og:url" content="https://ets.github.io/page/7/index.html">
+<meta property="og:url" content="http://ericsimmerman.com/page/7/index.html">
 <meta property="og:site_name" content="Technocracy">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -144,7 +144,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                93
+                97
                 <span>posts</span>
             </div>
             <div class="article-info-block">
@@ -197,6 +197,387 @@
 
             
             <section id="main">
+    <article id="post-2010-03-14-customize-article-row-count-for" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2010/03/14/2010-03-14-customize-article-row-count-for/">Customize article row count for Cerberus public knowledgebase community</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2010/03/14/2010-03-14-customize-article-row-count-for/">
+            <time datetime="2010-03-14T05:00:00.000Z" itemprop="datePublished">2010-03-14</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/softwaredevelopment/">softwaredevelopment</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/softwaredevelopment/php/">php</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/softwaredevelopment/php/cerberus/">cerberus</a>
+    </div>
+
+                        
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+<div class="post">
+I've been evaluating the opensource <a href="http://www.cerberusweb.com/" target="_blank" rel="external">Cerberus Helpdesk</a> as an alternative to the closed source Kayako esupport. I like how Cerberus separates the creation of multiple knowledgebases that can then be published across multiple community portals. Instead of one comprehensive knowledgebase presented to all customers, I can use Cerberus to present product specific knowledgebases. It's a nice concept that should make it much easier for a customer to locate support information and thereby reduce the number of support tickets generated.Customizing the public facing portals for my Cerberus installation was straightforward.  The admin console provided a good degree of flexibility, but I wanted a bit more so I manually modified usermeet.core/templates/portal/sc/module/index.tpl in order to insert analytics scripts and some more detailed customization. That was easy, but my next mod proved more difficult. By default, Cerberus displays 10 articles on each page of search results and I wanted to increase that count to 20. Cerberus' architecture actually makes it a bit tricky to determine the control flow used by the community portals but I eventually traced the article retrieval flow to the DAO_KbArticle class in plugins/cerberusweb.kb/api/App.php and changed the default limit on the search method from 10 to 20. The limit is set as a hardcoded constant in the method signature....yuck. After the change, 20 articles were pulled from the database on each request, but there were still only 10 displayed in the portal.It took a lot of searching to find the missing piece and it was yet another hardcoded value in plugins/cerberusweb.kb/api/sc/kb.php where $view-&gt;renderLimit was set to 10. Changing this gave me the desired row count on the portal.The Cerberus team has put together a nice product but given that one of its core competitive features is its opensource nature, I'd like to see the codebase refactored to better facilitate this type of customization. Values like these limits could easily be defined in framework.config.php instead of scattering hardcoded settings across multiple files. That said, at least I had to option to manipulate the software - something I can't do with Kayako's offering.</div>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/2010/03/14/2010-03-14-customize-article-row-count-for/" data-id="cj2pcr0tb002ajqouavn9kytd" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-2010-03-05-connecting-to-netscreen-series" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2010/03/05/2010-03-05-connecting-to-netscreen-series/">Connecting to Netscreen Series (NetScreen-5) VPN with Mac OS X (Snow Leopard)</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2010/03/05/2010-03-05-connecting-to-netscreen-series/">
+            <time datetime="2010-03-05T05:00:00.000Z" itemprop="datePublished">2010-03-05</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/macintosh/">macintosh</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/macintosh/networks/">networks</a>
+    </div>
+
+                        
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+<div class="post">
+(Followup to my <a href="http://www.ericsimmerman.com/connecting_to_netscreen_series_netscreen/45/" target="_blank" rel="external">NetScreen-5 from Ubuntu article</a>) I recently struggled through the details of establishing a VPN connection from my Mac OS X desktop to a Juniper Networks Netscreen-5. Here's how I solved it. My Netscreen-5 was configured with some typical settings:Phase 1Pre-shared key "your-pre-shared-key-here"Encryption "pre-g2-aes128-sha"Phase 2 Encryption "g2-esp-3des-sha"To configure the client-side using an Ubuntu desktop, I used Racoon and KVpnc but didn't have the luxury of KVpnc on my Mac desktop so I had to manually edit my racoon.conf:<div class="CodeRay">  <div class="code"><pre>log debug2;path pre_shared_key &quot;/etc/racoon/psk.txt&quot;;path certificate &quot;/etc/racoon/certs&quot;;timer{        natt_keepalive 10 sec;}remote VPN.GATEWAY{        exchange_mode aggressive;        nat_traversal on;          ike_frag on;        peers_identifier asn1dn;        proposal_check obey;        my_identifier user_fqdn &quot;YOUR.EMAIL.ADDRESS&quot;;        proposal {                encryption_algorithm aes;                hash_algorithm sha1;                authentication_method pre_shared_key;                dh_group modp1024;        }}sainfo address DESKTOP.IP.ADDRESS/32 any address VPN.GATEWAY/28 any{        pfs_group modp1024;        encryption_algorithm 3des;        authentication_algorithm hmac_sha1;        compression_algorithm deflate;}listen{ adminsock &quot;/var/run/racoon.sock&quot; &quot;root&quot; &quot;operator&quot; 0660;}</pre></div></div></div>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/2010/03/05/2010-03-05-connecting-to-netscreen-series/" data-id="cj2pcr0tf002gjqouwy5exj4o" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-2010-02-23-select-max-value-of-numeric" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2010/02/23/2010-02-23-select-max-value-of-numeric/">Select max value of numeric CollectionOfElements with Hibernate</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2010/02/23/2010-02-23-select-max-value-of-numeric/">
+            <time datetime="2010-02-23T05:00:00.000Z" itemprop="datePublished">2010-02-23</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/java/">java</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/hibernate/">hibernate</a>
+    </div>
+
+                        
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+<div class="post">
+Consider a numeric CollectionOfElements held by a class Product such as:<div class="CodeRay">  <div class="code"><pre>@Entity(name=&quot;Product&quot;)public class Product {protected Set serialNumbers = new HashSet();@CollectionOfElements@JoinTable(name=&quot;product_serialnumbers&quot;)public Set getSerialNumbers() {  return serialNumbers;}public void setSerialNumbers(Set serialNumbers) {  this.serialNumbers = serialNumbers;}}</pre></div></div>You can use a NamedQuery to determine the maximum SerialNumber held by any Product like this:<div class="CodeRay">  <div class="code"><pre>@Entity(name=&quot;Product&quot;)@NamedQueries ({    @NamedQuery(        name = &quot;maxSerialNumber&quot;,        query = &quot;select max(elements(p.serialNumbers)) as value from Product p&quot;        )})public class Product {protected Set serialNumbers = new HashSet();@CollectionOfElements@JoinTable(name=&quot;product_serialnumbers&quot;)public Set getSerialNumbers() {  return serialNumbers;}public void setSerialNumbers(Set serialNumbers) {  this.serialNumbers = serialNumbers;}}</pre></div></div></div>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/2010/02/23/2010-02-23-select-max-value-of-numeric/" data-id="cj2pcr0tk002kjqoumxzr3h6o" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-2010-01-18-missing-macos-x-vm-in-eclipse-galileo" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -248,7 +629,134 @@ I recently encountered an issue where I was unable to add a JVM to my Eclipse in
 
 </div>
 
-    <a data-url="https://ets.github.io/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/" data-id="cizhtz68h002lpkou2vh9n8jz" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/" data-id="cj2pcr0u8002ojqouyhh8bxa1" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-2010-01-18-eclipse-galileo-unable-to-read" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2010/01/18/2010-01-18-eclipse-galileo-unable-to-read/">Eclipse Galileo unable to read Subversion repository</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2010/01/18/2010-01-18-eclipse-galileo-unable-to-read/">
+            <time datetime="2010-01-18T05:00:00.000Z" itemprop="datePublished">2010-01-18</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/java/">java</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/macintosh/">macintosh</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/macintosh/snowleopard/">snowleopard</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a>
+    </div>
+
+                        
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+<div class="post">
+After a clean Snow Leopard install on a new machine, I fired up a fresh Galileo Eclipse and pointed it at a copy of my old workspace.&nbsp; I first encountered and resolved the missing Mac OS X JRE issue described in my last post, only to then find that my existing subversion repositories were inaccessible in the new Eclipse install. I hopefully added "-clean" as the first parameter of my eclipse.ini file and restarted but the situation remained unchanged. Undeterred, I launched eclipse from the command line with a -clean startup parameter and this did the trick:/Applications/&lt;your install dir/Eclipse.app/Contents/MacOS/eclipse -clean</div>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/2010/01/18/2010-01-18-eclipse-galileo-unable-to-read/" data-id="cj2pcr0ue002wjqoup8yvk1y9" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -375,7 +883,7 @@ After a recent Apple update, copy and paste quit functioning on my Snow Leopard 
 
 </div>
 
-    <a data-url="https://ets.github.io/2009/12/19/2009-12-19-copypaste-clipboard-broken-on-snow/" data-id="cizhtz68r0030pkoufu1url5s" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2009/12/19/2009-12-19-copypaste-clipboard-broken-on-snow/" data-id="cj2pcr0up0033jqouzym6w3gw" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -502,7 +1010,7 @@ Here are some notes from the field on setting up all these development services 
 
 </div>
 
-    <a data-url="https://ets.github.io/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/" data-id="cizhtz68t0034pkou6y60ei0d" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/" data-id="cj2pcr0ut0037jqoupydu555j" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -629,7 +1137,7 @@ After upgrading to Snow Leopard and all its 64-bit goodness, I discovered that t
 
 </div>
 
-    <a data-url="https://ets.github.io/2009/10/23/2009-10-23-installing-python-mysql-connector/" data-id="cizhtz68v0036pkou8f6jx1qi" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2009/10/23/2009-10-23-installing-python-mysql-connector/" data-id="cj2pcr0uw0039jqouvx3wbuue" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -756,7 +1264,7 @@ After installing a new GoDaddy SSL certificate in Tomcat 5.5.x my web browsers w
 
 </div>
 
-    <a data-url="https://ets.github.io/2009/10/22/2009-10-22-resolving-key-usage-check-failed/" data-id="cizhtz6900038pkouovx4zvyc" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2009/10/22/2009-10-22-resolving-key-usage-check-failed/" data-id="cj2pcr0v3003bjqouozm8hixc" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -883,515 +1391,7 @@ After installing a new GoDaddy SSL certificate in Tomcat 5.5.x my web browsers w
 
 </div>
 
-    <a data-url="https://ets.github.io/2009/09/14/2009-09-14-compiling-modcaucho-on-rhel-53/" data-id="cizhtz694003cpkoudbajrjz3" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-2009-09-05-running-skype-on-snow-leopard-resolved" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2009/09/05/2009-09-05-running-skype-on-snow-leopard-resolved/">Running Skype on Snow Leopard - RESOLVED</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2009/09/05/2009-09-05-running-skype-on-snow-leopard-resolved/">
-            <time datetime="2009-09-05T04:00:00.000Z" itemprop="datePublished">2009-09-05</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/macintosh/">macintosh</a>
-    </div>
-
-                        
-                    </div>
-                
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            
-<div class="post">
-After installing the latest Mac OSX upgrade Skype began giving me trouble. I found <a href="http://forum.skype.com/index.php?showtopic=409531" target="_blank" rel="external">this thread</a> in Skype's forums which attests to the issue. Downgrading to 2.7.0 is suggested as a solution there, but it did not work for me. The downgraded version still locked-up and refused to quit without a force. However, I kept 2.7.0.330 installed and convinced OS X to install <a href="http://www.apple.com/rosetta/" target="_blank" rel="external">Rosetta</a> (it prompted me for the install automatically when I attempted to launch Photoshop). After the Rosetta install and reboot, Skype 2.7.0.330 functioned properly for a few sessions and then fell down taking the whole kernel with it via the black screen of death. I've since upgraded to 2.8.0.659 which doesn't seem to crash but just stops working occasionally. The symptom exhibited is that messages stay in the "pending..." state and are simply never delivered.<p>UPDATE: I've resolved my issues by explicitly opening the Skype inbound port (the default is 65269 and it's configurable under Preferences -&gt; Advanced) in my firewall. This was not needed until I upgraded to Snow Leopard but apparently is now required to keep Skype functioning properly. I maintain a custom firewall configuration using /sbin/ipfw and I added the following line to /etc/rc.firewall to open the Skype inbound port.<div class="CodeRay">  <div class="code"><pre>add 3020 allow log tcp from any to any 65269 in</pre></div></div><br>After saving that and restarting ipfw Skype is functioning as expected.</p></div>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://ets.github.io/2009/09/05/2009-09-05-running-skype-on-snow-leopard-resolved/" data-id="cizhtz696003fpkoud4iju85t" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-2009-08-14-improving-virtualbox-performance" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2009/08/14/2009-08-14-improving-virtualbox-performance/">Improving VirtualBox performance</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2009/08/14/2009-08-14-improving-virtualbox-performance/">
-            <time datetime="2009-08-14T04:00:00.000Z" itemprop="datePublished">2009-08-14</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/ubuntu/">ubuntu</a>
-    </div>
-
-                        
-                    </div>
-                
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            
-<div class="post">
-I run VirtualBox on an Ubuntu 64-bit Host with a 32-bit Windows XP guest. I was searching for a way to boost performance and came across <a href="http://matt.bottrell.com.au/archives/265-Improving-VirtualBox-performance.html" target="_blank" rel="external">this post related to configuring a SATA controller</a> for drive access. Matt includes some great info there, but the step-by-step left something to be desired IMHO. Here are my revised instructions for configuring SATA support on your Win XP guest:<ol><li>Start VirtualBox, but do not boot your guest.</li><li>Open Settings for your Win XP guest and select "Hard Disks"</li><li>Check "Enable Additional Controller" and choose "SATA (AHCI)"</li><li>Save your Settings changes and boot your guest</li><li>Inside your guest, download the <a href="http://downloadcenter.intel.com/Product_Filter.aspx?ProductID=2101" target="_blank" rel="external">appropriate SATA controller software from Intel</a></li><li>Install the Intel software</li><li>Shutdown your guest</li><li>Go back into VirtualBox Settings for your guest. Select Harddrives again.</li><li>Now change the slot associated with your Windows XP attachments/harddisk(s) from IDE to "SATA Port 0"</li><li>Save your settings</li><li>Start your guest and enjoy the performance boost!<br></li></ol></div>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://ets.github.io/2009/08/14/2009-08-14-improving-virtualbox-performance/" data-id="cizhtz697003hpkou94xw93so" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-2009-08-13-spring-security-acl-intercept-methods" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2009/08/13/2009-08-13-spring-security-acl-intercept-methods/">Spring Security ACL intercept-methods with transaction advice</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2009/08/13/2009-08-13-spring-security-acl-intercept-methods/">
-            <time datetime="2009-08-13T04:00:00.000Z" itemprop="datePublished">2009-08-13</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/java/">java</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/softwaredevelopment/">softwaredevelopment</a>
-    </div>
-
-                        
-                    </div>
-                
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            
-<div class="post">
-I recently used Spring to configure a manager to use Spring Security ACL method-level authorization. Here's a snip of my initial manager bean config:<div class="CodeRay">  <div class="code"><pre>&lt;bean id=&quot;clientManager&quot; class=&quot;com.acme.service.impl.ClientManagerImpl&quot;&gt;    &lt;sec:intercept-methods access-decision-manager-ref=&quot;accessDecisionManager&quot;&gt;        &lt;sec:protect method=&quot;get&quot; access=&quot;AFTER_ACL_READ&quot;/&gt;        &lt;sec:protect method=&quot;save&quot; access=&quot;ROLE_ADMIN,ACL_WRITE&quot;/&gt;    &lt;/sec:intercept-methods&gt;    &lt;constructor-arg ref=&quot;clientDao&quot;/&gt;    &lt;property name=&quot;mutableAclService&quot; ref=&quot;aclService&quot;/&gt;&lt;/bean&gt;</pre></div></div>With this configuration, my unit tests verified that the method-level authorization was working as expected. Next, I applied some declarative transaction management to the same manager:<div class="CodeRay">  <div class="code"><pre>&lt;aop:config&gt;    &lt;aop:advisor id=&quot;managerTx&quot; advice-ref=&quot;txAdvice&quot; pointcut=&quot;execution(* *..service.*Manager.*(..))&quot; order=&quot;0&quot;/&gt;&lt;/aop:config&gt;&lt;tx:advice id=&quot;txAdvice&quot;&gt;    &lt;tx:attributes&gt;        &lt;tx:method name=&quot;get*&quot; read-only=&quot;true&quot;/&gt;        &lt;tx:method name=&quot;save*&quot; rollback-for=&quot;DuplicateNameException,UserExistsException&quot; /&gt;        &lt;tx:method name=&quot;*&quot;/&gt;    &lt;/tx:attributes&gt;&lt;/tx:advice&gt;</pre></div></div>After adding this transaction advice, my unit tests failed method-level authorization checks. I never traced the issue to its absolute root cause, but based upon some open tickets against Spring I believe the error was due to a "double-proxy" type issue. The short story is that proxies are final, and Spring can't proxy a proxy...<p>Regardless of the root cause, I found a reasonable workaround was to revert to one of the "old" (more verbose) methods of transaction demarcation. Here's what my final working configuration looks like:<div class="CodeRay">  <div class="code"><pre>&lt;bean id=&quot;baseTransactionProxy&quot; abstract=&quot;true&quot; class=&quot;org.springframework.transaction.interceptor.TransactionProxyFactoryBean&quot;&gt;    &lt;property name=&quot;transactionManager&quot; ref=&quot;transactionManager&quot;/&gt;    &lt;property name=&quot;transactionAttributes&quot;&gt;        &lt;props&gt;            &lt;prop key=&quot;get*&quot;&gt;PROPAGATION_REQUIRED,readOnly&lt;/prop&gt;            &lt;prop key=&quot;save*&quot;&gt;PROPAGATION_REQUIRED,-DuplicateNameException,-UserExistsException&lt;/prop&gt;            &lt;prop key=&quot;*&quot;&gt;PROPAGATION_REQUIRED&lt;/prop&gt;        &lt;/props&gt;    &lt;/property&gt;&lt;/bean&gt;&lt;bean id=&quot;clientManager&quot; parent=&quot;baseTransactionProxy&quot;&gt;  &lt;property name=&quot;target&quot;&gt;    &lt;bean class=&quot;com.acme.service.impl.ClientManagerImpl&quot;&gt;        &lt;sec:intercept-methods access-decision-manager-ref=&quot;accessDecisionManager&quot;&gt;          &lt;sec:protect method=&quot;get&quot; access=&quot;AFTER_ACL_READ&quot;/&gt;          &lt;sec:protect method=&quot;save&quot; access=&quot;ROLE_ADMIN,ACL_WRITE&quot;/&gt;        &lt;/sec:intercept-methods&gt;        &lt;constructor-arg ref=&quot;clientDao&quot;/&gt;        &lt;property name=&quot;mutableAclService&quot; ref=&quot;aclService&quot;/&gt;   &lt;/bean&gt;  &lt;/property&gt;&lt;/bean&gt;</pre></div></div>By leveraging the TransactionProxyFactoryBean directly instead of relying upon the tx:advice and aop:config tags, I was able to wrap my Spring ACL secured methods with declarative transactions. Nice.</p></div>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://ets.github.io/2009/08/13/2009-08-13-spring-security-acl-intercept-methods/" data-id="cizhtz69a003kpkoute64flfv" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-2009-07-23-openssl-alert-40-handshake-error-common" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2009/07/23/2009-07-23-openssl-alert-40-handshake-error-common/">OpenSSL alert 40 Handshake error &#39;no common encryption algorithms&#39; with Caucho&#39;s Resin</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2009/07/23/2009-07-23-openssl-alert-40-handshake-error-common/">
-            <time datetime="2009-07-23T04:00:00.000Z" itemprop="datePublished">2009-07-23</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/softwaredevelopment/">softwaredevelopment</a>
-    </div>
-
-                        
-                    </div>
-                
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            
-<div class="post">
-<p>Setting up my new QA server should have been simple, but a cryptic issue with Resin cost me five hours. Here's the rundown so you can learn from my pain.</p><p>I copied my production copy of Resin over to a new QA server which is more or less identical - both run RHEL5 with the same version of openssl and same Java runtime. It fired up an ran perfectly...there were only two things I wanted to change. I wanted to:</p><ul><li>Upgrade to the latest version of Resin - from 3.1.7 to 3.1.9</li><li>Install a new SSL certificate to match the QA server's hostname</li></ul>The task at hand looked so simple I decided to make both changes at once without testing in between....big mistake. I flew through the upgrade process and grabbed a new certificate from GoDaddy (the same CA used for the existing certificate). When I fired up the new Resin it started with no errors but when I attempted to pull a page over SSL my browser returned a "no common encryption algorithms" error.<p>I thought support for certain algorithms must have changed in the latest release and thus spent an inordinate amount of time chasing my tail in the belief that the issue was related to the Resin minor version upgrade. After recognizing that dead-end, I ran through every openssl test I knew and learned a few more along the way. After much trial and error I finally noticed my mistake. I was still using the certificate-chain-file associated with the production certificate.</p><p>The first certificate in a certificate chain file is <b>your</b> server/domain certificate. Thus, I needed to replace the first certificate in the chain in order to use it with my QA server. That took two minutes...then all was well with SSL support in my new QA server.</p></div>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="https://ets.github.io/2009/07/23/2009-07-23-openssl-alert-40-handshake-error-common/" data-id="cizhtz69d003npkouufy7oek0" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2009/09/14/2009-09-14-compiling-modcaucho-on-rhel-53/" data-id="cj2pcr0v8003fjqouk74mss04" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1484,44 +1484,44 @@ I recently used Spring to configure a manager to use Spring Security ACL method-
                         
                         <div class="item-inner">
                             <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/05/11/2017-01-23-Social-Tables-Retrospective/" class="title">Social Tables Retrospective</a></p>
+                            <p class="item-date"><time datetime="2017-05-11T15:29:10.000Z" itemprop="datePublished">2017-05-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/" class="title">Explaining Docker to suits</a></p>
+                            <p class="item-date"><time datetime="2016-05-14T23:18:04.000Z" itemprop="datePublished">2016-05-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/" class="title">Explaining Query Tuning to suits</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T23:18:04.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/" class="title">Explaining SDF to suits</a></p>
+                            <p class="item-date"><time datetime="2016-04-06T23:18:04.000Z" itemprop="datePublished">2016-04-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
                             <p class="item-title"><a href="/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/" class="title">MySQL Identifying Blocking Transactions</a></p>
                             <p class="item-date"><time datetime="2015-08-10T16:29:15.000Z" itemprop="datePublished">2015-08-10</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/" class="title">Fix YAML parsing errors in WebGen</a></p>
-                            <p class="item-date"><time datetime="2015-01-07T17:20:34.000Z" itemprop="datePublished">2015-01-07</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/" class="title">Resolving H2 table lock during JUnitRunner test</a></p>
-                            <p class="item-date"><time datetime="2014-02-01T20:36:00.000Z" itemprop="datePublished">2014-02-01</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/" class="title">Moved again ... this time to github.io</a></p>
-                            <p class="item-date"><time datetime="2013-11-27T00:22:00.000Z" itemprop="datePublished">2013-11-26</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/" class="title">Plesk 11 Upgrade Unable to run Perl scripts in cgi-bin</a></p>
-                            <p class="item-date"><time datetime="2013-10-29T04:00:00.000Z" itemprop="datePublished">2013-10-29</time></p>
                         </div>
                     </li>
                 
@@ -1543,7 +1543,7 @@ I recently used Spring to configure a manager to use Spring Security ACL method-
     <div class="widget-wrap">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">January 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">October 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/06/">June 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/05/">May 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/10/">October 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/06/">June 2008</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/10/">October 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/01/">January 2006</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">January 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">October 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/06/">June 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/05/">May 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/10/">October 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/06/">June 2008</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/10/">October 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/01/">January 2006</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
