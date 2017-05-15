@@ -1,6 +1,6 @@
 ---
 title: Social Tables Retrospective
-date: 2017-05-11 11:29:10
+date: 2017-01-23 11:29:10
 tags:
 ---
 My last post was over a year and a half ago - just after I joined an interesting [Bessemer Ventures](https://www.bvp.com/) backed firm in the Hospitality sector called [Social Tables](https://www.socialtables.com).
