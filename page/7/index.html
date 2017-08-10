@@ -5,15 +5,13 @@
     
     <title>Technocracy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description">
-<meta property="og:type" content="website">
+    <meta property="og:type" content="website">
 <meta property="og:title" content="Technocracy">
 <meta property="og:url" content="http://ericsimmerman.com/page/7/index.html">
 <meta property="og:site_name" content="Technocracy">
-<meta property="og:description">
+<meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Technocracy">
-<meta name="twitter:description">
     
 
     
@@ -22,16 +20,16 @@
 
     
 
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/vendor/open-sans/styles.css" type="text/css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
 
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 
-    <script src="/vendor/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
     
     
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
     
     
     
@@ -102,7 +100,7 @@
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
-<script src="/js/insight.js" type="text/javascript"></script>
+<script src="/js/insight.js"></script>
 
 </div>
         </div>
@@ -138,18 +136,18 @@
         <div class="base-info profile-block">
             <img id="avatar" src="https://pbs.twimg.com/profile_images/620782832537899008/C5t6sStn_400x400.jpg" />
             <h2 id="name">ets</h2>
-            <h3 id="title">does not use tags</h3>
+            <h3 id="title">does not use categories</h3>
             <span id="location"><i class="fa fa-map-marker"></i>Washington D.C., USA</span>
             <a id="follow" target="_blank" href="https://github.com/ets/">FOLLOW</a>
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                97
+                99
                 <span>posts</span>
             </div>
             <div class="article-info-block">
-                0
-                <span>tag</span>
+                38
+                <span>tags</span>
             </div>
         </div>
         
@@ -197,7 +195,7 @@
 
             
             <section id="main">
-    <article id="post-2010-03-14-customize-article-row-count-for" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2010-06-13-import-gnucash-data-into-moneydance" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -206,7 +204,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2010/03/14/2010-03-14-customize-article-row-count-for/">Customize article row count for Cerberus public knowledgebase community</a>
+            <a class="article-title" href="/2010/06/13/2010-06-13-import-gnucash-data-into-moneydance/">Import GnuCash data into MoneyDance</a>
         </h1>
     
 
@@ -215,19 +213,19 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2010/03/14/2010-03-14-customize-article-row-count-for/">
-            <time datetime="2010-03-14T05:00:00.000Z" itemprop="datePublished">2010-03-14</time>
+        <a href="/2010/06/13/2010-06-13-import-gnucash-data-into-moneydance/">
+            <time datetime="2010-06-13T04:00:00.000Z" itemprop="datePublished">2010-06-13</time>
         </a>
     </div>
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/softwaredevelopment/">softwaredevelopment</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/softwaredevelopment/php/">php</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/softwaredevelopment/php/cerberus/">cerberus</a>
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/gnucash/">gnucash</a>, <a class="tag-link" href="/tags/moneydance/">moneydance</a>, <a class="tag-link" href="/tags/perl/">perl</a>, <a class="tag-link" href="/tags/softwaredevelopment/">softwaredevelopment</a>
     </div>
 
-                        
                     </div>
                 
             </header>
@@ -237,7 +235,7 @@
             
             
 <div class="post">
-I've been evaluating the opensource <a href="http://www.cerberusweb.com/" target="_blank" rel="external">Cerberus Helpdesk</a> as an alternative to the closed source Kayako esupport. I like how Cerberus separates the creation of multiple knowledgebases that can then be published across multiple community portals. Instead of one comprehensive knowledgebase presented to all customers, I can use Cerberus to present product specific knowledgebases. It's a nice concept that should make it much easier for a customer to locate support information and thereby reduce the number of support tickets generated.Customizing the public facing portals for my Cerberus installation was straightforward.  The admin console provided a good degree of flexibility, but I wanted a bit more so I manually modified usermeet.core/templates/portal/sc/module/index.tpl in order to insert analytics scripts and some more detailed customization. That was easy, but my next mod proved more difficult. By default, Cerberus displays 10 articles on each page of search results and I wanted to increase that count to 20. Cerberus' architecture actually makes it a bit tricky to determine the control flow used by the community portals but I eventually traced the article retrieval flow to the DAO_KbArticle class in plugins/cerberusweb.kb/api/App.php and changed the default limit on the search method from 10 to 20. The limit is set as a hardcoded constant in the method signature....yuck. After the change, 20 articles were pulled from the database on each request, but there were still only 10 displayed in the portal.It took a lot of searching to find the missing piece and it was yet another hardcoded value in plugins/cerberusweb.kb/api/sc/kb.php where $view-&gt;renderLimit was set to 10. Changing this gave me the desired row count on the portal.The Cerberus team has put together a nice product but given that one of its core competitive features is its opensource nature, I'd like to see the codebase refactored to better facilitate this type of customization. Values like these limits could easily be defined in framework.config.php instead of scattering hardcoded settings across multiple files. That said, at least I had to option to manipulate the software - something I can't do with Kayako's offering.</div>
+<a href="http://www.gnucash.org/" target="_blank" rel="external">GnuCash</a> served me well while I was running Ubuntu as my primary desktop but since moving to a Mac Pro I've been disappointed in the performance and non-native nature of the GnuCash Mac port. I decided to migrate to <a href="http://moneydance.com/" target="_blank" rel="external">MoneyDance</a> and was quickly dismayed to discover GnuCash's poor support for standards based exporting.This GnuCash wiki-entry <a href="http://wiki.gnucash.org/wiki/FAQ#Q:_How_can_I_export_data.3F" target="_blank" rel="external">describes a few convoluted approaches to data export</a> but the items it references are hopelessly outdated and generally do not function for the latest stable release - reason enough to ditch GnuCash.MoneyDance hadn't solved the problem on their end either but their wiki does <a href="http://moneydance.com/trac/wiki/Frequently_Asked_Questions#CanIimportmyGnuCashdata" target="_blank" rel="external">reference a Perl script that converts the deprecated GnuCash Postgre storage format into a MoneyDance XML file</a>. Since I knew that the development release of GnuCash supports a SQLite storage format I decided to see if I could update Sid Reed's aforementioned script for this new SQLite container.I'm no Perl Monger, but <a href="http://xkcd.com/208/" target="_blank" rel="external">I do know regular expressions</a>. My updated script worked well for me and seamlessly converted several years of GnuCash data.  Please read the pre-requisites section in the header of this&nbsp;<a href="http://www.ericsimmerman.com/wp-content/uploads/2010/06/GnuCash-MoneyDance-Importer.zip" target="_blank" rel="external">GnuCash to MoneyDance Migration Script</a> before attempting to run it. In addition to the linked zip archive, <a href="http://github.com/ets/MoneyDance-GnuCash-Importer" target="_blank" rel="external">this script is also available on github</a>. Enjoy!</div>
 
         
         </div>
@@ -248,7 +246,7 @@ I've been evaluating the opensource <a href="http://www.cerberusweb.com/" target
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2010/03/14/2010-03-14-customize-article-row-count-for/" data-id="cj2pcr0tb002ajqouavn9kytd" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2010/06/13/2010-06-13-import-gnucash-data-into-moneydance/" data-id="cj66h9hoi002eaxouevm3jb21" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -315,6 +313,261 @@ I've been evaluating the opensource <a href="http://www.cerberusweb.com/" target
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2010/06/13/2010-06-13-import-gnucash-data-into-moneydance/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2010/06/13/2010-06-13-import-gnucash-data-into-moneydance/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-2010-06-08-activate-maven-profile-using-hudson" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2010/06/08/2010-06-08-activate-maven-profile-using-hudson/">Activate a Maven Profile using Hudson</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2010/06/08/2010-06-08-activate-maven-profile-using-hudson/">
+            <time datetime="2010-06-08T04:00:00.000Z" itemprop="datePublished">2010-06-08</time>
+        </a>
+    </div>
+
+
+                        
+                        
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+<div class="post">
+Environment properties weren't available to me on my Mac server for some reason. The solution I eventually adopted was the one used in the <a href="http://wiki.hudson-ci.org/display/HUDSON/Cobertura+Plugin" target="_blank" rel="external">Cobertura Plugin docs here</a>. Hudson by default defines a property BUILD_NUMBER which is used to enable the profile.<div class="CodeRay">  <div class="code"><pre>&lt;profile&gt;     &lt;id&gt;hudson&lt;/id&gt;     &lt;activation&gt;         &lt;property&gt;             &lt;name&gt;BUILD_NUMBER&lt;/name&gt;         &lt;/property&gt;     &lt;/activation&gt;        ...&lt;/profile&gt;</pre></div></div></div>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/2010/06/08/2010-06-08-activate-maven-profile-using-hudson/" data-id="cj66h9hoq002maxouru8s39bx" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ericsimmerman.com/2010/06/08/2010-06-08-activate-maven-profile-using-hudson/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2010/06/08/2010-06-08-activate-maven-profile-using-hudson/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-2010-03-14-customize-article-row-count-for" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2010/03/14/2010-03-14-customize-article-row-count-for/">Customize article row count for Cerberus public knowledgebase community</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2010/03/14/2010-03-14-customize-article-row-count-for/">
+            <time datetime="2010-03-14T05:00:00.000Z" itemprop="datePublished">2010-03-14</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/cerberus/">cerberus</a>, <a class="tag-link" href="/tags/php/">php</a>, <a class="tag-link" href="/tags/softwaredevelopment/">softwaredevelopment</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+<div class="post">
+I've been evaluating the opensource <a href="http://www.cerberusweb.com/" target="_blank" rel="external">Cerberus Helpdesk</a> as an alternative to the closed source Kayako esupport. I like how Cerberus separates the creation of multiple knowledgebases that can then be published across multiple community portals. Instead of one comprehensive knowledgebase presented to all customers, I can use Cerberus to present product specific knowledgebases. It's a nice concept that should make it much easier for a customer to locate support information and thereby reduce the number of support tickets generated.Customizing the public facing portals for my Cerberus installation was straightforward.  The admin console provided a good degree of flexibility, but I wanted a bit more so I manually modified usermeet.core/templates/portal/sc/module/index.tpl in order to insert analytics scripts and some more detailed customization. That was easy, but my next mod proved more difficult. By default, Cerberus displays 10 articles on each page of search results and I wanted to increase that count to 20. Cerberus' architecture actually makes it a bit tricky to determine the control flow used by the community portals but I eventually traced the article retrieval flow to the DAO_KbArticle class in plugins/cerberusweb.kb/api/App.php and changed the default limit on the search method from 10 to 20. The limit is set as a hardcoded constant in the method signature....yuck. After the change, 20 articles were pulled from the database on each request, but there were still only 10 displayed in the portal.It took a lot of searching to find the missing piece and it was yet another hardcoded value in plugins/cerberusweb.kb/api/sc/kb.php where $view-&gt;renderLimit was set to 10. Changing this gave me the desired row count on the portal.The Cerberus team has put together a nice product but given that one of its core competitive features is its opensource nature, I'd like to see the codebase refactored to better facilitate this type of customization. Values like these limits could easily be defined in framework.config.php instead of scattering hardcoded settings across multiple files. That said, at least I had to option to manipulate the software - something I can't do with Kayako's offering.</div>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/2010/03/14/2010-03-14-customize-article-row-count-for/" data-id="cj66h9hpi002naxouzjef0600" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ericsimmerman.com/2010/03/14/2010-03-14-customize-article-row-count-for/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2010/03/14/2010-03-14-customize-article-row-count-for/">Comments</a>
     
 
         </footer>
@@ -349,12 +602,12 @@ I've been evaluating the opensource <a href="http://www.cerberusweb.com/" target
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/macintosh/">macintosh</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/macintosh/networks/">networks</a>
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/macintosh/">macintosh</a>, <a class="tag-link" href="/tags/networks/">networks</a>
     </div>
 
-                        
                     </div>
                 
             </header>
@@ -375,7 +628,7 @@ I've been evaluating the opensource <a href="http://www.cerberusweb.com/" target
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2010/03/05/2010-03-05-connecting-to-netscreen-series/" data-id="cj2pcr0tf002gjqouwy5exj4o" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2010/03/05/2010-03-05-connecting-to-netscreen-series/" data-id="cj66h9hpm002taxou9u49jnhk" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -442,6 +695,8 @@ I've been evaluating the opensource <a href="http://www.cerberusweb.com/" target
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2010/03/05/2010-03-05-connecting-to-netscreen-series/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2010/03/05/2010-03-05-connecting-to-netscreen-series/">Comments</a>
     
 
         </footer>
@@ -476,12 +731,12 @@ I've been evaluating the opensource <a href="http://www.cerberusweb.com/" target
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/java/">java</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/hibernate/">hibernate</a>
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/hibernate/">hibernate</a>, <a class="tag-link" href="/tags/java/">java</a>
     </div>
 
-                        
                     </div>
                 
             </header>
@@ -502,7 +757,7 @@ Consider a numeric CollectionOfElements held by a class Product such as:<div cla
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2010/02/23/2010-02-23-select-max-value-of-numeric/" data-id="cj2pcr0tk002kjqoumxzr3h6o" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2010/02/23/2010-02-23-select-max-value-of-numeric/" data-id="cj66h9hpq002xaxouc1f3wykt" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -570,132 +825,7 @@ Consider a numeric CollectionOfElements held by a class Product such as:<div cla
 
             
     
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-2010-01-18-missing-macos-x-vm-in-eclipse-galileo" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/">Missing MacOS X VM in Eclipse Galileo on Snow Leopard</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/">
-            <time datetime="2010-01-18T05:00:00.000Z" itemprop="datePublished">2010-01-18</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/java/">java</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/macintosh/">macintosh</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/macintosh/snowleopard/">snowleopard</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a>
-    </div>
-
-                        
-                    </div>
-                
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            
-<div class="post">
-I recently encountered an issue where I was unable to add a JVM to my Eclipse install on Snow Leopard. There was no MacOS X VM option under Installed JREs -&gt; Add and attempting to use the Standard VM resulted in an error. After digging around in Eclipse bug reports, I discovered this is a known issue with the Cocoa build of Galileo with PDT pre-installed.&nbsp; The easy fix is to install Eclipse without PDT (just install the Eclipse IDE for Java - Cocoa 64 bit) and add PDT plugin later. When you take this route, the MacOS X VM will be configured automagically.</div>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ericsimmerman.com/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/" data-id="cj2pcr0u8002ojqouyhh8bxa1" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
+        <a href="http://ericsimmerman.com/2010/02/23/2010-02-23-select-max-value-of-numeric/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2010/02/23/2010-02-23-select-max-value-of-numeric/">Comments</a>
     
 
         </footer>
@@ -730,12 +860,12 @@ I recently encountered an issue where I was unable to add a JVM to my Eclipse in
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/java/">java</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/macintosh/">macintosh</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/macintosh/snowleopard/">snowleopard</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a>
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/eclipse/">eclipse</a>, <a class="tag-link" href="/tags/java/">java</a>, <a class="tag-link" href="/tags/macintosh/">macintosh</a>, <a class="tag-link" href="/tags/snowleopard/">snowleopard</a>, <a class="tag-link" href="/tags/subversive/">subversive</a>
     </div>
 
-                        
                     </div>
                 
             </header>
@@ -756,7 +886,7 @@ After a clean Snow Leopard install on a new machine, I fired up a fresh Galileo 
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2010/01/18/2010-01-18-eclipse-galileo-unable-to-read/" data-id="cj2pcr0ue002wjqoup8yvk1y9" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2010/01/18/2010-01-18-eclipse-galileo-unable-to-read/" data-id="cj66h9hq10038axouyzuetj5t" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -823,6 +953,137 @@ After a clean Snow Leopard install on a new machine, I fired up a fresh Galileo 
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2010/01/18/2010-01-18-eclipse-galileo-unable-to-read/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2010/01/18/2010-01-18-eclipse-galileo-unable-to-read/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-2010-01-18-missing-macos-x-vm-in-eclipse-galileo" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/">Missing MacOS X VM in Eclipse Galileo on Snow Leopard</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/">
+            <time datetime="2010-01-18T05:00:00.000Z" itemprop="datePublished">2010-01-18</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/eclipse/">eclipse</a>, <a class="tag-link" href="/tags/java/">java</a>, <a class="tag-link" href="/tags/macintosh/">macintosh</a>, <a class="tag-link" href="/tags/snowleopard/">snowleopard</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+<div class="post">
+I recently encountered an issue where I was unable to add a JVM to my Eclipse install on Snow Leopard. There was no MacOS X VM option under Installed JREs -&gt; Add and attempting to use the Standard VM resulted in an error. After digging around in Eclipse bug reports, I discovered this is a known issue with the Cocoa build of Galileo with PDT pre-installed.&nbsp; The easy fix is to install Eclipse without PDT (just install the Eclipse IDE for Java - Cocoa 64 bit) and add PDT plugin later. When you take this route, the MacOS X VM will be configured automagically.</div>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/" data-id="cj66h9hpt0031axou5kl02jet" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ericsimmerman.com/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/">Comments</a>
     
 
         </footer>
@@ -857,12 +1118,12 @@ After a clean Snow Leopard install on a new machine, I fired up a fresh Galileo 
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/macintosh/">macintosh</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/macintosh/synergy/">synergy</a>
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/macintosh/">macintosh</a>, <a class="tag-link" href="/tags/synergy/">synergy</a>
     </div>
 
-                        
                     </div>
                 
             </header>
@@ -883,7 +1144,7 @@ After a recent Apple update, copy and paste quit functioning on my Snow Leopard 
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2009/12/19/2009-12-19-copypaste-clipboard-broken-on-snow/" data-id="cj2pcr0up0033jqouzym6w3gw" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2009/12/19/2009-12-19-copypaste-clipboard-broken-on-snow/" data-id="cj66h9hq8003faxouv9jiupy2" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -950,6 +1211,8 @@ After a recent Apple update, copy and paste quit functioning on my Snow Leopard 
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2009/12/19/2009-12-19-copypaste-clipboard-broken-on-snow/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2009/12/19/2009-12-19-copypaste-clipboard-broken-on-snow/">Comments</a>
     
 
         </footer>
@@ -984,12 +1247,12 @@ After a recent Apple update, copy and paste quit functioning on my Snow Leopard 
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/macintosh/">macintosh</a>
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/macintosh/">macintosh</a>
     </div>
 
-                        
                     </div>
                 
             </header>
@@ -1010,7 +1273,7 @@ Here are some notes from the field on setting up all these development services 
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/" data-id="cj2pcr0ut0037jqoupydu555j" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/" data-id="cj66h9hqe003jaxoubcb6033l" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1077,6 +1340,8 @@ Here are some notes from the field on setting up all these development services 
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/">Comments</a>
     
 
         </footer>
@@ -1111,12 +1376,12 @@ Here are some notes from the field on setting up all these development services 
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/macintosh/">macintosh</a>
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/macintosh/">macintosh</a>
     </div>
 
-                        
                     </div>
                 
             </header>
@@ -1137,7 +1402,7 @@ After upgrading to Snow Leopard and all its 64-bit goodness, I discovered that t
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2009/10/23/2009-10-23-installing-python-mysql-connector/" data-id="cj2pcr0uw0039jqouvx3wbuue" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2009/10/23/2009-10-23-installing-python-mysql-connector/" data-id="cj66h9hqg003laxou2rc4iu6t" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1205,259 +1470,7 @@ After upgrading to Snow Leopard and all its 64-bit goodness, I discovered that t
 
             
     
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-2009-10-22-resolving-key-usage-check-failed" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2009/10/22/2009-10-22-resolving-key-usage-check-failed/">Resolving a &#39;CA key usage check failed: keyCertSign bit is not set&#39; error in Tomcat</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2009/10/22/2009-10-22-resolving-key-usage-check-failed/">
-            <time datetime="2009-10-22T04:00:00.000Z" itemprop="datePublished">2009-10-22</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/java/">java</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/softwaredevelopment/">softwaredevelopment</a>
-    </div>
-
-                        
-                    </div>
-                
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            
-<div class="post">
-After installing a new GoDaddy SSL certificate in Tomcat 5.5.x my web browsers were able to properly negotiate SSL connections, but when back-end code  attempted (specifically when CAS attempted to validate a ticket through Cas20ServiceTicketValidator) to connect using SSL the "CA key usage check failed: keyCertSign bit is not set" error was being thrown. <p>My tomcat server is fronted by Apache2 and Apache handles SSL negotiation. I discovered that I had improperly installed the intermediate certificate for GoDaddy and while modern browsers just ignored the resulting misconfiguration, Java was complaining.</p><p>I had set the SSLCertificateChainFile directive to point to the "cert-chain.crt" file. The mistake is understandable given the near identical naming of the directive and the file...but alas that intuitive connection is erroneous. The directive instead needs to point to the gd_intermediate.crt file that GoDaddy also provides. Here's what my correct config looks like on RHEL5: </p><p><div class="CodeRay">  <div class="code"><pre>SSLCertificateChainFile /etc/pki/tls/certs/gd_intermediate.crt</pre></div></div></p></div>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ericsimmerman.com/2009/10/22/2009-10-22-resolving-key-usage-check-failed/" data-id="cj2pcr0v3003bjqouozm8hixc" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-2009-09-14-compiling-modcaucho-on-rhel-53" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2009/09/14/2009-09-14-compiling-modcaucho-on-rhel-53/">Compiling mod_caucho on RHEL 5.3</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2009/09/14/2009-09-14-compiling-modcaucho-on-rhel-53/">
-            <time datetime="2009-09-14T04:00:00.000Z" itemprop="datePublished">2009-09-14</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/java/">java</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/softwaredevelopment/">softwaredevelopment</a>
-    </div>
-
-                        
-                    </div>
-                
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            
-<div class="post">
-<p>There is <a href="http://mail-archives.apache.org/mod_mbox/apr-dev/200410.mbox/%3C20041022090014.GA9117@redhat.com%3E" target="_blank" rel="external">a known issue with APR</a> that <a href="http://maillist.caucho.com/pipermail/resin-interest/2007-April/000969.html" target="_blank" rel="external">prevents the compilation of mod_caucho on RHEL 5.3</a> out of the box. Additionally, for some reason my installation of APR uses the name "apr-1-config" instead of "apr-config" so that to compile mod_caucho I had to do the following:</p><ol><li>Run configure --with-apxs</li><li>Execute 'apr-config --cppflags --cflags'</li><li>On my server this resulted in '-DLINUX=2 -D_REENTRANT -D_GNU_SOURCE -D_LARGEFILE64_SOURCE  -pthread'</li><li>Append the output of the above command to the "CFLAGS" line in config.status</li><li>Run make; make install;</li></ol>FYI, I also had to overwrite the "plugins" variable in the Resin configure script to manually set apache2 because the script was detecting and using apache1</div>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ericsimmerman.com/2009/09/14/2009-09-14-compiling-modcaucho-on-rhel-53/" data-id="cj2pcr0v8003fjqouk74mss04" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
+        <a href="http://ericsimmerman.com/2009/10/23/2009-10-23-installing-python-mysql-connector/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2009/10/23/2009-10-23-installing-python-mysql-connector/">Comments</a>
     
 
         </footer>
@@ -1484,8 +1497,26 @@ After installing a new GoDaddy SSL certificate in Tomcat 5.5.x my web browsers w
                         
                         <div class="item-inner">
                             <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/05/11/2017-01-23-Social-Tables-Retrospective/" class="title">Social Tables Retrospective</a></p>
-                            <p class="item-date"><time datetime="2017-05-11T15:29:10.000Z" itemprop="datePublished">2017-05-11</time></p>
+                            <p class="item-title"><a href="/2017/05/18/2017-05-01-setting-up-bastion-host-aws/" class="title">Setting up a Bastion host on AWS</a></p>
+                            <p class="item-date"><time datetime="2017-05-18T21:01:41.000Z" itemprop="datePublished">2017-05-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/05/16/2017-05-16-aws-lambda-firewall/" class="title">Knock first firewall for AWS Security Groups</a></p>
+                            <p class="item-date"><time datetime="2017-05-17T02:21:53.000Z" itemprop="datePublished">2017-05-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/01/23/2017-01-23-Social-Tables-Retrospective/" class="title">Social Tables Retrospective</a></p>
+                            <p class="item-date"><time datetime="2017-01-23T16:29:10.000Z" itemprop="datePublished">2017-01-23</time></p>
                         </div>
                     </li>
                 
@@ -1507,50 +1538,39 @@ After installing a new GoDaddy SSL certificate in Tomcat 5.5.x my web browsers w
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/" class="title">Explaining SDF to suits</a></p>
-                            <p class="item-date"><time datetime="2016-04-06T23:18:04.000Z" itemprop="datePublished">2016-04-06</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/" class="title">MySQL Identifying Blocking Transactions</a></p>
-                            <p class="item-date"><time datetime="2015-08-10T16:29:15.000Z" itemprop="datePublished">2015-08-10</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
 
     
         
-    <div class="widget-wrap">
-        <h3 class="widget-title">categories</h3>
-        <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iso83bstockoptions/">iso83bstockoptions</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/hibernate/">hibernate</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/httpclient/">httpclient</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/httpclient/mindtouch/">mindtouch</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/">macintosh</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/snowleopard/">snowleopard</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><span class="category-list-count">1</span></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/softwaredevelopment/dbunit/">dbunit</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/softwaredevelopment/spring/">spring</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/ubuntu/">ubuntu</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/">macintosh</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/networks/">networks</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/synergy/">synergy</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/networks/">networks</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/openlaszlo/">openlaszlo</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/openlaszlo/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/">ruby</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/softwaredevelopment/php/">php</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/scriptaculous/">scriptaculous</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/scriptaculous/softwaredevelopment/jquery/">jquery</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/eclipse/">eclipse</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/eclipse/subversive/">subversive</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/gnucash/">gnucash</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/keepassx/">keepassx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/php/">php</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/vpn/">vpn</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/synergy/">synergy</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/vpn/">vpn</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/vpn/ubuntu/">ubuntu</a><span class="category-list-count">1</span></li></ul></li></ul>
-        </div>
-    </div>
-
     
         
     <div class="widget-wrap">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">January 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">October 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/06/">June 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/05/">May 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/10/">October 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/06/">June 2008</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/10/">October 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/01/">January 2006</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">January 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">October 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/06/">June 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/05/">May 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/10/">October 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/06/">June 2008</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/10/">October 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/01/">January 2006</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
     
         
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/">AWS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS-API-Gateway/">AWS API Gateway</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS-lambda/">AWS lambda</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blogger/">Blogger</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Octopress/">Octopress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Signed-Distance-Fields/">Signed Distance Fields</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bastion/">bastion</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cerberus/">cerberus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dbunit/">dbunit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gnucash/">gnucash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hibernate/">hibernate</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/httpclient/">httpclient</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iso83bstockoptions/">iso83bstockoptions</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jumphost/">jumphost</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keepassx/">keepassx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macintosh/">macintosh</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mathml/">mathml</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mindtouch/">mindtouch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/moneydance/">moneydance</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/networks/">networks</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openlaszlo/">openlaszlo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perl/">perl</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plesk/">plesk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/query-tuning/">query tuning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">ruby</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scriptaculous/">scriptaculous</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/snowleopard/">snowleopard</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/softwaredevelopment/">softwaredevelopment</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subversive/">subversive</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/synergy/">synergy</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/">vpn</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
     
         
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/AWS/" style="font-size: 13.33px;">AWS</a> <a href="/tags/AWS-API-Gateway/" style="font-size: 10px;">AWS API Gateway</a> <a href="/tags/AWS-lambda/" style="font-size: 10px;">AWS lambda</a> <a href="/tags/Blogger/" style="font-size: 10px;">Blogger</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Octopress/" style="font-size: 10px;">Octopress</a> <a href="/tags/Signed-Distance-Fields/" style="font-size: 10px;">Signed Distance Fields</a> <a href="/tags/bastion/" style="font-size: 11.67px;">bastion</a> <a href="/tags/cerberus/" style="font-size: 10px;">cerberus</a> <a href="/tags/dbunit/" style="font-size: 10px;">dbunit</a> <a href="/tags/eclipse/" style="font-size: 13.33px;">eclipse</a> <a href="/tags/gnucash/" style="font-size: 10px;">gnucash</a> <a href="/tags/hibernate/" style="font-size: 11.67px;">hibernate</a> <a href="/tags/httpclient/" style="font-size: 10px;">httpclient</a> <a href="/tags/iso83bstockoptions/" style="font-size: 10px;">iso83bstockoptions</a> <a href="/tags/java/" style="font-size: 18.33px;">java</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/jumphost/" style="font-size: 11.67px;">jumphost</a> <a href="/tags/keepassx/" style="font-size: 10px;">keepassx</a> <a href="/tags/macintosh/" style="font-size: 16.67px;">macintosh</a> <a href="/tags/mathml/" style="font-size: 10px;">mathml</a> <a href="/tags/mindtouch/" style="font-size: 10px;">mindtouch</a> <a href="/tags/moneydance/" style="font-size: 10px;">moneydance</a> <a href="/tags/networks/" style="font-size: 11.67px;">networks</a> <a href="/tags/openlaszlo/" style="font-size: 10px;">openlaszlo</a> <a href="/tags/perl/" style="font-size: 11.67px;">perl</a> <a href="/tags/php/" style="font-size: 11.67px;">php</a> <a href="/tags/plesk/" style="font-size: 10px;">plesk</a> <a href="/tags/query-tuning/" style="font-size: 10px;">query tuning</a> <a href="/tags/ruby/" style="font-size: 10px;">ruby</a> <a href="/tags/scriptaculous/" style="font-size: 10px;">scriptaculous</a> <a href="/tags/snowleopard/" style="font-size: 11.67px;">snowleopard</a> <a href="/tags/softwaredevelopment/" style="font-size: 20px;">softwaredevelopment</a> <a href="/tags/spring/" style="font-size: 11.67px;">spring</a> <a href="/tags/subversive/" style="font-size: 11.67px;">subversive</a> <a href="/tags/synergy/" style="font-size: 13.33px;">synergy</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/vpn/" style="font-size: 11.67px;">vpn</a>
+        </div>
+    </div>
+
     
         
     <div class="widget-wrap widget-list">
@@ -1581,14 +1601,29 @@ After installing a new GoDaddy SSL certificate in Tomcat 5.5.x my web browsers w
     </div>
 </footer>
         
+    
+    <script>
+    var disqus_config = function () {
+        
+        this.page.identifier = 'undefined';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'ericsimmermancom' + '.disqus.com/count.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
 
     
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
     
 
 
 <!-- Custom Scripts -->
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="/js/main.js"></script>
 
     </div>
 </body>

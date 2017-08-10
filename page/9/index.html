@@ -5,15 +5,13 @@
     
     <title>Technocracy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description">
-<meta property="og:type" content="website">
+    <meta property="og:type" content="website">
 <meta property="og:title" content="Technocracy">
 <meta property="og:url" content="http://ericsimmerman.com/page/9/index.html">
 <meta property="og:site_name" content="Technocracy">
-<meta property="og:description">
+<meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Technocracy">
-<meta name="twitter:description">
     
 
     
@@ -22,16 +20,16 @@
 
     
 
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/vendor/open-sans/styles.css" type="text/css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
 
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 
-    <script src="/vendor/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
     
     
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
     
     
     
@@ -102,7 +100,7 @@
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
-<script src="/js/insight.js" type="text/javascript"></script>
+<script src="/js/insight.js"></script>
 
 </div>
         </div>
@@ -138,18 +136,18 @@
         <div class="base-info profile-block">
             <img id="avatar" src="https://pbs.twimg.com/profile_images/620782832537899008/C5t6sStn_400x400.jpg" />
             <h2 id="name">ets</h2>
-            <h3 id="title">does not use tags</h3>
+            <h3 id="title">does not use categories</h3>
             <span id="location"><i class="fa fa-map-marker"></i>Washington D.C., USA</span>
             <a id="follow" target="_blank" href="https://github.com/ets/">FOLLOW</a>
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                97
+                99
                 <span>posts</span>
             </div>
             <div class="article-info-block">
-                0
-                <span>tag</span>
+                38
+                <span>tags</span>
             </div>
         </div>
         
@@ -197,7 +195,7 @@
 
             
             <section id="main">
-    <article id="post-2009-04-13-calling-php-from-ruby-and-reading-stdout" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2009-05-14-rolling-back-from-subversive-078-in" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -206,7 +204,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2009/04/13/2009-04-13-calling-php-from-ruby-and-reading-stdout/">Calling PHP from Ruby and reading STDOUT</a>
+            <a class="article-title" href="/2009/05/14/2009-05-14-rolling-back-from-subversive-078-in/">Rolling back from Subversive 0.7.8 in Eclipse Ganymede</a>
         </h1>
     
 
@@ -215,19 +213,19 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2009/04/13/2009-04-13-calling-php-from-ruby-and-reading-stdout/">
-            <time datetime="2009-04-13T04:00:00.000Z" itemprop="datePublished">2009-04-13</time>
+        <a href="/2009/05/14/2009-05-14-rolling-back-from-subversive-078-in/">
+            <time datetime="2009-05-14T04:00:00.000Z" itemprop="datePublished">2009-05-14</time>
         </a>
     </div>
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/ruby/">ruby</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/ruby/softwaredevelopment/php/">php</a>
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/eclipse/">eclipse</a>, <a class="tag-link" href="/tags/softwaredevelopment/">softwaredevelopment</a>, <a class="tag-link" href="/tags/subversive/">subversive</a>
     </div>
 
-                        
                     </div>
                 
             </header>
@@ -237,7 +235,7 @@
             
             
 <div class="post">
-PHP and Ruby syntax are far enough apart that I was loathe to attempt a port of some working PHP scripts in my arsenal, but I needed to call said scripts from a relatively complex Ruby program. Fast &amp; dirty integration of this type is generally performed using a system call, but unlike most things Ruby I didn't find the Ruby way in this case to be all that intuitive.<br>The %x technique for the system call made it easy to read the output of my PHP program into a variable in the calling script. The real trick was finding the correct syntax for passing a parameter to the %x call as shown below.<br>Learn from my studies grasshopper:<div class="CodeRay">  <div class="code"><pre>avariableparameter = &quot;--o ipso -v lorem&quot;result = %x[php /path/to/script.php &quot;#{avariableparameter}&quot;]</pre></div></div></div>
+<p>I've had automatic updates enabled on my Ganymede install of Eclipse. Huge mistake. Today a Subversive upgrade moved me into an unworkable state and I lost some development time recovering. My experience seems similar to <a href="http://dev.eclipse.org/newslists/news.eclipse.technology.equinox/msg06188.html" target="_blank" rel="external">the problem discussed here</a>. Even a fresh install of Eclipse failed to correct the situation. Maddening!</p><p>In any event, here's how I was able to finally recover:</p><ul><li>Open Time Machine</li><li>Restore ~/.eclipse</li><li>Pat self on back for using a Mac</li></ul><p>What? You don't use a Mac? Why?  Well, you might be able to use Eclipse's Software Updates -&gt; Installed Software -&gt; Revert Configuration button to rollback the upgrade. Good luck with that...</p></div>
 
         
         </div>
@@ -248,7 +246,7 @@ PHP and Ruby syntax are far enough apart that I was loathe to attempt a port of 
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2009/04/13/2009-04-13-calling-php-from-ruby-and-reading-stdout/" data-id="cj2pcr0y2004ijqoujrz83q4e" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2009/05/14/2009-05-14-rolling-back-from-subversive-078-in/" data-id="cj66h9hse004haxouf0e8r7uy" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -315,6 +313,266 @@ PHP and Ruby syntax are far enough apart that I was loathe to attempt a port of 
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2009/05/14/2009-05-14-rolling-back-from-subversive-078-in/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2009/05/14/2009-05-14-rolling-back-from-subversive-078-in/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-2009-05-13-connecting-to-netscreen-series" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2009/05/13/2009-05-13-connecting-to-netscreen-series/">Connecting to Netscreen Series (NetScreen-5) VPN with Ubuntu 9.04 (Jaunty - AMD64)</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2009/05/13/2009-05-13-connecting-to-netscreen-series/">
+            <time datetime="2009-05-13T04:00:00.000Z" itemprop="datePublished">2009-05-13</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/ubuntu/">ubuntu</a>, <a class="tag-link" href="/tags/vpn/">vpn</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+<div class="post">
+<p>I recently struggled through the details of establishing a VPN connection from my Ubuntu 64 desktop to a Juniper Networks Netscreen-5. There are a number of ways to skin the VPN cat in linux and I'm not going to detail them all here. I'll just tell you how I solved it.</p>My Netscreen-5 was configured with some typical settings:<div class="CodeRay">  <div class="code"><pre>Phase 1Pre-shared key &quot;your-pre-shared-key-here&quot;Encryption &quot;pre-g2-aes128-sha&quot;Phase 2Encryption &quot;g2-esp-3des-sha&quot;</pre></div></div>To configure the client-side, I decided to use Racoon and KVpnc:<ol><li>On my Jaunty install (Ubuntu 9.04) I first installed the repository version of racoon: <div class="CodeRay">  <div class="code"><pre>apt-get install racoon</pre></div></div></li><li>Then I downloaded the latest build of KVpnc. They only had an intrepid build when I wrote this (kvpnc_0.9.1_intrepid-1_amd64.deb) and it worked for me, but it's worth <a href="http://home.gna.org/kvpnc/en/download.html" target="_blank" rel="external">checking if a Jaunty build is available</a>.</li><li>My Netscreen config translates to the following choices under KVpnc's Racoon options:<ul><li>sha1</li><li>aes</li><li>hmac_sha1</li><li>aes</li><li>agressive</li><li>modp1024</li><li>modp1024</li><li>Remote Identifier Type: asn1dn</li><li>Local Identifier Type: user_fqdn</li><li>Local Identifier Value: (we used email addresses for client ids on the netscreen so the Local Identifier value in KVpnc is an email address)</li></ul></li></ol><p>Your VPN gateway is entered under General and don't forget to complete the Network/General portion of your KVpnc profile as well. That's where your destination network goes (for a Host to Network configuration like mine).</p></div>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/2009/05/13/2009-05-13-connecting-to-netscreen-series/" data-id="cj66h9hu0004laxou66ukxtas" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ericsimmerman.com/2009/05/13/2009-05-13-connecting-to-netscreen-series/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2009/05/13/2009-05-13-connecting-to-netscreen-series/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-2009-04-13-calling-php-from-ruby-and-reading-stdout" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2009/04/13/2009-04-13-calling-php-from-ruby-and-reading-stdout/">Calling PHP from Ruby and reading STDOUT</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2009/04/13/2009-04-13-calling-php-from-ruby-and-reading-stdout/">
+            <time datetime="2009-04-13T04:00:00.000Z" itemprop="datePublished">2009-04-13</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/php/">php</a>, <a class="tag-link" href="/tags/ruby/">ruby</a>, <a class="tag-link" href="/tags/softwaredevelopment/">softwaredevelopment</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+<div class="post">
+PHP and Ruby syntax are far enough apart that I was loathe to attempt a port of some working PHP scripts in my arsenal, but I needed to call said scripts from a relatively complex Ruby program. Fast &amp; dirty integration of this type is generally performed using a system call, but unlike most things Ruby I didn't find the Ruby way in this case to be all that intuitive.<br>The %x technique for the system call made it easy to read the output of my PHP program into a variable in the calling script. The real trick was finding the correct syntax for passing a parameter to the %x call as shown below.<br>Learn from my studies grasshopper:<div class="CodeRay">  <div class="code"><pre>avariableparameter = &quot;--o ipso -v lorem&quot;result = %x[php /path/to/script.php &quot;#{avariableparameter}&quot;]</pre></div></div></div>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/2009/04/13/2009-04-13-calling-php-from-ruby-and-reading-stdout/" data-id="cj66h9hu6004paxou4hhe9r6u" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ericsimmerman.com/2009/04/13/2009-04-13-calling-php-from-ruby-and-reading-stdout/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2009/04/13/2009-04-13-calling-php-from-ruby-and-reading-stdout/">Comments</a>
     
 
         </footer>
@@ -349,12 +607,12 @@ PHP and Ruby syntax are far enough apart that I was loathe to attempt a port of 
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/softwaredevelopment/">softwaredevelopment</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/softwaredevelopment/keepassx/">keepassx</a>
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/keepassx/">keepassx</a>, <a class="tag-link" href="/tags/softwaredevelopment/">softwaredevelopment</a>
     </div>
 
-                        
                     </div>
                 
             </header>
@@ -375,7 +633,7 @@ After removing a secondary monitor from a MacBook, some apps do not properly re-
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2009/04/06/2009-04-06-fix-for-keepassx-window-positioning-off/" data-id="cj2pcr0y7004pjqou98tf40ze" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2009/04/06/2009-04-06-fix-for-keepassx-window-positioning-off/" data-id="cj66h9hu9004uaxouwfiacuyd" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -442,6 +700,8 @@ After removing a secondary monitor from a MacBook, some apps do not properly re-
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2009/04/06/2009-04-06-fix-for-keepassx-window-positioning-off/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2009/04/06/2009-04-06-fix-for-keepassx-window-positioning-off/">Comments</a>
     
 
         </footer>
@@ -476,12 +736,12 @@ After removing a secondary monitor from a MacBook, some apps do not properly re-
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/ubuntu/">ubuntu</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/ubuntu/synergy/">synergy</a>
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/synergy/">synergy</a>, <a class="tag-link" href="/tags/ubuntu/">ubuntu</a>
     </div>
 
-                        
                     </div>
                 
             </header>
@@ -502,7 +762,7 @@ My desktop runs Ubuntu (64-bit) and I use Synergy to drive its keyboard and mous
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2009/04/03/2009-04-03-resolving-synergy-mouse-issues-with/" data-id="cj2pcr0y9004tjqoufv2zz30s" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2009/04/03/2009-04-03-resolving-synergy-mouse-issues-with/" data-id="cj66h9hub004yaxou4oetghrp" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -569,6 +829,8 @@ My desktop runs Ubuntu (64-bit) and I use Synergy to drive its keyboard and mous
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2009/04/03/2009-04-03-resolving-synergy-mouse-issues-with/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2009/04/03/2009-04-03-resolving-synergy-mouse-issues-with/">Comments</a>
     
 
         </footer>
@@ -603,12 +865,12 @@ My desktop runs Ubuntu (64-bit) and I use Synergy to drive its keyboard and mous
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/java/">java</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/softwaredevelopment/">softwaredevelopment</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/softwaredevelopment/spring/">spring</a>
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/java/">java</a>, <a class="tag-link" href="/tags/softwaredevelopment/">softwaredevelopment</a>, <a class="tag-link" href="/tags/spring/">spring</a>
     </div>
 
-                        
                     </div>
                 
             </header>
@@ -629,7 +891,7 @@ Using Spring MVC's checkboxes (or radiobuttons) tag to render form inputs for an
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2009/02/21/2009-02-21-spring-mvc-checkboxes-tag-and-support/" data-id="cj2pcr0ye004xjqouww8b7i1x" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2009/02/21/2009-02-21-spring-mvc-checkboxes-tag-and-support/" data-id="cj66h9hue0051axou0pkahbmj" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -696,6 +958,8 @@ Using Spring MVC's checkboxes (or radiobuttons) tag to render form inputs for an
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2009/02/21/2009-02-21-spring-mvc-checkboxes-tag-and-support/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2009/02/21/2009-02-21-spring-mvc-checkboxes-tag-and-support/">Comments</a>
     
 
         </footer>
@@ -730,12 +994,12 @@ Using Spring MVC's checkboxes (or radiobuttons) tag to render form inputs for an
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/java/">java</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/hibernate/">hibernate</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a>
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/hibernate/">hibernate</a>, <a class="tag-link" href="/tags/java/">java</a>, <a class="tag-link" href="/tags/softwaredevelopment/">softwaredevelopment</a>
     </div>
 
-                        
                     </div>
                 
             </header>
@@ -756,7 +1020,7 @@ While using Hibernate annotations to implement a @OneToOne relationship where th
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2009/02/18/2009-02-18-hibernate-annotations/" data-id="cj2pcr0yi0052jqouljjhbeex" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2009/02/18/2009-02-18-hibernate-annotations/" data-id="cj66h9hui0056axoux3zq3zu0" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -823,6 +1087,8 @@ While using Hibernate annotations to implement a @OneToOne relationship where th
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2009/02/18/2009-02-18-hibernate-annotations/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2009/02/18/2009-02-18-hibernate-annotations/">Comments</a>
     
 
         </footer>
@@ -857,12 +1123,12 @@ While using Hibernate annotations to implement a @OneToOne relationship where th
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/softwaredevelopment/">softwaredevelopment</a>
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/softwaredevelopment/">softwaredevelopment</a>
     </div>
 
-                        
                     </div>
                 
             </header>
@@ -883,7 +1149,7 @@ While using Hibernate annotations to implement a @OneToOne relationship where th
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/" data-id="cj2pcr0ym0057jqough196lp2" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/" data-id="cj66h9hv2005aaxouxfas2kn9" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -950,6 +1216,8 @@ While using Hibernate annotations to implement a @OneToOne relationship where th
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/">Comments</a>
     
 
         </footer>
@@ -984,12 +1252,12 @@ While using Hibernate annotations to implement a @OneToOne relationship where th
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/softwaredevelopment/">softwaredevelopment</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/softwaredevelopment/vpn/">vpn</a>
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/softwaredevelopment/">softwaredevelopment</a>, <a class="tag-link" href="/tags/vpn/">vpn</a>
     </div>
 
-                        
                     </div>
                 
             </header>
@@ -1010,7 +1278,7 @@ I run Leopard on my Mac and encountered the dreaded Error 51 issue today. The si
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2009/01/28/2009-01-28-cisco-vpn-fix-for-error-51-unable-to/" data-id="cj2pcr0yp0059jqou40kmbjhi" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2009/01/28/2009-01-28-cisco-vpn-fix-for-error-51-unable-to/" data-id="cj66h9hv3005caxou1dwp6yqw" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1077,6 +1345,8 @@ I run Leopard on my Mac and encountered the dreaded Error 51 issue today. The si
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2009/01/28/2009-01-28-cisco-vpn-fix-for-error-51-unable-to/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2009/01/28/2009-01-28-cisco-vpn-fix-for-error-51-unable-to/">Comments</a>
     
 
         </footer>
@@ -1111,12 +1381,12 @@ I run Leopard on my Mac and encountered the dreaded Error 51 issue today. The si
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/networks/">networks</a>
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/networks/">networks</a>
     </div>
 
-                        
                     </div>
                 
             </header>
@@ -1137,7 +1407,7 @@ So my upgrade to Verizon FiOS included swapping my Linksys WRT54G access point f
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2009/01/19/2009-01-19-linksys-wet54g-bridge-to-verizon-fios/" data-id="cj2pcr0ys005djqou81o464qt" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2009/01/19/2009-01-19-linksys-wet54g-bridge-to-verizon-fios/" data-id="cj66h9hv4005faxou8fv1t71e" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1205,259 +1475,7 @@ So my upgrade to Verizon FiOS included swapping my Linksys WRT54G access point f
 
             
     
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-2008-10-28-removing-duplicate-music-files-with" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2008/10/28/2008-10-28-removing-duplicate-music-files-with/">Removing duplicate music files with different names from a large directory free</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2008/10/28/2008-10-28-removing-duplicate-music-files-with/">
-            <time datetime="2008-10-28T04:00:00.000Z" itemprop="datePublished">2008-10-28</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/ubuntu/">ubuntu</a>
-    </div>
-
-                        
-                    </div>
-                
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            
-<div class="post">
-During a recent Mac migration, I hosed my iTunes library and unintentionally generated hundreds of duplicate songs (the actual media files). The problem was exacerbated by the fact that a numeric was generally appended to the duplicate filenames so that I had directories full of files like the following:<div class="CodeRay">  <div class="code"><pre>/artist/album/song.mp3/artist/album/song 1.mp3/artist/album/song 2.mp3</pre></div></div>Apple wasn't doing me any favors by injecting a space in the new names either....what a mess!<p>I stole a few ideas from <a href="http://ubuntuforums.org/archive/index.php/t-97701.html" target="_blank" rel="external">this excellent forum thread</a> and cobbled together a script to remove files based on exact byte counts and md5sum signatures. Here's the good stuff:</p><div class="CodeRay">  <div class="code"><pre>#!/bin/bashfind . ! -empty -type f -printf &quot;%s &quot; -exec ls -dQ {} ; | sort -n | cut -d&quot; &quot; -f2- | xargs md5sum | sort | uniq -w32 -d | cut -c35- | while read filenamedo echo &quot;Removing $filenamen&quot; rm &quot;$filename&quot;done</pre></div></div>Now here's the play-by-play:<ol><li>Prints out the size and filename of each file found on the path and sorts using the filesize as the key</li><li>Trims off the file size in preparation for next stage</li><li>Creates the checksum for the files of the same size and then sorts by result</li><li>Strip out any checksums that are unique, leaving only the duplicates</li><li>Strips out the checksum part, just leaving the duplicate filenames</li><li>Loops through the results removing the first duplicate file of each set.</li></ol>You'll need to run the script multiple times if you've managed to generate more than one copy of any given file. Good luck!</div>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ericsimmerman.com/2008/10/28/2008-10-28-removing-duplicate-music-files-with/" data-id="cj2pcr0yw005gjqou6t8aoum9" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-2008-09-17-running-synergy-client-automatically" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2008/09/17/2008-09-17-running-synergy-client-automatically/">Running Synergy client automatically under Mac OS X 10.5</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2008/09/17/2008-09-17-running-synergy-client-automatically/">
-            <time datetime="2008-09-17T04:00:00.000Z" itemprop="datePublished">2008-09-17</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/macintosh/">macintosh</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/macintosh/synergy/">synergy</a>
-    </div>
-
-                        
-                    </div>
-                
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            
-<div class="post">
-There is a bug in Synergy 1.3.1 causing it to crash when started as a daemon under Mac OS X 10.5.<p>Here's the <a href="http://sourceforge.net/forum/message.php?msg_id=5021604" target="_blank" rel="external">fix you want</a>.</p></div>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ericsimmerman.com/2008/09/17/2008-09-17-running-synergy-client-automatically/" data-id="cj2pcr0yz005ijqourziifypj" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
+        <a href="http://ericsimmerman.com/2009/01/19/2009-01-19-linksys-wet54g-bridge-to-verizon-fios/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2009/01/19/2009-01-19-linksys-wet54g-bridge-to-verizon-fios/">Comments</a>
     
 
         </footer>
@@ -1484,8 +1502,26 @@ There is a bug in Synergy 1.3.1 causing it to crash when started as a daemon und
                         
                         <div class="item-inner">
                             <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/05/11/2017-01-23-Social-Tables-Retrospective/" class="title">Social Tables Retrospective</a></p>
-                            <p class="item-date"><time datetime="2017-05-11T15:29:10.000Z" itemprop="datePublished">2017-05-11</time></p>
+                            <p class="item-title"><a href="/2017/05/18/2017-05-01-setting-up-bastion-host-aws/" class="title">Setting up a Bastion host on AWS</a></p>
+                            <p class="item-date"><time datetime="2017-05-18T21:01:41.000Z" itemprop="datePublished">2017-05-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/05/16/2017-05-16-aws-lambda-firewall/" class="title">Knock first firewall for AWS Security Groups</a></p>
+                            <p class="item-date"><time datetime="2017-05-17T02:21:53.000Z" itemprop="datePublished">2017-05-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/01/23/2017-01-23-Social-Tables-Retrospective/" class="title">Social Tables Retrospective</a></p>
+                            <p class="item-date"><time datetime="2017-01-23T16:29:10.000Z" itemprop="datePublished">2017-01-23</time></p>
                         </div>
                     </li>
                 
@@ -1507,50 +1543,39 @@ There is a bug in Synergy 1.3.1 causing it to crash when started as a daemon und
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/" class="title">Explaining SDF to suits</a></p>
-                            <p class="item-date"><time datetime="2016-04-06T23:18:04.000Z" itemprop="datePublished">2016-04-06</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/" class="title">MySQL Identifying Blocking Transactions</a></p>
-                            <p class="item-date"><time datetime="2015-08-10T16:29:15.000Z" itemprop="datePublished">2015-08-10</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
 
     
         
-    <div class="widget-wrap">
-        <h3 class="widget-title">categories</h3>
-        <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iso83bstockoptions/">iso83bstockoptions</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/hibernate/">hibernate</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/httpclient/">httpclient</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/httpclient/mindtouch/">mindtouch</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/">macintosh</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/snowleopard/">snowleopard</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><span class="category-list-count">1</span></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/softwaredevelopment/dbunit/">dbunit</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/softwaredevelopment/spring/">spring</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/ubuntu/">ubuntu</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/">macintosh</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/networks/">networks</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/synergy/">synergy</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/networks/">networks</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/openlaszlo/">openlaszlo</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/openlaszlo/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/">ruby</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/softwaredevelopment/php/">php</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/scriptaculous/">scriptaculous</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/scriptaculous/softwaredevelopment/jquery/">jquery</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/eclipse/">eclipse</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/eclipse/subversive/">subversive</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/gnucash/">gnucash</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/keepassx/">keepassx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/php/">php</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/vpn/">vpn</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/synergy/">synergy</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/vpn/">vpn</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/vpn/ubuntu/">ubuntu</a><span class="category-list-count">1</span></li></ul></li></ul>
-        </div>
-    </div>
-
     
         
     <div class="widget-wrap">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">January 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">October 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/06/">June 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/05/">May 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/10/">October 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/06/">June 2008</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/10/">October 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/01/">January 2006</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">January 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">October 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/06/">June 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/05/">May 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/10/">October 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/06/">June 2008</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/10/">October 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/01/">January 2006</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
     
         
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/">AWS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS-API-Gateway/">AWS API Gateway</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS-lambda/">AWS lambda</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blogger/">Blogger</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Octopress/">Octopress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Signed-Distance-Fields/">Signed Distance Fields</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bastion/">bastion</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cerberus/">cerberus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dbunit/">dbunit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gnucash/">gnucash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hibernate/">hibernate</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/httpclient/">httpclient</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iso83bstockoptions/">iso83bstockoptions</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jumphost/">jumphost</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keepassx/">keepassx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macintosh/">macintosh</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mathml/">mathml</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mindtouch/">mindtouch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/moneydance/">moneydance</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/networks/">networks</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openlaszlo/">openlaszlo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perl/">perl</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plesk/">plesk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/query-tuning/">query tuning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">ruby</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scriptaculous/">scriptaculous</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/snowleopard/">snowleopard</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/softwaredevelopment/">softwaredevelopment</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subversive/">subversive</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/synergy/">synergy</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/">vpn</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
     
         
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/AWS/" style="font-size: 13.33px;">AWS</a> <a href="/tags/AWS-API-Gateway/" style="font-size: 10px;">AWS API Gateway</a> <a href="/tags/AWS-lambda/" style="font-size: 10px;">AWS lambda</a> <a href="/tags/Blogger/" style="font-size: 10px;">Blogger</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Octopress/" style="font-size: 10px;">Octopress</a> <a href="/tags/Signed-Distance-Fields/" style="font-size: 10px;">Signed Distance Fields</a> <a href="/tags/bastion/" style="font-size: 11.67px;">bastion</a> <a href="/tags/cerberus/" style="font-size: 10px;">cerberus</a> <a href="/tags/dbunit/" style="font-size: 10px;">dbunit</a> <a href="/tags/eclipse/" style="font-size: 13.33px;">eclipse</a> <a href="/tags/gnucash/" style="font-size: 10px;">gnucash</a> <a href="/tags/hibernate/" style="font-size: 11.67px;">hibernate</a> <a href="/tags/httpclient/" style="font-size: 10px;">httpclient</a> <a href="/tags/iso83bstockoptions/" style="font-size: 10px;">iso83bstockoptions</a> <a href="/tags/java/" style="font-size: 18.33px;">java</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/jumphost/" style="font-size: 11.67px;">jumphost</a> <a href="/tags/keepassx/" style="font-size: 10px;">keepassx</a> <a href="/tags/macintosh/" style="font-size: 16.67px;">macintosh</a> <a href="/tags/mathml/" style="font-size: 10px;">mathml</a> <a href="/tags/mindtouch/" style="font-size: 10px;">mindtouch</a> <a href="/tags/moneydance/" style="font-size: 10px;">moneydance</a> <a href="/tags/networks/" style="font-size: 11.67px;">networks</a> <a href="/tags/openlaszlo/" style="font-size: 10px;">openlaszlo</a> <a href="/tags/perl/" style="font-size: 11.67px;">perl</a> <a href="/tags/php/" style="font-size: 11.67px;">php</a> <a href="/tags/plesk/" style="font-size: 10px;">plesk</a> <a href="/tags/query-tuning/" style="font-size: 10px;">query tuning</a> <a href="/tags/ruby/" style="font-size: 10px;">ruby</a> <a href="/tags/scriptaculous/" style="font-size: 10px;">scriptaculous</a> <a href="/tags/snowleopard/" style="font-size: 11.67px;">snowleopard</a> <a href="/tags/softwaredevelopment/" style="font-size: 20px;">softwaredevelopment</a> <a href="/tags/spring/" style="font-size: 11.67px;">spring</a> <a href="/tags/subversive/" style="font-size: 11.67px;">subversive</a> <a href="/tags/synergy/" style="font-size: 13.33px;">synergy</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/vpn/" style="font-size: 11.67px;">vpn</a>
+        </div>
+    </div>
+
     
         
     <div class="widget-wrap widget-list">
@@ -1581,14 +1606,29 @@ There is a bug in Synergy 1.3.1 causing it to crash when started as a daemon und
     </div>
 </footer>
         
+    
+    <script>
+    var disqus_config = function () {
+        
+        this.page.identifier = 'undefined';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'ericsimmermancom' + '.disqus.com/count.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
 
     
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
     
 
 
 <!-- Custom Scripts -->
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="/js/main.js"></script>
 
     </div>
 </body>

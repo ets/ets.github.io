@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ericsimmerman.com/"/>
-  <updated>2017-05-15T01:05:10.000Z</updated>
+  <updated>2017-08-10T13:24:02.000Z</updated>
   <id>http://ericsimmerman.com/</id>
   
   <author>
@@ -16,21 +16,81 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Social Tables Retrospective</title>
-    <link href="http://ericsimmerman.com/2017/05/11/2017-01-23-Social-Tables-Retrospective/"/>
-    <id>http://ericsimmerman.com/2017/05/11/2017-01-23-Social-Tables-Retrospective/</id>
-    <published>2017-05-11T15:29:10.000Z</published>
-    <updated>2017-05-15T01:05:10.000Z</updated>
+    <title>Setting up a Bastion host on AWS</title>
+    <link href="http://ericsimmerman.com/2017/05/18/2017-05-01-setting-up-bastion-host-aws/"/>
+    <id>http://ericsimmerman.com/2017/05/18/2017-05-01-setting-up-bastion-host-aws/</id>
+    <published>2017-05-18T21:01:41.000Z</published>
+    <updated>2017-08-10T13:24:02.000Z</updated>
     
-    <content type="html">&lt;p&gt;My last post was over a year and a half ago - just after I joined an interesting &lt;a href=&quot;https://www.bvp.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Bessemer Ventures&lt;/a&gt; backed firm in the Hospitality sector called &lt;a href=&quot;https://www.socialtables.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Social Tables&lt;/a&gt;.&lt;br&gt;My role here has been 95% people / 5% tech and always intense. I’m retroactively posting some of the internal content I circulated as the technology leader at Social Tables - mostly high-level explanations of what my team was up to at the time.&lt;/p&gt;
-&lt;p&gt;It’s been a fun ride with unique challenges and &lt;a href=&quot;https://healthprize.com/about-us/press-releases/healthprize-technologies-announces-new-chief-technology-officer/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;as I move on to my next post&lt;/a&gt;, I wanted to capture a few takeaways for posterity:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Don’t rewrite.&lt;/strong&gt; Just don’t. While I certainly &lt;a href=&quot;https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;agree with what Joel says about this&lt;/a&gt;, I’ll add one more point of support - that a rewrite is a fight on two fronts. It’s up against the formidable foes of &lt;a href=&quot;https://smile.amazon.com/Who-Moved-My-Cheese-Amazing/dp/0399144463&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;customer adoption of a new thing&lt;/a&gt; and the golden project phenomenon - where a golden (too big to fail) project’s scope continually increases without bound.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Hire for squads and fire quickly on non-fit.&lt;/strong&gt; My worst HR calls at Social Tables involved attempts to reassign an employee to a different team in an attempt to establish fit. This is especially difficult where the employee in question was inherited as opposed to hired under my watch. There’s a strong desire to give the inherited employee multiple chances to demonstrate fit. Don’t do it - if the employee is not a good enough for the first team she joins (or is assigned to) then do her and the rest of the team a favor - cut her loose with dignity. Such an evaluation might rightly not be considered fair - c’est la vie.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Adopt 2-3 cutting-edge technologies, but no more.&lt;/strong&gt; This worked really well for us - especially on the recruiting tip. Our best hires came through our broadcast of niche (at the time) tech such as WebGL, React, and RethinkDB. But it’s a double-edged sword. Our worst tech adoption failures came from naive pushes into Falcor, Dynamo, and Horizon.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Onward &amp;amp; Upward!&lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<p>When setting up my latest development environment at AWS, I wanted to deploy all EC2 services on a private VPC and simply route all traffic to them through a Bastion host (aka jump host). AWS maintains a an <a href="http://docs.aws.amazon.com/quickstart/latest/linux-bastion/welcome.html" target="_blank" rel="external">excellent CloudFormation quickstart guide &amp; template here</a> and it’s what I used to get started. After completing that guide I put a new entry for the Bastion host in my ssh config like so:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Host bastion</div><div class="line">  Hostname ec2-XX-XXX-XXX-XXX.compute-1.amazonaws.com</div><div class="line">  User ec2-user</div><div class="line">  IdentityFile ~/path/to/your/ssh-key.pem</div><div class="line">  AddKeysToAgent yes</div><div class="line">  UseKeychain yes</div></pre></td></tr></table></figure></p>
+<p>Those last two lines are optional - but I like to <a href="http://www.openssh.com/txt/release-7.2" target="_blank" rel="external">leverage the Keychain on my MacBookPro</a> for storing keys and their respective passphrases. Accepting the host key into your known_hosts file can avoid some pain going forward, so I recommend connecting directly to the bastion before continuing.</p>
+<p>To test my setup, I launched a EC2 instance in my private VPC and configured it in my ssh config like so:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Host 10.100.*.*</div><div class="line">  ProxyCommand ssh ec2-user@bastion -W %h:%p  </div><div class="line">  User ec2-user</div><div class="line">  IdentityFile ~/path/to/your/ssh-key.pem</div><div class="line">  AddKeysToAgent yes</div><div class="line">  UseKeychain yes</div></pre></td></tr></table></figure></p>
+<p>The magic happens on the second line with the ProxyCommand instructing SSH to jump through Bastion to route to any of the private IP addresses used in my development environment VPC. Unfortunately, my first attempt to connect failed. I poked around in the Bastion’s SSHD config and realized that the CloudFront template was so hardened that it wasn’t going to support the transparent sessions I wanted. I needed to modify /etc/ssh/sshd_config and add the following just below the PAM section:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">PermitOpen any</div><div class="line">AllowTCPForwarding yes</div></pre></td></tr></table></figure></p>
+<p>After making the change be certain to restart the sshd service on Bastion.</p>
+<p>Part of the beauty of the CloudFormation design is that it uses an AutoScaling group to automatically tear down unresponsive Bastions and spin up replacements - even adapting to availability zone issues. When that happens the replacement Bastion will be configured with template defaults, so to ensure my sshd_config change would survive a failover, I copied the LaunchConfig and edited the user data to include the following:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">perl -pi -0 -w -e &apos;s/UsePAM yes/UsePam yes\n\n# Added by ets to support transparent pass through\nPermitOpen any\nAllowTCPForwarding yes/&apos; sshd_config</div></pre></td></tr></table></figure></p>
+<p>Then I replaced the currently configured LaunchConfig on my AutoScaling group with my copy.</p>
+<p>Now simply asking SSH to connect to my new services in the private VPC worked transparently!<br>To make session more efficient using this type of proxy, I added the following to my Bastion host entry in ssh config:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ControlPath ~/.ssh/cm-%r@%h:%p</div><div class="line">ControlMaster auto</div><div class="line">ControlPersist 10m</div></pre></td></tr></table></figure></p>
+<p>If you’re an <a href="https://www.ansible.com/" target="_blank" rel="external">ansible</a> fan like me, you can take advantage of that same technique with a change to ansible.cfg:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh_args = -o ControlMaster=auto -o ControlPersist=30m</div><div class="line">control_path = ~/.ssh/ansible-%%r@%%h:%%p</div></pre></td></tr></table></figure></p>
+<p>If you’re curious how to further protect your Bastion host with a whitelist for port 22 while also supporting users who are behind dynamic IPs then you’ll want to <a href="./2017-05-16-aws-lambda-firewall.html">check out my aws-lambda-firewall project</a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;When setting up my latest development environment at AWS, I wanted to deploy all EC2 services on a private VPC and simply route all traff
+    
+    </summary>
+    
+    
+      <category term="AWS" scheme="http://ericsimmerman.com/tags/AWS/"/>
+    
+      <category term="bastion" scheme="http://ericsimmerman.com/tags/bastion/"/>
+    
+      <category term="jumphost" scheme="http://ericsimmerman.com/tags/jumphost/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Knock first firewall for AWS Security Groups</title>
+    <link href="http://ericsimmerman.com/2017/05/16/2017-05-16-aws-lambda-firewall/"/>
+    <id>http://ericsimmerman.com/2017/05/16/2017-05-16-aws-lambda-firewall/</id>
+    <published>2017-05-17T02:21:53.000Z</published>
+    <updated>2017-08-10T13:24:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>I recently <a href="./2017-05-01-setting-up-bastion-host-aws.html">setup a Bastion host</a> to secure a development environment on AWS. The Bastion only exposes port 22 for SSH and I wanted to restrict access to a whitelist of authorized IP addresses rather than leave port 22 open to the internet. Further - I wanted to restrict 443 and 80 inbound to the development environment so that only authorized users/developers could access the pre-release builds deployed there.</p>
+<p>But I and others on my team switch IP addresses often and don’t want to hassle with manual manipulation of AWS Security Groups each time I move networks in meatspace. So I threw together <a href="https://github.com/ets/aws-lambda-firewall" target="_blank" rel="external">a “knock for access” firewall using API Gateway &amp; lambda</a> to conveniently add and expire authorized IP addresses on the applicable Security Groups. Enjoy!</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;I recently &lt;a href=&quot;./2017-05-01-setting-up-bastion-host-aws.html&quot;&gt;setup a Bastion host&lt;/a&gt; to secure a development environment on AWS. T
+    
+    </summary>
+    
+    
+      <category term="AWS" scheme="http://ericsimmerman.com/tags/AWS/"/>
+    
+      <category term="AWS lambda" scheme="http://ericsimmerman.com/tags/AWS-lambda/"/>
+    
+      <category term="AWS API Gateway" scheme="http://ericsimmerman.com/tags/AWS-API-Gateway/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Social Tables Retrospective</title>
+    <link href="http://ericsimmerman.com/2017/01/23/2017-01-23-Social-Tables-Retrospective/"/>
+    <id>http://ericsimmerman.com/2017/01/23/2017-01-23-Social-Tables-Retrospective/</id>
+    <published>2017-01-23T16:29:10.000Z</published>
+    <updated>2017-08-10T13:30:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>My last post was over a year and a half ago - just after I joined an interesting <a href="https://www.bvp.com/" target="_blank" rel="external">Bessemer Ventures</a> backed firm in the Hospitality sector called <a href="https://www.socialtables.com" target="_blank" rel="external">Social Tables</a>.<br>My role here has been 95% people / 5% tech and always intense. I’m retroactively posting some of the internal content I circulated as the technology leader at Social Tables - mostly high-level explanations of what my team was up to at the time.</p>
+<p>It’s been a fun ride with unique challenges and <a href="https://healthprize.com/about-us/press-releases/healthprize-technologies-announces-new-chief-technology-officer/" target="_blank" rel="external">as I move on to my next post</a>, I wanted to capture a few takeaways for posterity:</p>
+<ul>
+<li><strong>Avoid greenfield rewrites of established applications.</strong> Specifics may warrant a true rewrite - but recognize the extreme risk to all involved if that’s the selected path. While I certainly <a href="https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/" target="_blank" rel="external">agree with what Joel says about this here</a>, I’ll add one more point of support - that a rewrite is a fight on two fronts. It’s up against the formidable foes of <a href="https://smile.amazon.com/Who-Moved-My-Cheese-Amazing/dp/0399144463" target="_blank" rel="external">customer adoption of a new thing</a> and the golden project phenomenon - where a golden (too big to fail) project’s scope continually increases without bound.</li>
+<li><strong>Hire for squads and fire quickly on non-fit.</strong> My worst HR calls at Social Tables involved attempts to reassign an employee to a different team in an attempt to establish fit. This is especially difficult where the employee in question was inherited as opposed to hired under my watch. There’s a strong desire to give the inherited employee multiple chances to demonstrate fit. Don’t do it - if the employee is not a good enough for the first team she joins (or is assigned to) then do her and the rest of the team a favor - cut her loose with dignity. Such an evaluation might rightly not be considered fair - c’est la vie.</li>
+<li><strong>Adopt 2-3 cutting-edge technologies, but no more.</strong> This worked really well for us - especially on the recruiting tip. Our best hires came through our broadcast of niche (at the time) tech such as WebGL, React, and RethinkDB. But it’s a double-edged sword. Our worst tech adoption failures came from naive pushes into Falcor, Dynamo, and Horizon.</li>
+</ul>
+<p>Onward &amp; Upward!</p>
+]]></content>
     
     <summary type="html">
     
@@ -39,6 +99,12 @@
     </summary>
     
     
+      <category term="AWS" scheme="http://ericsimmerman.com/tags/AWS/"/>
+    
+      <category term="bastion" scheme="http://ericsimmerman.com/tags/bastion/"/>
+    
+      <category term="jumphost" scheme="http://ericsimmerman.com/tags/jumphost/"/>
+    
   </entry>
   
   <entry>
@@ -46,18 +112,18 @@
     <link href="http://ericsimmerman.com/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/"/>
     <id>http://ericsimmerman.com/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/</id>
     <published>2016-05-14T23:18:04.000Z</published>
-    <updated>2017-05-15T00:54:56.000Z</updated>
+    <updated>2017-08-10T13:44:35.000Z</updated>
     
-    <content type="html">&lt;p&gt;I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;What’s Docker you say? Glad you asked…&lt;/p&gt;
-&lt;h2 id=&quot;What’s-Docker&quot;&gt;&lt;a href=&quot;#What’s-Docker&quot; class=&quot;headerlink&quot; title=&quot;What’s Docker?&quot;&gt;&lt;/a&gt;What’s Docker?&lt;/h2&gt;&lt;p&gt;Docker’s a technology that allows us to wrap our applications &amp;amp; services as self-contained deliverables that are isolated from the host operating system upon which they are deployed.&lt;/p&gt;
-&lt;h2 id=&quot;What’s-Docker-…-in-English-preferably-with-pictures&quot;&gt;&lt;a href=&quot;#What’s-Docker-…-in-English-preferably-with-pictures&quot; class=&quot;headerlink&quot; title=&quot;What’s Docker … in English (preferably with pictures)?&quot;&gt;&lt;/a&gt;What’s Docker … in English (preferably with pictures)?&lt;/h2&gt;&lt;p&gt;So…visualize a long-haul shipping container.&lt;br&gt;&lt;img style=&quot;width: 300px;&quot; src=&quot;https://1.bp.blogspot.com/_AvH7DyWzLAw/TOxzUtSAAFI/AAAAAAAAAI0/Xr5Kw8idq14/s1600/shipping_container.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;Appreciate how much easier it makes moving cargo between ship, train, and truck.&lt;/p&gt;
-&lt;p&gt;&lt;img style=&quot;width: 300px;&quot; src=&quot;https://ci4.googleusercontent.com/proxy/7IF86okF1edMCaJtAFquqvc2GGEp1yFJCsFxWSpaQ762OX2jELXauoZ5RtplNVjsghrOgg974OOX8FJCDIpJAmENoWQtA4kgHyUAwhas2wgpdaHFYWjldnEEZbE=s0-d-e1-ft#http://freightraters.com/wp-content/uploads/2015/12/Container-Ship.jpg&quot;&gt;&lt;br&gt;&lt;img style=&quot;width: 300px;&quot; src=&quot;https://ci3.googleusercontent.com/proxy/62RnISrdBXn6Zcvl319DEyXAEhGSY-W2VfjDklsIMxc4zzmwhJenwHdu64J5Ya8CIh9znArXrtenXxBmQAU1_Bzh4pk1cuU=s0-d-e1-ft#http://truck-photos.net.s3.amazonaws.com/2382.jpg&quot;&gt;&lt;br&gt;&lt;img style=&quot;width: 300px;&quot; src=&quot;https://ci3.googleusercontent.com/proxy/iS-4s1QGtOk3ihosATc8r0HeJxZbhiRDbOOr6F6cb0C0_0Wkl4iiK9GZgKX1MxrsZ6--at9bX67L8wRZJ_vMCAWgRCB_OByzFXpKwPyXMxKvPnvIWKaSSF2lHE2wYJpR8A8N5DTgmxAbP_KjLotm9lHZzqJXV4x3OhLdU6ybhQ=s0-d-e1-ft#https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Cajon_Intermodal.jpg/300px-Cajon_Intermodal.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;In a similar way, Docker helps us package our software into shipping containers and we can then run that software unchanged on a laptop, a dedicated server, or a cloud platform.&lt;/p&gt;
-&lt;h2 id=&quot;So-that’s-a-good-thing&quot;&gt;&lt;a href=&quot;#So-that’s-a-good-thing&quot; class=&quot;headerlink&quot; title=&quot;So that’s a good thing?&quot;&gt;&lt;/a&gt;So that’s a good thing?&lt;/h2&gt;&lt;p&gt;Yes.  Plus Docker’s mascot is a cute whale.&lt;br&gt;&lt;img style=&quot;width: 300px;&quot; alt=&quot;Who doesn&#39;t like a cute whale?&quot; src=&quot;https://ci3.googleusercontent.com/proxy/EX95kH7NTNZ0lvyz3Q699LzNB7B_VC7USLrbwsKVJ79oZrKXlTvt9mNEc7HH2y_Cdfbw9u9fmIotkMRv3p91RrTiVBQqH1MAkGl1e4uY1uIIbHH7KLZtQ1Vz9Ype=s0-d-e1-ft#https://blog.docker.com/wp-content/uploads/2015/07/moby_art-300x189.png&quot;&gt;&lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<p>I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.</p>
+<hr>
+<p>What’s Docker you say? Glad you asked…</p>
+<h2 id="What’s-Docker"><a href="#What’s-Docker" class="headerlink" title="What’s Docker?"></a>What’s Docker?</h2><p>Docker’s a technology that allows us to wrap our applications &amp; services as self-contained deliverables that are isolated from the host operating system upon which they are deployed.</p>
+<h2 id="What’s-Docker-…-in-English-preferably-with-pictures"><a href="#What’s-Docker-…-in-English-preferably-with-pictures" class="headerlink" title="What’s Docker … in English (preferably with pictures)?"></a>What’s Docker … in English (preferably with pictures)?</h2><p>So…visualize a long-haul shipping container.<br><img style="width: 300px;" src="https://1.bp.blogspot.com/_AvH7DyWzLAw/TOxzUtSAAFI/AAAAAAAAAI0/Xr5Kw8idq14/s1600/shipping_container.jpg"></p>
+<p>Appreciate how much easier it makes moving cargo between ship, train, and truck.</p>
+<p><img style="width: 300px;" src="http://freightraters.com/wp-content/uploads/2015/12/Container-Ship.jpg"><br><img style="width: 300px;" src="http://truck-photos.net.s3.amazonaws.com/2382.jpg"><br><img style="width: 300px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Cajon_Intermodal.jpg/300px-Cajon_Intermodal.jpg"></p>
+<p>In a similar way, Docker helps us package our software into shipping containers and we can then run that software unchanged on a laptop, a dedicated server, or a cloud platform.</p>
+<h2 id="So-that’s-a-good-thing"><a href="#So-that’s-a-good-thing" class="headerlink" title="So that’s a good thing?"></a>So that’s a good thing?</h2><p>Yes.  Plus Docker’s mascot is a cute whale.<br><img style="width: 300px;" alt="Who doesn't like a cute whale?" src="https://www.docker.com/sites/default/files/Whale%20Logo332_5.png"></p>
+]]></content>
     
     <summary type="html">
     
@@ -65,6 +131,8 @@
     
     </summary>
     
+    
+      <category term="Docker" scheme="http://ericsimmerman.com/tags/Docker/"/>
     
   </entry>
   
@@ -73,18 +141,18 @@
     <link href="http://ericsimmerman.com/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/"/>
     <id>http://ericsimmerman.com/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/</id>
     <published>2016-04-20T23:18:04.000Z</published>
-    <updated>2017-05-15T01:01:00.000Z</updated>
+    <updated>2017-08-10T13:36:39.000Z</updated>
     
-    <content type="html">&lt;p&gt;I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;Today we’re going to talk briefly about query tuning - a black art in the craft of software engineering that &lt;a href=&quot;http://dl.acm.org/citation.cfm?doid=582095.582099&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;predates the Internet&lt;/a&gt; but is still incredibly relevant. I don’t mean relevant in the “you should really pay attention to national politics” sense.  I mean relevant as in “this can (when done poorly) wreck your whole day.”&lt;/p&gt;
-&lt;h2 id=&quot;What’s-query-tuning&quot;&gt;&lt;a href=&quot;#What’s-query-tuning&quot; class=&quot;headerlink&quot; title=&quot;What’s query tuning?&quot;&gt;&lt;/a&gt;What’s query tuning?&lt;/h2&gt;&lt;p&gt;A query is a request for information from a database. It can be as simple as “find the email address of the Social Tables user named Inigo Montoya”, or more complex like “find the ASP of all Social Tables opportunities closed on Fridays that followed a Thursday evening Happy Hour.”&lt;/p&gt;
-&lt;p&gt;Since database structures are complex, in most cases, and especially for not-very-simple queries, the needed data for a query can be collected from a database by accessing it in different ways, through different data-structures, and in different orders. Each different way typically requires different processing time. Processing times of the same query may have large variance, from a fraction of a second to hours, depending on the way selected. The purpose of query tuning, is to find the way to process a given query in minimum time.&lt;/p&gt;
-&lt;h2 id=&quot;What’s-query-tuning-…-in-English-preferably-with-pictures-and-how-can-it-wreck-my-whole-day&quot;&gt;&lt;a href=&quot;#What’s-query-tuning-…-in-English-preferably-with-pictures-and-how-can-it-wreck-my-whole-day&quot; class=&quot;headerlink&quot; title=&quot;What’s query tuning … in English (preferably with pictures) and how can it wreck my whole day?&quot;&gt;&lt;/a&gt;What’s query tuning … in English (preferably with pictures) and how can it wreck my whole day?&lt;/h2&gt;&lt;p&gt;Query tuning is an effort to minimize the work performed while answering a query. If done poorly, database queries execute slowly and your application responds slowly. When your application responds slowly bad things happen - like Mary posting a screenshot to #devops (aka your whole day is wrecked).&lt;/p&gt;
-&lt;p&gt;Last week, Michael Dumont spent some time tuning several queries in our platform and his visuals of that effort are worth &amp;gt; 1,000 words:&lt;/p&gt;
-&lt;p&gt;Orange = a measure of platform activity&lt;br&gt;Blue = a measure of how hard the database is working&lt;br&gt;&lt;img src=&quot;https://mail.google.com/mail/u/0/?ui=2&amp;ik=4be6722e5b&amp;view=fimg&amp;th=1543543588cd7db8&amp;attid=0.1&amp;disp=emb&amp;realattid=ii_154352436974512a&amp;attbid=ANGjdJ_8dUL3vkw5EmPb00yEY5WrUywqx_yu5mzd7WXNnUezIR178a1eOiLvkBKVrtIO22Eenqc35sta6KV7b3DIsgetemRL_s9ewy7McKioOclVTD8AOGQbg796l14&amp;sz=w1088-h506&amp;ats=1494795285989&amp;rm=1543543588cd7db8&amp;zw&amp;atsh=1&quot;&gt;&lt;br&gt;Note: unlike Social Tables’ Engineers, our database refuses to work harder than 100% … so those blue peaks are signs of unhappy Social Tables users.&lt;/p&gt;
-&lt;p&gt;Here are the same measurements after tuning:&lt;br&gt;&lt;img src=&quot;https://mail.google.com/mail/u/0/?ui=2&amp;ik=4be6722e5b&amp;view=fimg&amp;th=1543543588cd7db8&amp;attid=0.2&amp;disp=emb&amp;realattid=ii_1543524f5f5251a7&amp;attbid=ANGjdJ9P9-aDB8by1WaHgUgiJJgzZpyFbE0NrlwLmQgfwbY7eBv6r2LzEr-QdHLlmRhkE_mOS9T6E2d7mrhGYn41D6Q-Q1ZCxp3UXVkgAuk_cYp3ZhJjDrRJ9mf_51s&amp;sz=w1088-h500&amp;ats=1494795285990&amp;rm=1543543588cd7db8&amp;zw&amp;atsh=1&quot;&gt;&lt;br&gt;Happier database === Happier users&lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<p>I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.</p>
+<hr>
+<p>Today we’re going to talk briefly about query tuning - a black art in the craft of software engineering that <a href="http://dl.acm.org/citation.cfm?doid=582095.582099" target="_blank" rel="external">predates the Internet</a> but is still incredibly relevant. I don’t mean relevant in the “you should really pay attention to national politics” sense.  I mean relevant as in “this can (when done poorly) wreck your whole day.”</p>
+<h2 id="What’s-query-tuning"><a href="#What’s-query-tuning" class="headerlink" title="What’s query tuning?"></a>What’s query tuning?</h2><p>A query is a request for information from a database. It can be as simple as “find the email address of the Social Tables user named Inigo Montoya”, or more complex like “find the ASP of all Social Tables opportunities closed on Fridays that followed a Thursday evening Happy Hour.”</p>
+<p>Since database structures are complex, in most cases, and especially for not-very-simple queries, the needed data for a query can be collected from a database by accessing it in different ways, through different data-structures, and in different orders. Each different way typically requires different processing time. Processing times of the same query may have large variance, from a fraction of a second to hours, depending on the way selected. The purpose of query tuning, is to find the way to process a given query in minimum time.</p>
+<h2 id="What’s-query-tuning-…-in-English-preferably-with-pictures-and-how-can-it-wreck-my-whole-day"><a href="#What’s-query-tuning-…-in-English-preferably-with-pictures-and-how-can-it-wreck-my-whole-day" class="headerlink" title="What’s query tuning … in English (preferably with pictures) and how can it wreck my whole day?"></a>What’s query tuning … in English (preferably with pictures) and how can it wreck my whole day?</h2><p>Query tuning is an effort to minimize the work performed while answering a query. If done poorly, database queries execute slowly and your application responds slowly. When your application responds slowly bad things happen - like Mary posting a screenshot to #devops (aka your whole day is wrecked).</p>
+<p>Last week, Michael Dumont spent some time tuning several queries in our platform and his visuals of that effort are worth &gt; 1,000 words:</p>
+<p>Orange = a measure of platform activity<br>Blue = a measure of how hard the database is working<br><br>Note: unlike Social Tables’ Engineers, our database refuses to work harder than 100% … so those blue peaks are signs of unhappy Social Tables users.</p>
+<p>Here are the same measurements after tuning:<br><br>Happier database === Happier users</p>
+]]></content>
     
     <summary type="html">
     
@@ -92,6 +160,8 @@
     
     </summary>
     
+    
+      <category term="query tuning" scheme="http://ericsimmerman.com/tags/query-tuning/"/>
     
   </entry>
   
@@ -100,21 +170,21 @@
     <link href="http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/"/>
     <id>http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/</id>
     <published>2016-04-06T23:18:04.000Z</published>
-    <updated>2017-05-15T00:58:42.000Z</updated>
+    <updated>2017-08-10T13:31:15.000Z</updated>
     
-    <content type="html">&lt;p&gt;I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;We’ve got a special subject this issue to take the edge off that geek-withdrawal : “Drawing Text with Signed Distance Fields” or using SDF text rendering for those in the know.&lt;/p&gt;
-&lt;h2 id=&quot;What’s-SDF&quot;&gt;&lt;a href=&quot;#What’s-SDF&quot; class=&quot;headerlink&quot; title=&quot;What’s SDF?&quot;&gt;&lt;/a&gt;What’s SDF?&lt;/h2&gt;&lt;p&gt;Signed distance field (SDF) is a technique for rendering bitmap fonts without jagged edges even at high magnifications. It was first introduced in 2007 with this bit of light reading by Valve and couples the use of a bitmap and glyphs with a GLSL shader that can sample and sharpen said glyphs.&lt;/p&gt;
-&lt;h2 id=&quot;What’s-SDF-…-in-English-preferably-with-pictures&quot;&gt;&lt;a href=&quot;#What’s-SDF-…-in-English-preferably-with-pictures&quot; class=&quot;headerlink&quot; title=&quot;What’s SDF … in English (preferably with pictures)?&quot;&gt;&lt;/a&gt;What’s SDF … in English (preferably with pictures)?&lt;/h2&gt;&lt;p&gt;So…you know what sounds easy but is really really hard? Drawing legible letters in Venue Mapper. Wait - what? Why’s that hard you ask?&lt;/p&gt;
-&lt;p&gt;Here’s a screenshot of “Social Tables” rendered in 12pt font by Microsoft Word:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://mail.google.com/mail/u/0/?ui=2&amp;ik=4be6722e5b&amp;view=fimg&amp;th=1543543d1cce453f&amp;attid=0.1&amp;disp=emb&amp;realattid=ii_153ecb6a29e16a81&amp;attbid=ANGjdJ-f2oYILbnL19O-tmZ6EsDcXaYiAGDJ07nPhJijtx2YgYZYDdawK_Id8ieoYWzSoC9o9XuaAXj04eAmGE0JO-I1Ja5kyFDZI1S0zrK3pYGxhm4ZtAZD6BYOOfk&amp;sz=w156-h40&amp;ats=1494809715654&amp;rm=1543543d1cce453f&amp;zw&amp;atsh=1&quot;&gt;&lt;/p&gt;
-&lt;p&gt;Completely legible. But here’s that exact same image after I zoom in a few times:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://mail.google.com/mail/u/0/?ui=2&amp;ik=4be6722e5b&amp;view=fimg&amp;th=1543543d1cce453f&amp;attid=0.2&amp;disp=emb&amp;realattid=ii_153ecb76b4f32354&amp;attbid=ANGjdJ-hYMp9cspdZYnXIyGJYRtgDsU2-rmyfbcYCd7kW0yJBqfT9F95-sewd_2rD4h2PGheyjmi9AhD0EKG5KT7s4H7WZW92yaYuB-j4Aub_o7Qw0F_TPFZ2Rl19fg&amp;sz=w958-h224&amp;ats=1494809715654&amp;rm=1543543d1cce453f&amp;zw&amp;atsh=1&quot;&gt;&lt;/p&gt;
-&lt;p&gt;Not so great. Possibly legible but if we rendered text like this as users zoom in and out in Venue Mapper we’d have to bundle subscriptions with aspirin.&lt;/p&gt;
-&lt;p&gt;SDF is a technique we’ve just begun using to more efficiently render text in Venue Mapper 3 - it performs better (app is faster) and looks prettier than the techniques we’ve used previously.&lt;/p&gt;
-&lt;p&gt;Here’s a &lt;a href=&quot;https://youtu.be/8yt7kSftNU4&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;movie of SDF in action in VM3 courtesy of our own Van Drunen&lt;/a&gt;.&lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<p>I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.</p>
+<hr>
+<p>We’ve got a special subject this issue to take the edge off that geek-withdrawal : “Drawing Text with Signed Distance Fields” or using SDF text rendering for those in the know.</p>
+<h2 id="What’s-SDF"><a href="#What’s-SDF" class="headerlink" title="What’s SDF?"></a>What’s SDF?</h2><p>Signed distance field (SDF) is a technique for rendering bitmap fonts without jagged edges even at high magnifications. It was first introduced in 2007 with this bit of light reading by Valve and couples the use of a bitmap and glyphs with a GLSL shader that can sample and sharpen said glyphs.</p>
+<h2 id="What’s-SDF-…-in-English-preferably-with-pictures"><a href="#What’s-SDF-…-in-English-preferably-with-pictures" class="headerlink" title="What’s SDF … in English (preferably with pictures)?"></a>What’s SDF … in English (preferably with pictures)?</h2><p>So…you know what sounds easy but is really really hard? Drawing legible letters in Venue Mapper. Wait - what? Why’s that hard you ask?</p>
+<p>Here’s a screenshot of “Social Tables” rendered in 12pt font by Microsoft Word:</p>
+<p><img src="https://mail.google.com/mail/u/0/?ui=2&ik=4be6722e5b&view=fimg&th=1543543d1cce453f&attid=0.1&disp=emb&realattid=ii_153ecb6a29e16a81&attbid=ANGjdJ-f2oYILbnL19O-tmZ6EsDcXaYiAGDJ07nPhJijtx2YgYZYDdawK_Id8ieoYWzSoC9o9XuaAXj04eAmGE0JO-I1Ja5kyFDZI1S0zrK3pYGxhm4ZtAZD6BYOOfk&sz=w156-h40&ats=1494809715654&rm=1543543d1cce453f&zw&atsh=1"></p>
+<p>Completely legible. But here’s that exact same image after I zoom in a few times:</p>
+<p><img src="https://mail.google.com/mail/u/0/?ui=2&ik=4be6722e5b&view=fimg&th=1543543d1cce453f&attid=0.2&disp=emb&realattid=ii_153ecb76b4f32354&attbid=ANGjdJ-hYMp9cspdZYnXIyGJYRtgDsU2-rmyfbcYCd7kW0yJBqfT9F95-sewd_2rD4h2PGheyjmi9AhD0EKG5KT7s4H7WZW92yaYuB-j4Aub_o7Qw0F_TPFZ2Rl19fg&sz=w958-h224&ats=1494809715654&rm=1543543d1cce453f&zw&atsh=1"></p>
+<p>Not so great. Possibly legible but if we rendered text like this as users zoom in and out in Venue Mapper we’d have to bundle subscriptions with aspirin.</p>
+<p>SDF is a technique we’ve just begun using to more efficiently render text in Venue Mapper 3 - it performs better (app is faster) and looks prettier than the techniques we’ve used previously.</p>
+<p>Here’s a <a href="https://youtu.be/8yt7kSftNU4" target="_blank" rel="external">movie of SDF in action in VM3 courtesy of our own Van Drunen</a>.</p>
+]]></content>
     
     <summary type="html">
     
@@ -123,6 +193,8 @@
     </summary>
     
     
+      <category term="Signed Distance Fields" scheme="http://ericsimmerman.com/tags/Signed-Distance-Fields/"/>
+    
   </entry>
   
   <entry>
@@ -130,11 +202,11 @@
     <link href="http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/"/>
     <id>http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/</id>
     <published>2015-08-10T16:29:15.000Z</published>
-    <updated>2016-09-21T02:50:43.000Z</updated>
+    <updated>2017-08-10T13:24:02.000Z</updated>
     
-    <content type="html">&lt;p&gt;Recording this incredibly helpful query from &lt;a href=&quot;https://stackoverflow.com/questions/22046390/still-seeing-lock-wait-timeouts-when-deleting-from-large-tables-using-primary-ke/22131972#22131972&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Bill Karwin’s post to SO&lt;/a&gt;&lt;br&gt;You can find the source query that’s blocking your DELETE by using the INFORMATION_SCHEMA.LOCK_WAITS and INNODB_TRX tables.&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;SELECT r.trx_id waiting_trx_id,  &amp;#10;       r.trx_mysql_thread_id waiting_thread,&amp;#10;       r.trx_query waiting_query,&amp;#10;       b.trx_id blocking_trx_id,&amp;#10;       b.trx_mysql_thread_id blocking_thread,&amp;#10;       b.trx_query blocking_query&amp;#10;   FROM       information_schema.innodb_lock_waits w&amp;#10;   INNER JOIN information_schema.innodb_trx b  ON  &amp;#10;    b.trx_id = w.blocking_trx_id&amp;#10;  INNER JOIN information_schema.innodb_trx r  ON  &amp;#10;    r.trx_id = w.requesting_trx_id;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;See more information at &lt;a href=&quot;http://dev.mysql.com/doc/refman/5.5/en/innodb-information-schema.html#innodb-information-schema-examples&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://dev.mysql.com/doc/refman/5.5/en/innodb-information-schema.html#innodb-information-schema-examples&lt;/a&gt;, under “Example 14.2 Identifying Blocking Transactions”.&lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<p>Recording this incredibly helpful query from <a href="https://stackoverflow.com/questions/22046390/still-seeing-lock-wait-timeouts-when-deleting-from-large-tables-using-primary-ke/22131972#22131972" target="_blank" rel="external">Bill Karwin’s post to SO</a><br>You can find the source query that’s blocking your DELETE by using the INFORMATION_SCHEMA.LOCK_WAITS and INNODB_TRX tables.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">SELECT r.trx_id waiting_trx_id,  </div><div class="line">       r.trx_mysql_thread_id waiting_thread,</div><div class="line">       r.trx_query waiting_query,</div><div class="line">       b.trx_id blocking_trx_id,</div><div class="line">       b.trx_mysql_thread_id blocking_thread,</div><div class="line">       b.trx_query blocking_query</div><div class="line">   FROM       information_schema.innodb_lock_waits w</div><div class="line">   INNER JOIN information_schema.innodb_trx b  ON  </div><div class="line">    b.trx_id = w.blocking_trx_id</div><div class="line">  INNER JOIN information_schema.innodb_trx r  ON  </div><div class="line">    r.trx_id = w.requesting_trx_id;</div></pre></td></tr></table></figure></p>
+<p>See more information at <a href="http://dev.mysql.com/doc/refman/5.5/en/innodb-information-schema.html#innodb-information-schema-examples" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.5/en/innodb-information-schema.html#innodb-information-schema-examples</a>, under “Example 14.2 Identifying Blocking Transactions”.</p>
+]]></content>
     
     <summary type="html">
     
@@ -150,12 +222,12 @@
     <link href="http://ericsimmerman.com/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/"/>
     <id>http://ericsimmerman.com/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/</id>
     <published>2015-01-07T17:20:34.000Z</published>
-    <updated>2016-09-21T02:50:43.000Z</updated>
+    <updated>2017-08-10T13:24:02.000Z</updated>
     
-    <content type="html">&lt;p&gt;After a clean install of Mac OS X Yosemite I’ve had to reinstall much of my development environment. This process was mostly beneficial as I moved to the latest and greatest tooling but several of my static websites leverage the prior major version of &lt;a href=&quot;http://webgen.gettalong.org/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Thomas Leitner’s Webgen&lt;/a&gt; and getting version 0.5.x up and running has been a challenge.  &lt;/p&gt;
-&lt;p&gt;After working through several Ruby &amp;amp; Gem issues I ran into a particularly opaque error when executing webgen on a project that previously generated without issue: “(&lt;unknown&gt;): found character that cannot start any token while scanning for the next token”&lt;/unknown&gt;&lt;/p&gt;
-&lt;p&gt;This error is usually a sign that your content contains tab characters but I’d already ensured that wasn’t the case.  Instead of diving deep into the workings of the libraries at play I was able to use &lt;a href=&quot;https://groups.google.com/d/msg/webgen-users/wYYWrwljJ1Y/Q8G4SzG_lEcJ&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;this post from Thomas to resolve the issue&lt;/a&gt; by reverting to the syck TAML implementation instead of its replacement.  Problem solved!&lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<p>After a clean install of Mac OS X Yosemite I’ve had to reinstall much of my development environment. This process was mostly beneficial as I moved to the latest and greatest tooling but several of my static websites leverage the prior major version of <a href="http://webgen.gettalong.org/index.html" target="_blank" rel="external">Thomas Leitner’s Webgen</a> and getting version 0.5.x up and running has been a challenge.  </p>
+<p>After working through several Ruby &amp; Gem issues I ran into a particularly opaque error when executing webgen on a project that previously generated without issue: “(<unknown>): found character that cannot start any token while scanning for the next token”</unknown></p>
+<p>This error is usually a sign that your content contains tab characters but I’d already ensured that wasn’t the case.  Instead of diving deep into the workings of the libraries at play I was able to use <a href="https://groups.google.com/d/msg/webgen-users/wYYWrwljJ1Y/Q8G4SzG_lEcJ" target="_blank" rel="external">this post from Thomas to resolve the issue</a> by reverting to the syck TAML implementation instead of its replacement.  Problem solved!</p>
+]]></content>
     
     <summary type="html">
     
@@ -171,12 +243,12 @@
     <link href="http://ericsimmerman.com/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/"/>
     <id>http://ericsimmerman.com/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/</id>
     <published>2014-02-01T20:36:00.000Z</published>
-    <updated>2016-09-21T02:50:43.000Z</updated>
+    <updated>2017-08-10T13:24:02.000Z</updated>
     
-    <content type="html">&lt;p&gt;After adding a new test to a project that uses Play Framework 1.2.X and thus leverages H2 for Junit functional testing, I began encountering a table lock during setup() when the framework was attempting to delete the contents of an entity table.&lt;/p&gt;
-&lt;p&gt;I initially blamed the lock on bad model design and wasted a significant amount of time tweaking JPA entity relationships and corresponding CRUD operations in an attempt to resolve it. I ultimately resolved the issue after realizing it was in fact caused by a badly designed test.&lt;/p&gt;
-&lt;p&gt;I was directly modifying entities within the transaction that wrapped my functional test and then emulating API calls that relied upon the state of those same entities. Long story short, my test was attempting something similar to this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class FunctionalTest { //Runs entire test in the same transaction
+    <content type="html"><![CDATA[<p>After adding a new test to a project that uses Play Framework 1.2.X and thus leverages H2 for Junit functional testing, I began encountering a table lock during setup() when the framework was attempting to delete the contents of an entity table.</p>
+<p>I initially blamed the lock on bad model design and wasted a significant amount of time tweaking JPA entity relationships and corresponding CRUD operations in an attempt to resolve it. I ultimately resolved the issue after realizing it was in fact caused by a badly designed test.</p>
+<p>I was directly modifying entities within the transaction that wrapped my functional test and then emulating API calls that relied upon the state of those same entities. Long story short, my test was attempting something similar to this:</p>
+<pre><code>class FunctionalTest { //Runs entire test in the same transaction
 
     setup(){
         //reset H2 datastore in an distinct transaction
@@ -191,13 +263,13 @@
     }
 
     btest(){
-        Request req = GET(&amp;quot;/user/1&amp;quot;);
+        Request req = GET(&quot;/user/1&quot;);
 
     }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In my contrived example above, after Junit runs atest() and just before running btest() - it will call setup() and attempt to reset the database in a separate transaction. But, atest() claimed a lock for insert on User and in H2 that locks the entire table by default thus setup() will be unable to reset the User table and will fail with a lock timeout.&lt;/p&gt;
-&lt;p&gt;To resolve this - you’ll either need to redesign your test to avoid manipulating entities directly in the testcase or run each test in a distinct transaction. &lt;/p&gt;
-</content>
+</code></pre><p>In my contrived example above, after Junit runs atest() and just before running btest() - it will call setup() and attempt to reset the database in a separate transaction. But, atest() claimed a lock for insert on User and in H2 that locks the entire table by default thus setup() will be unable to reset the User table and will fail with a lock timeout.</p>
+<p>To resolve this - you’ll either need to redesign your test to avoid manipulating entities directly in the testcase or run each test in a distinct transaction. </p>
+]]></content>
     
     <summary type="html">
     
@@ -213,13 +285,13 @@
     <link href="http://ericsimmerman.com/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/"/>
     <id>http://ericsimmerman.com/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/</id>
     <published>2013-11-27T00:22:00.000Z</published>
-    <updated>2016-09-21T02:50:43.000Z</updated>
+    <updated>2017-08-10T13:30:47.000Z</updated>
     
-    <content type="html">&lt;p&gt;Blogger was just too ugly &amp;amp; clumsy so I used a fork of &lt;a href=&quot;https://gist.github.com/juniorz/1564581&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;juniorz’s import.rb&lt;/a&gt; to migrate from blogger to Octopress. Here’s my fork:&lt;/p&gt;
-&lt;script src=&quot;https://gist.github.com/ets/7662898.js&quot;&gt;&lt;/script&gt;
+    <content type="html"><![CDATA[<p>Blogger was just too ugly &amp; clumsy so I used a fork of <a href="https://gist.github.com/juniorz/1564581" target="_blank" rel="external">juniorz’s import.rb</a> to migrate from blogger to Octopress. Here’s my fork:</p>
+<script src="https://gist.github.com/ets/7662898.js"></script>
 
-&lt;p&gt;I found &lt;a href=&quot;https://gist.github.com/MeetDom/1713910&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MeetDom’s gist helpful while installing all the dependencies&lt;/a&gt; required by the import script.&lt;/p&gt;
-</content>
+<p>I found <a href="https://gist.github.com/MeetDom/1713910" target="_blank" rel="external">MeetDom’s gist helpful while installing all the dependencies</a> required by the import script.</p>
+]]></content>
     
     <summary type="html">
     
@@ -228,6 +300,10 @@
     </summary>
     
     
+      <category term="Blogger" scheme="http://ericsimmerman.com/tags/Blogger/"/>
+    
+      <category term="Octopress" scheme="http://ericsimmerman.com/tags/Octopress/"/>
+    
   </entry>
   
   <entry>
@@ -235,29 +311,32 @@
     <link href="http://ericsimmerman.com/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/"/>
     <id>http://ericsimmerman.com/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/</id>
     <published>2013-10-29T04:00:00.000Z</published>
-    <updated>2016-09-21T02:50:43.000Z</updated>
+    <updated>2017-08-10T13:44:58.000Z</updated>
     
-    <content type="html">
-After an upgrade to Plesk 11, my Perl scripts  located under cgi-bin/ for a specific domain were not executing properly. 
-	Requests generated HTTP response code 500 and my error logs showed the unhelpful message &quot;Premature end of script headers&quot;
+    <content type="html"><![CDATA[
+After an upgrade to Plesk 11, my Perl scripts  located under cgi-bin/ for a specific domain were not executing properly.
+	Requests generated HTTP response code 500 and my error logs showed the unhelpful message "Premature end of script headers"
 	I verified all permissions and even disabled / re-enabled cgi-bin support through Plesk which installs a test script under cgi-bin/test/test.cgi
-	Even the test script failed to run. It also generated the message &quot;Premature end of script headers: test.cgi&quot;
-	I eventually resolved the issue with two changes:&lt;br&gt;&lt;br&gt;
-&lt;ol&gt;
-&lt;li&gt;The domain&#39;s root folder in /var/www/vhosts was not owned by the domain user. So I fixed that with a chown command.&lt;/li&gt;
-&lt;li&gt;Within the Plesk control panel, I had to disable &quot;Perl&quot; support and enable &quot;CGI&quot; support to get my perl scripts with the &quot;.pl&quot; extension to run under cgi-bin&lt;/li&gt;
-&lt;/ol&gt;
-
-</content>
+	Even the test script failed to run. It also generated the message "Premature end of script headers: test.cgi"
+	I eventually resolved the issue with two changes:<br><br>
+<ol>
+<li>The domain's root folder in /var/www/vhosts was not owned by the domain user. So I fixed that with a chown command.</li>
+<li>Within the Plesk control panel, I had to disable "Perl" support and enable "CGI" support to get my perl scripts with the ".pl" extension to run under cgi-bin</li>
+</ol>
+]]></content>
     
     <summary type="html">
     
       
-After an upgrade to Plesk 11, my Perl scripts  located under cgi-bin/ for a specific domain were not executing properly. 
-	Requests generat
+After an upgrade to Plesk 11, my Perl scripts  located under cgi-bin/ for a specific domain were not executing properly.
+	Requests generate
     
     </summary>
     
+    
+      <category term="perl" scheme="http://ericsimmerman.com/tags/perl/"/>
+    
+      <category term="plesk" scheme="http://ericsimmerman.com/tags/plesk/"/>
     
   </entry>
   
@@ -268,10 +347,10 @@ After an upgrade to Plesk 11, my Perl scripts  located under cgi-bin/ for a spec
     <published>2013-04-29T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-Shawn Hooton wrote a piece on &lt;a href=&quot;http://codingogre.wordpress.com/2011/09/12/fix-istat-menus-version-2-to-work-with-os-x-lion/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;how to use iStat 2.x on Mountain Lion&lt;/a&gt; that I&#39;ve used several times at this point. &lt;a href=&quot;http://codingogre.wordpress.com/2011/09/12/fix-istat-menus-version-2-to-work-with-os-x-lion/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Linking to it here &lt;/a&gt;for posterity.&lt;/div&gt;
-</content>
+    <content type="html"><![CDATA[
+<div class="post">
+Shawn Hooton wrote a piece on <a href="http://codingogre.wordpress.com/2011/09/12/fix-istat-menus-version-2-to-work-with-os-x-lion/" target="_blank" rel="external">how to use iStat 2.x on Mountain Lion</a> that I've used several times at this point. <a href="http://codingogre.wordpress.com/2011/09/12/fix-istat-menus-version-2-to-work-with-os-x-lion/" target="_blank" rel="external">Linking to it here </a>for posterity.</div>
+]]></content>
     
     <summary type="html">
     
@@ -291,10 +370,10 @@ Shawn Hooton wrote a piece on &lt;a href=&quot;http://codingogre.wordpress.com/2
     <published>2013-03-07T05:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Agile Answers blog on jroller back in 2006&lt;/a&gt; and I lost some of the older content in my move to Posterous. Sadly Twitter is killing Posterous so I&#39;ve had to move again...this time to Google&#39;s Blogger. Alas - I&#39;ve lost all the Posterous comments and a lot of formatting in the process. As if&amp;nbsp;&lt;a href=&quot;https://twitter.com/theSeanCook&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The Sean Cook&lt;/a&gt;&amp;nbsp;working there weren&#39;t reason enough, I now have one more reason to hate Twitter.&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;
-</content>
+    <content type="html"><![CDATA[
+<div class="post">
+I started this <a href="http://www.jroller.com/agileanswers/" target="_blank" rel="external">Agile Answers blog on jroller back in 2006</a> and I lost some of the older content in my move to Posterous. Sadly Twitter is killing Posterous so I've had to move again...this time to Google's Blogger. Alas - I've lost all the Posterous comments and a lot of formatting in the process. As if&nbsp;<a href="https://twitter.com/theSeanCook" target="_blank" rel="external">The Sean Cook</a>&nbsp;working there weren't reason enough, I now have one more reason to hate Twitter.<br><br><br></div>
+]]></content>
     
     <summary type="html">
     
@@ -314,10 +393,10 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
     <published>2012-12-19T05:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;&lt;span&gt; &lt;/span&gt;&lt;a href=&quot;http://foldergrid.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;FolderGrid&lt;/a&gt; provides a RESTful api that often services requests where over 90% of the entire response time is spent pulling data from a MySQL instance. I was recently working to reduce overall response time for some long running transactions in that bucket.&lt;/p&gt;&lt;p&gt;&lt;span&gt; &lt;/span&gt;After optimizing my queries and my database caching - I looked at network transfer time from the dedicated MySQL server to the mysql client on the application server. &amp;nbsp;Simply enabling MySQL zlib compression resulted in a 3x performance boost for many of the larger resultsets.&amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;span&gt; &lt;/span&gt;To configure your Play Framework connection pool to enable MySQL client-server zlib compression, you&#39;ll need to use the explicitly defined &quot;db.url&quot; instead of the shortcut &quot;db&quot; configuration key. Your key should look something like this:&lt;/p&gt;&lt;p&gt;db.url=jdbc:mysql://remotehost/dbname?useUnicode=yes&amp;amp;characterEncoding=UTF-8&amp;amp;connectionCollation=utf8_general_ci&amp;amp;useCompression=true&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/div&gt;
-</content>
+    <content type="html"><![CDATA[
+<div class="post">
+<p><span> </span><a href="http://foldergrid.com" target="_blank" rel="external">FolderGrid</a> provides a RESTful api that often services requests where over 90% of the entire response time is spent pulling data from a MySQL instance. I was recently working to reduce overall response time for some long running transactions in that bucket.</p><p><span> </span>After optimizing my queries and my database caching - I looked at network transfer time from the dedicated MySQL server to the mysql client on the application server. &nbsp;Simply enabling MySQL zlib compression resulted in a 3x performance boost for many of the larger resultsets.&nbsp;</p><p><span> </span>To configure your Play Framework connection pool to enable MySQL client-server zlib compression, you'll need to use the explicitly defined "db.url" instead of the shortcut "db" configuration key. Your key should look something like this:</p><p>db.url=jdbc:mysql://remotehost/dbname?useUnicode=yes&amp;characterEncoding=UTF-8&amp;connectionCollation=utf8_general_ci&amp;useCompression=true</p><p>&nbsp;</p><p>&nbsp;</p></div>
+]]></content>
     
     <summary type="html">
     
@@ -337,10 +416,10 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
     <published>2012-11-19T05:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;Throwing nginx (or Apache or lighthttpd) in front of other application stacks is so common that we often don&#39;t think twice about the possible costs. This bit me over the weekend when I casually threw up nginx for SSL termination and configured HttpProxyModule to proxy to my Play Framework driven application.&lt;/p&gt;&lt;p&gt;I failed to heed the first section in the &lt;a href=&quot;http://wiki.nginx.org/HttpProxyModule&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HttpProxyModule&lt;/a&gt; docs. See that note about how &quot;&lt;strong&gt;the entire client request will be buffered in nginx before being passed on to the backend proxied servers&lt;/strong&gt;&quot; ?&lt;/p&gt;&lt;p&gt;That&#39;s one note you are going to care about when you&#39;re handling large requests and can&#39;t figure out why your application is so slow to respond to them.&lt;/p&gt;&lt;p&gt;RTM&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/div&gt;
-</content>
+    <content type="html"><![CDATA[
+<div class="post">
+<p>Throwing nginx (or Apache or lighthttpd) in front of other application stacks is so common that we often don't think twice about the possible costs. This bit me over the weekend when I casually threw up nginx for SSL termination and configured HttpProxyModule to proxy to my Play Framework driven application.</p><p>I failed to heed the first section in the <a href="http://wiki.nginx.org/HttpProxyModule" target="_blank" rel="external">HttpProxyModule</a> docs. See that note about how "<strong>the entire client request will be buffered in nginx before being passed on to the backend proxied servers</strong>" ?</p><p>That's one note you are going to care about when you're handling large requests and can't figure out why your application is so slow to respond to them.</p><p>RTM&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div>
+]]></content>
     
     <summary type="html">
     
@@ -360,10 +439,10 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
     <published>2012-08-07T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;The reference client I built for &lt;a href=&quot;http://foldergrid.com/api/index.html&quot; title=&quot;FolderGrid API&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;FolderGrid&#39;s API &lt;/a&gt;is a zero footprint web client created using &lt;a href=&quot;http://www.sencha.com/products/extjs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ExtJS 4&lt;/a&gt;. I wanted to support drag &amp;amp; drop file uploads for advanced browsers but degrade nicely all the way back to IE6 for those poor lost souls stuck with tech from the last decade. So I integrated &lt;a href=&quot;http://www.plupload.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;plupload&lt;/a&gt; and bound the two together with some jquery glue.&lt;/p&gt;&lt;p&gt;The results are working well in production and &lt;a href=&quot;https://bitbucket.org/ets/foldergrid-client-extjs/overview&quot; title=&quot;FolderGrid Web Client&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;the client itself is open &amp;amp; licensed under GPL v3&lt;/a&gt; per the terms of ExtJS 4. So if you are interested in copying &amp;amp; extending - have at it.&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/div&gt;
-</content>
+    <content type="html"><![CDATA[
+<div class="post">
+<p>The reference client I built for <a href="http://foldergrid.com/api/index.html" title="FolderGrid API" target="_blank" rel="external">FolderGrid's API </a>is a zero footprint web client created using <a href="http://www.sencha.com/products/extjs/" target="_blank" rel="external">ExtJS 4</a>. I wanted to support drag &amp; drop file uploads for advanced browsers but degrade nicely all the way back to IE6 for those poor lost souls stuck with tech from the last decade. So I integrated <a href="http://www.plupload.com/" target="_blank" rel="external">plupload</a> and bound the two together with some jquery glue.</p><p>The results are working well in production and <a href="https://bitbucket.org/ets/foldergrid-client-extjs/overview" title="FolderGrid Web Client" target="_blank" rel="external">the client itself is open &amp; licensed under GPL v3</a> per the terms of ExtJS 4. So if you are interested in copying &amp; extending - have at it.</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div>
+]]></content>
     
     <summary type="html">
     
@@ -383,10 +462,10 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
     <published>2012-08-05T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;These are simply updated instructions based upon &lt;a href=&quot;http://www.amaxus.com/cms-blog/automatically-finding-javascript-errors-ie7&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;the original Amaxus writeup here&lt;/a&gt;.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Install Rhino &amp;nbsp;(I used &quot;port install rhino&quot;)&lt;/li&gt;&lt;li&gt;Grab the &lt;a href=&quot;https://raw.github.com/mikewest/jslint-utils/master/lib/rhinoed_jslint.js&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Rhinoized JSLint script here&lt;/a&gt;.&lt;/li&gt;&lt;li&gt;Create a script named checkForJsErrors.sh with the following two lines:&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;echo $1&lt;br&gt;rhino&amp;nbsp;rhinoed_jslint.js $1 | fgrep -e &#39;Unexpected&#39; --color=always&amp;nbsp;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Create an alias in your bashrc&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;alias checkjs=&#39;find . -name &#39;&#39;&#39;*.js&#39;&#39;&#39; -exec ~/bin/checkForJsErrors.sh {} ;&#39;&lt;/p&gt;&lt;p&gt;&lt;div&gt;Now when you execuate that alias in your project&#39;s root directory - all of your .js files will be scanned for trailing commas.&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&lt;div&gt;You&#39;re welcome.&lt;/div&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/div&gt;
-</content>
+    <content type="html"><![CDATA[
+<div class="post">
+<p>These are simply updated instructions based upon <a href="http://www.amaxus.com/cms-blog/automatically-finding-javascript-errors-ie7" target="_blank" rel="external">the original Amaxus writeup here</a>.</p><ul><li>Install Rhino &nbsp;(I used "port install rhino")</li><li>Grab the <a href="https://raw.github.com/mikewest/jslint-utils/master/lib/rhinoed_jslint.js" target="_blank" rel="external">Rhinoized JSLint script here</a>.</li><li>Create a script named checkForJsErrors.sh with the following two lines:</li></ul><p>echo $1<br>rhino&nbsp;rhinoed_jslint.js $1 | fgrep -e 'Unexpected' --color=always&nbsp;</p><ul><li>Create an alias in your bashrc</li></ul><p></p><p>alias checkjs='find . -name '''*.js''' -exec ~/bin/checkForJsErrors.sh {} ;'</p><p><div>Now when you execuate that alias in your project's root directory - all of your .js files will be scanned for trailing commas.</div></p><p><div>You're welcome.</div></p><p>&nbsp;</p></div>
+]]></content>
     
     <summary type="html">
     
@@ -406,10 +485,10 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
     <published>2012-08-03T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;I was just burned by an issue in Play Framework&#39;s JPA support of orphanRemovals. The issue manifests as a &quot;collection owner not associated with session&quot; JPAException within Play Framework 1.2.x &amp;nbsp;- it was supposed to be &lt;a href=&quot;https://play.lighthouseapp.com/projects/57987/tickets/1503-nested-onetomany-relationships-with-orphanremoval-fails-to-commit&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;addressed in 1.2.5 with this patch,&lt;/a&gt; but I&#39;m running 1.2.5 and am still running into it.&lt;/p&gt;&lt;p&gt;I didn&#39;t take the time to diagnose or file a report - for now I&#39;m punting by restricting the use of &#39;orphanRemoval&#39;.&lt;/p&gt;&lt;/div&gt;
-</content>
+    <content type="html"><![CDATA[
+<div class="post">
+<p>I was just burned by an issue in Play Framework's JPA support of orphanRemovals. The issue manifests as a "collection owner not associated with session" JPAException within Play Framework 1.2.x &nbsp;- it was supposed to be <a href="https://play.lighthouseapp.com/projects/57987/tickets/1503-nested-onetomany-relationships-with-orphanremoval-fails-to-commit" target="_blank" rel="external">addressed in 1.2.5 with this patch,</a> but I'm running 1.2.5 and am still running into it.</p><p>I didn't take the time to diagnose or file a report - for now I'm punting by restricting the use of 'orphanRemoval'.</p></div>
+]]></content>
     
     <summary type="html">
     
@@ -429,10 +508,10 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
     <published>2012-07-25T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;My work with &lt;a href=&quot;http://foldergrid.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;FolderGrid&lt;/a&gt; has included quite a few very interesting technical problems that have resulted in material for this blog.&amp;nbsp;I just&amp;nbsp;&lt;a href=&quot;http://blog.foldergrid.com/2012/07/why-we-stopped&amp;amp;hellip;cloud-services/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;posted an interesting read for anyone using cloud services&lt;/a&gt;&amp;nbsp;to store or transport sensitive data.&amp;nbsp;&lt;/p&gt;&lt;/div&gt;
-</content>
+    <content type="html"><![CDATA[
+<div class="post">
+<p>My work with <a href="http://foldergrid.com" target="_blank" rel="external">FolderGrid</a> has included quite a few very interesting technical problems that have resulted in material for this blog.&nbsp;I just&nbsp;<a href="http://blog.foldergrid.com/2012/07/why-we-stopped&amp;hellip;cloud-services/" target="_blank" rel="external">posted an interesting read for anyone using cloud services</a>&nbsp;to store or transport sensitive data.&nbsp;</p></div>
+]]></content>
     
     <summary type="html">
     
@@ -452,62 +531,16 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
     <published>2012-07-11T04:00:00.000Z</published>
     <updated>2016-09-21T02:50:43.000Z</updated>
     
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;To compile a project using JNLP API with Maven you&#39;ll need javaws.jar in the compile-time classpath. You&#39;ll find the jar under the lib folder of your JDK installation. Mine was here:&lt;/p&gt;&lt;p&gt;/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/javaws.jar&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/div&gt;
-</content>
+    <content type="html"><![CDATA[
+<div class="post">
+<p>To compile a project using JNLP API with Maven you'll need javaws.jar in the compile-time classpath. You'll find the jar under the lib folder of your JDK installation. Mine was here:</p><p>/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/javaws.jar</p><p>&nbsp;</p></div>
+]]></content>
     
     <summary type="html">
     
       
 &lt;div class=&quot;post&quot;&gt;
 &lt;p&gt;To compile a project using JNLP API with Maven you&#39;ll need javaws.jar in the compile-time classpath. You&#39;ll find the 
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Resolving Spring Security ACL deadlock in MySQL</title>
-    <link href="http://ericsimmerman.com/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/"/>
-    <id>http://ericsimmerman.com/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/</id>
-    <published>2012-06-30T04:00:00.000Z</published>
-    <updated>2016-09-21T02:50:43.000Z</updated>
-    
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;The default JDBCTemplate based implementation of Spring Security ACLs removes and recreates the entire ACL for each update. That requires both deletes and inserts into the same table within the same JPA transaction and is a recipe for deadlock when using the default MySQL transaction isolation level of REPEATABLE_READ.&amp;nbsp;&lt;/p&gt;&lt;p&gt;Setting your transaction isolation level to READ_COMMITTED is a viable alternative to MySQL&#39;s default but be certain you are not using the default bin-log format of Statement as this is not compatible with READ_COMMITTED isolation. You&#39;ll need to use Mixed or Row level bin-log format instead.&amp;nbsp;&lt;/p&gt;&lt;/div&gt;
-</content>
-    
-    <summary type="html">
-    
-      
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;The default JDBCTemplate based implementation of Spring Security ACLs removes and recreates the entire ACL for each u
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Great explanation of the &#39;The Infamous Loop Problem&#39; in javascript</title>
-    <link href="http://ericsimmerman.com/2012/05/21/2012-05-21-great-explanation-of-infamous-loop/"/>
-    <id>http://ericsimmerman.com/2012/05/21/2012-05-21-great-explanation-of-infamous-loop/</id>
-    <published>2012-05-21T04:00:00.000Z</published>
-    <updated>2016-09-21T02:50:43.000Z</updated>
-    
-    <content type="html">
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;Thanks Robert Nyman for your &lt;a href=&quot;http://robertnyman.com/2008/10/09/explaining-javascript-scope-and-closures/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;apparently timeless explanation of the Infamous Loop Problem&lt;/a&gt;&amp;nbsp;that caught me when declaring my callbacks to an asynchronous request tonight.&lt;/p&gt;&lt;/div&gt;
-</content>
-    
-    <summary type="html">
-    
-      
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;Thanks Robert Nyman for your &lt;a href=&quot;http://robertnyman.com/2008/10/09/explaining-javascript-scope-and-closures/&quot; ta
     
     </summary>
     

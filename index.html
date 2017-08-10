@@ -5,15 +5,13 @@
     
     <title>Technocracy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description">
-<meta property="og:type" content="website">
+    <meta property="og:type" content="website">
 <meta property="og:title" content="Technocracy">
 <meta property="og:url" content="http://ericsimmerman.com/index.html">
 <meta property="og:site_name" content="Technocracy">
-<meta property="og:description">
+<meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Technocracy">
-<meta name="twitter:description">
     
 
     
@@ -22,16 +20,16 @@
 
     
 
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/vendor/open-sans/styles.css" type="text/css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
 
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 
-    <script src="/vendor/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
     
     
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
     
     
     
@@ -102,7 +100,7 @@
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
-<script src="/js/insight.js" type="text/javascript"></script>
+<script src="/js/insight.js"></script>
 
 </div>
         </div>
@@ -138,18 +136,18 @@
         <div class="base-info profile-block">
             <img id="avatar" src="https://pbs.twimg.com/profile_images/620782832537899008/C5t6sStn_400x400.jpg" />
             <h2 id="name">ets</h2>
-            <h3 id="title">does not use tags</h3>
+            <h3 id="title">does not use categories</h3>
             <span id="location"><i class="fa fa-map-marker"></i>Washington D.C., USA</span>
             <a id="follow" target="_blank" href="https://github.com/ets/">FOLLOW</a>
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                97
+                99
                 <span>posts</span>
             </div>
             <div class="article-info-block">
-                0
-                <span>tag</span>
+                38
+                <span>tags</span>
             </div>
         </div>
         
@@ -197,7 +195,7 @@
 
             
             <section id="main">
-    <article id="post-2017-01-23-Social-Tables-Retrospective" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-05-01-setting-up-bastion-host-aws" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -206,7 +204,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2017/05/11/2017-01-23-Social-Tables-Retrospective/">Social Tables Retrospective</a>
+            <a class="article-title" href="/2017/05/18/2017-05-01-setting-up-bastion-host-aws/">Setting up a Bastion host on AWS</a>
         </h1>
     
 
@@ -215,14 +213,19 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/05/11/2017-01-23-Social-Tables-Retrospective/">
-            <time datetime="2017-05-11T15:29:10.000Z" itemprop="datePublished">2017-05-11</time>
+        <a href="/2017/05/18/2017-05-01-setting-up-bastion-host-aws/">
+            <time datetime="2017-05-18T21:01:41.000Z" itemprop="datePublished">2017-05-18</time>
         </a>
     </div>
 
 
                         
                         
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/AWS/">AWS</a>, <a class="tag-link" href="/tags/bastion/">bastion</a>, <a class="tag-link" href="/tags/jumphost/">jumphost</a>
+    </div>
+
                     </div>
                 
             </header>
@@ -230,14 +233,16 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>My last post was over a year and a half ago - just after I joined an interesting <a href="https://www.bvp.com/" target="_blank" rel="external">Bessemer Ventures</a> backed firm in the Hospitality sector called <a href="https://www.socialtables.com" target="_blank" rel="external">Social Tables</a>.<br>My role here has been 95% people / 5% tech and always intense. I’m retroactively posting some of the internal content I circulated as the technology leader at Social Tables - mostly high-level explanations of what my team was up to at the time.</p>
-<p>It’s been a fun ride with unique challenges and <a href="https://healthprize.com/about-us/press-releases/healthprize-technologies-announces-new-chief-technology-officer/" target="_blank" rel="external">as I move on to my next post</a>, I wanted to capture a few takeaways for posterity:</p>
-<ul>
-<li><strong>Don’t rewrite.</strong> Just don’t. While I certainly <a href="https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/" target="_blank" rel="external">agree with what Joel says about this</a>, I’ll add one more point of support - that a rewrite is a fight on two fronts. It’s up against the formidable foes of <a href="https://smile.amazon.com/Who-Moved-My-Cheese-Amazing/dp/0399144463" target="_blank" rel="external">customer adoption of a new thing</a> and the golden project phenomenon - where a golden (too big to fail) project’s scope continually increases without bound.</li>
-<li><strong>Hire for squads and fire quickly on non-fit.</strong> My worst HR calls at Social Tables involved attempts to reassign an employee to a different team in an attempt to establish fit. This is especially difficult where the employee in question was inherited as opposed to hired under my watch. There’s a strong desire to give the inherited employee multiple chances to demonstrate fit. Don’t do it - if the employee is not a good enough for the first team she joins (or is assigned to) then do her and the rest of the team a favor - cut her loose with dignity. Such an evaluation might rightly not be considered fair - c’est la vie.</li>
-<li><strong>Adopt 2-3 cutting-edge technologies, but no more.</strong> This worked really well for us - especially on the recruiting tip. Our best hires came through our broadcast of niche (at the time) tech such as WebGL, React, and RethinkDB. But it’s a double-edged sword. Our worst tech adoption failures came from naive pushes into Falcor, Dynamo, and Horizon.</li>
-</ul>
-<p>Onward &amp; Upward!</p>
+            <p>When setting up my latest development environment at AWS, I wanted to deploy all EC2 services on a private VPC and simply route all traffic to them through a Bastion host (aka jump host). AWS maintains a an <a href="http://docs.aws.amazon.com/quickstart/latest/linux-bastion/welcome.html" target="_blank" rel="external">excellent CloudFormation quickstart guide &amp; template here</a> and it’s what I used to get started. After completing that guide I put a new entry for the Bastion host in my ssh config like so:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Host bastion</div><div class="line">  Hostname ec2-XX-XXX-XXX-XXX.compute-1.amazonaws.com</div><div class="line">  User ec2-user</div><div class="line">  IdentityFile ~/path/to/your/ssh-key.pem</div><div class="line">  AddKeysToAgent yes</div><div class="line">  UseKeychain yes</div></pre></td></tr></table></figure></p>
+<p>Those last two lines are optional - but I like to <a href="http://www.openssh.com/txt/release-7.2" target="_blank" rel="external">leverage the Keychain on my MacBookPro</a> for storing keys and their respective passphrases. Accepting the host key into your known_hosts file can avoid some pain going forward, so I recommend connecting directly to the bastion before continuing.</p>
+<p>To test my setup, I launched a EC2 instance in my private VPC and configured it in my ssh config like so:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Host 10.100.*.*</div><div class="line">  ProxyCommand ssh ec2-user@bastion -W %h:%p  </div><div class="line">  User ec2-user</div><div class="line">  IdentityFile ~/path/to/your/ssh-key.pem</div><div class="line">  AddKeysToAgent yes</div><div class="line">  UseKeychain yes</div></pre></td></tr></table></figure></p>
+<p>The magic happens on the second line with the ProxyCommand instructing SSH to jump through Bastion to route to any of the private IP addresses used in my development environment VPC. Unfortunately, my first attempt to connect failed. I poked around in the Bastion’s SSHD config and realized that the CloudFront template was so hardened that it wasn’t going to support the transparent sessions I wanted. I needed to modify /etc/ssh/sshd_config and add the following just below the PAM section:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">PermitOpen any</div><div class="line">AllowTCPForwarding yes</div></pre></td></tr></table></figure></p>
+<p>After making the change be certain to restart the sshd service on Bastion.</p>
+<p>Part of the beauty of the CloudFormation design is that it uses an AutoScaling group to automatically tear down unresponsive Bastions and spin up replacements - even adapting to availability zone issues. When that happens the replacement Bastion will be configured with template defaults, so to ensure my sshd_config change would survive a failover, I copied the LaunchConfig and edited the user data to include the following:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">perl -pi -0 -w -e &apos;s/UsePAM yes/UsePam yes\n\n# Added by ets to support transparent pass through\nPermitOpen any\nAllowTCPForwarding yes/&apos; sshd_config</div></pre></td></tr></table></figure></p>
+<p>Then I replaced the currently configured LaunchConfig on my AutoScaling group with my copy.</p>
+<p>Now simply asking SSH to connect to my new services in the private VPC worked transparently!<br>To make session more efficient using this type of proxy, I added the following to my Bastion host entry in ssh config:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ControlPath ~/.ssh/cm-%r@%h:%p</div><div class="line">ControlMaster auto</div><div class="line">ControlPersist 10m</div></pre></td></tr></table></figure></p>
+<p>If you’re an <a href="https://www.ansible.com/" target="_blank" rel="external">ansible</a> fan like me, you can take advantage of that same technique with a change to ansible.cfg:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh_args = -o ControlMaster=auto -o ControlPersist=30m</div><div class="line">control_path = ~/.ssh/ansible-%%r@%%h:%%p</div></pre></td></tr></table></figure></p>
+<p>If you’re curious how to further protect your Bastion host with a whitelist for port 22 while also supporting users who are behind dynamic IPs then you’ll want to <a href="./2017-05-16-aws-lambda-firewall.html">check out my aws-lambda-firewall project</a>.</p>
 
         
         </div>
@@ -248,7 +253,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2017/05/11/2017-01-23-Social-Tables-Retrospective/" data-id="cj2pcr0n10003jqouikifir0u" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2017/05/18/2017-05-01-setting-up-bastion-host-aws/" data-id="cj66h9hir0009axoujmlr238d" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -315,6 +320,270 @@
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2017/05/18/2017-05-01-setting-up-bastion-host-aws/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2017/05/18/2017-05-01-setting-up-bastion-host-aws/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-2017-05-16-aws-lambda-firewall" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/05/16/2017-05-16-aws-lambda-firewall/">Knock first firewall for AWS Security Groups</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/05/16/2017-05-16-aws-lambda-firewall/">
+            <time datetime="2017-05-17T02:21:53.000Z" itemprop="datePublished">2017-05-16</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/AWS/">AWS</a>, <a class="tag-link" href="/tags/AWS-API-Gateway/">AWS API Gateway</a>, <a class="tag-link" href="/tags/AWS-lambda/">AWS lambda</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>I recently <a href="./2017-05-01-setting-up-bastion-host-aws.html">setup a Bastion host</a> to secure a development environment on AWS. The Bastion only exposes port 22 for SSH and I wanted to restrict access to a whitelist of authorized IP addresses rather than leave port 22 open to the internet. Further - I wanted to restrict 443 and 80 inbound to the development environment so that only authorized users/developers could access the pre-release builds deployed there.</p>
+<p>But I and others on my team switch IP addresses often and don’t want to hassle with manual manipulation of AWS Security Groups each time I move networks in meatspace. So I threw together <a href="https://github.com/ets/aws-lambda-firewall" target="_blank" rel="external">a “knock for access” firewall using API Gateway &amp; lambda</a> to conveniently add and expire authorized IP addresses on the applicable Security Groups. Enjoy!</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/2017/05/16/2017-05-16-aws-lambda-firewall/" data-id="cj66h9hih0002axoubdm40tkp" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ericsimmerman.com/2017/05/16/2017-05-16-aws-lambda-firewall/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2017/05/16/2017-05-16-aws-lambda-firewall/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-2017-01-23-Social-Tables-Retrospective" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/01/23/2017-01-23-Social-Tables-Retrospective/">Social Tables Retrospective</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/01/23/2017-01-23-Social-Tables-Retrospective/">
+            <time datetime="2017-01-23T16:29:10.000Z" itemprop="datePublished">2017-01-23</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/AWS/">AWS</a>, <a class="tag-link" href="/tags/bastion/">bastion</a>, <a class="tag-link" href="/tags/jumphost/">jumphost</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>My last post was over a year and a half ago - just after I joined an interesting <a href="https://www.bvp.com/" target="_blank" rel="external">Bessemer Ventures</a> backed firm in the Hospitality sector called <a href="https://www.socialtables.com" target="_blank" rel="external">Social Tables</a>.<br>My role here has been 95% people / 5% tech and always intense. I’m retroactively posting some of the internal content I circulated as the technology leader at Social Tables - mostly high-level explanations of what my team was up to at the time.</p>
+<p>It’s been a fun ride with unique challenges and <a href="https://healthprize.com/about-us/press-releases/healthprize-technologies-announces-new-chief-technology-officer/" target="_blank" rel="external">as I move on to my next post</a>, I wanted to capture a few takeaways for posterity:</p>
+<ul>
+<li><strong>Avoid greenfield rewrites of established applications.</strong> Specifics may warrant a true rewrite - but recognize the extreme risk to all involved if that’s the selected path. While I certainly <a href="https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/" target="_blank" rel="external">agree with what Joel says about this here</a>, I’ll add one more point of support - that a rewrite is a fight on two fronts. It’s up against the formidable foes of <a href="https://smile.amazon.com/Who-Moved-My-Cheese-Amazing/dp/0399144463" target="_blank" rel="external">customer adoption of a new thing</a> and the golden project phenomenon - where a golden (too big to fail) project’s scope continually increases without bound.</li>
+<li><strong>Hire for squads and fire quickly on non-fit.</strong> My worst HR calls at Social Tables involved attempts to reassign an employee to a different team in an attempt to establish fit. This is especially difficult where the employee in question was inherited as opposed to hired under my watch. There’s a strong desire to give the inherited employee multiple chances to demonstrate fit. Don’t do it - if the employee is not a good enough for the first team she joins (or is assigned to) then do her and the rest of the team a favor - cut her loose with dignity. Such an evaluation might rightly not be considered fair - c’est la vie.</li>
+<li><strong>Adopt 2-3 cutting-edge technologies, but no more.</strong> This worked really well for us - especially on the recruiting tip. Our best hires came through our broadcast of niche (at the time) tech such as WebGL, React, and RethinkDB. But it’s a double-edged sword. Our worst tech adoption failures came from naive pushes into Falcor, Dynamo, and Horizon.</li>
+</ul>
+<p>Onward &amp; Upward!</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/2017/01/23/2017-01-23-Social-Tables-Retrospective/" data-id="cj66h9hiz000faxouub693h8j" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ericsimmerman.com/2017/01/23/2017-01-23-Social-Tables-Retrospective/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2017/01/23/2017-01-23-Social-Tables-Retrospective/">Comments</a>
     
 
         </footer>
@@ -350,6 +619,11 @@
 
                         
                         
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Docker/">Docker</a>
+    </div>
+
                     </div>
                 
             </header>
@@ -363,9 +637,9 @@
 <h2 id="What’s-Docker"><a href="#What’s-Docker" class="headerlink" title="What’s Docker?"></a>What’s Docker?</h2><p>Docker’s a technology that allows us to wrap our applications &amp; services as self-contained deliverables that are isolated from the host operating system upon which they are deployed.</p>
 <h2 id="What’s-Docker-…-in-English-preferably-with-pictures"><a href="#What’s-Docker-…-in-English-preferably-with-pictures" class="headerlink" title="What’s Docker … in English (preferably with pictures)?"></a>What’s Docker … in English (preferably with pictures)?</h2><p>So…visualize a long-haul shipping container.<br><img style="width: 300px;" src="https://1.bp.blogspot.com/_AvH7DyWzLAw/TOxzUtSAAFI/AAAAAAAAAI0/Xr5Kw8idq14/s1600/shipping_container.jpg"></p>
 <p>Appreciate how much easier it makes moving cargo between ship, train, and truck.</p>
-<p><img style="width: 300px;" src="https://ci4.googleusercontent.com/proxy/7IF86okF1edMCaJtAFquqvc2GGEp1yFJCsFxWSpaQ762OX2jELXauoZ5RtplNVjsghrOgg974OOX8FJCDIpJAmENoWQtA4kgHyUAwhas2wgpdaHFYWjldnEEZbE=s0-d-e1-ft#http://freightraters.com/wp-content/uploads/2015/12/Container-Ship.jpg"><br><img style="width: 300px;" src="https://ci3.googleusercontent.com/proxy/62RnISrdBXn6Zcvl319DEyXAEhGSY-W2VfjDklsIMxc4zzmwhJenwHdu64J5Ya8CIh9znArXrtenXxBmQAU1_Bzh4pk1cuU=s0-d-e1-ft#http://truck-photos.net.s3.amazonaws.com/2382.jpg"><br><img style="width: 300px;" src="https://ci3.googleusercontent.com/proxy/iS-4s1QGtOk3ihosATc8r0HeJxZbhiRDbOOr6F6cb0C0_0Wkl4iiK9GZgKX1MxrsZ6--at9bX67L8wRZJ_vMCAWgRCB_OByzFXpKwPyXMxKvPnvIWKaSSF2lHE2wYJpR8A8N5DTgmxAbP_KjLotm9lHZzqJXV4x3OhLdU6ybhQ=s0-d-e1-ft#https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Cajon_Intermodal.jpg/300px-Cajon_Intermodal.jpg"></p>
+<p><img style="width: 300px;" src="http://freightraters.com/wp-content/uploads/2015/12/Container-Ship.jpg"><br><img style="width: 300px;" src="http://truck-photos.net.s3.amazonaws.com/2382.jpg"><br><img style="width: 300px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Cajon_Intermodal.jpg/300px-Cajon_Intermodal.jpg"></p>
 <p>In a similar way, Docker helps us package our software into shipping containers and we can then run that software unchanged on a laptop, a dedicated server, or a cloud platform.</p>
-<h2 id="So-that’s-a-good-thing"><a href="#So-that’s-a-good-thing" class="headerlink" title="So that’s a good thing?"></a>So that’s a good thing?</h2><p>Yes.  Plus Docker’s mascot is a cute whale.<br><img style="width: 300px;" alt="Who doesn't like a cute whale?" src="https://ci3.googleusercontent.com/proxy/EX95kH7NTNZ0lvyz3Q699LzNB7B_VC7USLrbwsKVJ79oZrKXlTvt9mNEc7HH2y_Cdfbw9u9fmIotkMRv3p91RrTiVBQqH1MAkGl1e4uY1uIIbHH7KLZtQ1Vz9Ype=s0-d-e1-ft#https://blog.docker.com/wp-content/uploads/2015/07/moby_art-300x189.png"></p>
+<h2 id="So-that’s-a-good-thing"><a href="#So-that’s-a-good-thing" class="headerlink" title="So that’s a good thing?"></a>So that’s a good thing?</h2><p>Yes.  Plus Docker’s mascot is a cute whale.<br><img style="width: 300px;" alt="Who doesn't like a cute whale?" src="https://www.docker.com/sites/default/files/Whale%20Logo332_5.png"></p>
 
         
         </div>
@@ -376,7 +650,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/" data-id="cj2pcr0n40004jqouy7mod5y0" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/" data-id="cj66h9hjk000iaxouypmhqd7c" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -443,6 +717,8 @@
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/">Comments</a>
     
 
         </footer>
@@ -478,6 +754,11 @@
 
                         
                         
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/query-tuning/">query tuning</a>
+    </div>
+
                     </div>
                 
             </header>
@@ -492,8 +773,8 @@
 <p>Since database structures are complex, in most cases, and especially for not-very-simple queries, the needed data for a query can be collected from a database by accessing it in different ways, through different data-structures, and in different orders. Each different way typically requires different processing time. Processing times of the same query may have large variance, from a fraction of a second to hours, depending on the way selected. The purpose of query tuning, is to find the way to process a given query in minimum time.</p>
 <h2 id="What’s-query-tuning-…-in-English-preferably-with-pictures-and-how-can-it-wreck-my-whole-day"><a href="#What’s-query-tuning-…-in-English-preferably-with-pictures-and-how-can-it-wreck-my-whole-day" class="headerlink" title="What’s query tuning … in English (preferably with pictures) and how can it wreck my whole day?"></a>What’s query tuning … in English (preferably with pictures) and how can it wreck my whole day?</h2><p>Query tuning is an effort to minimize the work performed while answering a query. If done poorly, database queries execute slowly and your application responds slowly. When your application responds slowly bad things happen - like Mary posting a screenshot to #devops (aka your whole day is wrecked).</p>
 <p>Last week, Michael Dumont spent some time tuning several queries in our platform and his visuals of that effort are worth &gt; 1,000 words:</p>
-<p>Orange = a measure of platform activity<br>Blue = a measure of how hard the database is working<br><img src="https://mail.google.com/mail/u/0/?ui=2&ik=4be6722e5b&view=fimg&th=1543543588cd7db8&attid=0.1&disp=emb&realattid=ii_154352436974512a&attbid=ANGjdJ_8dUL3vkw5EmPb00yEY5WrUywqx_yu5mzd7WXNnUezIR178a1eOiLvkBKVrtIO22Eenqc35sta6KV7b3DIsgetemRL_s9ewy7McKioOclVTD8AOGQbg796l14&sz=w1088-h506&ats=1494795285989&rm=1543543588cd7db8&zw&atsh=1"><br>Note: unlike Social Tables’ Engineers, our database refuses to work harder than 100% … so those blue peaks are signs of unhappy Social Tables users.</p>
-<p>Here are the same measurements after tuning:<br><img src="https://mail.google.com/mail/u/0/?ui=2&ik=4be6722e5b&view=fimg&th=1543543588cd7db8&attid=0.2&disp=emb&realattid=ii_1543524f5f5251a7&attbid=ANGjdJ9P9-aDB8by1WaHgUgiJJgzZpyFbE0NrlwLmQgfwbY7eBv6r2LzEr-QdHLlmRhkE_mOS9T6E2d7mrhGYn41D6Q-Q1ZCxp3UXVkgAuk_cYp3ZhJjDrRJ9mf_51s&sz=w1088-h500&ats=1494795285990&rm=1543543588cd7db8&zw&atsh=1"><br>Happier database === Happier users</p>
+<p>Orange = a measure of platform activity<br>Blue = a measure of how hard the database is working<br><br>Note: unlike Social Tables’ Engineers, our database refuses to work harder than 100% … so those blue peaks are signs of unhappy Social Tables users.</p>
+<p>Here are the same measurements after tuning:<br><br>Happier database === Happier users</p>
 
         
         </div>
@@ -504,7 +785,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/" data-id="cj2pfhdxh0001a1oudaqe7l6y" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/" data-id="cj66h9hj5000gaxoukko3ii4u" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -571,6 +852,8 @@
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/">Comments</a>
     
 
         </footer>
@@ -606,6 +889,11 @@
 
                         
                         
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Signed-Distance-Fields/">Signed Distance Fields</a>
+    </div>
+
                     </div>
                 
             </header>
@@ -635,7 +923,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/" data-id="cj2pfhdr10000a1ou6dhuqmh4" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/" data-id="cj66h9hje000haxou7gh06jx1" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -702,6 +990,8 @@
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/">Comments</a>
     
 
         </footer>
@@ -744,7 +1034,7 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>Recording this incredibly helpful query from <a href="https://stackoverflow.com/questions/22046390/still-seeing-lock-wait-timeouts-when-deleting-from-large-tables-using-primary-ke/22131972#22131972" target="_blank" rel="external">Bill Karwin’s post to SO</a><br>You can find the source query that’s blocking your DELETE by using the INFORMATION_SCHEMA.LOCK_WAITS and INNODB_TRX tables.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT r.trx_id waiting_trx_id,  &#10;       r.trx_mysql_thread_id waiting_thread,&#10;       r.trx_query waiting_query,&#10;       b.trx_id blocking_trx_id,&#10;       b.trx_mysql_thread_id blocking_thread,&#10;       b.trx_query blocking_query&#10;   FROM       information_schema.innodb_lock_waits w&#10;   INNER JOIN information_schema.innodb_trx b  ON  &#10;    b.trx_id = w.blocking_trx_id&#10;  INNER JOIN information_schema.innodb_trx r  ON  &#10;    r.trx_id = w.requesting_trx_id;</span><br></pre></td></tr></table></figure></p>
+            <p>Recording this incredibly helpful query from <a href="https://stackoverflow.com/questions/22046390/still-seeing-lock-wait-timeouts-when-deleting-from-large-tables-using-primary-ke/22131972#22131972" target="_blank" rel="external">Bill Karwin’s post to SO</a><br>You can find the source query that’s blocking your DELETE by using the INFORMATION_SCHEMA.LOCK_WAITS and INNODB_TRX tables.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">SELECT r.trx_id waiting_trx_id,  </div><div class="line">       r.trx_mysql_thread_id waiting_thread,</div><div class="line">       r.trx_query waiting_query,</div><div class="line">       b.trx_id blocking_trx_id,</div><div class="line">       b.trx_mysql_thread_id blocking_thread,</div><div class="line">       b.trx_query blocking_query</div><div class="line">   FROM       information_schema.innodb_lock_waits w</div><div class="line">   INNER JOIN information_schema.innodb_trx b  ON  </div><div class="line">    b.trx_id = w.blocking_trx_id</div><div class="line">  INNER JOIN information_schema.innodb_trx r  ON  </div><div class="line">    r.trx_id = w.requesting_trx_id;</div></pre></td></tr></table></figure></p>
 <p>See more information at <a href="http://dev.mysql.com/doc/refman/5.5/en/innodb-information-schema.html#innodb-information-schema-examples" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.5/en/innodb-information-schema.html#innodb-information-schema-examples</a>, under “Example 14.2 Identifying Blocking Transactions”.</p>
 
         
@@ -756,7 +1046,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/" data-id="cj2pcr0n80005jqouov67hzxw" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/" data-id="cj66h9hjr000jaxouef9r6skt" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -823,6 +1113,8 @@
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/">Comments</a>
     
 
         </footer>
@@ -878,7 +1170,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/" data-id="cj2pcr0na0006jqoud4mf4tq4" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/" data-id="cj66h9hk0000kaxoucej4zpil" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -945,6 +1237,8 @@
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/">Comments</a>
     
 
         </footer>
@@ -1021,7 +1315,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/" data-id="cj2pcr0nd0007jqoupvt4851k" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/" data-id="cj66h9hk9000laxoulvbt58m9" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1088,6 +1382,8 @@
 </script>
 
             
+    
+        <a href="http://ericsimmerman.com/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/">Comments</a>
     
 
         </footer>
@@ -1123,6 +1419,11 @@
 
                         
                         
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Blogger/">Blogger</a>, <a class="tag-link" href="/tags/Octopress/">Octopress</a>
+    </div>
+
                     </div>
                 
             </header>
@@ -1144,7 +1445,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/" data-id="cj2pcr0ng0008jqouv6ljkj3d" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/" data-id="cj66h9hkg000maxou95k23rox" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1212,255 +1513,7 @@
 
             
     
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-2013-10-29-plesk-11-upgrade-unable-to-run-perl" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/">Plesk 11 Upgrade Unable to run Perl scripts in cgi-bin</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/">
-            <time datetime="2013-10-29T04:00:00.000Z" itemprop="datePublished">2013-10-29</time>
-        </a>
-    </div>
-
-
-                        
-                        
-                    </div>
-                
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            
-After an upgrade to Plesk 11, my Perl scripts  located under cgi-bin/ for a specific domain were not executing properly. 
-	Requests generated HTTP response code 500 and my error logs showed the unhelpful message "Premature end of script headers"
-	I verified all permissions and even disabled / re-enabled cgi-bin support through Plesk which installs a test script under cgi-bin/test/test.cgi
-	Even the test script failed to run. It also generated the message "Premature end of script headers: test.cgi"
-	I eventually resolved the issue with two changes:<br><br>
-<ol>
-<li>The domain's root folder in /var/www/vhosts was not owned by the domain user. So I fixed that with a chown command.</li>
-<li>Within the Plesk control panel, I had to disable "Perl" support and enable "CGI" support to get my perl scripts with the ".pl" extension to run under cgi-bin</li>
-</ol>
-
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ericsimmerman.com/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/" data-id="cj2pcr0nj0009jqouf7hxqq7i" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-2013-04-29-using-istat-2x-on-mountain-lion" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/">Using iStat 2.x on Mountain Lion</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/">
-            <time datetime="2013-04-29T04:00:00.000Z" itemprop="datePublished">2013-04-29</time>
-        </a>
-    </div>
-
-
-                        
-                        
-                    </div>
-                
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            
-<div class="post">
-Shawn Hooton wrote a piece on <a href="http://codingogre.wordpress.com/2011/09/12/fix-istat-menus-version-2-to-work-with-os-x-lion/" target="_blank" rel="external">how to use iStat 2.x on Mountain Lion</a> that I've used several times at this point. <a href="http://codingogre.wordpress.com/2011/09/12/fix-istat-menus-version-2-to-work-with-os-x-lion/" target="_blank" rel="external">Linking to it here </a>for posterity.</div>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ericsimmerman.com/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/" data-id="cj2pcr0nl000ajqou5po1errx" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
+        <a href="http://ericsimmerman.com/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/">Comments</a>
     
 
         </footer>
@@ -1487,8 +1540,26 @@ Shawn Hooton wrote a piece on <a href="http://codingogre.wordpress.com/2011/09/1
                         
                         <div class="item-inner">
                             <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/05/11/2017-01-23-Social-Tables-Retrospective/" class="title">Social Tables Retrospective</a></p>
-                            <p class="item-date"><time datetime="2017-05-11T15:29:10.000Z" itemprop="datePublished">2017-05-11</time></p>
+                            <p class="item-title"><a href="/2017/05/18/2017-05-01-setting-up-bastion-host-aws/" class="title">Setting up a Bastion host on AWS</a></p>
+                            <p class="item-date"><time datetime="2017-05-18T21:01:41.000Z" itemprop="datePublished">2017-05-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/05/16/2017-05-16-aws-lambda-firewall/" class="title">Knock first firewall for AWS Security Groups</a></p>
+                            <p class="item-date"><time datetime="2017-05-17T02:21:53.000Z" itemprop="datePublished">2017-05-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/01/23/2017-01-23-Social-Tables-Retrospective/" class="title">Social Tables Retrospective</a></p>
+                            <p class="item-date"><time datetime="2017-01-23T16:29:10.000Z" itemprop="datePublished">2017-01-23</time></p>
                         </div>
                     </li>
                 
@@ -1510,50 +1581,39 @@ Shawn Hooton wrote a piece on <a href="http://codingogre.wordpress.com/2011/09/1
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/" class="title">Explaining SDF to suits</a></p>
-                            <p class="item-date"><time datetime="2016-04-06T23:18:04.000Z" itemprop="datePublished">2016-04-06</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/" class="title">MySQL Identifying Blocking Transactions</a></p>
-                            <p class="item-date"><time datetime="2015-08-10T16:29:15.000Z" itemprop="datePublished">2015-08-10</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
 
     
         
-    <div class="widget-wrap">
-        <h3 class="widget-title">categories</h3>
-        <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iso83bstockoptions/">iso83bstockoptions</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/hibernate/">hibernate</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/hibernate/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/httpclient/">httpclient</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/httpclient/mindtouch/">mindtouch</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/">macintosh</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/snowleopard/">snowleopard</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/snowleopard/eclipse/">eclipse</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/macintosh/snowleopard/eclipse/subversive/">subversive</a><span class="category-list-count">1</span></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/softwaredevelopment/dbunit/">dbunit</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/softwaredevelopment/spring/">spring</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/ubuntu/">ubuntu</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/">macintosh</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/networks/">networks</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/macintosh/synergy/">synergy</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/networks/">networks</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/openlaszlo/">openlaszlo</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/openlaszlo/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/openlaszlo/softwaredevelopment/mathml/">mathml</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/">ruby</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/softwaredevelopment/php/">php</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/scriptaculous/">scriptaculous</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/scriptaculous/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/scriptaculous/softwaredevelopment/jquery/">jquery</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/">softwaredevelopment</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/eclipse/">eclipse</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/eclipse/subversive/">subversive</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/gnucash/">gnucash</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/gnucash/moneydance/">moneydance</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/gnucash/moneydance/perl/">perl</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/keepassx/">keepassx</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/php/">php</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/php/cerberus/">cerberus</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/softwaredevelopment/vpn/">vpn</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/">ubuntu</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ubuntu/synergy/">synergy</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/vpn/">vpn</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/vpn/ubuntu/">ubuntu</a><span class="category-list-count">1</span></li></ul></li></ul>
-        </div>
-    </div>
-
     
         
     <div class="widget-wrap">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">January 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">October 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/06/">June 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/05/">May 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/10/">October 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/06/">June 2008</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/10/">October 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/01/">January 2006</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">August 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">March 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">January 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">November 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">October 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/06/">June 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/05/">May 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/02/">February 2009</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/01/">January 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/10/">October 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/09/">September 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/06/">June 2008</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/05/">May 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/01/">January 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/10/">October 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/01/">January 2006</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
     
         
+    <div class="widget-wrap">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/">AWS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS-API-Gateway/">AWS API Gateway</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS-lambda/">AWS lambda</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blogger/">Blogger</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Octopress/">Octopress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Signed-Distance-Fields/">Signed Distance Fields</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bastion/">bastion</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cerberus/">cerberus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dbunit/">dbunit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gnucash/">gnucash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hibernate/">hibernate</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/httpclient/">httpclient</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iso83bstockoptions/">iso83bstockoptions</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jumphost/">jumphost</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keepassx/">keepassx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macintosh/">macintosh</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mathml/">mathml</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mindtouch/">mindtouch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/moneydance/">moneydance</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/networks/">networks</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openlaszlo/">openlaszlo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perl/">perl</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plesk/">plesk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/query-tuning/">query tuning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">ruby</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scriptaculous/">scriptaculous</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/snowleopard/">snowleopard</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/softwaredevelopment/">softwaredevelopment</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subversive/">subversive</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/synergy/">synergy</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/">vpn</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
     
         
+    <div class="widget-wrap">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/AWS/" style="font-size: 13.33px;">AWS</a> <a href="/tags/AWS-API-Gateway/" style="font-size: 10px;">AWS API Gateway</a> <a href="/tags/AWS-lambda/" style="font-size: 10px;">AWS lambda</a> <a href="/tags/Blogger/" style="font-size: 10px;">Blogger</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Octopress/" style="font-size: 10px;">Octopress</a> <a href="/tags/Signed-Distance-Fields/" style="font-size: 10px;">Signed Distance Fields</a> <a href="/tags/bastion/" style="font-size: 11.67px;">bastion</a> <a href="/tags/cerberus/" style="font-size: 10px;">cerberus</a> <a href="/tags/dbunit/" style="font-size: 10px;">dbunit</a> <a href="/tags/eclipse/" style="font-size: 13.33px;">eclipse</a> <a href="/tags/gnucash/" style="font-size: 10px;">gnucash</a> <a href="/tags/hibernate/" style="font-size: 11.67px;">hibernate</a> <a href="/tags/httpclient/" style="font-size: 10px;">httpclient</a> <a href="/tags/iso83bstockoptions/" style="font-size: 10px;">iso83bstockoptions</a> <a href="/tags/java/" style="font-size: 18.33px;">java</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/jumphost/" style="font-size: 11.67px;">jumphost</a> <a href="/tags/keepassx/" style="font-size: 10px;">keepassx</a> <a href="/tags/macintosh/" style="font-size: 16.67px;">macintosh</a> <a href="/tags/mathml/" style="font-size: 10px;">mathml</a> <a href="/tags/mindtouch/" style="font-size: 10px;">mindtouch</a> <a href="/tags/moneydance/" style="font-size: 10px;">moneydance</a> <a href="/tags/networks/" style="font-size: 11.67px;">networks</a> <a href="/tags/openlaszlo/" style="font-size: 10px;">openlaszlo</a> <a href="/tags/perl/" style="font-size: 11.67px;">perl</a> <a href="/tags/php/" style="font-size: 11.67px;">php</a> <a href="/tags/plesk/" style="font-size: 10px;">plesk</a> <a href="/tags/query-tuning/" style="font-size: 10px;">query tuning</a> <a href="/tags/ruby/" style="font-size: 10px;">ruby</a> <a href="/tags/scriptaculous/" style="font-size: 10px;">scriptaculous</a> <a href="/tags/snowleopard/" style="font-size: 11.67px;">snowleopard</a> <a href="/tags/softwaredevelopment/" style="font-size: 20px;">softwaredevelopment</a> <a href="/tags/spring/" style="font-size: 11.67px;">spring</a> <a href="/tags/subversive/" style="font-size: 11.67px;">subversive</a> <a href="/tags/synergy/" style="font-size: 13.33px;">synergy</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/vpn/" style="font-size: 11.67px;">vpn</a>
+        </div>
+    </div>
+
     
         
     <div class="widget-wrap widget-list">
@@ -1584,14 +1644,29 @@ Shawn Hooton wrote a piece on <a href="http://codingogre.wordpress.com/2011/09/1
     </div>
 </footer>
         
+    
+    <script>
+    var disqus_config = function () {
+        
+        this.page.identifier = 'undefined';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'ericsimmermancom' + '.disqus.com/count.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
 
     
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
     
 
 
 <!-- Custom Scripts -->
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="/js/main.js"></script>
 
     </div>
 </body>

@@ -1,40 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  
+<search> 
   
     
     <entry>
+      <title><![CDATA[Setting up a Bastion host on AWS]]></title>
+      <url>/2017/05/18/2017-05-01-setting-up-bastion-host-aws/</url>
+      <content type="html"><![CDATA[<p>When setting up my latest development environment at AWS, I wanted to deploy all EC2 services on a private VPC and simply route all traffic to them through a Bastion host (aka jump host). AWS maintains a an <a href="http://docs.aws.amazon.com/quickstart/latest/linux-bastion/welcome.html" target="_blank" rel="external">excellent CloudFormation quickstart guide &amp; template here</a> and it’s what I used to get started. After completing that guide I put a new entry for the Bastion host in my ssh config like so:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Host bastion</div><div class="line">  Hostname ec2-XX-XXX-XXX-XXX.compute-1.amazonaws.com</div><div class="line">  User ec2-user</div><div class="line">  IdentityFile ~/path/to/your/ssh-key.pem</div><div class="line">  AddKeysToAgent yes</div><div class="line">  UseKeychain yes</div></pre></td></tr></table></figure></p>
+<p>Those last two lines are optional - but I like to <a href="http://www.openssh.com/txt/release-7.2" target="_blank" rel="external">leverage the Keychain on my MacBookPro</a> for storing keys and their respective passphrases. Accepting the host key into your known_hosts file can avoid some pain going forward, so I recommend connecting directly to the bastion before continuing.</p>
+<p>To test my setup, I launched a EC2 instance in my private VPC and configured it in my ssh config like so:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Host 10.100.*.*</div><div class="line">  ProxyCommand ssh ec2-user@bastion -W %h:%p  </div><div class="line">  User ec2-user</div><div class="line">  IdentityFile ~/path/to/your/ssh-key.pem</div><div class="line">  AddKeysToAgent yes</div><div class="line">  UseKeychain yes</div></pre></td></tr></table></figure></p>
+<p>The magic happens on the second line with the ProxyCommand instructing SSH to jump through Bastion to route to any of the private IP addresses used in my development environment VPC. Unfortunately, my first attempt to connect failed. I poked around in the Bastion’s SSHD config and realized that the CloudFront template was so hardened that it wasn’t going to support the transparent sessions I wanted. I needed to modify /etc/ssh/sshd_config and add the following just below the PAM section:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">PermitOpen any</div><div class="line">AllowTCPForwarding yes</div></pre></td></tr></table></figure></p>
+<p>After making the change be certain to restart the sshd service on Bastion.</p>
+<p>Part of the beauty of the CloudFormation design is that it uses an AutoScaling group to automatically tear down unresponsive Bastions and spin up replacements - even adapting to availability zone issues. When that happens the replacement Bastion will be configured with template defaults, so to ensure my sshd_config change would survive a failover, I copied the LaunchConfig and edited the user data to include the following:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">perl -pi -0 -w -e &apos;s/UsePAM yes/UsePam yes\n\n# Added by ets to support transparent pass through\nPermitOpen any\nAllowTCPForwarding yes/&apos; sshd_config</div></pre></td></tr></table></figure></p>
+<p>Then I replaced the currently configured LaunchConfig on my AutoScaling group with my copy.</p>
+<p>Now simply asking SSH to connect to my new services in the private VPC worked transparently!<br>To make session more efficient using this type of proxy, I added the following to my Bastion host entry in ssh config:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ControlPath ~/.ssh/cm-%r@%h:%p</div><div class="line">ControlMaster auto</div><div class="line">ControlPersist 10m</div></pre></td></tr></table></figure></p>
+<p>If you’re an <a href="https://www.ansible.com/" target="_blank" rel="external">ansible</a> fan like me, you can take advantage of that same technique with a change to ansible.cfg:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh_args = -o ControlMaster=auto -o ControlPersist=30m</div><div class="line">control_path = ~/.ssh/ansible-%%r@%%h:%%p</div></pre></td></tr></table></figure></p>
+<p>If you’re curious how to further protect your Bastion host with a whitelist for port 22 while also supporting users who are behind dynamic IPs then you’ll want to <a href="./2017-05-16-aws-lambda-firewall.html">check out my aws-lambda-firewall project</a>.</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> AWS </tag>
+            
+            <tag> bastion </tag>
+            
+            <tag> jumphost </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Knock first firewall for AWS Security Groups]]></title>
+      <url>/2017/05/16/2017-05-16-aws-lambda-firewall/</url>
+      <content type="html"><![CDATA[<p>I recently <a href="./2017-05-01-setting-up-bastion-host-aws.html">setup a Bastion host</a> to secure a development environment on AWS. The Bastion only exposes port 22 for SSH and I wanted to restrict access to a whitelist of authorized IP addresses rather than leave port 22 open to the internet. Further - I wanted to restrict 443 and 80 inbound to the development environment so that only authorized users/developers could access the pre-release builds deployed there.</p>
+<p>But I and others on my team switch IP addresses often and don’t want to hassle with manual manipulation of AWS Security Groups each time I move networks in meatspace. So I threw together <a href="https://github.com/ets/aws-lambda-firewall" target="_blank" rel="external">a “knock for access” firewall using API Gateway &amp; lambda</a> to conveniently add and expire authorized IP addresses on the applicable Security Groups. Enjoy!</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> AWS </tag>
+            
+            <tag> AWS lambda </tag>
+            
+            <tag> AWS API Gateway </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Social Tables Retrospective]]></title>
-      <url>http://ericsimmerman.com/2017/05/11/2017-01-23-Social-Tables-Retrospective/</url>
+      <url>/2017/01/23/2017-01-23-Social-Tables-Retrospective/</url>
       <content type="html"><![CDATA[<p>My last post was over a year and a half ago - just after I joined an interesting <a href="https://www.bvp.com/" target="_blank" rel="external">Bessemer Ventures</a> backed firm in the Hospitality sector called <a href="https://www.socialtables.com" target="_blank" rel="external">Social Tables</a>.<br>My role here has been 95% people / 5% tech and always intense. I’m retroactively posting some of the internal content I circulated as the technology leader at Social Tables - mostly high-level explanations of what my team was up to at the time.</p>
 <p>It’s been a fun ride with unique challenges and <a href="https://healthprize.com/about-us/press-releases/healthprize-technologies-announces-new-chief-technology-officer/" target="_blank" rel="external">as I move on to my next post</a>, I wanted to capture a few takeaways for posterity:</p>
 <ul>
-<li><strong>Don’t rewrite.</strong> Just don’t. While I certainly <a href="https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/" target="_blank" rel="external">agree with what Joel says about this</a>, I’ll add one more point of support - that a rewrite is a fight on two fronts. It’s up against the formidable foes of <a href="https://smile.amazon.com/Who-Moved-My-Cheese-Amazing/dp/0399144463" target="_blank" rel="external">customer adoption of a new thing</a> and the golden project phenomenon - where a golden (too big to fail) project’s scope continually increases without bound.</li>
+<li><strong>Avoid greenfield rewrites of established applications.</strong> Specifics may warrant a true rewrite - but recognize the extreme risk to all involved if that’s the selected path. While I certainly <a href="https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/" target="_blank" rel="external">agree with what Joel says about this here</a>, I’ll add one more point of support - that a rewrite is a fight on two fronts. It’s up against the formidable foes of <a href="https://smile.amazon.com/Who-Moved-My-Cheese-Amazing/dp/0399144463" target="_blank" rel="external">customer adoption of a new thing</a> and the golden project phenomenon - where a golden (too big to fail) project’s scope continually increases without bound.</li>
 <li><strong>Hire for squads and fire quickly on non-fit.</strong> My worst HR calls at Social Tables involved attempts to reassign an employee to a different team in an attempt to establish fit. This is especially difficult where the employee in question was inherited as opposed to hired under my watch. There’s a strong desire to give the inherited employee multiple chances to demonstrate fit. Don’t do it - if the employee is not a good enough for the first team she joins (or is assigned to) then do her and the rest of the team a favor - cut her loose with dignity. Such an evaluation might rightly not be considered fair - c’est la vie.</li>
 <li><strong>Adopt 2-3 cutting-edge technologies, but no more.</strong> This worked really well for us - especially on the recruiting tip. Our best hires came through our broadcast of niche (at the time) tech such as WebGL, React, and RethinkDB. But it’s a double-edged sword. Our worst tech adoption failures came from naive pushes into Falcor, Dynamo, and Horizon.</li>
 </ul>
 <p>Onward &amp; Upward!</p>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> AWS </tag>
+            
+            <tag> bastion </tag>
+            
+            <tag> jumphost </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Explaining Docker to suits]]></title>
-      <url>http://ericsimmerman.com/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/</url>
+      <url>/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/</url>
       <content type="html"><![CDATA[<p>I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.</p>
 <hr>
 <p>What’s Docker you say? Glad you asked…</p>
 <h2 id="What’s-Docker"><a href="#What’s-Docker" class="headerlink" title="What’s Docker?"></a>What’s Docker?</h2><p>Docker’s a technology that allows us to wrap our applications &amp; services as self-contained deliverables that are isolated from the host operating system upon which they are deployed.</p>
 <h2 id="What’s-Docker-…-in-English-preferably-with-pictures"><a href="#What’s-Docker-…-in-English-preferably-with-pictures" class="headerlink" title="What’s Docker … in English (preferably with pictures)?"></a>What’s Docker … in English (preferably with pictures)?</h2><p>So…visualize a long-haul shipping container.<br><img style="width: 300px;" src="https://1.bp.blogspot.com/_AvH7DyWzLAw/TOxzUtSAAFI/AAAAAAAAAI0/Xr5Kw8idq14/s1600/shipping_container.jpg"></p>
 <p>Appreciate how much easier it makes moving cargo between ship, train, and truck.</p>
-<p><img style="width: 300px;" src="https://ci4.googleusercontent.com/proxy/7IF86okF1edMCaJtAFquqvc2GGEp1yFJCsFxWSpaQ762OX2jELXauoZ5RtplNVjsghrOgg974OOX8FJCDIpJAmENoWQtA4kgHyUAwhas2wgpdaHFYWjldnEEZbE=s0-d-e1-ft#http://freightraters.com/wp-content/uploads/2015/12/Container-Ship.jpg"><br><img style="width: 300px;" src="https://ci3.googleusercontent.com/proxy/62RnISrdBXn6Zcvl319DEyXAEhGSY-W2VfjDklsIMxc4zzmwhJenwHdu64J5Ya8CIh9znArXrtenXxBmQAU1_Bzh4pk1cuU=s0-d-e1-ft#http://truck-photos.net.s3.amazonaws.com/2382.jpg"><br><img style="width: 300px;" src="https://ci3.googleusercontent.com/proxy/iS-4s1QGtOk3ihosATc8r0HeJxZbhiRDbOOr6F6cb0C0_0Wkl4iiK9GZgKX1MxrsZ6--at9bX67L8wRZJ_vMCAWgRCB_OByzFXpKwPyXMxKvPnvIWKaSSF2lHE2wYJpR8A8N5DTgmxAbP_KjLotm9lHZzqJXV4x3OhLdU6ybhQ=s0-d-e1-ft#https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Cajon_Intermodal.jpg/300px-Cajon_Intermodal.jpg"></p>
+<p><img style="width: 300px;" src="http://freightraters.com/wp-content/uploads/2015/12/Container-Ship.jpg"><br><img style="width: 300px;" src="http://truck-photos.net.s3.amazonaws.com/2382.jpg"><br><img style="width: 300px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Cajon_Intermodal.jpg/300px-Cajon_Intermodal.jpg"></p>
 <p>In a similar way, Docker helps us package our software into shipping containers and we can then run that software unchanged on a laptop, a dedicated server, or a cloud platform.</p>
-<h2 id="So-that’s-a-good-thing"><a href="#So-that’s-a-good-thing" class="headerlink" title="So that’s a good thing?"></a>So that’s a good thing?</h2><p>Yes.  Plus Docker’s mascot is a cute whale.<br><img style="width: 300px;" alt="Who doesn't like a cute whale?" src="https://ci3.googleusercontent.com/proxy/EX95kH7NTNZ0lvyz3Q699LzNB7B_VC7USLrbwsKVJ79oZrKXlTvt9mNEc7HH2y_Cdfbw9u9fmIotkMRv3p91RrTiVBQqH1MAkGl1e4uY1uIIbHH7KLZtQ1Vz9Ype=s0-d-e1-ft#https://blog.docker.com/wp-content/uploads/2015/07/moby_art-300x189.png"></p>
+<h2 id="So-that’s-a-good-thing"><a href="#So-that’s-a-good-thing" class="headerlink" title="So that’s a good thing?"></a>So that’s a good thing?</h2><p>Yes.  Plus Docker’s mascot is a cute whale.<br><img style="width: 300px;" alt="Who doesn't like a cute whale?" src="https://www.docker.com/sites/default/files/Whale%20Logo332_5.png"></p>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Explaining Query Tuning to suits]]></title>
-      <url>http://ericsimmerman.com/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/</url>
+      <url>/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/</url>
       <content type="html"><![CDATA[<p>I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.</p>
 <hr>
 <p>Today we’re going to talk briefly about query tuning - a black art in the craft of software engineering that <a href="http://dl.acm.org/citation.cfm?doid=582095.582099" target="_blank" rel="external">predates the Internet</a> but is still incredibly relevant. I don’t mean relevant in the “you should really pay attention to national politics” sense.  I mean relevant as in “this can (when done poorly) wreck your whole day.”</p>
@@ -42,14 +109,22 @@
 <p>Since database structures are complex, in most cases, and especially for not-very-simple queries, the needed data for a query can be collected from a database by accessing it in different ways, through different data-structures, and in different orders. Each different way typically requires different processing time. Processing times of the same query may have large variance, from a fraction of a second to hours, depending on the way selected. The purpose of query tuning, is to find the way to process a given query in minimum time.</p>
 <h2 id="What’s-query-tuning-…-in-English-preferably-with-pictures-and-how-can-it-wreck-my-whole-day"><a href="#What’s-query-tuning-…-in-English-preferably-with-pictures-and-how-can-it-wreck-my-whole-day" class="headerlink" title="What’s query tuning … in English (preferably with pictures) and how can it wreck my whole day?"></a>What’s query tuning … in English (preferably with pictures) and how can it wreck my whole day?</h2><p>Query tuning is an effort to minimize the work performed while answering a query. If done poorly, database queries execute slowly and your application responds slowly. When your application responds slowly bad things happen - like Mary posting a screenshot to #devops (aka your whole day is wrecked).</p>
 <p>Last week, Michael Dumont spent some time tuning several queries in our platform and his visuals of that effort are worth &gt; 1,000 words:</p>
-<p>Orange = a measure of platform activity<br>Blue = a measure of how hard the database is working<br><img src="https://mail.google.com/mail/u/0/?ui=2&ik=4be6722e5b&view=fimg&th=1543543588cd7db8&attid=0.1&disp=emb&realattid=ii_154352436974512a&attbid=ANGjdJ_8dUL3vkw5EmPb00yEY5WrUywqx_yu5mzd7WXNnUezIR178a1eOiLvkBKVrtIO22Eenqc35sta6KV7b3DIsgetemRL_s9ewy7McKioOclVTD8AOGQbg796l14&sz=w1088-h506&ats=1494795285989&rm=1543543588cd7db8&zw&atsh=1"><br>Note: unlike Social Tables’ Engineers, our database refuses to work harder than 100% … so those blue peaks are signs of unhappy Social Tables users.</p>
-<p>Here are the same measurements after tuning:<br><img src="https://mail.google.com/mail/u/0/?ui=2&ik=4be6722e5b&view=fimg&th=1543543588cd7db8&attid=0.2&disp=emb&realattid=ii_1543524f5f5251a7&attbid=ANGjdJ9P9-aDB8by1WaHgUgiJJgzZpyFbE0NrlwLmQgfwbY7eBv6r2LzEr-QdHLlmRhkE_mOS9T6E2d7mrhGYn41D6Q-Q1ZCxp3UXVkgAuk_cYp3ZhJjDrRJ9mf_51s&sz=w1088-h500&ats=1494795285990&rm=1543543588cd7db8&zw&atsh=1"><br>Happier database === Happier users</p>
+<p>Orange = a measure of platform activity<br>Blue = a measure of how hard the database is working<br><br>Note: unlike Social Tables’ Engineers, our database refuses to work harder than 100% … so those blue peaks are signs of unhappy Social Tables users.</p>
+<p>Here are the same measurements after tuning:<br><br>Happier database === Happier users</p>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> query tuning </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Explaining SDF to suits]]></title>
-      <url>http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/</url>
+      <url>/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/</url>
       <content type="html"><![CDATA[<p>I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.</p>
 <hr>
 <p>We’ve got a special subject this issue to take the edge off that geek-withdrawal : “Drawing Text with Signed Distance Fields” or using SDF text rendering for those in the know.</p>
@@ -63,28 +138,40 @@
 <p>SDF is a technique we’ve just begun using to more efficiently render text in Venue Mapper 3 - it performs better (app is faster) and looks prettier than the techniques we’ve used previously.</p>
 <p>Here’s a <a href="https://youtu.be/8yt7kSftNU4" target="_blank" rel="external">movie of SDF in action in VM3 courtesy of our own Van Drunen</a>.</p>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> Signed Distance Fields </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[MySQL Identifying Blocking Transactions]]></title>
-      <url>http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/</url>
-      <content type="html"><![CDATA[<p>Recording this incredibly helpful query from <a href="https://stackoverflow.com/questions/22046390/still-seeing-lock-wait-timeouts-when-deleting-from-large-tables-using-primary-ke/22131972#22131972" target="_blank" rel="external">Bill Karwin’s post to SO</a><br>You can find the source query that’s blocking your DELETE by using the INFORMATION_SCHEMA.LOCK_WAITS and INNODB_TRX tables.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT r.trx_id waiting_trx_id,  &#10;       r.trx_mysql_thread_id waiting_thread,&#10;       r.trx_query waiting_query,&#10;       b.trx_id blocking_trx_id,&#10;       b.trx_mysql_thread_id blocking_thread,&#10;       b.trx_query blocking_query&#10;   FROM       information_schema.innodb_lock_waits w&#10;   INNER JOIN information_schema.innodb_trx b  ON  &#10;    b.trx_id = w.blocking_trx_id&#10;  INNER JOIN information_schema.innodb_trx r  ON  &#10;    r.trx_id = w.requesting_trx_id;</span><br></pre></td></tr></table></figure></p>
+      <url>/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/</url>
+      <content type="html"><![CDATA[<p>Recording this incredibly helpful query from <a href="https://stackoverflow.com/questions/22046390/still-seeing-lock-wait-timeouts-when-deleting-from-large-tables-using-primary-ke/22131972#22131972" target="_blank" rel="external">Bill Karwin’s post to SO</a><br>You can find the source query that’s blocking your DELETE by using the INFORMATION_SCHEMA.LOCK_WAITS and INNODB_TRX tables.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">SELECT r.trx_id waiting_trx_id,  </div><div class="line">       r.trx_mysql_thread_id waiting_thread,</div><div class="line">       r.trx_query waiting_query,</div><div class="line">       b.trx_id blocking_trx_id,</div><div class="line">       b.trx_mysql_thread_id blocking_thread,</div><div class="line">       b.trx_query blocking_query</div><div class="line">   FROM       information_schema.innodb_lock_waits w</div><div class="line">   INNER JOIN information_schema.innodb_trx b  ON  </div><div class="line">    b.trx_id = w.blocking_trx_id</div><div class="line">  INNER JOIN information_schema.innodb_trx r  ON  </div><div class="line">    r.trx_id = w.requesting_trx_id;</div></pre></td></tr></table></figure></p>
 <p>See more information at <a href="http://dev.mysql.com/doc/refman/5.5/en/innodb-information-schema.html#innodb-information-schema-examples" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.5/en/innodb-information-schema.html#innodb-information-schema-examples</a>, under “Example 14.2 Identifying Blocking Transactions”.</p>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Fix YAML parsing errors in WebGen]]></title>
-      <url>http://ericsimmerman.com/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/</url>
+      <url>/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/</url>
       <content type="html"><![CDATA[<p>After a clean install of Mac OS X Yosemite I’ve had to reinstall much of my development environment. This process was mostly beneficial as I moved to the latest and greatest tooling but several of my static websites leverage the prior major version of <a href="http://webgen.gettalong.org/index.html" target="_blank" rel="external">Thomas Leitner’s Webgen</a> and getting version 0.5.x up and running has been a challenge.  </p>
 <p>After working through several Ruby &amp; Gem issues I ran into a particularly opaque error when executing webgen on a project that previously generated without issue: “(<unknown>): found character that cannot start any token while scanning for the next token”</unknown></p>
 <p>This error is usually a sign that your content contains tab characters but I’d already ensured that wasn’t the case.  Instead of diving deep into the workings of the libraries at play I was able to use <a href="https://groups.google.com/d/msg/webgen-users/wYYWrwljJ1Y/Q8G4SzG_lEcJ" target="_blank" rel="external">this post from Thomas to resolve the issue</a> by reverting to the syck TAML implementation instead of its replacement.  Problem solved!</p>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Resolving H2 table lock during JUnitRunner test]]></title>
-      <url>http://ericsimmerman.com/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/</url>
+      <url>/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/</url>
       <content type="html"><![CDATA[<p>After adding a new test to a project that uses Play Framework 1.2.X and thus leverages H2 for Junit functional testing, I began encountering a table lock during setup() when the framework was attempting to delete the contents of an entity table.</p>
 <p>I initially blamed the lock on bad model design and wasted a significant amount of time tweaking JPA entity relationships and corresponding CRUD operations in an attempt to resolve it. I ultimately resolved the issue after realizing it was in fact caused by a badly designed test.</p>
 <p>I was directly modifying entities within the transaction that wrapped my functional test and then emulating API calls that relied upon the state of those same entities. Long story short, my test was attempting something similar to this:</p>
@@ -110,23 +197,35 @@
 </code></pre><p>In my contrived example above, after Junit runs atest() and just before running btest() - it will call setup() and attempt to reset the database in a separate transaction. But, atest() claimed a lock for insert on User and in H2 that locks the entire table by default thus setup() will be unable to reset the User table and will fail with a lock timeout.</p>
 <p>To resolve this - you’ll either need to redesign your test to avoid manipulating entities directly in the testcase or run each test in a distinct transaction. </p>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Moved again ... this time to github.io]]></title>
-      <url>http://ericsimmerman.com/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/</url>
+      <url>/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/</url>
       <content type="html"><![CDATA[<p>Blogger was just too ugly &amp; clumsy so I used a fork of <a href="https://gist.github.com/juniorz/1564581" target="_blank" rel="external">juniorz’s import.rb</a> to migrate from blogger to Octopress. Here’s my fork:</p>
 <script src="https://gist.github.com/ets/7662898.js"></script>
 
 <p>I found <a href="https://gist.github.com/MeetDom/1713910" target="_blank" rel="external">MeetDom’s gist helpful while installing all the dependencies</a> required by the import script.</p>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> Blogger </tag>
+            
+            <tag> Octopress </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Plesk 11 Upgrade Unable to run Perl scripts in cgi-bin]]></title>
-      <url>http://ericsimmerman.com/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/</url>
+      <url>/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/</url>
       <content type="html"><![CDATA[
-After an upgrade to Plesk 11, my Perl scripts  located under cgi-bin/ for a specific domain were not executing properly. 
+After an upgrade to Plesk 11, my Perl scripts  located under cgi-bin/ for a specific domain were not executing properly.
 	Requests generated HTTP response code 500 and my error logs showed the unhelpful message "Premature end of script headers"
 	I verified all permissions and even disabled / re-enabled cgi-bin support through Plesk which installs a test script under cgi-bin/test/test.cgi
 	Even the test script failed to run. It also generated the message "Premature end of script headers: test.cgi"
@@ -135,798 +234,1303 @@ After an upgrade to Plesk 11, my Perl scripts  located under cgi-bin/ for a spec
 <li>The domain's root folder in /var/www/vhosts was not owned by the domain user. So I fixed that with a chown command.</li>
 <li>Within the Plesk control panel, I had to disable "Perl" support and enable "CGI" support to get my perl scripts with the ".pl" extension to run under cgi-bin</li>
 </ol>
-
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> perl </tag>
+            
+            <tag> plesk </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Using iStat 2.x on Mountain Lion]]></title>
-      <url>http://ericsimmerman.com/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/</url>
+      <url>/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/</url>
       <content type="html"><![CDATA[
 <div class="post">
 Shawn Hooton wrote a piece on <a href="http://codingogre.wordpress.com/2011/09/12/fix-istat-menus-version-2-to-work-with-os-x-lion/" target="_blank" rel="external">how to use iStat 2.x on Mountain Lion</a> that I've used several times at this point. <a href="http://codingogre.wordpress.com/2011/09/12/fix-istat-menus-version-2-to-work-with-os-x-lion/" target="_blank" rel="external">Linking to it here </a>for posterity.</div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Moved to Blogger]]></title>
-      <url>http://ericsimmerman.com/2013/03/07/2013-03-07-moved-to-blogger/</url>
+      <url>/2013/03/07/2013-03-07-moved-to-blogger/</url>
       <content type="html"><![CDATA[
 <div class="post">
 I started this <a href="http://www.jroller.com/agileanswers/" target="_blank" rel="external">Agile Answers blog on jroller back in 2006</a> and I lost some of the older content in my move to Posterous. Sadly Twitter is killing Posterous so I've had to move again...this time to Google's Blogger. Alas - I've lost all the Posterous comments and a lot of formatting in the process. As if&nbsp;<a href="https://twitter.com/theSeanCook" target="_blank" rel="external">The Sean Cook</a>&nbsp;working there weren't reason enough, I now have one more reason to hate Twitter.<br><br><br></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Compressing MySQL client-server communication with Play Framework]]></title>
-      <url>http://ericsimmerman.com/2012/12/19/2012-12-19-compressing-mysql-client-server/</url>
+      <url>/2012/12/19/2012-12-19-compressing-mysql-client-server/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p><span> </span><a href="http://foldergrid.com" target="_blank" rel="external">FolderGrid</a> provides a RESTful api that often services requests where over 90% of the entire response time is spent pulling data from a MySQL instance. I was recently working to reduce overall response time for some long running transactions in that bucket.</p><p><span> </span>After optimizing my queries and my database caching - I looked at network transfer time from the dedicated MySQL server to the mysql client on the application server. &nbsp;Simply enabling MySQL zlib compression resulted in a 3x performance boost for many of the larger resultsets.&nbsp;</p><p><span> </span>To configure your Play Framework connection pool to enable MySQL client-server zlib compression, you'll need to use the explicitly defined "db.url" instead of the shortcut "db" configuration key. Your key should look something like this:</p><p>db.url=jdbc:mysql://remotehost/dbname?useUnicode=yes&amp;characterEncoding=UTF-8&amp;connectionCollation=utf8_general_ci&amp;useCompression=true</p><p>&nbsp;</p><p>&nbsp;</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[When not to front your application with nginx HttpProxyModule]]></title>
-      <url>http://ericsimmerman.com/2012/11/19/2012-11-19-when-not-to-front-your-application-with/</url>
+      <url>/2012/11/19/2012-11-19-when-not-to-front-your-application-with/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>Throwing nginx (or Apache or lighthttpd) in front of other application stacks is so common that we often don't think twice about the possible costs. This bit me over the weekend when I casually threw up nginx for SSL termination and configured HttpProxyModule to proxy to my Play Framework driven application.</p><p>I failed to heed the first section in the <a href="http://wiki.nginx.org/HttpProxyModule" target="_blank" rel="external">HttpProxyModule</a> docs. See that note about how "<strong>the entire client request will be buffered in nginx before being passed on to the backend proxied servers</strong>" ?</p><p>That's one note you are going to care about when you're handling large requests and can't figure out why your application is so slow to respond to them.</p><p>RTM&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Supporting multiple file upload runtimes with pupload inside ExtJS 4]]></title>
-      <url>http://ericsimmerman.com/2012/08/07/2012-08-07-supporting-multiple-file-upload/</url>
+      <url>/2012/08/07/2012-08-07-supporting-multiple-file-upload/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>The reference client I built for <a href="http://foldergrid.com/api/index.html" title="FolderGrid API" target="_blank" rel="external">FolderGrid's API </a>is a zero footprint web client created using <a href="http://www.sencha.com/products/extjs/" target="_blank" rel="external">ExtJS 4</a>. I wanted to support drag &amp; drop file uploads for advanced browsers but degrade nicely all the way back to IE6 for those poor lost souls stuck with tech from the last decade. So I integrated <a href="http://www.plupload.com/" target="_blank" rel="external">plupload</a> and bound the two together with some jquery glue.</p><p>The results are working well in production and <a href="https://bitbucket.org/ets/foldergrid-client-extjs/overview" title="FolderGrid Web Client" target="_blank" rel="external">the client itself is open &amp; licensed under GPL v3</a> per the terms of ExtJS 4. So if you are interested in copying &amp; extending - have at it.</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Automatically find trailing commas in your javascript project]]></title>
-      <url>http://ericsimmerman.com/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/</url>
+      <url>/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>These are simply updated instructions based upon <a href="http://www.amaxus.com/cms-blog/automatically-finding-javascript-errors-ie7" target="_blank" rel="external">the original Amaxus writeup here</a>.</p><ul><li>Install Rhino &nbsp;(I used "port install rhino")</li><li>Grab the <a href="https://raw.github.com/mikewest/jslint-utils/master/lib/rhinoed_jslint.js" target="_blank" rel="external">Rhinoized JSLint script here</a>.</li><li>Create a script named checkForJsErrors.sh with the following two lines:</li></ul><p>echo $1<br>rhino&nbsp;rhinoed_jslint.js $1 | fgrep -e 'Unexpected' --color=always&nbsp;</p><ul><li>Create an alias in your bashrc</li></ul><p></p><p>alias checkjs='find . -name '''*.js''' -exec ~/bin/checkForJsErrors.sh {} ;'</p><p><div>Now when you execuate that alias in your project's root directory - all of your .js files will be scanned for trailing commas.</div></p><p><div>You're welcome.</div></p><p>&nbsp;</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[orphanRemoval issues in Play Framework 'collection owner not associated with session']]></title>
-      <url>http://ericsimmerman.com/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/</url>
+      <url>/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>I was just burned by an issue in Play Framework's JPA support of orphanRemovals. The issue manifests as a "collection owner not associated with session" JPAException within Play Framework 1.2.x &nbsp;- it was supposed to be <a href="https://play.lighthouseapp.com/projects/57987/tickets/1503-nested-onetomany-relationships-with-orphanremoval-fails-to-commit" target="_blank" rel="external">addressed in 1.2.5 with this patch,</a> but I'm running 1.2.5 and am still running into it.</p><p>I didn't take the time to diagnose or file a report - for now I'm punting by restricting the use of 'orphanRemoval'.</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Cautionary tale regarding cloud security]]></title>
-      <url>http://ericsimmerman.com/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/</url>
+      <url>/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>My work with <a href="http://foldergrid.com" target="_blank" rel="external">FolderGrid</a> has included quite a few very interesting technical problems that have resulted in material for this blog.&nbsp;I just&nbsp;<a href="http://blog.foldergrid.com/2012/07/why-we-stopped&amp;hellip;cloud-services/" target="_blank" rel="external">posted an interesting read for anyone using cloud services</a>&nbsp;to store or transport sensitive data.&nbsp;</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Compiling Maven project with JNLP API 1.6+ on Mac OS X]]></title>
-      <url>http://ericsimmerman.com/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/</url>
+      <url>/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>To compile a project using JNLP API with Maven you'll need javaws.jar in the compile-time classpath. You'll find the jar under the lib folder of your JDK installation. Mine was here:</p><p>/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/javaws.jar</p><p>&nbsp;</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Resolving Spring Security ACL deadlock in MySQL]]></title>
-      <url>http://ericsimmerman.com/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/</url>
+      <url>/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>The default JDBCTemplate based implementation of Spring Security ACLs removes and recreates the entire ACL for each update. That requires both deletes and inserts into the same table within the same JPA transaction and is a recipe for deadlock when using the default MySQL transaction isolation level of REPEATABLE_READ.&nbsp;</p><p>Setting your transaction isolation level to READ_COMMITTED is a viable alternative to MySQL's default but be certain you are not using the default bin-log format of Statement as this is not compatible with READ_COMMITTED isolation. You'll need to use Mixed or Row level bin-log format instead.&nbsp;</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Great explanation of the 'The Infamous Loop Problem' in javascript]]></title>
-      <url>http://ericsimmerman.com/2012/05/21/2012-05-21-great-explanation-of-infamous-loop/</url>
+      <url>/2012/05/21/2012-05-21-great-explanation-of-infamous-loop/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>Thanks Robert Nyman for your <a href="http://robertnyman.com/2008/10/09/explaining-javascript-scope-and-closures/" target="_blank" rel="external">apparently timeless explanation of the Infamous Loop Problem</a>&nbsp;that caught me when declaring my callbacks to an asynchronous request tonight.</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[By popular demand ... my git-aware bash prompt]]></title>
-      <url>http://ericsimmerman.com/2012/02/16/2012-02-16-by-popular-demand-my-git-aware-bash/</url>
+      <url>/2012/02/16/2012-02-16-by-popular-demand-my-git-aware-bash/</url>
       <content type="html"><![CDATA[
 <div class="post">
 Pirated from a long forgotten place...apologies to the respective copyright holders. Just paste this in your .bashrc for git-aware goodness:<br><div class="gistLoad" data-id="1850712" id="gist-1850712">Loading ....</div><script src="https://raw.github.com/moski/gist-Blogger/master/public/gistLoader.js" type="text/javascript"></script></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Configure my Amazon EC2 instances to only accept traffic from the Elastic Load Balancer]]></title>
-      <url>http://ericsimmerman.com/2012/01/24/2012-01-24-configure-my-amazon-ec2-instances-to/</url>
+      <url>/2012/01/24/2012-01-24-configure-my-amazon-ec2-instances-to/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>The AWS&nbsp;Elastic Load Balancing FAQ has this very relevant question:</p><blockquote class="posterous_short_quote"><p>Can I configure my Amazon EC2 instances to only accept traffic from the Elastic Load Balancer?</p></blockquote><p>followed by an ever so helpful response:</p><blockquote class="posterous_short_quote"><p>Yes.</p></blockquote><p>Seriously - no links, no reference to documentation, nothing. With such a tremendous investment in infrastructure you'd think Amazon might spend a day or two on documentation...alas.</p><p>Insult to injury it's also not at all obvious what you need to do to configure your Security Group to support this very commonly desired configuration. I'm here to help.</p><p>Use the not-so-documented 'amazon-elb/amazon-elb-sg' Security Group name as the Inbound Source for your Security Group rule to filter on traffic coming from your AWS ELB. Enjoy!</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Resolving git-gc error on Mac]]></title>
-      <url>http://ericsimmerman.com/2012/01/19/2012-01-19-resolving-git-gc-error-on-mac/</url>
+      <url>/2012/01/19/2012-01-19-resolving-git-gc-error-on-mac/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>During today's maintenance run of git-gc on our Mac hosted repo I encountered screenfulls of nasty fatal error messages - but the last two were a clue to the root cause:</p><p></p><p>fatal: Unable to create temporary file: Too many open files<br>error: failed to run repack</p><p>This <a href="http://git.661346.n2.nabble.com/Intriguing-error-with-Git-1-6-3-1-Too-many-open-files-td7174697.html" target="_blank" rel="external">related post helped me</a> find a quick cure which involved simply bumping the ulimit up temporarily.</p><p># ulimit -n 10024<br>&gt; git gc</p><p>Easy fix for a potentially bad day.</p><p></p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Play framework on AWS]]></title>
-      <url>http://ericsimmerman.com/2012/01/08/2012-01-08-play-framework-on-aws/</url>
+      <url>/2012/01/08/2012-01-08-play-framework-on-aws/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>Steps I took to get a Play framework app up and running on a micro AWS instance running Ubuntu 11.10</p><ol><li>sudo add-apt-repository "deb <a href="http://archive.canonical.com/" target="_blank" rel="external">http://archive.canonical.com/</a> lucid partner"</li><li>sudo apt-get update</li><li>sudo apt-get install sun-java6-jdk unzip</li><li>wget <a href="http://download.playframework.org/releases/play-1.2.4.zip" target="_blank" rel="external">http://download.playframework.org/releases/play-1.2.4.zip</a></li><li>sudo unzip play-1.2.4.zip -d /usr/local/share/</li><li>install&nbsp;<a href="https://gist.github.com/1289753" target="_blank" rel="external">Dominik Dorn's startup script</a><ol><li>wget <a href="https://raw.github.com/gist/1290012/a31b1d079705ea7ccf6d1fdc866027b674e62841/playframework" target="_blank" rel="external">https://raw.github.com/gist/1290012/a31b1d079705ea7ccf6d1fdc866027b674e62841/...</a></li><li>sudo mv playframework /etc/init/</li><li>update the script with proper paths&nbsp;</li></ol></li><li>useradd username -g www-data -m -d /home/username&nbsp;-s /bin/bash</li><li>install your app</li><li>initctl start playframework</li></ol></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Install APC on CentOS 5.6]]></title>
-      <url>http://ericsimmerman.com/2012/01/05/2012-01-05-install-apc-on-centos-56/</url>
+      <url>/2012/01/05/2012-01-05-install-apc-on-centos-56/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <div>The following resolved a few gotchas I encountered installing APC on an old instance of CentOS 5.6</div><p><ol><li><span style="font-family:Verdana, Arial, Helvetica, sans-serif;background-color:#e6e6e6;font-size:small;">mount -o remount,exec /tmp</span></li><li><span style="font-family:Verdana, Arial, Helvetica, sans-serif;background-color:#e6e6e6;font-size:small;"><span style="color:#333333;font-family:Georgia, Bitstream Charter, serif;line-height:24px;background-color:#ffffff;">yum install pcre-devel</span></span></li><li><span style="font-family:Verdana, Arial, Helvetica, sans-serif;background-color:#e6e6e6;font-size:small;"><span style="color:#333333;font-family:Georgia, Bitstream Charter, serif;line-height:24px;background-color:#ffffff;">pecl install apc</span></span></li><li><span style="font-family:Verdana, Arial, Helvetica, sans-serif;background-color:#e6e6e6;font-size:small;"><span style="color:#333333;font-family:Georgia, Bitstream Charter, serif;line-height:24px;background-color:#ffffff;"><span style="color:#000000;font-family:Verdana, Arial, Helvetica, sans-serif;line-height:normal;background-color:#e6e6e6;">mount -o remount,noexec /tmp</span></span></span></li></ol></p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Loading Fixtures for FunctionalTest in Play Framework]]></title>
-      <url>http://ericsimmerman.com/2011/12/11/2011-12-11-loading-fixtures-for-functionaltest-in/</url>
+      <url>/2011/12/11/2011-12-11-loading-fixtures-for-functionaltest-in/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p></p><p>There are three possible gotchas with FunctionalTest on Play Framework 1.2.4:</p><ol><li>Ensure your db is configured for READ_UNCOMMITED transactions. See <a href="http://www.playframework.org/documentation/1.2.1/releasenotes-1.2&quot;" target="_blank" rel="external">the release notes for more</a>...</li><li>Make certain that you import junit's @Before and **NOT** play.mvc.Before</li><li>Load your Fixtures in a Job. See the example below.</li></ol><p></p><p>&nbsp;</p><p></p> <div class="gistLoad" data-id="1461398" id="gist-1461398">Loading ....</div><script src="https://raw.github.com/moski/gist-Blogger/master/public/gistLoader.js" type="text/javascript"></script></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[GAE price increases lead to a hard learned lesson regarding platform lockin]]></title>
-      <url>http://ericsimmerman.com/2011/11/14/2011-11-14-gae-price-increases-lead-to-hard/</url>
+      <url>/2011/11/14/2011-11-14-gae-price-increases-lead-to-hard/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>Google's <a href="http://www.informationweek.com/news/cloud-computing/platform/231600672" target="_blank" rel="external">pricing changes for GAE</a>&nbsp;have increased the cost of my two very small applications tenfold. &nbsp;<a href="https://plus.google.com/104961845171318028721/posts/DamjzZBVxd7" target="_blank" rel="external">I'm not alone</a>. As a result, I've dropped them to the <a href="https://groups.google.com/forum/#!topic/google-appengine/rSh8mgw2f3c" target="_blank" rel="external">free tier on GAE</a> - making them practically useless.&nbsp;So long GAE, I hardly knew thee...</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Secure file storage in the 'cloud']]></title>
-      <url>http://ericsimmerman.com/2011/11/05/2011-11-05-secure-file-storage-in-the/</url>
+      <url>/2011/11/05/2011-11-05-secure-file-storage-in-the/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>In my quest for the perfect sync for the relatively small set of sensitive files I want available from all my workstations I've tried several cloud based services: Dropbox, JungleDisk,&nbsp;Wuala, and Egnyte just to name a few.</p><p>Dropbox and JungleDisk both require custom-rolled workarounds (like using a <a href="http://www.truecrypt.org/" target="_blank" rel="external">TrueCrypt</a> volume) to keep sensitive files secured. Egnyt encrypts your data at rest but they use a common key which means you are reliant upon their business practices for data security. Wuala encrypts your data with a private key before transmitting it, but their client is quite cumbersome. I've found&nbsp;<a href="https://spideroak.com/download/referral/5f97e6c2cc2ab96167bc1ed3c92b9c09" target="_blank" rel="external">SpiderOak</a> to be the best fit for my needs.</p><ul><li>Native Mac client that starts automatically and runs quietly in the tray</li><li>Zero-knowledge encryption of all my files</li><li>Supports a smart folder sync&nbsp;</li><li>Free entry-level account with 2G of space</li></ul><p>&nbsp;</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Mac 10.6.5 Snow Leopard Server LDAP Bug]]></title>
-      <url>http://ericsimmerman.com/2011/10/17/2011-10-17-mac-1065-snow-leopard-server-ldap-bug/</url>
+      <url>/2011/10/17/2011-10-17-mac-1065-snow-leopard-server-ldap-bug/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <div class="posterous_bookmarklet_entry">      <div class="p_embed p_image_embed"><img alt="Media_httpwwwgcsdblog_hgwzg" height="176" src="http://ericsimmerman.files.wordpress.com/2011/10/media_httpwwwgcsdblog_hgwzg-scaled500.png?w=300" width="300"></div><div class="posterous_quote_citation">via <a href="http://www.gcsdblogs.org/roodhouse/?p=1926" target="_blank" rel="external">gcsdblogs.org</a></div>    <p>Many thanks to Roodhouse Tech Blog for pointing me in the right direction regarding an issue with Open Directory on my Mac Server after a certificate update.</p></div></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Listening to Sense.fm while they fix their domain registry]]></title>
-      <url>http://ericsimmerman.com/2011/10/05/2011-10-05-listening-to-sensefm-while-they-fix/</url>
+      <url>/2011/10/05/2011-10-05-listening-to-sensefm-while-they-fix/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>Sense.fm's <a href="http://whois.domaintools.com/sense.fm" target="_blank" rel="external">domain registration expired Sept. 16th</a> - oops. That makes their website and streams inaccessible through normal means until they are able to resolve the registry issues.</p><p>The good news is that they are continuing to broadcast so if you simply bypass the DNS network you can get around the issue and get your Sense.fm fix.</p><p>The easiest way to work around the issue is to add an entry to your hosts file. A quick dig of their nameservers (ns1.webpartnersworldwide.com) shows us the IP address we need is&nbsp;174.121.134.99.</p><p>So we want to add the following to our hosts file:</p><blockquote class="posterous_short_quote"><p>174.121.134.99 sense.fm <a href="http://www.sense.fm" target="_blank" rel="external">www.sense.fm</a></p></blockquote><p>On sane systems like my Mac the hosts file is /etc/hosts but on Windows it's usually&nbsp;</p><p><span style="color:#333333;font-family:Verdana, Geneva, sans-serif;font-size:12px;line-height:18px;">c:windowssystem32driversetchosts</span></p><p>After you add the sense.fm line to your hosts file just open your browser and visit <a href="http://www.sense.fm" target="_blank" rel="external">www.sense.fm</a>&nbsp;like normal.</p><p>You're welcome!</p><p>&nbsp;</p><p></p><p>&nbsp;</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Upgrading a Snow Leopard development machine to Lion]]></title>
-      <url>http://ericsimmerman.com/2011/09/22/2011-09-22-upgrading-snow-leopard-development/</url>
+      <url>/2011/09/22/2011-09-22-upgrading-snow-leopard-development/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p><span style="font-size:large;">1. Install Lion</span></p><p>If you heard about the small business 20-pack of licences Apple offered when they announced Lion and think you might want to go that route - don't. &nbsp;Trust me. &nbsp;They can take your payment but they just can't fulfill your order ... <a href="http://www.youtube.com/watch?v=A7uvttu8ct0" target="_blank" rel="external">and that's really the most important part</a>. Two months later I have a micro USB drive and am finally starting the upgrades.</p><p><span style="font-size:large;">2. Use App Store to download &amp; install XCode</span></p><p>Annoying. At least they fixed the download process to support resumes. Mine cutoff at 98% of the 4G download but picked back up where it left off on resume.</p><p><span style="font-size:large;">3. Run &nbsp;"/Applications/Install Xcode.app"</span></p><p>So when App Store said it was "Installing Xcode" it meant it was installing the Xcode installer. Sadly, it took me a while to figure this one out ... and <a href="https://discussions.apple.com/thread/2786661?start=0&amp;tstart=0" target="_blank" rel="external">I am not alone</a>.</p><p><span style="font-size:large;">4. Install MacPorts 2.0.3 or greater</span></p><p><a href="https://distfiles.macports.org/MacPorts/MacPorts-2.0.3-10.7-Lion.dmg" target="_blank" rel="external">MacPorts install for Lion</a> worked the first time with no hassle - Apple could learn a thing or two.</p><p><span style="font-size:large;">5. Run "port upgrade outdated"</span></p><p><span style="font-size:large;"><span style="font-size:small;">This takes some time but ran without error for me...nice.</span></span></p><p><span style="font-size:large;">6. Update php.ini</span></p><p><span style="font-size:large;"><span style="font-size:small;"><a href="http://maccrazy.com/lion-upgrade-killed-my-php-site-and-how-i-fixed-it" target="_blank" rel="external">Lion upgrades to PHP 2.3.0 </a>and saves but disables your existing php.ini - at a minimum you'll need to update your mysql socket entries to point to the same place as your my.cnf&nbsp;</span></span></p><p><span style="font-size:large;">7. Install a JDK</span></p><p><span style="font-size:large;"><span style="font-size:small;">I attempted to run a Java driven app (LibreOffice) and Lion magically prompted me to install Java. I let it and the install process flawlessly&nbsp;</span></span><span style="font-size:small;">setup a full JDK instead of just a JRE</span><span style="font-size:small;">&nbsp;- nice job Apple.</span></p><p><span style="font-size:large;">8. Toggle trackpad scroll direction</span></p><p><span style="font-size:small;">If all my devices used Lion I'm certain I'd adapt to the inverted scrolling in just a few hours - but they don't and that causes wheel spinning everytime I begin a Lion based session. &nbsp;I see no net benefit so it's not worth the pain. &nbsp;System Preferences -&gt; Trackpad -&gt; Scroll direction -&gt; unchceck</span></p><p><span style="font-size:large;">9. Install the updated Server tools</span></p><p><span style="font-size:small;">If you run a Mac Server and want to use your Lion workstation to manage its services...you need the <a href="http://support.apple.com/kb/DL1419" target="_blank" rel="external">updated Mac Server Tools</a>.</span></p><p><span style="font-size:large;">10. Disable Dashboard</span></p><p><span style="font-size:small;">I don't care for widgets.</span></p><blockquote class="posterous_short_quote"><p>defaults write com.apple.dashboard mcx-disabled -boolean YES<br>killall Dock</p></blockquote><p><span style="font-size:large;">11. Install JDK source</span></p><p>Grab the Java for Mac OS X 10.7 Developer Package from&nbsp;<a href="http://connect.apple.com/" title="Apple Developer Download" target="_blank" style="vertical-align:baseline;color:#990000;font-family:Verdana, Arial, Helvetica, sans-serif;line-height:23px;padding:0;margin:0;">http://connect.apple.com/<br></a>It'll put the src.jar here</p><p><span style="color:#333333;font-family:Monaco, Courier New, Courier, monospace;font-size:12px;line-height:15px;">/Library/Java/JavaVirtualMachines/1.6.0_26-b03-383.jdk/Contents/Home/src.jar</span></p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[SLF4JLocationAwareLog serialization exception]]></title>
-      <url>http://ericsimmerman.com/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/</url>
+      <url>/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>While attempting to make a large object graph serializable I kept encountering NotSerializableExceptions regarding my Log references which were instances of&nbsp;SLF4JLocationAwareLog. The references were declared transient so I beat my head on a wall for a few hours before upgrading my slf4j version from 1.4.2 to 1.5.8</p><p>Somewhat frustratingly - that resolved the issue. No idea why.</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Winner takes all network effect]]></title>
-      <url>http://ericsimmerman.com/2011/09/13/2011-09-13-winner-takes-all-network-effect/</url>
+      <url>/2011/09/13/2011-09-13-winner-takes-all-network-effect/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>Read this -&nbsp;<a href="http://edge.org/conversation/the-local-global-flip" target="_blank" rel="external">http://edge.org/conversation/the-local-global-flip</a></p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Resolving 'Can't connect to window server - not enough permissions' forMaven test runs]]></title>
-      <url>http://ericsimmerman.com/2011/08/26/2011-08-26-resolving-connect-to-window-server-not/</url>
+      <url>/2011/08/26/2011-08-26-resolving-connect-to-window-server-not/</url>
       <content type="html"><![CDATA[
 <div class="post">
 Our CI server (we use Jenkins) recently began bombing on several new tests that referenced java.awt packaged classes. The most common error in the stacktrace was "NoClassDefFoundError: Could not initialize class java.awt.Color" and diving deeper we could see the root cause was  "Can't connect to window server - not enough permissions".<br>The interwebs all claimed setting <code class="java plain">-Djava.awt.headless=true</code> would resolve the issue but it did nothing for us. We set it as a Jenkins system parameter, in the launchctl job, in the bash_profile of the Jenkins user on the machine, and everywhere we could in the Jenkins job itself....to no avail.<br>Just before heading down the path of setting it programatically somewhere in our test stack - I noticed that our&nbsp;maven-surefire-plugin was configured to use a threadCount of 10. On a hunch that&nbsp;maven-surefire-plugin was not exporting my system properties to the new threads it spawned for the test run - I configured the plugin to set java.awt.headless with the following snip from our pom.xml<br><div class="CodeRay"><div class="code"><pre>&lt;plugin&gt; &nbsp;</pre><pre>&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &nbsp;</pre><pre>&lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt; &nbsp;</pre><pre>&lt;version&gt;2.5&lt;/version&gt; &nbsp;</pre><pre>&lt;configuration&gt;       &nbsp;</pre><pre>&lt;excludes&gt;        &nbsp;</pre><pre>&lt;exclude&gt;**/TestInstanceBakerTest.java&lt;/exclude&gt;        &nbsp;</pre><pre>&lt;exclude&gt;**/ExpectedAnswerGeneratorTest.java&lt;/exclude&gt;        &nbsp;</pre><pre>&lt;exclude&gt;**/ClientNukeTest.java&lt;/exclude&gt;        &nbsp;</pre><pre>&lt;exclude&gt;**/TestInstanceBank.java&lt;/exclude&gt;       &nbsp;</pre><pre>&lt;/excludes&gt;   &nbsp;</pre><pre>&lt;parallel&gt;true&lt;/parallel&gt;   &nbsp;</pre><pre>&lt;threadCount&gt;10&lt;/threadCount&gt;     &nbsp;</pre><pre>&lt;systemPropertyVariables&gt;         &nbsp;</pre><pre>&lt;java.awt.headless&gt;true&lt;/java.awt.headless&gt;         &nbsp;</pre><pre>&lt;log4j.configuration&gt;${runtime.log4j.config}&lt;/log4j.configuration&gt;                                       &nbsp;</pre><pre>&lt;/systemPropertyVariables&gt;               &nbsp;</pre><pre>&lt;/configuration&gt;&lt;/plugin&gt;</pre><pre><br></pre></div></div>Problem solved.</div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Resolving 'Connection.close() has already been called.' when running long db-migration]]></title>
-      <url>http://ericsimmerman.com/2011/08/23/2011-08-23-resolving-has-already-been-called-when/</url>
+      <url>/2011/08/23/2011-08-23-resolving-has-already-been-called-when/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>I tune my datasource appropriate for runtime but also use the same datasource for db-migration activities on application startup. For some particularly long db-migration runs - I began encountering a "Connection.close() has already been called." error. &nbsp;The easy workaround was to bump the value of MySQL's wait_timeout parameter.</p><p>Don't for get to restart MySQL afterwards.</p><p>Also - if you're using a dbcp datasource try setting&nbsp;testOnBorrow to true if you have it explicitly set to false.</p><p>You're welcome.</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[JSP tricks to make templating easier on Stack Overflow]]></title>
-      <url>http://ericsimmerman.com/2011/08/19/2011-08-19-jsp-tricks-to-make-templating-easier-on/</url>
+      <url>/2011/08/19/2011-08-19-jsp-tricks-to-make-templating-easier-on/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <div class="posterous_bookmarklet_entry"><blockquote class="posterous_long_quote"><span style="font-family:Arial, Liberation Sans, DejaVu Sans, sans-serif;font-size:14px;line-height:18px;"></span><p style="font-size:14px;vertical-align:baseline;background-color:transparent;clear:both;padding:0;margin:0 0 1em;">The beauty of JSP Tag files is that it lets you basically tag generic markup and then refactor it to your hearts content.</p><p style="font-size:14px;vertical-align:baseline;background-color:transparent;clear:both;padding:0;margin:0 0 1em;">JSP Tag Files have pretty much usurped things like Tiles etc., at least for me. I find them much easier to use as the only structure is what you give it, nothing preconceived. Plus you can use JSP tag files for other things (like the user detail fragment above).</p></blockquote><div class="posterous_quote_citation">via <a href="http://stackoverflow.com/questions/1296235/jsp-tricks-to-make-templating-easier" target="_blank" rel="external">stackoverflow.com</a></div><p>Will Hartung's overview of JSP 2.0's Tag Files is a great primer</p></div></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Testing a local web application with multiple operatings systems using VirtualBox]]></title>
-      <url>http://ericsimmerman.com/2011/08/17/2011-08-17-testing-local-web-application-with/</url>
+      <url>/2011/08/17/2011-08-17-testing-local-web-application-with/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>I develop on Mac OS X and frequently need to test my local build using Internet Explorer on a flavor of MS Windows. VirtualBox has supported an easy method of doing so since version 2.2&nbsp;</p><p>Add a new Network Adapter to each of your VirtualBox Guests (I run Windows XP and Windows 7 as Guests) and choose "Host-only Adapter" for the "Attached to:" option. This will result in the creation of a new loopback interface on your Host and a private network interface on each Guest.</p><p>On Windows use the command line "ipconfig" to determine the new interface settings. On Mac run "ifconfig" to do the same. &nbsp;</p><p>With my setup the host (my mac) was assigned the vboxnet0 interface with private IP address&nbsp;192.168.56.1 so&nbsp;I punched a hole in my host's firewall to allow each Guest to access ports 80,443,8080,8443 on that subnet. Now I can simply open a browser on any guest and access the webserver running my local build on my host like - <a href="https://192.168.56.1:8443/" target="_blank" rel="external">https://192.168.56.1:8443/</a></p><p>&nbsp;</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[MacPorts: MySQL upgrade from 5.0.x to 5.1.x error Column count of mysql.proc is wrong]]></title>
-      <url>http://ericsimmerman.com/2011/08/06/2011-08-06-macports-mysql-upgrade-from-50x-to-51x/</url>
+      <url>/2011/08/06/2011-08-06-macports-mysql-upgrade-from-50x-to-51x/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <div class="posterous_bookmarklet_entry"><blockquote class="posterous_short_quote"><span style="color:#444444;font-family:arial, helvetica, clean, sans-serif;line-height:25px;background-color:#eeeeee;font-size:small;">sudo&nbsp; /opt/local/lib/mysql5/bin/mysql_upgrade -uroot -p &ndash;basedir=/opt/local/lib/mysql5/bin/mysql</span></blockquote><div class="posterous_quote_citation">via <a href="http://kurund.com/blog/2010/01/05/macports-mysql-5-0-to-5-1-error/" target="_blank" rel="external">kurund.com</a></div><p>Command above resolved my "Column count of mysql.proc is wrong" error after a macports upgrade to 5.1.x</p></div></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Publish OpenLaszlo swf using swfobject2 for better progress indicator with IE]]></title>
-      <url>http://ericsimmerman.com/2011/07/30/2011-07-30-publish-openlaszlo-swf-using-swfobject2/</url>
+      <url>/2011/07/30/2011-07-30-publish-openlaszlo-swf-using-swfobject2/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>Default "Loading..." progress indicator for OpenLaszlo swfs leaves much to be desired in IE and the embed scripts that come bundled with OpenLaszlo are kludgy when compared with a <a href="http://code.google.com/p/swfobject/" target="_blank" rel="external">SWFObject2</a> solution. Here's how I publish OpenLaszlo apps using SWFObject2. This technique includes a x-platform compatible javascript driven percentage loaded indicator.</p><p>Note that this solution does not currently support calls to lz.BrowserService.<span class="term">callJS() </span></p><p><br><code>&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"&gt;&lt;/script&gt;&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"&gt;&lt;/script&gt;&lt;script type="text/javascript"&gt;function callbackFn() {&nbsp;&nbsp;&nbsp; try{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; swfobject.addDomLoadEvent(pageloaded);&nbsp;&nbsp;&nbsp; }catch(error){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setTimeout("swfloaded()",1500);&nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }function pageloaded() {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var percentLoaded = swfobject.getObjectById("ObjId").PercentLoaded();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $('#lzsplashtext').html("Percent Loaded: "+percentLoaded+"% ...");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(percentLoaded &lt; 100){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setTimeout("pageloaded()",150);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }else{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; swfloaded();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }catch(error){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setTimeout("swfloaded()",1500);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;&nbsp; }function swfloaded() {&nbsp;&nbsp;&nbsp; $('#lzsplash').hide();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;&nbsp; swfobject.registerObject("ObjId", "10.3.0", "/expressInstall.swf",callbackFn);&lt;/script&gt;...&lt;div id="lzsplash" style="z-index: 10000000; top: 0; left: 0; width: 100%; height: 100%; position: fixed; display: table"&gt;&lt;p style="display: table-cell; vertical-align: middle; align: center;"&gt;&lt;div id="lzsplashtext" style="display: block; margin: 20% auto; font-size:24px; font-family:Helvetica,sans-serif;" align="center"&gt;Loading, please wait...&lt;/div&gt;&lt;/p&gt;&lt;/div&gt;&nbsp;&nbsp;&nbsp; &lt;div style="height:100%;"&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;!--&lt;![endif]--&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/object&gt;&nbsp;&nbsp;&nbsp; &lt;/div&gt;</code></p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[MindTouch SSO using HttpClient 4.1 with Java]]></title>
-      <url>http://ericsimmerman.com/2011/07/05/2011-07-05-mindtouch-sso-using-httpclient-41-with/</url>
+      <url>/2011/07/05/2011-07-05-mindtouch-sso-using-httpclient-41-with/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>Most of the <a href="http://www.mindtouch.com/" target="_blank" rel="external">MindTouch</a> sample code available in the wild is in PHP or C# so integrating with a Java stack can be painful. Here's a snip of the code we used to support SSO with our Java-based SaaS platform. The HttpClient framework is version 4.1 of <a href="http://hc.apache.org/" target="_blank" rel="external">Apache's HttpClient</a></p><p><strong>Update</strong>: Modified to skip Cookie parsing based upon bjorg's comment</p><p><code>private boolean parseAndSetMindtouchCookie(final HttpServletResponse response,final DefaultHttpClient client,final User user) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; StringBuffer buf = new StringBuffer("http://");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; buf.append(this.MINDTOUCH_HOST).append(this.MINDTOUCH_BASEURI).append("users/authenticate?authprovider=1&amp;apikey=").append(MINDTOUCH_APIKEY);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HttpGet get = new HttpGet(buf.toString());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ResponseHandler&lt;String&gt; responseHandler = new BasicResponseHandler();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String responseBody = client.execute(get, responseHandler);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; javax.servlet.http.Cookie cookie = new javax.servlet.http.Cookie("authtoken", responseBody);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cookie.setDomain(".example.com");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cookie.setSecure(false);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cookie.setPath("/");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cookie.setMaxAge(3600); // 1 hour&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.addCookie(cookie);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; log.debug("Successfully set mindtouch auth cookie");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; response.sendRedirect("http://"+MINDTOUCH_HOST);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return true;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }catch(HttpResponseException hre){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(hre.getStatusCode() == HttpStatus.SC_UNAUTHORIZED ){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; log.debug("User has no Mindtouch account.");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }else{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; log.error("Unable to auth user.",hre);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (Exception e) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; log.error("Unable to authenticate user",e);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return false;&nbsp;&nbsp;&nbsp; }</code></p></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> httpclient </tag>
+            
+            <tag> mindtouch </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Running Tomcat on Ubuntu 10.04.2 Server]]></title>
-      <url>http://ericsimmerman.com/2011/05/06/2011-05-06-running-tomcat-on-ubuntu-10042-server/</url>
+      <url>/2011/05/06/2011-05-06-running-tomcat-on-ubuntu-10042-server/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>1. Install Oracle's JDK using the following commands:</p><p><code>sudo apt-get install python-software-propertiessudo add-apt-repository ppa:sun-java-community-team/sun-java6sudo apt-get updatesudo apt-get install sun-java6-jdk</code></p><p>2. Install APR:</p><p><code>wget http://www.ecoficial.com/apachemirror//apr/apr-1.4.2.tar.gztar -xzf apr-1.4.2.tar.gzrm apr-1.4.2.tar.gzcd apr-1.4.2/sudo apt-get install makesudo ./configuresudo makesudo make install</code></p><p>3. apt-get install libssl-dev</p><p>4. Configure and Install the jni/native package that comes with your Tomcat tarball</p><p>&nbsp;</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Stopping a TCP Split Handshake Spoof Attack with SonicWALL]]></title>
-      <url>http://ericsimmerman.com/2011/04/13/2011-04-13-stopping-tcp-split-handshake-spoof/</url>
+      <url>/2011/04/13/2011-04-13-stopping-tcp-split-handshake-spoof/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <div class="posterous_bookmarklet_entry">      <div class="posterous_quote_citation">via <a href="http://www.youtube.com/watch?v=5YR3zCznmYY" target="_blank" rel="external">youtube.com</a></div>    <p>I prefer "howto" articles to videos but this was the first source I found demonstrating how to harden my SonicWall against the <a href="http://www.networkworld.com/news/2011/041211-hacker-exploit-firewalls.html" target="_blank" rel="external">TCP/IP Handshake hole</a> making the rounds this week. Skip to 35 seconds in for the useful stuff...</p></div></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Resolving Firefox 4 issues on Mac OS X Snow Leopard]]></title>
-      <url>http://ericsimmerman.com/2011/04/11/2011-04-11-resolving-firefox-4-issues-on-mac-os-x/</url>
+      <url>/2011/04/11/2011-04-11-resolving-firefox-4-issues-on-mac-os-x/</url>
       <content type="html"><![CDATA[
 <div class="post">
 I encountered all types of strange behavior using Firefox 4 after my recent upgrade. The nastiest bug prevented me from accessing any windows other than the primary Firefox window. So all popups, while listed on the Windows menu, were completely inaccessible. I tried all the typical workarounds like disabling Addons and running in Safemode. But nothing permanently fixed the issue.<p>  Finally - I simply created a new Firefox profile and <a href="http://kb.mozillazine.org/Transferring_data_to_a_new_profile_-_Firefox" target="_blank" rel="external">transferred the bookmarks, passwords</a>, etc... that I wanted to carryover. This resolved my issues completely. So before you throw away FF4 in frustration - try creating a clean profile. Probably not a bad idea anyway - I noticed FF3.0 cruft in my profile that I shed as part of this process.</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Enhanced mysqldump to support data cleansing compliance requirements by nullifying specific fields]]></title>
-      <url>http://ericsimmerman.com/2011/04/08/2011-04-08-enhanced-mysqldump-to-support-data/</url>
+      <url>/2011/04/08/2011-04-08-enhanced-mysqldump-to-support-data/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>At Pascal Metrics, my team collects large sets of data including ePHI. That subjects us to <a href="http://en.wikipedia.org/wiki/Health_Insurance_Portability_and_Accountability_Act" target="_blank" rel="external">HIPAA</a> and federal law dictates how we handle said data. Before I can even consider moving a database export out of our hardened production environment, I need to cleanse the export of any personally identifying information - including but not limited to any ePHI.</p><p>There are number of ways to achieve that aim, but once our database crossed the threshold into "large" territory - cleansing the data became a real chore. I decided to roll my own mysqldump binary and add a parameter called "nullify-field" which is based upon the "ignore-table" parameter from the official release.</p><p>I've posted my modified source to <a href="https://github.com/ets/mysqldump" target="_blank" rel="external">my GitHub account</a> for any who may be interested.</p><p>You'll have to compile your own copy - but that's relatively easy:</p><ol><li>Grab <a href="http://dev.mysql.com/downloads/mysql/5.0.html" target="_blank" rel="external">the latest mysql 5.0.X source</a>&nbsp;</li><li>Copy my 2 modified source files over the ones that come with your source tarball</li><li>Run "./configure --without-server" to build just the mysql clients</li><li>Run "make" to generate your custom mysqldump under ./client/</li></ol><p>Example Usage:</p><p><code> ./client/mysqldump -u backupuser -p --nullify-field=my_db.my_sensitive_table.name --nullify-field=my_db.my_sensitive_table.email my_db  </code></p><p>I love open source software.</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Minimizing expense when testing webapps on Internet Explorer]]></title>
-      <url>http://ericsimmerman.com/2011/04/06/2011-04-06-minimizing-expense-when-testing-webapps/</url>
+      <url>/2011/04/06/2011-04-06-minimizing-expense-when-testing-webapps/</url>
       <content type="html"><![CDATA[
 <div class="post">
 Currently - my favorite methods of testing web applications for Internet Explorer compatibility at minimal expenditure of time, money, and pain are:<br> <ul> <li><a href="http://www.virtualbox.org/" target="_blank" rel="external">Virtualbox</a> installations <br> </li> <ul> <li>PROS: Great performance and virtually zero hassle after initial setup<br> </li> <li>CONS: These are not easily shared, so every developer needs his own virtual machine which needs to be individually licensed<br> </li> </ul> <li><a href="http://www.gogrid.com/" target="_blank" rel="external">GoGrid</a> on-demand servers</li> <ul> <li>PROS: Instances can be shared by multiple developers so you only need to configure each virtual machine environment once. MS Windows Licensing is built into the on-demand pricing. <br> </li> <li>CONS: Performance is adequate, but screen refreshes are slow enough to be distracting. It takes about 15 minutes to spin an instance up. <br> </li> </ul> </ul> With either method of obtaining a virtual machine, you'll have to decide how to handle testing for all the permutations you need to support. The "brute force" method is to create a virtual machine for each permutation of OS, Browser, Flash Player, etc...&nbsp; There are some other options though:<br> <ul> <ul> <li><a href="http://www.softpedia.com/get/Internet/WEB-Design/Web-Design-related/Expression-Web-SuperPreview.shtml" target="_blank" rel="external">Microsoft Expression Web SuperPreview</a> for Windows Internet Explorer&nbsp;</li> <ul> <li>can be used to test basic IE6 support on a machine with a more recent version installed - but not a terribly accurate emulator<br> </li> </ul> <li>Internet Explorer 8 with Developer Tools installed <br> </li> <ul> <li>using "Compatibility" mode to emulate IE7 works well enough to debug javascript</li> </ul> </ul> </ul></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Solution for Firefox 4 installation failure on Mac OS X due to 'libsmime3.dylib is in use' error]]></title>
-      <url>http://ericsimmerman.com/2011/03/28/2011-03-28-solution-for-firefox-4-installation/</url>
+      <url>/2011/03/28/2011-03-28-solution-for-firefox-4-installation/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>If you're attempting to upgrade to Firefox 4 on Mac and encounter this beauty <div class="p_embed p_image_embed"><img alt="Firefox4_lib_error" height="108" src="http://ericsimmerman.files.wordpress.com/2011/03/firefox4_lib_error-scaled500.png?w=300" width="399"></div> then you'll need to perform the following terminal commands as an easy workaround.</p><div class="CodeRay">  <div class="code"><pre>cd /Library/LaunchDaemons/    sudo launchctl stop com.cisco.anyconnect.vpnagentd    sudo launchctl unload com.cisco.anyconnect.vpnagentd.plist    killall vpnagentd</pre></div></div><p>Now attempt to install FireFox 4 again before issuing the following to reconfigure VPNAgent:</p><div class="CodeRay">  <div class="code"><pre>launchctl load com.cisco.anyconnect.vpnagentd.plist</pre></div></div><p>I've seen some other posts online suggesting that the killall command is sufficient, but that didn't work for me because vpnagentd was setup to automatically restart. The process I outlined here prevents that.</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Installing gerrit2 on Mac OS X Server (Snow Leopard)]]></title>
-      <url>http://ericsimmerman.com/2011/03/25/2011-03-25-installing-gerrit2-on-mac-os-x-server/</url>
+      <url>/2011/03/25/2011-03-25-installing-gerrit2-on-mac-os-x-server/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>I'm using the default runtime container of gerrit (Jetty) configured for SSL proxy behind the Mac Server apache2 instance. I've configured direct LDAP integration and am using the Mac Server mysql instance.</p><p>Here's what the init parameters look like:</p><p><code>&nbsp;java -jar gerrit.war init -d review_site*** Gerrit Code Review 2.1.6.1***&nbsp;&nbsp;*** Git Repositories***&nbsp;Location of Git repositories &nbsp; [/Library/Git/repositories/]:&nbsp;Import existing repositories &nbsp; [Y/n]?&nbsp;*** SQL Database***&nbsp;Database server type &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [MYSQL/?]:&nbsp;Server hostname &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[localhost]:&nbsp;Server port &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[(MYSQL default)]:&nbsp;Database name &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[reviewdb]:&nbsp;Database username &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[gerrit2]:&nbsp;Change gerrit2's password &nbsp; &nbsp; &nbsp;[y/N]?&nbsp;*** User Authentication***&nbsp;Authentication method &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[LDAP/?]:&nbsp;LDAP server &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[ldaps://my.server.fqdn]:&nbsp;LDAP username &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[]:&nbsp;anonymous's password &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;confirm password :&nbsp;Account BaseDN &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [cn=users,dc=hostname,dc=pascalmetrics,dc=com]:&nbsp;Group BaseDN &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [cn=groups,dc=hostname,dc=pascalmetrics,dc=com]:&nbsp;*** Email Delivery***&nbsp;SMTP server hostname &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [localhost]:&nbsp;SMTP server port &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [(default)]:&nbsp;SMTP encryption &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[NONE/?]:&nbsp;SMTP username &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:&nbsp;*** Container Process***&nbsp;Run as &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [gerrituser]:&nbsp;Java runtime &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home]:&nbsp;&nbsp;Upgrade /opt/gerrit-2.1.6.1/review_site/bin/gerrit.war [Y/n]?&nbsp;Copying gerrit.war to /opt/gerrit-2.1.6.1/review_site/bin/gerrit.war&nbsp;*** SSH Daemon***&nbsp;&nbsp;Listen on address &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[*]:&nbsp;Listen on port &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [29418]:&nbsp;&nbsp;*** HTTP Daemon***&nbsp;&nbsp;Behind reverse proxy &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [Y/n]?&nbsp;Proxy uses SSL (https://) &nbsp; &nbsp; &nbsp;[Y/n]?&nbsp;Subdirectory on proxy server &nbsp; [/gerrit]:&nbsp;Listen on address &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[*]:&nbsp;Listen on port &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [9028]:&nbsp;&nbsp;Scanning /Library/Git/repositories&nbsp;&nbsp;</code></p><p>I had to tweak one my.cnf setting to allow gerrit to complete my initial install. I needed to set</p><p><span style="color:#555555;font-family:verdana, arial, helvetica, sans-serif;font-size:14px;line-height:14px;"> </span></p><div class="CodeRay">  <div class="code"><pre>log_bin_trust_function_creators=1</pre></div></div><p>&nbsp;</p><p>&nbsp;</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Why you might want to exercise your vested ISOs this year...]]></title>
-      <url>http://ericsimmerman.com/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/</url>
+      <url>/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <div class="posterous_bookmarklet_entry"><blockquote><div><p>The Small Business Jobs Act of 2010 (the "Jobs Act"), which was enacted September 27, 2010, contains a brief window of opportunity for non-corporate taxpayers to purchase Qualified Small Business ("QSB") stock (also known as "section 1202 stock") that, if the taxpayer holds the stock for more than five years, is <em>eligible for a 100 percent exclusion of capital gains from sale. This tax break only applies to QSB stock purchased after September 27, 2010 and before January 1, 2011.</em></p></div></blockquote><div class="posterous_quote_citation">via <a href="http://www.reedsmith.com/publications/search_publications.cfm?widCall1=customWidgets.content_view_1&amp;cit_id=29693" target="_blank" rel="external">reedsmith.com</a></div><p>The exclusion described above has been <a href="http://www.natlawreview.com/article/extension-100-gain-exclusion-qualified-small-business-stock" target="_blank" rel="external">extended to the end of 2011</a>.</p></div></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Tax Article: Stock Options and Restricted Stock - MBBP.com]]></title>
-      <url>http://ericsimmerman.com/2011/03/11/2011-03-11-tax-article-stock-options-and/</url>
+      <url>/2011/03/11/2011-03-11-tax-article-stock-options-and/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <div class="posterous_bookmarklet_entry">      <blockquote class="posterous_short_quote">Great article on treatment of ISOs vs Restricted Stock complete with 83(b) consideration</blockquote><div class="posterous_quote_citation">via <a href="http://www.mbbp.com/resources/tax/restricted_stock.html" target="_blank" rel="external">mbbp.com</a></div>    <p></p></div></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> iso83bstockoptions </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Find conflicting dependencies in a Maven project]]></title>
-      <url>http://ericsimmerman.com/2011/02/14/2011-02-14-find-conflicting-dependencies-in-maven/</url>
+      <url>/2011/02/14/2011-02-14-find-conflicting-dependencies-in-maven/</url>
       <content type="html"><![CDATA[
 <div class="post">
 The Maven dependency plugin provides nice support for resolving dependency conflicts of all types. The <a href="http://maven.apache.org/plugins/maven-dependency-plugin/usage.html" target="_blank" rel="external">dependency:tree goal</a> is particularly useful when you need to know which direct dependency of your project resulted in the import of jar X.</div>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Install Nexus 1.8.0.1 on Tomcat 6]]></title>
-      <url>http://ericsimmerman.com/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/</url>
-      <content type="html"><![CDATA[
-<div class="post">
-I installed on a Mac OS X server with Snow Leopard, but this applies to any Tomcat 6 installation. As discussed <a href="https://issues.sonatype.org/browse/NEXUS-3003" target="_blank" rel="external">here</a>, <a href="http://stackoverflow.com/questions/1277378/how-to-configure-java-securitymanager-to-allow-to-read-all-properties-from-given" target="_blank" rel="external">here</a>, and lots of other places across the interwebs - the latest release of Nexus can't read its own plexus.properties under Tomcat 6. Rather than disabling the Tomcat Security Manager as a workaround, I recommend setting the applicable properties through system properties at startup. Just add something like the following to your tomcat's bin/setenv.sh script<code>-Dplexus.nexus-work=/opt/sonatype-work/nexus</code></div>
-]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Install PHP 5.3.5 with FPM (FastCGI Process Manager) support on Apache2/Centos 5.5]]></title>
-      <url>http://ericsimmerman.com/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/</url>
+      <url>/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>$&gt; yum upgrade<br>$&gt; yum groupinstall "Development Tools"<br>$&gt; wget <a href="http://us2.php.net/get/php-5.3.5.tar.bz2/from/us.php.net/mirror" target="_blank" rel="external">http://us2.php.net/get/php-5.3.5.tar.bz2/from/us.php.net/mirror</a><br>$&gt; tar xvf php-5.3.5.tar.bz2<br>$&gt; yum install mysql-server httpd-devel-* libxml2-devel-* openssl-devel* xmlsec1-openssl-devel-* libpng* libjpeg* curl-devel libmcrypt* mysql-devel* mysql.* libevent libevent-devel libtool-ltdl-devel libtool apr-devel apr<br>$&gt; cd php-5.3.5<br>$&gt; ./configure --with-mysql=shared --with-openssl --enable-pdo --with-pdo-mysql=shared --with-mhash=shared --enable-soap=shared --with-config-file-path=/etc/ --with-mysqli --enable-zip --enable-shared --with-curl --enable-mbstring=all --enable-maintainer-zts --with-jpeg-dir=/usr/lib/ --with-libdir=lib64 --enable-soap --with-pdo-mysql --with-gd --with-mcrypt --enable-fpm --with-config-file-scan-dir=/etc/php.d<br>$&gt; make; make install;<br>$&gt; chmod 705 /var/log/httpd</p><p>Edit your php.ini to point to your new PHP's extension directory (printed as part of make install above):<br><code>extension_dir = "/usr/local/lib/php/extensions/no-debug-zts-20090626/"</code></p><p>Make certain your /etc/php.d directory is only loading extensions that have been built against your new php. I only load mysql and apc</p><p>Now you need to tell Apache to use php-fpm via mod_fastcgi.<br># wget <a href="http://www.fastcgi.com/dist/mod_fastcgi-current.tar.gz" target="_blank" rel="external">http://www.fastcgi.com/dist/mod_fastcgi-current.tar.gz</a><br># tar -zxvf mod_fastcgi-current.tar.gz<br># cd mod_fastcgi-2.4.6/<br># cp Makefile.AP2 Makefile</p><p>Compile and install mod_fastcgi for 32 bit system, enter:<br># make top_dir=/usr/lib/httpd<br># make install top_dir=/usr/lib/httpd</p><p>Compile and install mod_fastcgi for 64 bit system, enter:<br># make top_dir=/usr/lib64/httpd<br># make install top_dir=/usr/lib64/httpd</p><p>Sample output:<br><code>make install top_dir=/usr/lib64/httpdmake[1]: Entering directory `/tmp/mod_fastcgi-2.4.6'/usr/lib64/apr-1/build/libtool --silent --mode=install cp mod_fastcgi.la /usr/lib64/httpd/modules/make[1]: Leaving directory `/tmp/mod_fastcgi-2.4.6'</code></p><p>Edit your Apache config to configure mod_fastcgi:<br><code># mods-enabled/fastcgi.conf&lt;IfModule mod_fastcgi.c&gt;FastCGIExternalServer /usr/local/sbin/php-fpm -socket /tmp/php-fpm.sockAddHandler php-fastcgi .phpAction php-fastcgi /usr/local/sbin/php-fpm.fcgiScriptAlias /usr/local/sbin/php-fpm.fcgi /usr/local/sbin/php-fpm&lt;Directory /usr/local/sbin&gt;Options ExecCGI FollowSymLinksSetHandler fastcgi-scriptOrder allow,denyAllow from all&lt;/Directory&gt;&lt;/IfModule&gt;</code></p><p>Now edit your /usr/local/etc/php-fpm config file using settings like these:<br><code>[www]# socketlisten = /tmp/php-fpm.socklisten.owner = apachelisten.group = apachelisten.mode = 0666# user ID/GIDuser = apachegroup = apache</code></p><p>Finally, <a href="http://us2.php.net/manual/en/install.fpm.php" target="_blank" rel="external">configure an autostart script for your php-fpm daemon using these instructions</a>.</p></div>
 ]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Install Nexus 1.8.0.1 on Tomcat 6]]></title>
+      <url>/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/</url>
+      <content type="html"><![CDATA[
+<div class="post">
+I installed on a Mac OS X server with Snow Leopard, but this applies to any Tomcat 6 installation. As discussed <a href="https://issues.sonatype.org/browse/NEXUS-3003" target="_blank" rel="external">here</a>, <a href="http://stackoverflow.com/questions/1277378/how-to-configure-java-securitymanager-to-allow-to-read-all-properties-from-given" target="_blank" rel="external">here</a>, and lots of other places across the interwebs - the latest release of Nexus can't read its own plexus.properties under Tomcat 6. Rather than disabling the Tomcat Security Manager as a workaround, I recommend setting the applicable properties through system properties at startup. Just add something like the following to your tomcat's bin/setenv.sh script<code>-Dplexus.nexus-work=/opt/sonatype-work/nexus</code></div>
+]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Resolving 'org.hibernate.PropertyAccessException: IllegalArgumentException occurred calling getter']]></title>
-      <url>http://ericsimmerman.com/2011/01/13/2011-01-13-resolving-illegalargumentexception/</url>
+      <url>/2011/01/13/2011-01-13-resolving-illegalargumentexception/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>After updating a named query using HQL to constrain on a Collection of objects determined at runtime, Hibernate began throwing "org.hibernate.PropertyAccessException: IllegalArgumentException occurred calling getter" while apparently attempting to access the "id" property of an object in my model.</p><p>My named query looked something like this:<br><code>select p from Parent p where p.child in (:children)</code><br>and I was calling it like so:<br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Query query = session.getNamedQuery(queryName);query.setParameter("children", aCollectionOfChildren);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;query.list();</code><br>It took me a bit of trial and error to realize that Hibernate expected the Collection to be passed in using "query.setParameterList" instead of "query.setParameter". Changing my call to the following resolved the issue:<br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Query query = session.getNamedQuery(queryName);query.setParameterList("children", aCollectionOfChildren);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;query.list();</code><br>Certainly my mistake, but I sure would have appreciated a clearer error message.</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Ditch MAMP on Snow Leopard]]></title>
-      <url>http://ericsimmerman.com/2010/11/28/2010-11-28-ditch-mamp-on-snow-leopard/</url>
+      <url>/2010/11/28/2010-11-28-ditch-mamp-on-snow-leopard/</url>
       <content type="html"><![CDATA[
 <div class="post">
 I was fond of the stack <a href="http://www.apachefriends.org/en/xampp.html" target="_blank" rel="external">XAMPP</a> offered when I developed on Windows and lazily continued used <a href="http://www.mamp.info/en/index.html" target="_blank" rel="external">XAMPP/MAMP</a> once I moved to a Mac OS X based workstation. Unfortunately, the latest releases of MAMP have attempted to restrict the utility of the stack in an effort to raise revenue through a less restricted "Pro" version. Developers on Snow Leopard are much better off moving to standalone installations of everything MAMP offers.There are many ways to install PHP, MySQL, Apache, and phpMyAdmin - all with a list of pros/cons. Without debating the merits, here's what I did to replace MAMP:<h2>1. Dump your MAMP Mysql databases and save them for import into your standalone MySQL install</h2><code>mysqldump --all-databases &gt; ~/old-mysql-data.sql</code><h2>2. Install a more recent copy of MySQL server than the one delivered with Snow Leopard</h2>I already had <a href="http://www.macports.org/" target="_blank" rel="external">macports</a> installed, so the choice here was easy. The following command installs the mysql binaries under /opt/local/bin/<code>port install mysql5 mysql5-server</code><h2>3. Import your data into your new MySQL database</h2>First, be certain to shutdown all the MAMP servers (MySQL, Apache, etc...) - then start your new standalone MySQL<code>sudo /opt/local/bin/mysqld_safe5 &amp;</code>Finally, run the following:<code>mysql <h2>4. Install phpMyAdmin on the SL delivered Apache installation</h2>Install it fresh, or just copy your MAMP installation to ~/Sites where it will be available under http://localhost/~your-username/<h2>5. Enable PHP5 on the SL delivered Apache installation</h2>Open /etc/apache2/httpd.conf and enable the line: "#LoadModule php5_module libexec/apache2/libphp5.so" by removing the pound. Then in the Mac System Pref -&gt; Sharing, turn on (or if it was already on, turn off/on) Web Sharing. If you need to move any vhost or SSL config directives from MAMP to the SL Apache install, you'll make those changes to files in /etc/apache2/extra/<h2>6. Optional - Configure PHP by creating a php.ini under /etc</h2>I'm content to use the PHP installation already delivered by SL, but there is no default php.ini - simply create one under /etc and it'll be read automatically.You can now remove the MAMP training wheels and proceed developing with full standalone versions of your stack - happy trails.</code></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> macintosh </tag>
+            
+            <tag> softwaredevelopment </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Support chroot for SCP connections on CentOS 5.5]]></title>
-      <url>http://ericsimmerman.com/2010/11/02/2010-11-02-support-chroot-for-scp-connections-on/</url>
+      <url>/2010/11/02/2010-11-02-support-chroot-for-scp-connections-on/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>Many thanks to <a href="http://www.linuxquestions.org/questions/red-hat-31/my-version-of-ssh-doesnt-support-match-and-forcecommand-819436/" target="_blank" rel="external">anomie for posting this great writeup</a>. I've pasted it below to help spread the wealth.</p><p>-------</p><p>Here's a quick recipe for your chrooted sftp daemon:</p><p>1. Create the sftp init script - &lt;strong&gt;/etc/init.d/sftpfoo&lt;/strong&gt;<br><code>#!/bin/bash## chkconfig: 35 60 25# description: OpenSSH chrooted sftp only daemon## Note that /usr/sbin/sftpfoo is simply a symlink to /usr/sbin/sshd#</code></p><p>pidfile='/var/run/sftpfoo.pid'</p><p>case "${1}" in</p><p>start&nbsp; ) exec -a /usr/sbin/sftpfoo /usr/sbin/sshd -f /etc/ssh/sftpfoo_config<br>;;<br>stop&nbsp;&nbsp; ) kill -9 $(cat ${pidfile})<br>;;<br>restart) stop<br>sleep 3<br>start<br>;;<br>*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ) echo "Usage: ${0} (start|stop|restart)"<br>;;</p><p>esac</p><p>exit 0</p><p>2. Add it to chkconfig(8) consciousness and set up a symlink you'll need later.</p><p><code># chkconfig --add sftpfoo# ln -s /usr/sbin/sshd /usr/sbin/sftpfoo</code></p><p>3. Create your sftp config file - &lt;strong&gt;/etc/ssh/sftpfoo_config&lt;/strong&gt;</p><p><code>Port 8822Protocol 2AddressFamily inet</code></p><p>SyslogFacility AUTHPRIV<br>LogLevel INFO</p><p>PermitRootLogin no</p><p>RSAAuthentication no<br>PubkeyAuthentication no<br>RhostsRSAAuthentication no<br>HostbasedAuthentication no<br>PasswordAuthentication yes<br>PermitEmptyPasswords no<br>ChallengeResponseAuthentication no<br>KerberosAuthentication no<br>GSSAPIAuthentication no</p><p>UsePAM no</p><p>PidFile /var/run/sftpfoo.pid</p><p>ChrootDirectory /home/chrooted<br>Subsystem sftp internal-sftp</p><p>4. Create your first sftp-only user</p><p><code># useradd -d /nowhere -M -s /sbin/nologin baruser</code></p><p>5. Create the chroot directory</p><p><code># mkdir -p /home/chrooted &amp;amp;&amp;amp; chmod 755 /home/chrooted</code></p><p>6. Start the sftp service</p><p><code># service sftpfoo start</code><br>-------</p><p>Now, log in remotely as baruser, specifying port 8822. (Remember to poke a hole in your firewall for this port.)</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Resolving sleep issues with Seagate GoFlex Desk on Mac Snow Leopard]]></title>
-      <url>http://ericsimmerman.com/2010/10/29/2010-10-29-resolving-sleep-issues-with-seagate/</url>
+      <url>/2010/10/29/2010-10-29-resolving-sleep-issues-with-seagate/</url>
       <content type="html"><![CDATA[
 <div class="post">
 There are number of posts on Seagate's user forums describing <a href="http://forums.seagate.com/t5/FreeAgent-Products/How-to-stop-Seagate-FreeAgent-Desktop-Drives-from-going-to-sleep/m-p/8812" target="_blank" rel="external">frustration with the GoFlex line of external harddrive</a> and its <a href="http://forums.seagate.com/t5/FreeAgent-Products/FreeAgent-for-Mac-and-sleep/m-p/34138" target="_blank" rel="external">tendency to periodically eject/sleep</a> on Mac's Snow Leopard. I'm using the 2TB GoFlex as my Time Machine drive and needed to resolve this annoyance as well. I've opened a ticket with Seagate Support directly, but so far they've been unable to completely resolve the issue.The only thing that seems to help is to go into System Prefs -&gt; Energy Saver and turn off the feature that puts Hard Drives to sleep. With that power saving feature disabled the Seagate only complains when my Mac actually wakes from sleep - that's an improvement but still no love.</div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[How to undo a SVN commit from the command line]]></title>
-      <url>http://ericsimmerman.com/2010/08/26/2010-08-26-how-to-undo-svn-commit-from-command-line/</url>
+      <url>/2010/08/26/2010-08-26-how-to-undo-svn-commit-from-command-line/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>SVN 1.4 added a feature to support easy rollback of a SVN commit. It's documented in SVN help, but unfortunately SVN help only makes sense if you already understand what it's trying to explain. Here's the easy commit revert command to run against your working copy:</p><p>svn merge -c -[REV] [REPO]</p><p>Replace the brackets with the offending revision number and your SVN repository respectively. For example, to undo the changes made by revision 42:</p><p>svn merge -c -42 <a href="http://example.com/svn/trunk" target="_blank" rel="external">http://example.com/svn/trunk</a> .</p></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> softwaredevelopment </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[I'm big in Brazil]]></title>
-      <url>http://ericsimmerman.com/2010/08/19/2010-08-19-i-big-in-brazil/</url>
+      <url>/2010/08/19/2010-08-19-i-big-in-brazil/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <div class="p_embed p_image_embed"><img alt="Media_httpwwwericsimm_ndffj" height="224" src="http://ericsimmerman.files.wordpress.com/2010/08/media_httpwwwericsimm_ndffj-scaled500.jpg?w=300" width="300"></div></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Import GnuCash data into MoneyDance]]></title>
-      <url>http://ericsimmerman.com/2010/06/13/2010-06-13-import-gnucash-data-into-moneydance/</url>
+      <url>/2010/06/13/2010-06-13-import-gnucash-data-into-moneydance/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <a href="http://www.gnucash.org/" target="_blank" rel="external">GnuCash</a> served me well while I was running Ubuntu as my primary desktop but since moving to a Mac Pro I've been disappointed in the performance and non-native nature of the GnuCash Mac port. I decided to migrate to <a href="http://moneydance.com/" target="_blank" rel="external">MoneyDance</a> and was quickly dismayed to discover GnuCash's poor support for standards based exporting.This GnuCash wiki-entry <a href="http://wiki.gnucash.org/wiki/FAQ#Q:_How_can_I_export_data.3F" target="_blank" rel="external">describes a few convoluted approaches to data export</a> but the items it references are hopelessly outdated and generally do not function for the latest stable release - reason enough to ditch GnuCash.MoneyDance hadn't solved the problem on their end either but their wiki does <a href="http://moneydance.com/trac/wiki/Frequently_Asked_Questions#CanIimportmyGnuCashdata" target="_blank" rel="external">reference a Perl script that converts the deprecated GnuCash Postgre storage format into a MoneyDance XML file</a>. Since I knew that the development release of GnuCash supports a SQLite storage format I decided to see if I could update Sid Reed's aforementioned script for this new SQLite container.I'm no Perl Monger, but <a href="http://xkcd.com/208/" target="_blank" rel="external">I do know regular expressions</a>. My updated script worked well for me and seamlessly converted several years of GnuCash data.  Please read the pre-requisites section in the header of this&nbsp;<a href="http://www.ericsimmerman.com/wp-content/uploads/2010/06/GnuCash-MoneyDance-Importer.zip" target="_blank" rel="external">GnuCash to MoneyDance Migration Script</a> before attempting to run it. In addition to the linked zip archive, <a href="http://github.com/ets/MoneyDance-GnuCash-Importer" target="_blank" rel="external">this script is also available on github</a>. Enjoy!</div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> softwaredevelopment </tag>
+            
+            <tag> gnucash </tag>
+            
+            <tag> moneydance </tag>
+            
+            <tag> perl </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Activate a Maven Profile using Hudson]]></title>
-      <url>http://ericsimmerman.com/2010/06/08/2010-06-08-activate-maven-profile-using-hudson/</url>
+      <url>/2010/06/08/2010-06-08-activate-maven-profile-using-hudson/</url>
       <content type="html"><![CDATA[
 <div class="post">
 Environment properties weren't available to me on my Mac server for some reason. The solution I eventually adopted was the one used in the <a href="http://wiki.hudson-ci.org/display/HUDSON/Cobertura+Plugin" target="_blank" rel="external">Cobertura Plugin docs here</a>. Hudson by default defines a property BUILD_NUMBER which is used to enable the profile.<div class="CodeRay">  <div class="code"><pre>&lt;profile&gt;     &lt;id&gt;hudson&lt;/id&gt;     &lt;activation&gt;         &lt;property&gt;             &lt;name&gt;BUILD_NUMBER&lt;/name&gt;         &lt;/property&gt;     &lt;/activation&gt;        ...&lt;/profile&gt;</pre></div></div></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Customize article row count for Cerberus public knowledgebase community]]></title>
-      <url>http://ericsimmerman.com/2010/03/14/2010-03-14-customize-article-row-count-for/</url>
+      <url>/2010/03/14/2010-03-14-customize-article-row-count-for/</url>
       <content type="html"><![CDATA[
 <div class="post">
 I've been evaluating the opensource <a href="http://www.cerberusweb.com/" target="_blank" rel="external">Cerberus Helpdesk</a> as an alternative to the closed source Kayako esupport. I like how Cerberus separates the creation of multiple knowledgebases that can then be published across multiple community portals. Instead of one comprehensive knowledgebase presented to all customers, I can use Cerberus to present product specific knowledgebases. It's a nice concept that should make it much easier for a customer to locate support information and thereby reduce the number of support tickets generated.Customizing the public facing portals for my Cerberus installation was straightforward.  The admin console provided a good degree of flexibility, but I wanted a bit more so I manually modified usermeet.core/templates/portal/sc/module/index.tpl in order to insert analytics scripts and some more detailed customization. That was easy, but my next mod proved more difficult. By default, Cerberus displays 10 articles on each page of search results and I wanted to increase that count to 20. Cerberus' architecture actually makes it a bit tricky to determine the control flow used by the community portals but I eventually traced the article retrieval flow to the DAO_KbArticle class in plugins/cerberusweb.kb/api/App.php and changed the default limit on the search method from 10 to 20. The limit is set as a hardcoded constant in the method signature....yuck. After the change, 20 articles were pulled from the database on each request, but there were still only 10 displayed in the portal.It took a lot of searching to find the missing piece and it was yet another hardcoded value in plugins/cerberusweb.kb/api/sc/kb.php where $view-&gt;renderLimit was set to 10. Changing this gave me the desired row count on the portal.The Cerberus team has put together a nice product but given that one of its core competitive features is its opensource nature, I'd like to see the codebase refactored to better facilitate this type of customization. Values like these limits could easily be defined in framework.config.php instead of scattering hardcoded settings across multiple files. That said, at least I had to option to manipulate the software - something I can't do with Kayako's offering.</div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> softwaredevelopment </tag>
+            
+            <tag> php </tag>
+            
+            <tag> cerberus </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Connecting to Netscreen Series (NetScreen-5) VPN with Mac OS X (Snow Leopard)]]></title>
-      <url>http://ericsimmerman.com/2010/03/05/2010-03-05-connecting-to-netscreen-series/</url>
+      <url>/2010/03/05/2010-03-05-connecting-to-netscreen-series/</url>
       <content type="html"><![CDATA[
 <div class="post">
 (Followup to my <a href="http://www.ericsimmerman.com/connecting_to_netscreen_series_netscreen/45/" target="_blank" rel="external">NetScreen-5 from Ubuntu article</a>) I recently struggled through the details of establishing a VPN connection from my Mac OS X desktop to a Juniper Networks Netscreen-5. Here's how I solved it. My Netscreen-5 was configured with some typical settings:Phase 1Pre-shared key "your-pre-shared-key-here"Encryption "pre-g2-aes128-sha"Phase 2 Encryption "g2-esp-3des-sha"To configure the client-side using an Ubuntu desktop, I used Racoon and KVpnc but didn't have the luxury of KVpnc on my Mac desktop so I had to manually edit my racoon.conf:<div class="CodeRay">  <div class="code"><pre>log debug2;path pre_shared_key &quot;/etc/racoon/psk.txt&quot;;path certificate &quot;/etc/racoon/certs&quot;;timer{        natt_keepalive 10 sec;}remote VPN.GATEWAY{        exchange_mode aggressive;        nat_traversal on;          ike_frag on;        peers_identifier asn1dn;        proposal_check obey;        my_identifier user_fqdn &quot;YOUR.EMAIL.ADDRESS&quot;;        proposal {                encryption_algorithm aes;                hash_algorithm sha1;                authentication_method pre_shared_key;                dh_group modp1024;        }}sainfo address DESKTOP.IP.ADDRESS/32 any address VPN.GATEWAY/28 any{        pfs_group modp1024;        encryption_algorithm 3des;        authentication_algorithm hmac_sha1;        compression_algorithm deflate;}listen{ adminsock &quot;/var/run/racoon.sock&quot; &quot;root&quot; &quot;operator&quot; 0660;}</pre></div></div></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> macintosh </tag>
+            
+            <tag> networks </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Select max value of numeric CollectionOfElements with Hibernate]]></title>
-      <url>http://ericsimmerman.com/2010/02/23/2010-02-23-select-max-value-of-numeric/</url>
+      <url>/2010/02/23/2010-02-23-select-max-value-of-numeric/</url>
       <content type="html"><![CDATA[
 <div class="post">
 Consider a numeric CollectionOfElements held by a class Product such as:<div class="CodeRay">  <div class="code"><pre>@Entity(name=&quot;Product&quot;)public class Product {protected Set serialNumbers = new HashSet();@CollectionOfElements@JoinTable(name=&quot;product_serialnumbers&quot;)public Set getSerialNumbers() {  return serialNumbers;}public void setSerialNumbers(Set serialNumbers) {  this.serialNumbers = serialNumbers;}}</pre></div></div>You can use a NamedQuery to determine the maximum SerialNumber held by any Product like this:<div class="CodeRay">  <div class="code"><pre>@Entity(name=&quot;Product&quot;)@NamedQueries ({    @NamedQuery(        name = &quot;maxSerialNumber&quot;,        query = &quot;select max(elements(p.serialNumbers)) as value from Product p&quot;        )})public class Product {protected Set serialNumbers = new HashSet();@CollectionOfElements@JoinTable(name=&quot;product_serialnumbers&quot;)public Set getSerialNumbers() {  return serialNumbers;}public void setSerialNumbers(Set serialNumbers) {  this.serialNumbers = serialNumbers;}}</pre></div></div></div>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Missing MacOS X VM in Eclipse Galileo on Snow Leopard]]></title>
-      <url>http://ericsimmerman.com/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/</url>
-      <content type="html"><![CDATA[
-<div class="post">
-I recently encountered an issue where I was unable to add a JVM to my Eclipse install on Snow Leopard. There was no MacOS X VM option under Installed JREs -&gt; Add and attempting to use the Standard VM resulted in an error. After digging around in Eclipse bug reports, I discovered this is a known issue with the Cocoa build of Galileo with PDT pre-installed.&nbsp; The easy fix is to install Eclipse without PDT (just install the Eclipse IDE for Java - Cocoa 64 bit) and add PDT plugin later. When you take this route, the MacOS X VM will be configured automagically.</div>
-]]></content>
+      
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> hibernate </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Eclipse Galileo unable to read Subversion repository]]></title>
-      <url>http://ericsimmerman.com/2010/01/18/2010-01-18-eclipse-galileo-unable-to-read/</url>
+      <url>/2010/01/18/2010-01-18-eclipse-galileo-unable-to-read/</url>
       <content type="html"><![CDATA[
 <div class="post">
 After a clean Snow Leopard install on a new machine, I fired up a fresh Galileo Eclipse and pointed it at a copy of my old workspace.&nbsp; I first encountered and resolved the missing Mac OS X JRE issue described in my last post, only to then find that my existing subversion repositories were inaccessible in the new Eclipse install. I hopefully added "-clean" as the first parameter of my eclipse.ini file and restarted but the situation remained unchanged. Undeterred, I launched eclipse from the command line with a -clean startup parameter and this did the trick:/Applications/&lt;your install dir/Eclipse.app/Contents/MacOS/eclipse -clean</div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> macintosh </tag>
+            
+            <tag> snowleopard </tag>
+            
+            <tag> eclipse </tag>
+            
+            <tag> subversive </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Missing MacOS X VM in Eclipse Galileo on Snow Leopard]]></title>
+      <url>/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/</url>
+      <content type="html"><![CDATA[
+<div class="post">
+I recently encountered an issue where I was unable to add a JVM to my Eclipse install on Snow Leopard. There was no MacOS X VM option under Installed JREs -&gt; Add and attempting to use the Standard VM resulted in an error. After digging around in Eclipse bug reports, I discovered this is a known issue with the Cocoa build of Galileo with PDT pre-installed.&nbsp; The easy fix is to install Eclipse without PDT (just install the Eclipse IDE for Java - Cocoa 64 bit) and add PDT plugin later. When you take this route, the MacOS X VM will be configured automagically.</div>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> macintosh </tag>
+            
+            <tag> snowleopard </tag>
+            
+            <tag> eclipse </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Copy/Paste clipboard broken on Snow Leopard]]></title>
-      <url>http://ericsimmerman.com/2009/12/19/2009-12-19-copypaste-clipboard-broken-on-snow/</url>
+      <url>/2009/12/19/2009-12-19-copypaste-clipboard-broken-on-snow/</url>
       <content type="html"><![CDATA[
 <div class="post">
 After a recent Apple update, copy and paste quit functioning on my Snow Leopard install. After a number of red herrings, I eventually traced the issue to <a href="http://synergy2.sourceforge.net/" target="_blank" rel="external">Synergy</a> and noticed that synergyc constantly emptied my clipboard immediately after any copy operation. I was running synergy 1.3.1 at the time which was released back in 2006 - I was hopeful that the latest release of the Synergy fork <a href="http://code.google.com/p/synergy-plus/" target="_blank" rel="external">Synergy Plus</a> might provide a quick solution.An install of synergy-plus 1.3.4 Darwin binary did not resolve the issue and a build of the latest from subversion (r252) would not run for me (separate issue - synergyc unable to resolve server address).I happened upon <a href="http://code.google.com/p/synergy-plus/issues/detail?id=67#c85" target="_blank" rel="external">this thread</a> in my search for an answer and based on comments there decided to build revision 242 for my Mac client and run 252 on my Ubuntu server. Happy to report it resolved my issues.One note - I was thrown for a bit when my first Xcode build resulted in 14 compile time errors. Turns out it was necessary for me to build for i386 as the 64-bit build would not compile for me.UPDATE: After a couple weeks use, I found the synergy-plus binary to be rather buggy and went in search of a solution. MacPorts supports a patched build of synergy 1.3.1 for Snow Leopard and so far it is working beautifully. Assuming you have ports installed, the following will install the tried and true synergy.<blockquote class="posterous_short_quote">port clean synergy ; port install synergy +universal</blockquote></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> macintosh </tag>
+            
+            <tag> synergy </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Subversion, Jira, Sonar, Hudson & Fisheye on Mac OSX Server with Snow Leopard]]></title>
-      <url>http://ericsimmerman.com/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/</url>
+      <url>/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/</url>
       <content type="html"><![CDATA[
 <div class="post">
 Here are some notes from the field on setting up all these development services to play nice on Mac OS X Server 10.6:<ul><li>Use <a href="http://developer.apple.com/mac/articles/server/subversionwithxcode3.html" target="_blank" rel="external">this excellent writeup from Apple</a> to get Subversion setup as a webservice. Note the comment about how the DAV setting can revert to DAV no and need correction. I've found that it sometimes reverts to "DAV On" and this will break your subversion service...it must always be set to DAV svn</li><li>Configure Jira using Server Admin's "Sites" panel for configuring the Web service. Under Sites-&gt;Proxy configure an ajp worker to talk to your Jira instance. I installed jira on its own context /jira as opposed to root and therefore set the worker URL path as well as the Proxy Path to /jira</li><li>For running under the same hostname/virtual host any additional balancer groups will need to be configured manually. I was able to configure an ajp balancer for sonar but had to use a http balancer for hudson. Avoid using 8443 for your ports for any customer services as Apple's iCal is configured for this one by default.</li></ul></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> macintosh </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Installing python-mysql connector MySQLdb after Snow Leopard upgrade]]></title>
-      <url>http://ericsimmerman.com/2009/10/23/2009-10-23-installing-python-mysql-connector/</url>
+      <url>/2009/10/23/2009-10-23-installing-python-mysql-connector/</url>
       <content type="html"><![CDATA[
 <div class="post">
 After upgrading to Snow Leopard and all its 64-bit goodness, I discovered that the upgrade to python 2.6.1 64-bit understandably broke my python-mysql connector which was previously compiled against my 32-bit installation of XAMPP with MySQL. I tried several different paths to make the new python play nice with the existing XAMPP installation. Here's the one that worked:<br><ol><li>Insure that you have the MySQL include directory needed for compilation against the XAMPP MySQL binary you are running. I'm running a 5.0.x build of MySQL and to get the proper include dir I simply downloaded the <a href="http://dev.mysql.com/downloads/mysql/5.0.html#macosx-dmg" target="_blank" rel="external">32-bit DMG for Mac from here</a>. After installation, I simply copied the include dir to my xampp installation.<div class="CodeRay">  <div class="code"><pre>cp -R /usr/local/mysql/include /Applications/xampp/xamppfiles/</pre></div></div>Now the xampp version of mysql_config will point to your newly installed include dir, so you are ready to compile against it.</li><li>If you don't already have it, grab the python-mysql connector source. I'm using MySQL-python-1.2.3c1</li><li>Tell your 64-bit python to always run in 32-bit mode <div class="CodeRay">  <div class="code"><pre>defaults write com.apple.versioner.python Prefer-32-Bit -bool yes</pre></div></div></li><li>cd into the MySQL-python source directory and build it for 32-bit mode<div class="CodeRay">  <div class="code"><pre>ARCHFLAGS='-arch i386' python setup.py build</pre></div></div></li><li>install it <div class="CodeRay">  <div class="code"><pre>ARCHFLAGS='-arch i386' python setup.py install</pre></div></div></li><li>exit the source directory "cd ~" and test your new install <div class="CodeRay">  <div class="code"><pre>pythonPython 2.6.1 (r261:67515, Jul  7 2009, 23:51:51)[GCC 4.2.1 (Apple Inc. build 5646)] on darwinType &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.&gt;&gt;&gt; import MySQLdb</pre></div></div>You're welcome.</li></ol></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> macintosh </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Resolving a 'CA key usage check failed: keyCertSign bit is not set' error in Tomcat]]></title>
-      <url>http://ericsimmerman.com/2009/10/22/2009-10-22-resolving-key-usage-check-failed/</url>
+      <url>/2009/10/22/2009-10-22-resolving-key-usage-check-failed/</url>
       <content type="html"><![CDATA[
 <div class="post">
 After installing a new GoDaddy SSL certificate in Tomcat 5.5.x my web browsers were able to properly negotiate SSL connections, but when back-end code  attempted (specifically when CAS attempted to validate a ticket through Cas20ServiceTicketValidator) to connect using SSL the "CA key usage check failed: keyCertSign bit is not set" error was being thrown. <p>My tomcat server is fronted by Apache2 and Apache handles SSL negotiation. I discovered that I had improperly installed the intermediate certificate for GoDaddy and while modern browsers just ignored the resulting misconfiguration, Java was complaining.</p><p>I had set the SSLCertificateChainFile directive to point to the "cert-chain.crt" file. The mistake is understandable given the near identical naming of the directive and the file...but alas that intuitive connection is erroneous. The directive instead needs to point to the gd_intermediate.crt file that GoDaddy also provides. Here's what my correct config looks like on RHEL5: </p><p><div class="CodeRay">  <div class="code"><pre>SSLCertificateChainFile /etc/pki/tls/certs/gd_intermediate.crt</pre></div></div></p></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> softwaredevelopment </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Compiling mod_caucho on RHEL 5.3]]></title>
-      <url>http://ericsimmerman.com/2009/09/14/2009-09-14-compiling-modcaucho-on-rhel-53/</url>
+      <url>/2009/09/14/2009-09-14-compiling-modcaucho-on-rhel-53/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>There is <a href="http://mail-archives.apache.org/mod_mbox/apr-dev/200410.mbox/%3C20041022090014.GA9117@redhat.com%3E" target="_blank" rel="external">a known issue with APR</a> that <a href="http://maillist.caucho.com/pipermail/resin-interest/2007-April/000969.html" target="_blank" rel="external">prevents the compilation of mod_caucho on RHEL 5.3</a> out of the box. Additionally, for some reason my installation of APR uses the name "apr-1-config" instead of "apr-config" so that to compile mod_caucho I had to do the following:</p><ol><li>Run configure --with-apxs</li><li>Execute 'apr-config --cppflags --cflags'</li><li>On my server this resulted in '-DLINUX=2 -D_REENTRANT -D_GNU_SOURCE -D_LARGEFILE64_SOURCE  -pthread'</li><li>Append the output of the above command to the "CFLAGS" line in config.status</li><li>Run make; make install;</li></ol>FYI, I also had to overwrite the "plugins" variable in the Resin configure script to manually set apache2 because the script was detecting and using apache1</div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> softwaredevelopment </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Running Skype on Snow Leopard - RESOLVED]]></title>
-      <url>http://ericsimmerman.com/2009/09/05/2009-09-05-running-skype-on-snow-leopard-resolved/</url>
+      <url>/2009/09/05/2009-09-05-running-skype-on-snow-leopard-resolved/</url>
       <content type="html"><![CDATA[
 <div class="post">
 After installing the latest Mac OSX upgrade Skype began giving me trouble. I found <a href="http://forum.skype.com/index.php?showtopic=409531" target="_blank" rel="external">this thread</a> in Skype's forums which attests to the issue. Downgrading to 2.7.0 is suggested as a solution there, but it did not work for me. The downgraded version still locked-up and refused to quit without a force. However, I kept 2.7.0.330 installed and convinced OS X to install <a href="http://www.apple.com/rosetta/" target="_blank" rel="external">Rosetta</a> (it prompted me for the install automatically when I attempted to launch Photoshop). After the Rosetta install and reboot, Skype 2.7.0.330 functioned properly for a few sessions and then fell down taking the whole kernel with it via the black screen of death. I've since upgraded to 2.8.0.659 which doesn't seem to crash but just stops working occasionally. The symptom exhibited is that messages stay in the "pending..." state and are simply never delivered.<p>UPDATE: I've resolved my issues by explicitly opening the Skype inbound port (the default is 65269 and it's configurable under Preferences -&gt; Advanced) in my firewall. This was not needed until I upgraded to Snow Leopard but apparently is now required to keep Skype functioning properly. I maintain a custom firewall configuration using /sbin/ipfw and I added the following line to /etc/rc.firewall to open the Skype inbound port.<div class="CodeRay">  <div class="code"><pre>add 3020 allow log tcp from any to any 65269 in</pre></div></div><br>After saving that and restarting ipfw Skype is functioning as expected.</p></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> macintosh </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Improving VirtualBox performance]]></title>
-      <url>http://ericsimmerman.com/2009/08/14/2009-08-14-improving-virtualbox-performance/</url>
+      <url>/2009/08/14/2009-08-14-improving-virtualbox-performance/</url>
       <content type="html"><![CDATA[
 <div class="post">
 I run VirtualBox on an Ubuntu 64-bit Host with a 32-bit Windows XP guest. I was searching for a way to boost performance and came across <a href="http://matt.bottrell.com.au/archives/265-Improving-VirtualBox-performance.html" target="_blank" rel="external">this post related to configuring a SATA controller</a> for drive access. Matt includes some great info there, but the step-by-step left something to be desired IMHO. Here are my revised instructions for configuring SATA support on your Win XP guest:<ol><li>Start VirtualBox, but do not boot your guest.</li><li>Open Settings for your Win XP guest and select "Hard Disks"</li><li>Check "Enable Additional Controller" and choose "SATA (AHCI)"</li><li>Save your Settings changes and boot your guest</li><li>Inside your guest, download the <a href="http://downloadcenter.intel.com/Product_Filter.aspx?ProductID=2101" target="_blank" rel="external">appropriate SATA controller software from Intel</a></li><li>Install the Intel software</li><li>Shutdown your guest</li><li>Go back into VirtualBox Settings for your guest. Select Harddrives again.</li><li>Now change the slot associated with your Windows XP attachments/harddisk(s) from IDE to "SATA Port 0"</li><li>Save your settings</li><li>Start your guest and enjoy the performance boost!<br></li></ol></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> ubuntu </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Spring Security ACL intercept-methods with transaction advice]]></title>
-      <url>http://ericsimmerman.com/2009/08/13/2009-08-13-spring-security-acl-intercept-methods/</url>
+      <url>/2009/08/13/2009-08-13-spring-security-acl-intercept-methods/</url>
       <content type="html"><![CDATA[
 <div class="post">
 I recently used Spring to configure a manager to use Spring Security ACL method-level authorization. Here's a snip of my initial manager bean config:<div class="CodeRay">  <div class="code"><pre>&lt;bean id=&quot;clientManager&quot; class=&quot;com.acme.service.impl.ClientManagerImpl&quot;&gt;    &lt;sec:intercept-methods access-decision-manager-ref=&quot;accessDecisionManager&quot;&gt;        &lt;sec:protect method=&quot;get&quot; access=&quot;AFTER_ACL_READ&quot;/&gt;        &lt;sec:protect method=&quot;save&quot; access=&quot;ROLE_ADMIN,ACL_WRITE&quot;/&gt;    &lt;/sec:intercept-methods&gt;    &lt;constructor-arg ref=&quot;clientDao&quot;/&gt;    &lt;property name=&quot;mutableAclService&quot; ref=&quot;aclService&quot;/&gt;&lt;/bean&gt;</pre></div></div>With this configuration, my unit tests verified that the method-level authorization was working as expected. Next, I applied some declarative transaction management to the same manager:<div class="CodeRay">  <div class="code"><pre>&lt;aop:config&gt;    &lt;aop:advisor id=&quot;managerTx&quot; advice-ref=&quot;txAdvice&quot; pointcut=&quot;execution(* *..service.*Manager.*(..))&quot; order=&quot;0&quot;/&gt;&lt;/aop:config&gt;&lt;tx:advice id=&quot;txAdvice&quot;&gt;    &lt;tx:attributes&gt;        &lt;tx:method name=&quot;get*&quot; read-only=&quot;true&quot;/&gt;        &lt;tx:method name=&quot;save*&quot; rollback-for=&quot;DuplicateNameException,UserExistsException&quot; /&gt;        &lt;tx:method name=&quot;*&quot;/&gt;    &lt;/tx:attributes&gt;&lt;/tx:advice&gt;</pre></div></div>After adding this transaction advice, my unit tests failed method-level authorization checks. I never traced the issue to its absolute root cause, but based upon some open tickets against Spring I believe the error was due to a "double-proxy" type issue. The short story is that proxies are final, and Spring can't proxy a proxy...<p>Regardless of the root cause, I found a reasonable workaround was to revert to one of the "old" (more verbose) methods of transaction demarcation. Here's what my final working configuration looks like:<div class="CodeRay">  <div class="code"><pre>&lt;bean id=&quot;baseTransactionProxy&quot; abstract=&quot;true&quot; class=&quot;org.springframework.transaction.interceptor.TransactionProxyFactoryBean&quot;&gt;    &lt;property name=&quot;transactionManager&quot; ref=&quot;transactionManager&quot;/&gt;    &lt;property name=&quot;transactionAttributes&quot;&gt;        &lt;props&gt;            &lt;prop key=&quot;get*&quot;&gt;PROPAGATION_REQUIRED,readOnly&lt;/prop&gt;            &lt;prop key=&quot;save*&quot;&gt;PROPAGATION_REQUIRED,-DuplicateNameException,-UserExistsException&lt;/prop&gt;            &lt;prop key=&quot;*&quot;&gt;PROPAGATION_REQUIRED&lt;/prop&gt;        &lt;/props&gt;    &lt;/property&gt;&lt;/bean&gt;&lt;bean id=&quot;clientManager&quot; parent=&quot;baseTransactionProxy&quot;&gt;  &lt;property name=&quot;target&quot;&gt;    &lt;bean class=&quot;com.acme.service.impl.ClientManagerImpl&quot;&gt;        &lt;sec:intercept-methods access-decision-manager-ref=&quot;accessDecisionManager&quot;&gt;          &lt;sec:protect method=&quot;get&quot; access=&quot;AFTER_ACL_READ&quot;/&gt;          &lt;sec:protect method=&quot;save&quot; access=&quot;ROLE_ADMIN,ACL_WRITE&quot;/&gt;        &lt;/sec:intercept-methods&gt;        &lt;constructor-arg ref=&quot;clientDao&quot;/&gt;        &lt;property name=&quot;mutableAclService&quot; ref=&quot;aclService&quot;/&gt;   &lt;/bean&gt;  &lt;/property&gt;&lt;/bean&gt;</pre></div></div>By leveraging the TransactionProxyFactoryBean directly instead of relying upon the tx:advice and aop:config tags, I was able to wrap my Spring ACL secured methods with declarative transactions. Nice.</p></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> softwaredevelopment </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[OpenSSL alert 40 Handshake error 'no common encryption algorithms' with Caucho's Resin]]></title>
-      <url>http://ericsimmerman.com/2009/07/23/2009-07-23-openssl-alert-40-handshake-error-common/</url>
+      <url>/2009/07/23/2009-07-23-openssl-alert-40-handshake-error-common/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>Setting up my new QA server should have been simple, but a cryptic issue with Resin cost me five hours. Here's the rundown so you can learn from my pain.</p><p>I copied my production copy of Resin over to a new QA server which is more or less identical - both run RHEL5 with the same version of openssl and same Java runtime. It fired up an ran perfectly...there were only two things I wanted to change. I wanted to:</p><ul><li>Upgrade to the latest version of Resin - from 3.1.7 to 3.1.9</li><li>Install a new SSL certificate to match the QA server's hostname</li></ul>The task at hand looked so simple I decided to make both changes at once without testing in between....big mistake. I flew through the upgrade process and grabbed a new certificate from GoDaddy (the same CA used for the existing certificate). When I fired up the new Resin it started with no errors but when I attempted to pull a page over SSL my browser returned a "no common encryption algorithms" error.<p>I thought support for certain algorithms must have changed in the latest release and thus spent an inordinate amount of time chasing my tail in the belief that the issue was related to the Resin minor version upgrade. After recognizing that dead-end, I ran through every openssl test I knew and learned a few more along the way. After much trial and error I finally noticed my mistake. I was still using the certificate-chain-file associated with the production certificate.</p><p>The first certificate in a certificate chain file is <b>your</b> server/domain certificate. Thus, I needed to replace the first certificate in the chain in order to use it with my QA server. That took two minutes...then all was well with SSL support in my new QA server.</p></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> softwaredevelopment </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Malfunctioning mouse after upgrade to Ubuntu 8.10]]></title>
-      <url>http://ericsimmerman.com/2009/07/18/2009-07-18-malfunctioning-mouse-after-upgrade-to/</url>
+      <url>/2009/07/18/2009-07-18-malfunctioning-mouse-after-upgrade-to/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>I experienced some intermittent and infuriating mouse malfunctions after my upgrade to Ubuntu 8.10. Single-clicks were interpreted as double-clicks, hilighted selections would lose focus, etc...</p><p>The root cause was an incomplete transition to HAL. Upgrade manager attempted but failed to comment out all my pointer and keyboard configuration in xorg.conf and my mouse was thus configured twice (once using the old-school xorg method and a second time by HAL). The fix was simple:</p><ul><li>Edit /etc/X11/xorg.conf and remove any references to keyboard or mouse devices in the "ServerLayout" section<ul><li>InputDevice    "Generic Keyboard"</li><li>InputDevice    "Configured Mouse"</li></ul></li><li>Also remove any Keyboard or Mouse sections within the xorg.conf</li><li>Hit Ctrl+Alt+F1 to drop to a shell and type "sudo xinit -- :2" to test your new config<ul><li>Correct any errors as needed until the above starts a new windows session with a simple command prompt</li></ul></li><li>Hit Ctrl+Alt+F1 to switch back to your test session and Ctrl-C to kill the second windows instance</li><li>Restart your primary GDM with your new config "sudo /etc/init.d/gdm restart"</li></ul></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> ubuntu </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Belkin Surge Protector Fire Hazard]]></title>
-      <url>http://ericsimmerman.com/2009/06/28/2009-06-28-belkin-surge-protector-fire-hazard/</url>
+      <url>/2009/06/28/2009-06-28-belkin-surge-protector-fire-hazard/</url>
       <content type="html"><![CDATA[
 <div class="post">
 Dear US Consumer Product Safety Commission<br>CC: everyone<br><p>    On the morning of June 27th 2009, electrical power to my household was briefly disrupted around 3:30am by several breaks in service over a period of about 20 seconds. Approximately 5 minutes after the disruption, I noticed thick black smoke billowing from a room housing several electronic devices. I was able to enter the room and identify the source of the smoke as the burning plastic of my Belkin "Conceal" Surge Protector. I was thankfully able to quickly terminate power to the device and remove the smoldering plastic from my home.</p><p>As the attached photos demonstrate, the heat from the Belkin burned several holes into the baseboard of the wall behind it and charred the surrounding floor and wall. At the time of the incident, there were only three devices plugged into the Belkin: a speaker, halogen lamp, and laptop computer. Both the speaker and lamp were powered off and the laptop was only drawing power as needed to replenish its battery. Aside from damage to their power cords all three devices were unharmed. I purchased this Belkin Surge Protector from Staples on July 25th 2007 (I have the original receipt) and it was never damaged, repaired, or modified in any way prior to this incident.</p><p>My wife &amp; eight-week old daughter were present in our home with me at the time of this incident. In addition to the obvious structural damage pictured, the room suffered significant smoke damage &amp; lingering odors from the toxic fumes. Clearly my family and I are lucky to have only experienced this relatively minor loss from such a potentially harmful incident. I am writing you today in the hope that this information may prevent other consumers from exposure to this potentially lethal &amp; hazardous product.</p><p>I have kept the product and would be happy to submit it for your inspection. The particulars of my Belkin are:<br>Model: BZ 111234-10<br>File No: E89769<br>Serial: 061016716-18079<br>Manufactured: Sept 02, 2006<br>Made in China<br></p><div class="p_embed p_image_embed"><img alt="Media_httpwwwjrollerc_ccgcz" height="640" src="http://ericsimmerman.files.wordpress.com/2009/06/media_httpwwwjrollerc_ccgcz-scaled500.jpg?w=225" width="480"></div><div class="p_embed p_image_embed"><a href="http://ericsimmerman.files.wordpress.com/2009/06/media_httpwwwjrollerc_vhtil-scaled1000.jpg" target="_blank" rel="external"><img alt="Media_httpwwwjrollerc_vhtil" height="375" src="http://ericsimmerman.files.wordpress.com/2009/06/media_httpwwwjrollerc_vhtil-scaled1000.jpg?w=300" width="500"></a></div><div class="p_embed p_image_embed"><a href="http://ericsimmerman.files.wordpress.com/2009/06/media_httpwwwjrollerc_juddz-scaled1000.jpg" target="_blank" rel="external"><img alt="Media_httpwwwjrollerc_juddz" height="375" src="http://ericsimmerman.files.wordpress.com/2009/06/media_httpwwwjrollerc_juddz-scaled1000.jpg?w=300" width="500"></a></div></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Resolve foreign key constraint error/conflict with DBUnit CLEAN_INSERT operation (MySQLIntegrityConstraintViolationException)]]></title>
-      <url>http://ericsimmerman.com/2009/06/17/2009-06-17-resolve-foreign-key-constraint/</url>
+      <url>/2009/06/17/2009-06-17-resolve-foreign-key-constraint/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>If DBUnit starts throwing MySQLIntegrityConstraintViolationException while performing a CLEAN_INSERT you can lose quite a bit of sleep attempting to resolve it or you can cheat and get back to work. The shortcut is to simply disable constraints for the INSERT operation by disabling constraints for DBUnit altogether. You can do that by adding sessionVariables=FOREIGN_KEY_CHECKS=0 to your JDBC connection string to MySQL. I use maven and in pom.xml my configuration for the dbunit plugin looks like this</p><div class="CodeRay">  <div class="code"><pre>&lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;&lt;artifactId&gt;dbunit-maven-plugin&lt;/artifactId&gt;&lt;version&gt;1.0-beta-1&lt;/version&gt;&lt;configuration&gt;    &lt;dataTypeFactoryName&gt;${dbunit.dataTypeFactoryName}&lt;/dataTypeFactoryName&gt;    &lt;driver&gt;${jdbc.driverClassName}&lt;/driver&gt;    &lt;username&gt;${jdbc.username}&lt;/username&gt;    &lt;password&gt;${jdbc.password}&lt;/password&gt;    &lt;url&gt;${jdbc.url}&amp;amp;sessionVariables=FOREIGN_KEY_CHECKS=0&lt;/url&gt;    &lt;src&gt;src/test/resources/sample-data.xml&lt;/src&gt;    &lt;type&gt;${dbunit.operation.type}&lt;/type&gt;    &lt;schema&gt;${dbunit.schema}&lt;/schema&gt;    &lt;skip&gt;${maven.test.skip}&lt;/skip&gt;&lt;/configuration&gt;</pre></div></div><p>Keep in mind that if you choose to do this your dbunit tests will run with constraints disabled....generally not a recommended approach. Caveat Emptor.</p></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> softwaredevelopment </tag>
+            
+            <tag> dbunit </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Using jQuery and Scriptaculous/prototype together]]></title>
-      <url>http://ericsimmerman.com/2009/06/01/2009-06-01-using-jquery-and-scriptaculousprototype/</url>
+      <url>/2009/06/01/2009-06-01-using-jquery-and-scriptaculousprototype/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>Congratulations to the jQuery crew for <a href="http://docs.jquery.com/Using_jQuery_with_Other_Libraries" target="_blank" rel="external">properly documenting this one in their official documentation</a>. However, I didn't find that page with my first search so consider this post my effort to propagate the knowledge.</p><p>jQuery uses "$" as a shortcut for "jQuery" and that is generally its only point of conflict with other javascript libraries. You can override that behavior so that jQuery will play nice with others by calling</p><div class="CodeRay">  <div class="code"><pre>jQuery.noConflict();</pre></div></div>and then explicitly calling "jQuery" where you would have used "$" to invoke jQuery behavior. Read more on the page referenced above.</div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> softwaredevelopment </tag>
+            
+            <tag> scriptaculous </tag>
+            
+            <tag> jquery </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Rolling back from Subversive 0.7.8 in Eclipse Ganymede]]></title>
-      <url>http://ericsimmerman.com/2009/05/14/2009-05-14-rolling-back-from-subversive-078-in/</url>
+      <url>/2009/05/14/2009-05-14-rolling-back-from-subversive-078-in/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>I've had automatic updates enabled on my Ganymede install of Eclipse. Huge mistake. Today a Subversive upgrade moved me into an unworkable state and I lost some development time recovering. My experience seems similar to <a href="http://dev.eclipse.org/newslists/news.eclipse.technology.equinox/msg06188.html" target="_blank" rel="external">the problem discussed here</a>. Even a fresh install of Eclipse failed to correct the situation. Maddening!</p><p>In any event, here's how I was able to finally recover:</p><ul><li>Open Time Machine</li><li>Restore ~/.eclipse</li><li>Pat self on back for using a Mac</li></ul><p>What? You don't use a Mac? Why?  Well, you might be able to use Eclipse's Software Updates -&gt; Installed Software -&gt; Revert Configuration button to rollback the upgrade. Good luck with that...</p></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> softwaredevelopment </tag>
+            
+            <tag> eclipse </tag>
+            
+            <tag> subversive </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Connecting to Netscreen Series (NetScreen-5) VPN with Ubuntu 9.04 (Jaunty - AMD64)]]></title>
-      <url>http://ericsimmerman.com/2009/05/13/2009-05-13-connecting-to-netscreen-series/</url>
+      <url>/2009/05/13/2009-05-13-connecting-to-netscreen-series/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>I recently struggled through the details of establishing a VPN connection from my Ubuntu 64 desktop to a Juniper Networks Netscreen-5. There are a number of ways to skin the VPN cat in linux and I'm not going to detail them all here. I'll just tell you how I solved it.</p>My Netscreen-5 was configured with some typical settings:<div class="CodeRay">  <div class="code"><pre>Phase 1Pre-shared key &quot;your-pre-shared-key-here&quot;Encryption &quot;pre-g2-aes128-sha&quot;Phase 2Encryption &quot;g2-esp-3des-sha&quot;</pre></div></div>To configure the client-side, I decided to use Racoon and KVpnc:<ol><li>On my Jaunty install (Ubuntu 9.04) I first installed the repository version of racoon: <div class="CodeRay">  <div class="code"><pre>apt-get install racoon</pre></div></div></li><li>Then I downloaded the latest build of KVpnc. They only had an intrepid build when I wrote this (kvpnc_0.9.1_intrepid-1_amd64.deb) and it worked for me, but it's worth <a href="http://home.gna.org/kvpnc/en/download.html" target="_blank" rel="external">checking if a Jaunty build is available</a>.</li><li>My Netscreen config translates to the following choices under KVpnc's Racoon options:<ul><li>sha1</li><li>aes</li><li>hmac_sha1</li><li>aes</li><li>agressive</li><li>modp1024</li><li>modp1024</li><li>Remote Identifier Type: asn1dn</li><li>Local Identifier Type: user_fqdn</li><li>Local Identifier Value: (we used email addresses for client ids on the netscreen so the Local Identifier value in KVpnc is an email address)</li></ul></li></ol><p>Your VPN gateway is entered under General and don't forget to complete the Network/General portion of your KVpnc profile as well. That's where your destination network goes (for a Host to Network configuration like mine).</p></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> ubuntu </tag>
+            
+            <tag> vpn </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Calling PHP from Ruby and reading STDOUT]]></title>
-      <url>http://ericsimmerman.com/2009/04/13/2009-04-13-calling-php-from-ruby-and-reading-stdout/</url>
+      <url>/2009/04/13/2009-04-13-calling-php-from-ruby-and-reading-stdout/</url>
       <content type="html"><![CDATA[
 <div class="post">
 PHP and Ruby syntax are far enough apart that I was loathe to attempt a port of some working PHP scripts in my arsenal, but I needed to call said scripts from a relatively complex Ruby program. Fast &amp; dirty integration of this type is generally performed using a system call, but unlike most things Ruby I didn't find the Ruby way in this case to be all that intuitive.<br>The %x technique for the system call made it easy to read the output of my PHP program into a variable in the calling script. The real trick was finding the correct syntax for passing a parameter to the %x call as shown below.<br>Learn from my studies grasshopper:<div class="CodeRay">  <div class="code"><pre>avariableparameter = &quot;--o ipso -v lorem&quot;result = %x[php /path/to/script.php &quot;#{avariableparameter}&quot;]</pre></div></div></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> softwaredevelopment </tag>
+            
+            <tag> php </tag>
+            
+            <tag> ruby </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Fix for KeePassX window positioning off screen after changing monitors]]></title>
-      <url>http://ericsimmerman.com/2009/04/06/2009-04-06-fix-for-keepassx-window-positioning-off/</url>
+      <url>/2009/04/06/2009-04-06-fix-for-keepassx-window-positioning-off/</url>
       <content type="html"><![CDATA[
 <div class="post">
 After removing a secondary monitor from a MacBook, some apps do not properly re-position themselves on your laptop display. KeePassX is one such offender and I was previously manually editing ~/.keepass/config and restarting KeePassX in order to resolve the issue.I came across <a href="http://blog.bittube.com/2008/05/08/moving-application-windows-in-os-x-via-apple-script/comment-page-1/#comment-100554" target="_blank" rel="external">a much nicer solution on bittube</a>. The solution is great, but the source found there is a bit tricky to copy &amp; paste so I've re-posted here for posterity. Enjoy!<div class="CodeRay">  <div class="code"><pre>property processesToIgnore : {}tell application &quot;Finder&quot;set _b to bounds of window of desktopset screen_width to item 3 of _bset screen_height to item 4 of _bend telltell application &quot;System Events&quot;set allProcesses to application processesset _results to &quot;&quot;repeat with i from 1 to count allProcessesset doIt to 1repeat with z from 1 to count processesToIgnoreif process i = process (item z of processesToIgnore) thenset doIt to 0end ifend repeatif doIt = 1 thentell process irepeat with x from 1 to (count windows)set winPos to position of window xset _x to item 1 of winPosset _y to item 2 of winPosif (_x &lt; 0 or _y  screen_width or _y &gt; screen_height) thenset position of window x to {0, 22}end ifend repeatend tellend ifend repeatend tell</pre></div></div></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> softwaredevelopment </tag>
+            
+            <tag> keepassx </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Resolving Synergy mouse issues with Firefox after upgrade to Ubuntu 8.04]]></title>
-      <url>http://ericsimmerman.com/2009/04/03/2009-04-03-resolving-synergy-mouse-issues-with/</url>
+      <url>/2009/04/03/2009-04-03-resolving-synergy-mouse-issues-with/</url>
       <content type="html"><![CDATA[
 <div class="post">
 My desktop runs Ubuntu (64-bit) and I use Synergy to drive its keyboard and mouse over to various clients like my MacBook Pro.After my upgrade to Ubuntu 8.04 my Synergy-driven mouse exhibited truly bizarre behavior while interacting with Firefox on my Mac. DHTML didn't function normally, dropdown menus were inaccessible, flash interactions were also hit-or-miss...<p>At first I blamed Firefox since Safari exhibited no such issues, but after a bit of trial and error I decided to compile Synergy server from source on my Ubuntu box. I killed the Ubuntu packaged Synergy server and launched my self-compiled binary. The new server resolved all the issues.</p><p>Another win for open source software...</p></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> synergy </tag>
+            
+            <tag> ubuntu </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Spring MVC's checkboxes tag and support for enum]]></title>
-      <url>http://ericsimmerman.com/2009/02/21/2009-02-21-spring-mvc-checkboxes-tag-and-support/</url>
+      <url>/2009/02/21/2009-02-21-spring-mvc-checkboxes-tag-and-support/</url>
       <content type="html"><![CDATA[
 <div class="post">
 Using Spring MVC's checkboxes (or radiobuttons) tag to render form inputs for an enum property is easy and clean...once you know how. After a little gnashing of teeth, due to the fact that I needed a specific display order for all options, I found the following solution:<p>Here's the tag in my jsp<div class="CodeRay">  <div class="code"><pre>&lt;form:checkboxes itemValue=&quot;value&quot; itemLabel=&quot;label&quot;  path=&quot;user.degrees&quot; items=&quot;${degreeLabels }&quot; /&gt;</pre></div></div><br>Here's the way I populated my model map to retain ordering. (I placed this code in my FormController's referenceData method)<div class="CodeRay">  <div class="code"><pre>List labelValues = new ArrayList&lt;LabelValue&gt;();        for (Degree d : Degree.values()) {            labelValues.add(new LabelValue(d.name(), d.name()));        }        Map model = new HashMap();        model.put(&quot;degreeLabels&quot;, labelValues);</pre></div></div>FYI, I ripped the LabelValue class used above from Matt Riable's excellent Appfuse project. The constructor takes two arguments which are mapped to the properties "value" and "label" and these properties have the typical pojo getters and setters.<br>You can see from the path on my tag that degrees is a property on my User object...which is the target of my form. Here's what that looks like...I threw in my Hibernate annotations for the curious:<div class="CodeRay">  <div class="code"><pre>private Set&lt;Degree&gt; degrees = new HashSet&lt;Degree&gt;();    @CollectionOfElements    @Enumerated(EnumType.STRING)    public Set&lt;Degree&gt; getDegrees() {        return degrees;    }    public void setDegrees(Set&lt;Degree&gt; degrees) {        this.degrees = degrees;    }</pre></div></div>It's probably obvious, but here's what the Degree enum looks like:<div class="CodeRay">  <div class="code"><pre>public enum Degree {    BA,BS,BN,BSW,MA,MS,MBA,MSN,MSW,MD,JD,PhD,PharmD,PsyD,Other;}</pre></div></div></p></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> softwaredevelopment </tag>
+            
+            <tag> spring </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Hibernate Annotations - IdentifierGenerationException: attempted to assign id from null one-to-one property]]></title>
-      <url>http://ericsimmerman.com/2009/02/18/2009-02-18-hibernate-annotations/</url>
+      <url>/2009/02/18/2009-02-18-hibernate-annotations/</url>
       <content type="html"><![CDATA[
 <div class="post">
 While using Hibernate annotations to implement a @OneToOne relationship where the entities are joined by primary key (@PrimaryKeyJoinColumn) I kept encountering a relatively infamous Exception:<div class="CodeRay">  <div class="code"><pre>IdentifierGenerationException: attempted to assign id from null one-to-one property</pre></div></div>I discovered that my issue could easily be resolved by adding "optional=false" to the dependent side of the relation. Here's a brief summary of the relevant related code.<div class="CodeRay">  <div class="code"><pre>@Entitypublic class Profile implements Serializable {   @OneToOne(mappedBy=&quot;profile&quot;, optional=false, fetch=FetchType.LAZY)    public Hospital getHospital() {        return hospital;    }    @Id @GeneratedValue(generator=&quot;foreign&quot;)    @GenericGenerator(name=&quot;foreign&quot;, strategy = &quot;foreign&quot;, parameters={            @Parameter(name=&quot;property&quot;, value=&quot;hospital&quot;)    })    public Long getId() {        return this.id;    }}@Entitypublic class Hospital implements Serializable {    @OneToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)    @PrimaryKeyJoinColumn    public Profile getProfile() {        return profile;    }    @Id @GeneratedValue(strategy=GenerationType.AUTO)    public Long getId() {        return id;    }}</pre></div></div></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> softwaredevelopment </tag>
+            
+            <tag> hibernate </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Import stock sales from Microsoft Money into TurboTax Online]]></title>
-      <url>http://ericsimmerman.com/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/</url>
+      <url>/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <a href="http://turbotax.intuit.com/personal-taxes/" target="_blank" rel="external">TurboTax Online</a>'s investment sale (stock, mutual fund, etc sales for capital gains) entry screen is a nice example of braindead design. Although the application provides a "bulk-entry spreadsheet-like interface", there's no import function available. So despite having all of my data in a nice spreadsheet (exported from the MS Money capital gains report) I was still faced with the prospect of manually entering each field from dozens of transactions. Worse still, the interface limits your access to seven rows/transactions per page.<p>Applescript to the rescue! It's an ugly solution, but it saved me a ton of time and helped avoid any manual entry typos:<ol><li>Use your spreadsheet program to arrange your transaction data into columns matching those in TurboTax's interface. You should have five columns. Insure that the dates are formatted as mm/dd/yy</li><li>Copy and paste the data into your favorite text editor as tab-delimited text (I used the excellent TextMate)</li><li>Use search and replace to convert all the tabs into <div class="CodeRay">  <div class="code"><pre>&quot; &amp; tab &amp; &quot;</pre></div></div></li><li>Use search and replace to insert the following at the beginning of every line <div class="CodeRay">  <div class="code"><pre>keystroke &quot;</pre></div></div></li><li>Use search and replace to insert the following at the end of every line <div class="CodeRay">  <div class="code"><pre>&quot; &amp; tab</pre></div></div></li><li>Now each line should look something like this<div class="CodeRay">  <div class="code"><pre>keystroke &quot;ACME Stock&quot; &amp; tab &amp; &quot;11/10/08&quot; &amp; tab &amp; &quot;100.12&quot; &amp; tab &amp; &quot;1/12/05&quot; &amp; tab &amp; &quot;584.12&quot; &amp; tab</pre></div></div></li><li>Paste the following script into the Script Editor application on your Mac<div class="CodeRay">  <div class="code"><pre>tell application &quot;System Events&quot;        tell process &quot;Firefox&quot;--Clearly replace Firefox above if you are using a different browser                set frontmost to true--Transactions go here        end tellend tell</pre></div></div></li><li>Cut 7 lines at a time from your text editor, paste them into the Script Editor and click "Run"</li><li>The script will populate the TurboTax screen with your data. Click "Add more Rows" in TurboTax and repeat!</li></ol>You're welcome.</p></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> softwaredevelopment </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Cisco VPN - Fix for Error 51: Unable to communicate with the VPN subsystem]]></title>
-      <url>http://ericsimmerman.com/2009/01/28/2009-01-28-cisco-vpn-fix-for-error-51-unable-to/</url>
+      <url>/2009/01/28/2009-01-28-cisco-vpn-fix-for-error-51-unable-to/</url>
       <content type="html"><![CDATA[
 <div class="post">
 I run Leopard on my Mac and encountered the dreaded Error 51 issue today. The simple fix that worked for me was to run the following two commands as root:<p><div class="CodeRay">  <div class="code"><pre># ifconfig fw0 down# /System/Library/StartupItems/CiscoVPN/CiscoVPN restart</pre></div></div>Afterwords, the VPN client started just fine...no Error 51.</p></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> softwaredevelopment </tag>
+            
+            <tag> vpn </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Linksys WET54G bridge to Verizon FiOS ActionTec wireless access point]]></title>
-      <url>http://ericsimmerman.com/2009/01/19/2009-01-19-linksys-wet54g-bridge-to-verizon-fios/</url>
+      <url>/2009/01/19/2009-01-19-linksys-wet54g-bridge-to-verizon-fios/</url>
       <content type="html"><![CDATA[
 <div class="post">
 So my upgrade to Verizon FiOS included swapping my Linksys WRT54G access point for the Verizon branded ActionTec device that came with the FiOS install. This swap wasn't strictly necessary, but the ActionTec doubles as both the router and access point so I decided I might as well make use of the wireless capabilities since I have to keep it plugged in either way.The only problem I encountered was that my Linksys WRT54G bridge couldn't play nice with the ActionTec. Through trial and error I found that setting both devices to encrypt using WPA2-PSK using AES only (not the default TKIP+AES) resolved my issues.</div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> networks </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Removing duplicate music files with different names from a large directory free]]></title>
-      <url>http://ericsimmerman.com/2008/10/28/2008-10-28-removing-duplicate-music-files-with/</url>
+      <url>/2008/10/28/2008-10-28-removing-duplicate-music-files-with/</url>
       <content type="html"><![CDATA[
 <div class="post">
 During a recent Mac migration, I hosed my iTunes library and unintentionally generated hundreds of duplicate songs (the actual media files). The problem was exacerbated by the fact that a numeric was generally appended to the duplicate filenames so that I had directories full of files like the following:<div class="CodeRay">  <div class="code"><pre>/artist/album/song.mp3/artist/album/song 1.mp3/artist/album/song 2.mp3</pre></div></div>Apple wasn't doing me any favors by injecting a space in the new names either....what a mess!<p>I stole a few ideas from <a href="http://ubuntuforums.org/archive/index.php/t-97701.html" target="_blank" rel="external">this excellent forum thread</a> and cobbled together a script to remove files based on exact byte counts and md5sum signatures. Here's the good stuff:</p><div class="CodeRay">  <div class="code"><pre>#!/bin/bashfind . ! -empty -type f -printf &quot;%s &quot; -exec ls -dQ {} ; | sort -n | cut -d&quot; &quot; -f2- | xargs md5sum | sort | uniq -w32 -d | cut -c35- | while read filenamedo echo &quot;Removing $filenamen&quot; rm &quot;$filename&quot;done</pre></div></div>Now here's the play-by-play:<ol><li>Prints out the size and filename of each file found on the path and sorts using the filesize as the key</li><li>Trims off the file size in preparation for next stage</li><li>Creates the checksum for the files of the same size and then sorts by result</li><li>Strip out any checksums that are unique, leaving only the duplicates</li><li>Strips out the checksum part, just leaving the duplicate filenames</li><li>Loops through the results removing the first duplicate file of each set.</li></ol>You'll need to run the script multiple times if you've managed to generate more than one copy of any given file. Good luck!</div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> ubuntu </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Running Synergy client automatically under Mac OS X 10.5]]></title>
-      <url>http://ericsimmerman.com/2008/09/17/2008-09-17-running-synergy-client-automatically/</url>
+      <url>/2008/09/17/2008-09-17-running-synergy-client-automatically/</url>
       <content type="html"><![CDATA[
 <div class="post">
 There is a bug in Synergy 1.3.1 causing it to crash when started as a daemon under Mac OS X 10.5.<p>Here's the <a href="http://sourceforge.net/forum/message.php?msg_id=5021604" target="_blank" rel="external">fix you want</a>.</p></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> macintosh </tag>
+            
+            <tag> synergy </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[avahi-daemon blocks nfsd on Ubuntu]]></title>
-      <url>http://ericsimmerman.com/2008/06/06/2008-06-06-avahi-daemon-blocks-nfsd-on-ubuntu/</url>
+      <url>/2008/06/06/2008-06-06-avahi-daemon-blocks-nfsd-on-ubuntu/</url>
       <content type="html"><![CDATA[
 <div class="post">
 I just spent a morning attempting to fix a <a href="http://www.jroller.com/agileanswers/entry/mounting_an_ubuntu_nfs_share" target="_blank" rel="external">NFS mounting configuration</a> that had been working flawlessly for over 6 months. My daemon log was showing this:<div class="CodeRay">  <div class="code"><pre>nfssvc: writing fds to kernel failed: errno 98 (Address already in use)</pre></div></div><br>After much angst, I finally stumbled upon <a href="http://lists.debian.org/debian-user/2007/01/msg00343.html" target="_blank" rel="external">this posting</a> that mentioned a conflict between avahi-daemon and NFSd. After a quick "apt-get remove avahi-daemon", all is well with the world.</div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> ubuntu </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[MathML support in OpenLaszlo]]></title>
-      <url>http://ericsimmerman.com/2008/06/05/2008-06-05-mathml-support-in-openlaszlo/</url>
+      <url>/2008/06/05/2008-06-05-mathml-support-in-openlaszlo/</url>
       <content type="html"><![CDATA[
 <div class="post">
 <p>I'm happy to announce that my company (<a href="http://www.tempeststrings.com" target="_blank" rel="external">Tempest Strings Enterprises</a>) has sponsored my development and release of a <a href="http://www.w3.org/Math/" target="_blank" rel="external">MathML</a> library for <a href="http://www.openlaszlo.org/" target="_blank" rel="external">OpenLaszlo</a>. I'll be working through the OpenLaszlo contributor process, but imagine that it could take a considerable amount of time before you see this work in their repository since I've not yet made any effort to adhere to any coding guidelines. There is very little documentation in the source, no consistent style, and no support for any runtime except SWF. Nevertheless, I've already successfully integrated the library with a larger application and it is functioning well in our beta release.</p><br><p>This library is based upon the <a href="http://www.learn-math.info/mathml.htm?action=formula" target="_blank" rel="external">Flash Actionscript library</a> that ionel-alexandru (Sourceforge username) of learn-math.info donated to the public domain. I make heavy use of Alex's object tree and MathML rendering logic (thanks Alex!). I've built upon OpenLaszlo's Drawview class from their SVN trunk and added support for rendering stand-alone MathML from a datasource as well as formulas placed inline with other text.</p><p><br></p><p>Note that the full set of MathML has not yet been implemented (ex: no support for &lt;mtable&gt;) but here are some examples of supported formulas:</p><p></p><div class="CodeRay">  <div class="code"><pre>&lt;dataset name=&quot;example1&quot;&gt;&lt;math&gt;&lt;mrow&gt;&lt;msqrt&gt;        &lt;mrow&gt;                &lt;msup&gt;                        &lt;mn&gt;2&lt;/mn&gt;                        &lt;mrow&gt;                                &lt;msup&gt;                                        &lt;mi&gt;x&lt;/mi&gt;                                        &lt;mn&gt;2&lt;/mn&gt;                                &lt;/msup&gt;                                &lt;mo&gt;+&lt;/mo&gt;                                &lt;mrow&gt;                                        &lt;mn&gt;4&lt;/mn&gt;                                        &lt;mi&gt;x&lt;/mi&gt;                                &lt;/mrow&gt;                                &lt;mo&gt;+&lt;/mo&gt;                                &lt;mn&gt;4&lt;/mn&gt;                        &lt;/mrow&gt;                &lt;/msup&gt;                &lt;mo&gt;+&lt;/mo&gt;                &lt;mrow&gt;                        &lt;mn&gt;4&lt;/mn&gt;                        &lt;mi&gt;x&lt;/mi&gt;                &lt;/mrow&gt;                &lt;mo&gt;+&lt;/mo&gt;                &lt;mn&gt;45&lt;/mn&gt;        &lt;/mrow&gt;&lt;/msqrt&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mroot linethickness=&quot;3&quot;&gt;&lt;mrow&gt;        &lt;msub&gt;                &lt;mi&gt;log&lt;/mi&gt;                &lt;mn&gt;2&lt;/mn&gt;        &lt;/msub&gt;&lt;/mrow&gt;&lt;mi&gt;5&lt;/mi&gt;&lt;/mroot&gt;&lt;/mrow&gt;&lt;/math&gt;&lt;/dataset&gt;</pre></div></div>renders with the library as:<div class="p_embed p_image_embed"><img alt="Media_httpwwwjrollerc_nhdgt" height="80" src="http://getfile1.posterous.com/getfile/files.posterous.com/import-flpo/FgiCmfCHGswdohEzpfneJkocEqgAqtgycfGxbwqwtoloiebqEuhwukxqjdys/media_httpwwwjrollerc_nHDgt.jpg.scaled500.jpg" width="382"></div><p></p><div class="CodeRay">  <div class="code"><pre>&lt;dataset name=&quot;example2&quot;&gt;&lt;math&gt;        &lt;mrow&gt;                &lt;mo&gt; ( &lt;/mo&gt;                &lt;mfrac linethickness=&quot;0&quot; color=&quot;#006699&quot;&gt;                        &lt;mi fontstyle=&quot;bold&quot;&gt; a + b +c &lt;/mi&gt;                        &lt;mi color=&quot;#ff0000&quot;&gt; b &lt;/mi&gt;                &lt;/mfrac&gt;                &lt;mo&gt; ) &lt;/mo&gt;        &lt;/mrow&gt;        &lt;mfrac linethickness=&quot;2&quot; fontstyle=&quot;italic&quot; &gt;                &lt;mrow&gt;&lt;mi color=&quot;#00ff00&quot;&gt;3456&lt;/mi&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mfrac&gt;                        &lt;mi&gt; a &lt;/mi&gt;                        &lt;mi fontsize=&quot;8&quot;&gt; b + c + d&lt;/mi&gt;                &lt;/mfrac&gt;                &lt;/mrow&gt;&lt;mrow&gt;&lt;mn&gt;3&lt;/mn&gt;        &lt;mfrac color=&quot;#ffff00&quot;&gt;                        &lt;mi&gt; c + d &lt;/mi&gt;                        &lt;mi color=&quot;#ff0000&quot;&gt; d &lt;/mi&gt;                &lt;/mfrac&gt;        &lt;/mrow&gt;        &lt;/mfrac&gt;&lt;/math&gt;&lt;/dataset&gt;</pre></div></div>makes use of node-level styling to render as<div class="p_embed p_image_embed"><img alt="Media_httpwwwjrollerc_nhcbg" height="115" src="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_nhcbg-scaled500.jpg?w=300" width="343"></div><p>The next one really shows off some of the fancy rendering capabilities:</p><div class="CodeRay">  <div class="code"><pre>&lt;dataset name=&quot;example3&quot;&gt;&lt;math&gt;        &lt;msubsup&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mn&gt;56&lt;/mn&gt;        &lt;/msubsup&gt;        &lt;msup&gt;                &lt;mi&gt;x&lt;/mi&gt;                &lt;mn&gt;2&lt;/mn&gt;        &lt;/msup&gt;        &lt;mtext fontstyle='italic'&gt;dx&lt;/mtext&gt;&lt;mo&gt;+&lt;/mo&gt;        &lt;msubsup&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;                &lt;mi&gt;-&lt;![CDATA[&amp;infinity;]]&gt;&lt;/mi&gt;                &lt;mi&gt;&lt;![CDATA[&amp;infinity;]]&gt;&lt;/mi&gt;        &lt;/msubsup&gt;        &lt;msup&gt;                &lt;mi&gt;e&lt;/mi&gt;                &lt;mn&gt;x&lt;/mn&gt;        &lt;/msup&gt;        &lt;mtext fontstyle='italic'&gt;dx&lt;/mtext&gt;&lt;mo&gt;+&lt;/mo&gt;        &lt;munderover&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;                &lt;mrow&gt;                        &lt;mi&gt;x&lt;/mi&gt;                        &lt;mo&gt;=&lt;/mo&gt;                        &lt;mn&gt;0&lt;/mn&gt;                &lt;/mrow&gt;                &lt;mn&gt;56&lt;/mn&gt;        &lt;/munderover&gt;        &lt;msup&gt;                &lt;mi&gt;x&lt;/mi&gt;                &lt;mn&gt;2&lt;/mn&gt;        &lt;/msup&gt;        &lt;mo&gt;+&lt;/mo&gt;        &lt;munderover&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;                &lt;mrow&gt;                        &lt;mi&gt;x&lt;/mi&gt;                        &lt;mo&gt;=&lt;/mo&gt;                        &lt;mn&gt;0&lt;/mn&gt;                &lt;/mrow&gt;                &lt;mi&gt;&lt;![CDATA[&amp;infinity;]]&gt;&lt;/mi&gt;        &lt;/munderover&gt;        &lt;msup&gt;                &lt;mi&gt;x&lt;/mi&gt;                &lt;mn&gt;2&lt;/mn&gt;        &lt;/msup&gt;        &lt;mo&gt;+&lt;/mo&gt;        &lt;munderover&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;        &lt;mrow&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;        &lt;mi&gt;n&lt;/mi&gt;&lt;/munderover&gt;&lt;mrow&gt;        &lt;mi&gt;x&lt;/mi&gt;&lt;/mrow&gt;&lt;mo&gt;+&lt;/mo&gt;        &lt;munder&gt;                &lt;mrow&gt;                        &lt;mi&gt;lim&lt;/mi&gt;                &lt;/mrow&gt;                &lt;mrow&gt;                        &lt;mi&gt;x&lt;/mi&gt;                &lt;mo&gt;&lt;![CDATA[???]]&gt;&lt;/mo&gt;                &lt;mn&gt;0&lt;/mn&gt;        &lt;/mrow&gt;&lt;/munder&gt;&lt;mrow&gt;        &lt;mi&gt;x&lt;/mi&gt;&lt;/mrow&gt;&lt;/math&gt;&lt;/dataset&gt;</pre></div></div><div class="p_embed p_image_embed"><a href="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_hjpgi-scaled1000.jpg" target="_blank" rel="external"><img alt="Media_httpwwwjrollerc_hjpgi" height="60" src="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_hjpgi-scaled1000.jpg?w=300" width="500"></a></div><p>This last example is demonstrating inline rendering with text:</p><div class="CodeRay">  <div class="code"><pre>&lt;dataset name=&quot;myFormula&quot;&gt;&lt;![CDATA[T<br>his is an example of pseudo inline MathML:&lt;math&gt;                &lt;mrow&gt;                  &lt;mi&gt;x&lt;/mi&gt;                  &lt;mo&gt;+&lt;/mo&gt;                  &lt;msup&gt;                    &lt;mi&gt;y&lt;/mi&gt;                    &lt;mfrac&gt;                      &lt;mn&gt;2&lt;/mn&gt;                      &lt;mrow&gt;                        &lt;mi&gt;k&lt;/mi&gt;                        &lt;mo&gt;+&lt;/mo&gt;                        &lt;mn&gt;1&lt;/mn&gt;                      &lt;/mrow&gt;                    &lt;/mfrac&gt;                  &lt;/msup&gt;                &lt;/mrow&gt;                &lt;/math&gt;How do you like them apples?]]&gt;&lt;/dataset&gt;</pre></div></div><div class="p_embed p_image_embed"><a href="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_hdktp-scaled1000.jpg" target="_blank" rel="external"><img alt="Media_httpwwwjrollerc_hdktp" height="23" src="http://ericsimmerman.files.wordpress.com/2008/06/media_httpwwwjrollerc_hdktp-scaled1000.jpg?w=300" width="500"></a></div><p>All of the formulas above were displayed using the same MathML view using the datasets listed. Here's the view declaration:</p><div class="CodeRay">  <div class="code"><pre>&lt;mathmlview font=&quot;sans-serif&quot; fontsize=&quot;24&quot; fgcolor=&quot;#000000&quot; id=&quot;math&quot; x=&quot;10&quot; y=&quot;10&quot; width=&quot;800&quot; height=&quot;500&quot; datapath=&quot;myFormula:/&quot;/&gt;</pre></div></div>The current source is released under the MIT Open Source License and available on <a href="https://github.com/ets/OpenLaszloMathML" target="_blank" rel="external">github</a>. Enjoy!</div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> softwaredevelopment </tag>
+            
+            <tag> openlaszlo </tag>
+            
+            <tag> mathml </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Spring JMS Remoting support for async calls and methods with void return types]]></title>
-      <url>http://ericsimmerman.com/2008/05/28/2008-05-28-spring-jms-remoting-support-for-async/</url>
+      <url>/2008/05/28/2008-05-28-spring-jms-remoting-support-for-async/</url>
       <content type="html"><![CDATA[
 <div class="post">
 I've submitted a patch to the Spring Framework to give their <a href="http://jira.springframework.org/browse/SPR-4427" target="_blank" rel="external">JMS remoting feature support for async calls and methods with void return types</a>. The associated Jira ticket (<a href="http://jira.springframework.org/browse/SPR-4427" target="_blank" rel="external">SPR-4427</a>) could use a few votes if you are so inclined.</div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> softwaredevelopment </tag>
+            
+            <tag> spring </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Hilight current post on threaded view in Fireboard 1.0.4]]></title>
-      <url>http://ericsimmerman.com/2008/01/15/2008-01-15-hilight-current-post-on-threaded-view/</url>
+      <url>/2008/01/15/2008-01-15-hilight-current-post-on-threaded-view/</url>
       <content type="html"><![CDATA[
 <div class="post">
 In the 1.0.4 release, there is no indicator of which post you are currently viewing within a threaded tree of posts. Here's my hack to implement such an indicator.<p>Under your chosen template directory (ex: components/com_fireboard/templates/default), edit the thread.php file. Look for the TR with class="fb_threadview_row" and modify it like so:<br><div class="CodeRay">  <div class="code"><pre>&lt;tr class=&quot;fb_threadview_row&quot; &lt;? if($leaf-&gt;id == (int)$id){ echo &quot;style='background-color:yellow'&quot;; } ?&gt; &gt;</pre></div></div>You can use any background-color value you desire. I used "yellow" in the above example.</p></div>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[Java webbrowser plugin for AMD64 Ubuntu]]></title>
-      <url>http://ericsimmerman.com/2007/10/29/2007-10-29-java-webbrowser-plugin-for-amd64-ubuntu/</url>
+      <url>/2007/10/29/2007-10-29-java-webbrowser-plugin-for-amd64-ubuntu/</url>
       <content type="html"><![CDATA[
 <div class="post">
 There is now (finally) a fix for Java applet support on AMD64 Ubuntu. Try the following:<div class="CodeRay">  <div class="code"><pre>sudo apt-get build-dep icedtea-java7-pluginsudo apt-get -b source icedtea-java7-plugin icedtea-java7-bin icedtea-java7-jre icedtea-java7-jdksudo dpkg -i icedtea-java7-*deb</pre></div></div>Thanks to Fabien Lusseau for the tip in his comment <a href="https://bugs.launchpad.net/ubuntu/+source/icedtea-java7/+bug/152362" target="_blank" rel="external">here</a></div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> ubuntu </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Mounting an Ubuntu NFS share on RedHat Enterprise with firewalls on both]]></title>
-      <url>http://ericsimmerman.com/2007/10/20/2007-10-20-mounting-ubuntu-nfs-share-on-redhat/</url>
+      <url>/2007/10/20/2007-10-20-mounting-ubuntu-nfs-share-on-redhat/</url>
       <content type="html"><![CDATA[
 <div class="post">
 It can be tough making NFS play nice amongst different distros and firewalls. I'm sharing my Eclipse workspace on my Ubuntu (Debian) desktop with my CentOS (Redhat Enterprise) server. (That's not a mistake, my server is actually my NFS client in this scenario. You could easily swap these roles if you wish)<div class="CodeRay">  <div class="code"><pre>DEBIAN:I used port numbers and config instructions at http://wiki.debian.org/?SecuringNFSFollow those instructions exactly and you'll have a NFS server configuration that uses static ports (instead of random assignements)REDHAT:1. Create the file &quot;/etc/sysconfig/nfs&quot; and add the following contents:STATD_PORT=32765STATD_OUTGOING_PORT=32766LOCKD_TCPPORT=32768LOCKD_UDPPORT=32768MOUNTD_PORT=327672. (Probably not necessary for most, but here for completeness) Append the following to the file &quot;/etc/services&quot;:rquotad 32769/tcp # rpc.rquotad tcp portrquotad 32769/udp # rpc.rquotad udp port3. Restart the nfslock service:/etc/init.d/nfslock restart4. Run /usr/sbin/rpcinfo -p and make sure all the ports above have changed and match their ubuntu numbers. (/usr/bin/rpcinfo on ubuntu)5. I run firestarter on Ubuntu which is exporting my NFS share. I added the following policy rules for inbound traffic:Allow 32767 (from my client machine's IP)Allow 2049 (from my client machine's IP)Allow 111 (from my client machine's IP)</pre></div></div>Assuming you allow all outbound traffic on your client (I recommend this excellent iptables config file <a href="http://www.linuxguruz.com/iptables/scripts/rc.firewall_023.txt" target="_blank" rel="external">rc.firewall_023.txt</a>), you should now be able to mount the NFS share on the Redhat box.</div>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> ubuntu </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[Migrated from JRoller]]></title>
-      <url>http://ericsimmerman.com/2006/01/01/2006-01-01-migrated-from-jroller/</url>
+      <url>/2006/01/01/2006-01-01-migrated-from-jroller/</url>
       <content type="html"><![CDATA[<p>Entries prior to October 2007 are only available on <a href="http://jroller.com/agileanswers/" target="_blank" rel="external">my original Agile Answers blog hosted at JRoller here</a>.</p>
 ]]></content>
+      
+        
     </entry>
     
   

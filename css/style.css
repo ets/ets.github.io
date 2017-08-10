@@ -133,7 +133,6 @@ code {
   color: #e96900;
   padding: 3px 5px;
   font-size: 0.8em;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
   font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
   background-color: #f8f8f8;
@@ -186,8 +185,8 @@ code {
   #main {
     display: inline;
     float: left;
-    width: 52.3076923076923%;
-    margin: 0 0.7692307692308%;
+    width: 52.307692307692314%;
+    margin: 0 0.769230769230769%;
   }
 }
 @media screen and (min-width: 800px) and (max-width: 1199px) {
@@ -195,7 +194,7 @@ code {
     display: inline;
     float: left;
     width: 67.6923076923077%;
-    margin: 0 0.7692307692308%;
+    margin: 0 0.769230769230769%;
   }
 }
 .archive-article-header a,
@@ -509,7 +508,6 @@ code {
   padding: 0 30px 0 15px;
   line-height: 40px;
   height: 40px !important;
-  -webkit-border-radius: 21px;
   border-radius: 21px;
 }
 #search-form-wrap .search-form .search-form-input::-webkit-search-results-decoration,
@@ -599,7 +597,6 @@ code {
   margin-right: 15px;
   height: 32px;
   line-height: 32px;
-  -webkit-border-radius: 16px;
   border-radius: 16px;
 }
 @media screen and (max-width: 559px) {
@@ -635,8 +632,8 @@ code {
 #profile {
   display: inline;
   float: left;
-  width: 21.5384615384615%;
-  margin: 0 0.7692307692308%;
+  width: 21.53846153846154%;
+  margin: 0 0.769230769230769%;
   display: none;
 }
 @media screen and (min-width: 1200px) {
@@ -682,7 +679,6 @@ code {
   text-align: center;
   margin: 20px auto 10px;
   background: #38b7ea;
-  -webkit-border-radius: 20px;
   border-radius: 20px;
   -webkit-transition: 0.2s ease;
   -moz-transition: 0.2s ease;
@@ -750,7 +746,6 @@ code {
   padding: 5px 15px;
   position: absolute;
   white-space: nowrap;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
   text-transform: uppercase;
   -webkit-box-shadow: 0 0 2px rgba(0,0,0,0.2);
@@ -1006,7 +1001,6 @@ a.article-title:hover {
   display: inline-block;
   line-height: 1em;
   padding: 6px 15px;
-  -webkit-border-radius: 15px;
   border-radius: 15px;
   background: #f5f8f9;
   color: #999;
@@ -1084,7 +1078,6 @@ a.article-title:hover {
     margin-top: -4px;
     margin-left: -4px;
     content: "";
-    -webkit-border-radius: 50%;
     border-radius: 50%;
     background: #787c81;
   }
@@ -1144,7 +1137,6 @@ a.article-title:hover {
   background: #fff;
   -webkit-box-shadow: 0px 2px 2px rgba(0,0,0,0.1);
   box-shadow: 0px 2px 2px rgba(0,0,0,0.1);
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   margin-left: -145px;
   overflow: hidden;
@@ -1164,7 +1156,6 @@ a.article-title:hover {
   color: #565a5f;
   outline: none;
   border: 1px solid #eceff2;
-  -webkit-border-radius: 3px 3px 0 0;
   border-radius: 3px 3px 0 0;
   height: 36px;
   line-height: 36px;
@@ -1256,7 +1247,6 @@ a.article-title:hover {
   background: #f9f9f9;
   margin: 2em 0 0 0.2em;
   padding: 1em;
-  -webkit-border-radius: 0px;
   border-radius: 0px;
 }
 .toc-article .toc-title {
@@ -1532,7 +1522,6 @@ ol.toc {
   line-height: 32px;
   text-align: center;
   display: inline-block;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
 }
 #page-nav a {
@@ -1591,7 +1580,6 @@ ol.toc {
   width: 12px;
   color: #fff;
   height: 12px;
-  -webkit-border-radius: 50%;
   border-radius: 50%;
   margin: 11px 0 0 -8px;
   display: inline-block;
@@ -1669,16 +1657,16 @@ ol.toc {
   #sidebar {
     display: inline;
     float: left;
-    width: 21.5384615384615%;
-    margin: 0 0.7692307692308%;
+    width: 21.53846153846154%;
+    margin: 0 0.769230769230769%;
   }
 }
 @media screen and (min-width: 800px) and (max-width: 1199px) {
   #sidebar {
     display: inline;
     float: left;
-    width: 29.230769230769198%;
-    margin: 0 0.7692307692308%;
+    width: 29.230769230769234%;
+    margin: 0 0.769230769230769%;
   }
 }
 .widget {
@@ -1821,7 +1809,6 @@ ol.toc {
   line-height: 55px;
   background: #565a5f;
   opacity: 0.8;
-  -webkit-border-radius: 4px;
   border-radius: 4px;
   bottom: 20px;
   position: fixed;
@@ -1962,7 +1949,6 @@ ol.toc {
   -webkit-box-shadow: none;
   box-shadow: none;
   font-weight: 200;
-  -webkit-border-radius: 0;
   border-radius: 0;
   background: #fff;
   line-height: 20px;
