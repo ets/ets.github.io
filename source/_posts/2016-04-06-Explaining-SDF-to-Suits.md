@@ -2,6 +2,7 @@
 title: Explaining SDF to suits
 date: 2016-04-06 19:18:04
 tags:
+- Signed Distance Fields
 ---
 
 I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.

@@ -3,7 +3,7 @@ layout: post
 title: "Resolving H2 table lock during JUnitRunner test"
 date: 2014-02-01 15:36
 comments: true
-categories: 
+tags: 
 ---
 After adding a new test to a project that uses Play Framework 1.2.X and thus leverages H2 for Junit functional testing, I began encountering a table lock during setup() when the framework was attempting to delete the contents of an entity table.
 

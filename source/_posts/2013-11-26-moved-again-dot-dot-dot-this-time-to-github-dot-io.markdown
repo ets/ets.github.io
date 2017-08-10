@@ -3,7 +3,9 @@ layout: post
 title: "Moved again ... this time to github.io"
 date: 2013-11-26 19:22
 comments: true
-categories: 
+tags:
+- Blogger
+- Octopress
 ---
 Blogger was just too ugly & clumsy so I used a fork of [juniorz's import.rb](https://gist.github.com/juniorz/1564581) to migrate from blogger to Octopress. Here's my fork:
 

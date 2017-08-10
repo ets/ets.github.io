@@ -3,7 +3,7 @@ layout: post
 title: "MySQL Identifying Blocking Transactions"
 date: 2015-08-10 12:29:15 -0400
 comments: true
-categories:
+tags:
 ---
 Recording this incredibly helpful query from [Bill Karwin's post to SO](https://stackoverflow.com/questions/22046390/still-seeing-lock-wait-timeouts-when-deleting-from-large-tables-using-primary-ke/22131972#22131972)
 You can find the source query that's blocking your DELETE by using the INFORMATION_SCHEMA.LOCK_WAITS and INNODB_TRX tables.

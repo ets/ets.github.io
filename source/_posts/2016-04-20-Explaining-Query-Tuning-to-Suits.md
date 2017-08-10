@@ -2,6 +2,7 @@
 title: Explaining Query Tuning to suits
 date: 2016-04-20 19:18:04
 tags:
+- query tuning
 ---
 
 I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.
@@ -23,9 +24,9 @@ Last week, Michael Dumont spent some time tuning several queries in our platform
 
 Orange = a measure of platform activity
 Blue = a measure of how hard the database is working
-<img src="https://mail.google.com/mail/u/0/?ui=2&ik=4be6722e5b&view=fimg&th=1543543588cd7db8&attid=0.1&disp=emb&realattid=ii_154352436974512a&attbid=ANGjdJ_8dUL3vkw5EmPb00yEY5WrUywqx_yu5mzd7WXNnUezIR178a1eOiLvkBKVrtIO22Eenqc35sta6KV7b3DIsgetemRL_s9ewy7McKioOclVTD8AOGQbg796l14&sz=w1088-h506&ats=1494795285989&rm=1543543588cd7db8&zw&atsh=1">
+{% asset_img query-tuning-1.png platform activity with db load %}
 Note: unlike Social Tables' Engineers, our database refuses to work harder than 100% ... so those blue peaks are signs of unhappy Social Tables users.
 
 Here are the same measurements after tuning:
-<img src="https://mail.google.com/mail/u/0/?ui=2&ik=4be6722e5b&view=fimg&th=1543543588cd7db8&attid=0.2&disp=emb&realattid=ii_1543524f5f5251a7&attbid=ANGjdJ9P9-aDB8by1WaHgUgiJJgzZpyFbE0NrlwLmQgfwbY7eBv6r2LzEr-QdHLlmRhkE_mOS9T6E2d7mrhGYn41D6Q-Q1ZCxp3UXVkgAuk_cYp3ZhJjDrRJ9mf_51s&sz=w1088-h500&ats=1494795285990&rm=1543543588cd7db8&zw&atsh=1">
+{% asset_img query-tuning-2.png platform activity with db load after tuning %}
 Happier database === Happier users

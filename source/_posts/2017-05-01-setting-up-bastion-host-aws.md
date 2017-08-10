@@ -2,6 +2,9 @@
 title: Setting up a Bastion host on AWS
 date: 2017-05-18 17:01:41
 tags:
+ - AWS
+ - bastion
+ - jumphost
 ---
 When setting up my latest development environment at AWS, I wanted to deploy all EC2 services on a private VPC and simply route all traffic to them through a Bastion host (aka jump host). AWS maintains a an [excellent CloudFormation quickstart guide & template here](http://docs.aws.amazon.com/quickstart/latest/linux-bastion/welcome.html) and it's what I used to get started. After completing that guide I put a new entry for the Bastion host in my ssh config like so:
 ```

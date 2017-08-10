@@ -3,7 +3,7 @@ layout: post
 title: "Fix YAML parsing errors in WebGen"
 date: 2015-01-07 12:20:34 -0500
 comments: true
-categories: 
+tags: 
 ---
 After a clean install of Mac OS X Yosemite I've had to reinstall much of my development environment. This process was mostly beneficial as I moved to the latest and greatest tooling but several of my static websites leverage the prior major version of [Thomas Leitner's Webgen](http://webgen.gettalong.org/index.html) and getting version 0.5.x up and running has been a challenge.  
 

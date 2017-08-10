@@ -2,6 +2,7 @@
 title: Explaining Docker to suits
 date: 2016-05-14 19:18:04
 tags:
+- Docker
 ---
 
 I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.
