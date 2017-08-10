@@ -13,10 +13,13 @@
 <meta property="og:site_name" content="Technocracy">
 <meta property="og:description" content="I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.  Today we’re going to talk briefly about que">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-08-10T13:36:39.000Z">
+<meta property="og:image" content="http://ericsimmerman.com/images/query-tuning-1.png">
+<meta property="og:image" content="http://ericsimmerman.com/images/query-tuning-2.png">
+<meta property="og:updated_time" content="2017-08-10T14:04:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Explaining Query Tuning to suits">
 <meta name="twitter:description" content="I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.  Today we’re going to talk briefly about que">
+<meta name="twitter:image" content="http://ericsimmerman.com/images/query-tuning-1.png">
     
 
     
@@ -244,8 +247,10 @@
 <p>Since database structures are complex, in most cases, and especially for not-very-simple queries, the needed data for a query can be collected from a database by accessing it in different ways, through different data-structures, and in different orders. Each different way typically requires different processing time. Processing times of the same query may have large variance, from a fraction of a second to hours, depending on the way selected. The purpose of query tuning, is to find the way to process a given query in minimum time.</p>
 <h2 id="What’s-query-tuning-…-in-English-preferably-with-pictures-and-how-can-it-wreck-my-whole-day"><a href="#What’s-query-tuning-…-in-English-preferably-with-pictures-and-how-can-it-wreck-my-whole-day" class="headerlink" title="What’s query tuning … in English (preferably with pictures) and how can it wreck my whole day?"></a>What’s query tuning … in English (preferably with pictures) and how can it wreck my whole day?</h2><p>Query tuning is an effort to minimize the work performed while answering a query. If done poorly, database queries execute slowly and your application responds slowly. When your application responds slowly bad things happen - like Mary posting a screenshot to #devops (aka your whole day is wrecked).</p>
 <p>Last week, Michael Dumont spent some time tuning several queries in our platform and his visuals of that effort are worth &gt; 1,000 words:</p>
-<p>Orange = a measure of platform activity<br>Blue = a measure of how hard the database is working<br><br>Note: unlike Social Tables’ Engineers, our database refuses to work harder than 100% … so those blue peaks are signs of unhappy Social Tables users.</p>
-<p>Here are the same measurements after tuning:<br><br>Happier database === Happier users</p>
+<p>Orange = a measure of platform activity<br>Blue = a measure of how hard the database is working<br><img src="/images/query-tuning-1.png"></p>
+<p>Note: unlike Social Tables’ Engineers, our database refuses to work harder than 100% … so those blue peaks are signs of unhappy Social Tables users.</p>
+<p>Here are the same measurements after tuning:<br><img src="/images/query-tuning-2.png"></p>
+<p>Happier database === Happier users</p>
 
         
         </div>
@@ -256,7 +261,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/" data-id="cj66h9hj5000gaxoukko3ii4u" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/" data-id="cj66idql7005zg9oud4ye5e96" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

@@ -13,13 +13,13 @@
 <meta property="og:site_name" content="Technocracy">
 <meta property="og:description" content="I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.  We’ve got a special subject this issue to t">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://mail.google.com/mail/u/0/?ui=2&ik=4be6722e5b&view=fimg&th=1543543d1cce453f&attid=0.1&disp=emb&realattid=ii_153ecb6a29e16a81&attbid=ANGjdJ-f2oYILbnL19O-tmZ6EsDcXaYiAGDJ07nPhJijtx2YgYZYDdawK_Id8ieoYWzSoC9o9XuaAXj04eAmGE0JO-I1Ja5kyFDZI1S0zrK3pYGxhm4ZtAZD6BYOOfk&sz=w156-h40&ats=1494809715654&rm=1543543d1cce453f&zw&atsh=1">
-<meta property="og:image" content="https://mail.google.com/mail/u/0/?ui=2&ik=4be6722e5b&view=fimg&th=1543543d1cce453f&attid=0.2&disp=emb&realattid=ii_153ecb76b4f32354&attbid=ANGjdJ-hYMp9cspdZYnXIyGJYRtgDsU2-rmyfbcYCd7kW0yJBqfT9F95-sewd_2rD4h2PGheyjmi9AhD0EKG5KT7s4H7WZW92yaYuB-j4Aub_o7Qw0F_TPFZ2Rl19fg&sz=w958-h224&ats=1494809715654&rm=1543543d1cce453f&zw&atsh=1">
-<meta property="og:updated_time" content="2017-08-10T13:31:15.000Z">
+<meta property="og:image" content="http://ericsimmerman.com/images/sdf-1.png">
+<meta property="og:image" content="http://ericsimmerman.com/images/sdf-2.png">
+<meta property="og:updated_time" content="2017-08-10T14:06:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Explaining SDF to suits">
 <meta name="twitter:description" content="I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.  We’ve got a special subject this issue to t">
-<meta name="twitter:image" content="https://mail.google.com/mail/u/0/?ui=2&ik=4be6722e5b&view=fimg&th=1543543d1cce453f&attid=0.1&disp=emb&realattid=ii_153ecb6a29e16a81&attbid=ANGjdJ-f2oYILbnL19O-tmZ6EsDcXaYiAGDJ07nPhJijtx2YgYZYDdawK_Id8ieoYWzSoC9o9XuaAXj04eAmGE0JO-I1Ja5kyFDZI1S0zrK3pYGxhm4ZtAZD6BYOOfk&sz=w156-h40&ats=1494809715654&rm=1543543d1cce453f&zw&atsh=1">
+<meta name="twitter:image" content="http://ericsimmerman.com/images/sdf-1.png">
     
 
     
@@ -246,9 +246,9 @@
 <h2 id="What’s-SDF"><a href="#What’s-SDF" class="headerlink" title="What’s SDF?"></a>What’s SDF?</h2><p>Signed distance field (SDF) is a technique for rendering bitmap fonts without jagged edges even at high magnifications. It was first introduced in 2007 with this bit of light reading by Valve and couples the use of a bitmap and glyphs with a GLSL shader that can sample and sharpen said glyphs.</p>
 <h2 id="What’s-SDF-…-in-English-preferably-with-pictures"><a href="#What’s-SDF-…-in-English-preferably-with-pictures" class="headerlink" title="What’s SDF … in English (preferably with pictures)?"></a>What’s SDF … in English (preferably with pictures)?</h2><p>So…you know what sounds easy but is really really hard? Drawing legible letters in Venue Mapper. Wait - what? Why’s that hard you ask?</p>
 <p>Here’s a screenshot of “Social Tables” rendered in 12pt font by Microsoft Word:</p>
-<p><img src="https://mail.google.com/mail/u/0/?ui=2&ik=4be6722e5b&view=fimg&th=1543543d1cce453f&attid=0.1&disp=emb&realattid=ii_153ecb6a29e16a81&attbid=ANGjdJ-f2oYILbnL19O-tmZ6EsDcXaYiAGDJ07nPhJijtx2YgYZYDdawK_Id8ieoYWzSoC9o9XuaAXj04eAmGE0JO-I1Ja5kyFDZI1S0zrK3pYGxhm4ZtAZD6BYOOfk&sz=w156-h40&ats=1494809715654&rm=1543543d1cce453f&zw&atsh=1"></p>
+<p><img src="/images/sdf-1.png"></p>
 <p>Completely legible. But here’s that exact same image after I zoom in a few times:</p>
-<p><img src="https://mail.google.com/mail/u/0/?ui=2&ik=4be6722e5b&view=fimg&th=1543543d1cce453f&attid=0.2&disp=emb&realattid=ii_153ecb76b4f32354&attbid=ANGjdJ-hYMp9cspdZYnXIyGJYRtgDsU2-rmyfbcYCd7kW0yJBqfT9F95-sewd_2rD4h2PGheyjmi9AhD0EKG5KT7s4H7WZW92yaYuB-j4Aub_o7Qw0F_TPFZ2Rl19fg&sz=w958-h224&ats=1494809715654&rm=1543543d1cce453f&zw&atsh=1"></p>
+<p><img src="/images/sdf-2.png"></p>
 <p>Not so great. Possibly legible but if we rendered text like this as users zoom in and out in Venue Mapper we’d have to bundle subscriptions with aspirin.</p>
 <p>SDF is a technique we’ve just begun using to more efficiently render text in Venue Mapper 3 - it performs better (app is faster) and looks prettier than the techniques we’ve used previously.</p>
 <p>Here’s a <a href="https://youtu.be/8yt7kSftNU4" target="_blank" rel="external">movie of SDF in action in VM3 courtesy of our own Van Drunen</a>.</p>
@@ -262,7 +262,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/" data-id="cj66h9hje000haxou7gh06jx1" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/" data-id="cj66idql80061g9oukirlmb3c" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
