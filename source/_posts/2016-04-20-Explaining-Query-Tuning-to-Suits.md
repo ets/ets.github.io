@@ -24,9 +24,11 @@ Last week, Michael Dumont spent some time tuning several queries in our platform
 
 Orange = a measure of platform activity
 Blue = a measure of how hard the database is working
-{% asset_img query-tuning-1.png platform activity with db load %}
+<img src="/images/query-tuning-1.png">
+
 Note: unlike Social Tables' Engineers, our database refuses to work harder than 100% ... so those blue peaks are signs of unhappy Social Tables users.
 
 Here are the same measurements after tuning:
-{% asset_img query-tuning-2.png platform activity with db load after tuning %}
+<img src="/images/query-tuning-2.png">
+
 Happier database === Happier users
