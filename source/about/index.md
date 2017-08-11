@@ -21,3 +21,7 @@ Some of my favorite sources - in no particular order:
 * [Stratechery](https://stratechery.com/)
 * [The Atlantic](http://www.theatlantic.com/)
 * [Rands in Repose](http://randsinrepose.com/)
+
+# Meditation
+
+“Until you make the unconscious conscious, it will direct your life and you will call it fate.” - C.G. Jung
