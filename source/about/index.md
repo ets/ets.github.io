@@ -21,6 +21,11 @@ Some of my favorite sources - in no particular order:
 * [Stratechery](https://stratechery.com/)
 * [The Atlantic](http://www.theatlantic.com/)
 * [Rands in Repose](http://randsinrepose.com/)
+* [LessWrong](http://lesswrong.com/)
+
+# Insipiration
+
+* [What You'll Wish You'd Known](http://www.paulgraham.com/hs.html)
 
 # Meditation
 
