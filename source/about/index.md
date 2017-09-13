@@ -30,3 +30,5 @@ Some of my favorite sources - in no particular order:
 # Meditation
 
 “Until you make the unconscious conscious, it will direct your life and you will call it fate.” - C.G. Jung
+
+"The world is the totality of facts, not of things." - Ludwig Wittgenstein
