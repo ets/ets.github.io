@@ -51,7 +51,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2008/09/17/2008-09-17-running-synergy-client-automatically/</loc>
+    <loc>http://ericsimmerman.com/2008/06/06/2008-06-06-avahi-daemon-blocks-nfsd-on-ubuntu/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -72,13 +72,6 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/01/28/2009-01-28-cisco-vpn-fix-for-error-51-unable-to/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
@@ -86,14 +79,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/02/21/2009-02-21-spring-mvc-checkboxes-tag-and-support/</loc>
+    <loc>http://ericsimmerman.com/2009/02/18/2009-02-18-hibernate-annotations/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/02/18/2009-02-18-hibernate-annotations/</loc>
+    <loc>http://ericsimmerman.com/2009/02/21/2009-02-21-spring-mvc-checkboxes-tag-and-support/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -114,7 +107,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/05/13/2009-05-13-connecting-to-netscreen-series/</loc>
+    <loc>http://ericsimmerman.com/2009/01/28/2009-01-28-cisco-vpn-fix-for-error-51-unable-to/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -122,6 +115,13 @@
   
   <url>
     <loc>http://ericsimmerman.com/2009/04/13/2009-04-13-calling-php-from-ruby-and-reading-stdout/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2009/05/13/2009-05-13-connecting-to-netscreen-series/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -149,7 +149,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2017/05/18/2017-05-01-setting-up-bastion-host-aws/</loc>
+    <loc>http://ericsimmerman.com/2006/01/01/2006-01-01-migrated-from-jroller/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -191,13 +191,6 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/09/14/2009-09-14-compiling-modcaucho-on-rhel-53/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2009/10/23/2009-10-23-installing-python-mysql-connector/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
@@ -205,7 +198,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/</loc>
+    <loc>http://ericsimmerman.com/2009/09/14/2009-09-14-compiling-modcaucho-on-rhel-53/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -213,6 +206,13 @@
   
   <url>
     <loc>http://ericsimmerman.com/2009/10/22/2009-10-22-resolving-key-usage-check-failed/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -261,7 +261,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2006/01/01/2006-01-01-migrated-from-jroller/</loc>
+    <loc>http://ericsimmerman.com/2007/10/29/2007-10-29-java-webbrowser-plugin-for-amd64-ubuntu/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -275,7 +275,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2007/10/29/2007-10-29-java-webbrowser-plugin-for-amd64-ubuntu/</loc>
+    <loc>http://ericsimmerman.com/2017/05/18/2017-05-01-setting-up-bastion-host-aws/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -296,14 +296,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2010/11/28/2010-11-28-ditch-mamp-on-snow-leopard/</loc>
+    <loc>http://ericsimmerman.com/2008/05/28/2008-05-28-spring-jms-remoting-support-for-async/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2008/05/28/2008-05-28-spring-jms-remoting-support-for-async/</loc>
+    <loc>http://ericsimmerman.com/2010/11/28/2010-11-28-ditch-mamp-on-snow-leopard/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -345,7 +345,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2008/06/06/2008-06-06-avahi-daemon-blocks-nfsd-on-ubuntu/</loc>
+    <loc>http://ericsimmerman.com/2008/09/17/2008-09-17-running-synergy-client-automatically/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -541,14 +541,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/</loc>
+    <loc>http://ericsimmerman.com/2012/05/21/2012-05-21-great-explanation-of-infamous-loop/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2012/05/21/2012-05-21-great-explanation-of-infamous-loop/</loc>
+    <loc>http://ericsimmerman.com/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -576,14 +576,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2012/08/07/2012-08-07-supporting-multiple-file-upload/</loc>
+    <loc>http://ericsimmerman.com/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/</loc>
+    <loc>http://ericsimmerman.com/2012/08/07/2012-08-07-supporting-multiple-file-upload/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -618,7 +618,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/</loc>
+    <loc>http://ericsimmerman.com/2011/03/25/2011-03-25-installing-gerrit2-on-mac-os-x-server/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -695,7 +695,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/03/25/2011-03-25-installing-gerrit2-on-mac-os-x-server/</loc>
+    <loc>http://ericsimmerman.com/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     

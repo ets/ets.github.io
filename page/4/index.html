@@ -241,7 +241,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2011/10/17/2011-10-17-mac-1065-snow-leopard-server-ldap-bug/" data-id="cj7lyjmkp004acjouzbpngmsp" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2011/10/17/2011-10-17-mac-1065-snow-leopard-server-ldap-bug/" data-id="cj7lyl7e7004ahdousn6ou65q" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -365,7 +365,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2011/10/05/2011-10-05-listening-to-sensefm-while-they-fix/" data-id="cj7lyjmko0047cjoup380itzt" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2011/10/05/2011-10-05-listening-to-sensefm-while-they-fix/" data-id="cj7lyl7e60047hdoukrgg4iyi" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -443,130 +443,6 @@
 
 
 
-    <article id="post-2011-09-22-slf4jlocationawarelog-serialization" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/">SLF4JLocationAwareLog serialization exception</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/">
-            <time datetime="2011-09-22T04:00:00.000Z" itemprop="datePublished">2011-09-22</time>
-        </a>
-    </div>
-
-
-                        
-                        
-                    </div>
-                
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            
-<div class="post">
-<p>While attempting to make a large object graph serializable I kept encountering NotSerializableExceptions regarding my Log references which were instances of&nbsp;SLF4JLocationAwareLog. The references were declared transient so I beat my head on a wall for a few hours before upgrading my slf4j version from 1.4.2 to 1.5.8</p><p>Somewhat frustratingly - that resolved the issue. No idea why.</p></div>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ericsimmerman.com/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/" data-id="cj7lyjmkm0042cjouqr6vw6mm" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ericsimmerman.com/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/">Comments</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <article id="post-2011-09-22-upgrading-snow-leopard-development" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -613,7 +489,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2011/09/22/2011-09-22-upgrading-snow-leopard-development/" data-id="cj7lyjmkn0045cjouaupbsgz0" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2011/09/22/2011-09-22-upgrading-snow-leopard-development/" data-id="cj7lyl7e50045hdouwoqc85oj" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -691,6 +567,130 @@
 
 
 
+    <article id="post-2011-09-22-slf4jlocationawarelog-serialization" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/">SLF4JLocationAwareLog serialization exception</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/">
+            <time datetime="2011-09-22T04:00:00.000Z" itemprop="datePublished">2011-09-22</time>
+        </a>
+    </div>
+
+
+                        
+                        
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+<div class="post">
+<p>While attempting to make a large object graph serializable I kept encountering NotSerializableExceptions regarding my Log references which were instances of&nbsp;SLF4JLocationAwareLog. The references were declared transient so I beat my head on a wall for a few hours before upgrading my slf4j version from 1.4.2 to 1.5.8</p><p>Somewhat frustratingly - that resolved the issue. No idea why.</p></div>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/" data-id="cj7lyl7e30042hdouznkgcoc9" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ericsimmerman.com/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-2011-09-13-winner-takes-all-network-effect" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -737,7 +737,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2011/09/13/2011-09-13-winner-takes-all-network-effect/" data-id="cj7lyjmkk0040cjoui8xof244" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2011/09/13/2011-09-13-winner-takes-all-network-effect/" data-id="cj7lyl7e00040hdouiwa6kbhe" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -861,7 +861,7 @@ Our CI server (we use Jenkins) recently began bombing on several new tests that 
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2011/08/26/2011-08-26-resolving-connect-to-window-server-not/" data-id="cj7lyjmki003xcjouuof3tnhc" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2011/08/26/2011-08-26-resolving-connect-to-window-server-not/" data-id="cj7lyl7dy003xhdouzfvw1f76" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -985,7 +985,7 @@ Our CI server (we use Jenkins) recently began bombing on several new tests that 
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2011/08/23/2011-08-23-resolving-has-already-been-called-when/" data-id="cj7lyjmkh003vcjoux8jub9gl" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2011/08/23/2011-08-23-resolving-has-already-been-called-when/" data-id="cj7lyl7dx003vhdoukz98d1vr" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1109,7 +1109,7 @@ Our CI server (we use Jenkins) recently began bombing on several new tests that 
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2011/08/19/2011-08-19-jsp-tricks-to-make-templating-easier-on/" data-id="cj7lyjmkf003scjouhysz0ukz" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2011/08/19/2011-08-19-jsp-tricks-to-make-templating-easier-on/" data-id="cj7lyl7dv003shdounywp0358" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1233,7 +1233,7 @@ Our CI server (we use Jenkins) recently began bombing on several new tests that 
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2011/08/17/2011-08-17-testing-local-web-application-with/" data-id="cj7lyjmkd003qcjoubepzb8f2" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2011/08/17/2011-08-17-testing-local-web-application-with/" data-id="cj7lyl7ds003qhdouh97kegtl" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1357,7 +1357,7 @@ Our CI server (we use Jenkins) recently began bombing on several new tests that 
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2011/08/06/2011-08-06-macports-mysql-upgrade-from-50x-to-51x/" data-id="cj7lyjmkb003ncjou0voy4fax" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2011/08/06/2011-08-06-macports-mysql-upgrade-from-50x-to-51x/" data-id="cj7lyl7dr003nhdouufselk26" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

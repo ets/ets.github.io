@@ -481,22 +481,22 @@ Pirated from a long forgotten place...apologies to the respective copyright hold
     </entry>
     
     <entry>
-      <title><![CDATA[SLF4JLocationAwareLog serialization exception]]></title>
-      <url>/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/</url>
+      <title><![CDATA[Upgrading a Snow Leopard development machine to Lion]]></title>
+      <url>/2011/09/22/2011-09-22-upgrading-snow-leopard-development/</url>
       <content type="html"><![CDATA[
 <div class="post">
-<p>While attempting to make a large object graph serializable I kept encountering NotSerializableExceptions regarding my Log references which were instances of&nbsp;SLF4JLocationAwareLog. The references were declared transient so I beat my head on a wall for a few hours before upgrading my slf4j version from 1.4.2 to 1.5.8</p><p>Somewhat frustratingly - that resolved the issue. No idea why.</p></div>
+<p><span style="font-size:large;">1. Install Lion</span></p><p>If you heard about the small business 20-pack of licences Apple offered when they announced Lion and think you might want to go that route - don't. &nbsp;Trust me. &nbsp;They can take your payment but they just can't fulfill your order ... <a href="http://www.youtube.com/watch?v=A7uvttu8ct0" target="_blank" rel="external">and that's really the most important part</a>. Two months later I have a micro USB drive and am finally starting the upgrades.</p><p><span style="font-size:large;">2. Use App Store to download &amp; install XCode</span></p><p>Annoying. At least they fixed the download process to support resumes. Mine cutoff at 98% of the 4G download but picked back up where it left off on resume.</p><p><span style="font-size:large;">3. Run &nbsp;"/Applications/Install Xcode.app"</span></p><p>So when App Store said it was "Installing Xcode" it meant it was installing the Xcode installer. Sadly, it took me a while to figure this one out ... and <a href="https://discussions.apple.com/thread/2786661?start=0&amp;tstart=0" target="_blank" rel="external">I am not alone</a>.</p><p><span style="font-size:large;">4. Install MacPorts 2.0.3 or greater</span></p><p><a href="https://distfiles.macports.org/MacPorts/MacPorts-2.0.3-10.7-Lion.dmg" target="_blank" rel="external">MacPorts install for Lion</a> worked the first time with no hassle - Apple could learn a thing or two.</p><p><span style="font-size:large;">5. Run "port upgrade outdated"</span></p><p><span style="font-size:large;"><span style="font-size:small;">This takes some time but ran without error for me...nice.</span></span></p><p><span style="font-size:large;">6. Update php.ini</span></p><p><span style="font-size:large;"><span style="font-size:small;"><a href="http://maccrazy.com/lion-upgrade-killed-my-php-site-and-how-i-fixed-it" target="_blank" rel="external">Lion upgrades to PHP 2.3.0 </a>and saves but disables your existing php.ini - at a minimum you'll need to update your mysql socket entries to point to the same place as your my.cnf&nbsp;</span></span></p><p><span style="font-size:large;">7. Install a JDK</span></p><p><span style="font-size:large;"><span style="font-size:small;">I attempted to run a Java driven app (LibreOffice) and Lion magically prompted me to install Java. I let it and the install process flawlessly&nbsp;</span></span><span style="font-size:small;">setup a full JDK instead of just a JRE</span><span style="font-size:small;">&nbsp;- nice job Apple.</span></p><p><span style="font-size:large;">8. Toggle trackpad scroll direction</span></p><p><span style="font-size:small;">If all my devices used Lion I'm certain I'd adapt to the inverted scrolling in just a few hours - but they don't and that causes wheel spinning everytime I begin a Lion based session. &nbsp;I see no net benefit so it's not worth the pain. &nbsp;System Preferences -&gt; Trackpad -&gt; Scroll direction -&gt; unchceck</span></p><p><span style="font-size:large;">9. Install the updated Server tools</span></p><p><span style="font-size:small;">If you run a Mac Server and want to use your Lion workstation to manage its services...you need the <a href="http://support.apple.com/kb/DL1419" target="_blank" rel="external">updated Mac Server Tools</a>.</span></p><p><span style="font-size:large;">10. Disable Dashboard</span></p><p><span style="font-size:small;">I don't care for widgets.</span></p><blockquote class="posterous_short_quote"><p>defaults write com.apple.dashboard mcx-disabled -boolean YES<br>killall Dock</p></blockquote><p><span style="font-size:large;">11. Install JDK source</span></p><p>Grab the Java for Mac OS X 10.7 Developer Package from&nbsp;<a href="http://connect.apple.com/" title="Apple Developer Download" target="_blank" style="vertical-align:baseline;color:#990000;font-family:Verdana, Arial, Helvetica, sans-serif;line-height:23px;padding:0;margin:0;">http://connect.apple.com/<br></a>It'll put the src.jar here</p><p><span style="color:#333333;font-family:Monaco, Courier New, Courier, monospace;font-size:12px;line-height:15px;">/Library/Java/JavaVirtualMachines/1.6.0_26-b03-383.jdk/Contents/Home/src.jar</span></p></div>
 ]]></content>
       
         
     </entry>
     
     <entry>
-      <title><![CDATA[Upgrading a Snow Leopard development machine to Lion]]></title>
-      <url>/2011/09/22/2011-09-22-upgrading-snow-leopard-development/</url>
+      <title><![CDATA[SLF4JLocationAwareLog serialization exception]]></title>
+      <url>/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/</url>
       <content type="html"><![CDATA[
 <div class="post">
-<p><span style="font-size:large;">1. Install Lion</span></p><p>If you heard about the small business 20-pack of licences Apple offered when they announced Lion and think you might want to go that route - don't. &nbsp;Trust me. &nbsp;They can take your payment but they just can't fulfill your order ... <a href="http://www.youtube.com/watch?v=A7uvttu8ct0" target="_blank" rel="external">and that's really the most important part</a>. Two months later I have a micro USB drive and am finally starting the upgrades.</p><p><span style="font-size:large;">2. Use App Store to download &amp; install XCode</span></p><p>Annoying. At least they fixed the download process to support resumes. Mine cutoff at 98% of the 4G download but picked back up where it left off on resume.</p><p><span style="font-size:large;">3. Run &nbsp;"/Applications/Install Xcode.app"</span></p><p>So when App Store said it was "Installing Xcode" it meant it was installing the Xcode installer. Sadly, it took me a while to figure this one out ... and <a href="https://discussions.apple.com/thread/2786661?start=0&amp;tstart=0" target="_blank" rel="external">I am not alone</a>.</p><p><span style="font-size:large;">4. Install MacPorts 2.0.3 or greater</span></p><p><a href="https://distfiles.macports.org/MacPorts/MacPorts-2.0.3-10.7-Lion.dmg" target="_blank" rel="external">MacPorts install for Lion</a> worked the first time with no hassle - Apple could learn a thing or two.</p><p><span style="font-size:large;">5. Run "port upgrade outdated"</span></p><p><span style="font-size:large;"><span style="font-size:small;">This takes some time but ran without error for me...nice.</span></span></p><p><span style="font-size:large;">6. Update php.ini</span></p><p><span style="font-size:large;"><span style="font-size:small;"><a href="http://maccrazy.com/lion-upgrade-killed-my-php-site-and-how-i-fixed-it" target="_blank" rel="external">Lion upgrades to PHP 2.3.0 </a>and saves but disables your existing php.ini - at a minimum you'll need to update your mysql socket entries to point to the same place as your my.cnf&nbsp;</span></span></p><p><span style="font-size:large;">7. Install a JDK</span></p><p><span style="font-size:large;"><span style="font-size:small;">I attempted to run a Java driven app (LibreOffice) and Lion magically prompted me to install Java. I let it and the install process flawlessly&nbsp;</span></span><span style="font-size:small;">setup a full JDK instead of just a JRE</span><span style="font-size:small;">&nbsp;- nice job Apple.</span></p><p><span style="font-size:large;">8. Toggle trackpad scroll direction</span></p><p><span style="font-size:small;">If all my devices used Lion I'm certain I'd adapt to the inverted scrolling in just a few hours - but they don't and that causes wheel spinning everytime I begin a Lion based session. &nbsp;I see no net benefit so it's not worth the pain. &nbsp;System Preferences -&gt; Trackpad -&gt; Scroll direction -&gt; unchceck</span></p><p><span style="font-size:large;">9. Install the updated Server tools</span></p><p><span style="font-size:small;">If you run a Mac Server and want to use your Lion workstation to manage its services...you need the <a href="http://support.apple.com/kb/DL1419" target="_blank" rel="external">updated Mac Server Tools</a>.</span></p><p><span style="font-size:large;">10. Disable Dashboard</span></p><p><span style="font-size:small;">I don't care for widgets.</span></p><blockquote class="posterous_short_quote"><p>defaults write com.apple.dashboard mcx-disabled -boolean YES<br>killall Dock</p></blockquote><p><span style="font-size:large;">11. Install JDK source</span></p><p>Grab the Java for Mac OS X 10.7 Developer Package from&nbsp;<a href="http://connect.apple.com/" title="Apple Developer Download" target="_blank" style="vertical-align:baseline;color:#990000;font-family:Verdana, Arial, Helvetica, sans-serif;line-height:23px;padding:0;margin:0;">http://connect.apple.com/<br></a>It'll put the src.jar here</p><p><span style="color:#333333;font-family:Monaco, Courier New, Courier, monospace;font-size:12px;line-height:15px;">/Library/Java/JavaVirtualMachines/1.6.0_26-b03-383.jdk/Contents/Home/src.jar</span></p></div>
+<p>While attempting to make a large object graph serializable I kept encountering NotSerializableExceptions regarding my Log references which were instances of&nbsp;SLF4JLocationAwareLog. The references were declared transient so I beat my head on a wall for a few hours before upgrading my slf4j version from 1.4.2 to 1.5.8</p><p>Somewhat frustratingly - that resolved the issue. No idea why.</p></div>
 ]]></content>
       
         
@@ -912,6 +912,29 @@ Consider a numeric CollectionOfElements held by a class Product such as:<div cla
     </entry>
     
     <entry>
+      <title><![CDATA[Missing MacOS X VM in Eclipse Galileo on Snow Leopard]]></title>
+      <url>/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/</url>
+      <content type="html"><![CDATA[
+<div class="post">
+I recently encountered an issue where I was unable to add a JVM to my Eclipse install on Snow Leopard. There was no MacOS X VM option under Installed JREs -&gt; Add and attempting to use the Standard VM resulted in an error. After digging around in Eclipse bug reports, I discovered this is a known issue with the Cocoa build of Galileo with PDT pre-installed.&nbsp; The easy fix is to install Eclipse without PDT (just install the Eclipse IDE for Java - Cocoa 64 bit) and add PDT plugin later. When you take this route, the MacOS X VM will be configured automagically.</div>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> macintosh </tag>
+            
+            <tag> eclipse </tag>
+            
+            <tag> snowleopard </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Eclipse Galileo unable to read Subversion repository]]></title>
       <url>/2010/01/18/2010-01-18-eclipse-galileo-unable-to-read/</url>
       <content type="html"><![CDATA[
@@ -929,29 +952,6 @@ After a clean Snow Leopard install on a new machine, I fired up a fresh Galileo 
             <tag> eclipse </tag>
             
             <tag> subversive </tag>
-            
-            <tag> snowleopard </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Missing MacOS X VM in Eclipse Galileo on Snow Leopard]]></title>
-      <url>/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/</url>
-      <content type="html"><![CDATA[
-<div class="post">
-I recently encountered an issue where I was unable to add a JVM to my Eclipse install on Snow Leopard. There was no MacOS X VM option under Installed JREs -&gt; Add and attempting to use the Standard VM resulted in an error. After digging around in Eclipse bug reports, I discovered this is a known issue with the Cocoa build of Galileo with PDT pre-installed.&nbsp; The easy fix is to install Eclipse without PDT (just install the Eclipse IDE for Java - Cocoa 64 bit) and add PDT plugin later. When you take this route, the MacOS X VM will be configured automagically.</div>
-]]></content>
-      
-        
-        <tags>
-            
-            <tag> java </tag>
-            
-            <tag> macintosh </tag>
-            
-            <tag> eclipse </tag>
             
             <tag> snowleopard </tag>
             
