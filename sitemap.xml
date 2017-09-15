@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ericsimmerman.com/about/index.html</loc>
+    
+    <lastmod>2017-09-13T17:02:52.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ericsimmerman.com/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/</loc>
     
     <lastmod>2017-08-10T14:08:20.000Z</lastmod>
@@ -44,14 +51,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/09/05/2009-09-05-running-skype-on-snow-leopard-resolved/</loc>
+    <loc>http://ericsimmerman.com/2008/09/17/2008-09-17-running-synergy-client-automatically/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2008/09/17/2008-09-17-running-synergy-client-automatically/</loc>
+    <loc>http://ericsimmerman.com/2008/10/28/2008-10-28-removing-duplicate-music-files-with/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -72,13 +79,6 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/02/18/2009-02-18-hibernate-annotations/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
@@ -93,7 +93,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/04/06/2009-04-06-fix-for-keepassx-window-positioning-off/</loc>
+    <loc>http://ericsimmerman.com/2009/02/18/2009-02-18-hibernate-annotations/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -107,7 +107,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/04/13/2009-04-13-calling-php-from-ruby-and-reading-stdout/</loc>
+    <loc>http://ericsimmerman.com/2009/04/06/2009-04-06-fix-for-keepassx-window-positioning-off/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -115,6 +115,13 @@
   
   <url>
     <loc>http://ericsimmerman.com/2009/05/13/2009-05-13-connecting-to-netscreen-series/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2009/04/13/2009-04-13-calling-php-from-ruby-and-reading-stdout/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -142,7 +149,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2017/05/16/2017-05-16-aws-lambda-firewall/</loc>
+    <loc>http://ericsimmerman.com/2017/05/18/2017-05-01-setting-up-bastion-host-aws/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -156,14 +163,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/08/13/2009-08-13-spring-security-acl-intercept-methods/</loc>
+    <loc>http://ericsimmerman.com/2009/07/23/2009-07-23-openssl-alert-40-handshake-error-common/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/07/23/2009-07-23-openssl-alert-40-handshake-error-common/</loc>
+    <loc>http://ericsimmerman.com/2009/08/13/2009-08-13-spring-security-acl-intercept-methods/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -177,14 +184,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2007/10/20/2007-10-20-mounting-ubuntu-nfs-share-on-redhat/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/2009/10/22/2009-10-22-resolving-key-usage-check-failed/</loc>
+    <loc>http://ericsimmerman.com/2009/09/05/2009-09-05-running-skype-on-snow-leopard-resolved/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -192,6 +192,27 @@
   
   <url>
     <loc>http://ericsimmerman.com/2009/09/14/2009-09-14-compiling-modcaucho-on-rhel-53/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2009/10/23/2009-10-23-installing-python-mysql-connector/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2009/10/22/2009-10-22-resolving-key-usage-check-failed/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -212,35 +233,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/2009/10/23/2009-10-23-installing-python-mysql-connector/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/2010/03/14/2010-03-14-customize-article-row-count-for/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/2010/03/05/2010-03-05-connecting-to-netscreen-series/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -254,7 +247,21 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2017/05/18/2017-05-01-setting-up-bastion-host-aws/</loc>
+    <loc>http://ericsimmerman.com/2010/03/05/2010-03-05-connecting-to-netscreen-series/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2010/03/14/2010-03-14-customize-article-row-count-for/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2006/01/01/2006-01-01-migrated-from-jroller/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -268,7 +275,35 @@
   </url>
   
   <url>
+    <loc>http://ericsimmerman.com/2007/10/29/2007-10-29-java-webbrowser-plugin-for-amd64-ubuntu/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ericsimmerman.com/2010/08/26/2010-08-26-how-to-undo-svn-commit-from-command-line/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2017/05/16/2017-05-16-aws-lambda-firewall/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2010/11/28/2010-11-28-ditch-mamp-on-snow-leopard/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2008/05/28/2008-05-28-spring-jms-remoting-support-for-async/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -289,34 +324,6 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2010/11/28/2010-11-28-ditch-mamp-on-snow-leopard/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/2006/01/01/2006-01-01-migrated-from-jroller/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/2008/05/28/2008-05-28-spring-jms-remoting-support-for-async/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/2008/06/05/2008-06-05-mathml-support-in-openlaszlo/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
@@ -324,7 +331,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2008/10/28/2008-10-28-removing-duplicate-music-files-with/</loc>
+    <loc>http://ericsimmerman.com/2008/06/05/2008-06-05-mathml-support-in-openlaszlo/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -345,7 +352,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2007/10/29/2007-10-29-java-webbrowser-plugin-for-amd64-ubuntu/</loc>
+    <loc>http://ericsimmerman.com/2007/10/20/2007-10-20-mounting-ubuntu-nfs-share-on-redhat/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -359,13 +366,6 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/about/index.html</loc>
-    
-    <lastmod>2017-02-23T02:53:07.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2012/02/16/2012-02-16-by-popular-demand-my-git-aware-bash/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
@@ -373,7 +373,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/04/06/2011-04-06-minimizing-expense-when-testing-webapps/</loc>
+    <loc>http://ericsimmerman.com/2011/03/28/2011-03-28-solution-for-firefox-4-installation/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -401,7 +401,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/03/28/2011-03-28-solution-for-firefox-4-installation/</loc>
+    <loc>http://ericsimmerman.com/2011/04/06/2011-04-06-minimizing-expense-when-testing-webapps/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -471,14 +471,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/10/17/2011-10-17-mac-1065-snow-leopard-server-ldap-bug/</loc>
+    <loc>http://ericsimmerman.com/2011/10/05/2011-10-05-listening-to-sensefm-while-they-fix/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/10/05/2011-10-05-listening-to-sensefm-while-they-fix/</loc>
+    <loc>http://ericsimmerman.com/2011/10/17/2011-10-17-mac-1065-snow-leopard-server-ldap-bug/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -541,14 +541,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2012/05/21/2012-05-21-great-explanation-of-infamous-loop/</loc>
+    <loc>http://ericsimmerman.com/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/</loc>
+    <loc>http://ericsimmerman.com/2012/05/21/2012-05-21-great-explanation-of-infamous-loop/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -576,7 +576,28 @@
   </url>
   
   <url>
+    <loc>http://ericsimmerman.com/2012/08/07/2012-08-07-supporting-multiple-file-upload/</loc>
+    
+    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ericsimmerman.com/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/</loc>
+    
+    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2012/11/19/2012-11-19-when-not-to-front-your-application-with/</loc>
+    
+    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2012/12/19/2012-12-19-compressing-mysql-client-server/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -597,28 +618,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2012/08/07/2012-08-07-supporting-multiple-file-upload/</loc>
-    
-    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/</loc>
-    
-    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/2012/11/19/2012-11-19-when-not-to-front-your-application-with/</loc>
-    
-    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/2012/12/19/2012-12-19-compressing-mysql-client-server/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -646,14 +646,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2010/11/02/2010-11-02-support-chroot-for-scp-connections-on/</loc>
+    <loc>http://ericsimmerman.com/2011/01/13/2011-01-13-resolving-illegalargumentexception/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/01/13/2011-01-13-resolving-illegalargumentexception/</loc>
+    <loc>http://ericsimmerman.com/2010/11/02/2010-11-02-support-chroot-for-scp-connections-on/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     

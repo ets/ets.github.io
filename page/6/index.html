@@ -246,7 +246,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2011/03/11/2011-03-11-tax-article-stock-options-and/" data-id="cj66idqj40032g9oufd99712k" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2011/03/11/2011-03-11-tax-article-stock-options-and/" data-id="cj7lyjmjt002wcjoudicqq7mx" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -370,7 +370,7 @@ The Maven dependency plugin provides nice support for resolving dependency confl
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2011/02/14/2011-02-14-find-conflicting-dependencies-in-maven/" data-id="cj66idqj10030g9ou2s9k0fl8" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2011/02/14/2011-02-14-find-conflicting-dependencies-in-maven/" data-id="cj7lyjmjs002ucjou1p3t64gz" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -448,130 +448,6 @@ The Maven dependency plugin provides nice support for resolving dependency confl
 
 
 
-    <article id="post-2011-01-21-install-nexus-1801-on-tomcat-6" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/">Install Nexus 1.8.0.1 on Tomcat 6</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/">
-            <time datetime="2011-01-21T05:00:00.000Z" itemprop="datePublished">2011-01-21</time>
-        </a>
-    </div>
-
-
-                        
-                        
-                    </div>
-                
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            
-<div class="post">
-I installed on a Mac OS X server with Snow Leopard, but this applies to any Tomcat 6 installation. As discussed <a href="https://issues.sonatype.org/browse/NEXUS-3003" target="_blank" rel="external">here</a>, <a href="http://stackoverflow.com/questions/1277378/how-to-configure-java-securitymanager-to-allow-to-read-all-properties-from-given" target="_blank" rel="external">here</a>, and lots of other places across the interwebs - the latest release of Nexus can't read its own plexus.properties under Tomcat 6. Rather than disabling the Tomcat Security Manager as a workaround, I recommend setting the applicable properties through system properties at startup. Just add something like the following to your tomcat's bin/setenv.sh script<code>-Dplexus.nexus-work=/opt/sonatype-work/nexus</code></div>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ericsimmerman.com/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/" data-id="cj66idqix002vg9ou8qu57k6c" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ericsimmerman.com/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/">Comments</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <article id="post-2011-01-21-install-php-535-with-fpm-fastcgi" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -618,7 +494,7 @@ I installed on a Mac OS X server with Snow Leopard, but this applies to any Tomc
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/" data-id="cj66idqiz002xg9ou3f7r1q7i" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/" data-id="cj7lyjmjr002scjoudn2xbfur" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -696,6 +572,130 @@ I installed on a Mac OS X server with Snow Leopard, but this applies to any Tomc
 
 
 
+    <article id="post-2011-01-21-install-nexus-1801-on-tomcat-6" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/">Install Nexus 1.8.0.1 on Tomcat 6</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/">
+            <time datetime="2011-01-21T05:00:00.000Z" itemprop="datePublished">2011-01-21</time>
+        </a>
+    </div>
+
+
+                        
+                        
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+<div class="post">
+I installed on a Mac OS X server with Snow Leopard, but this applies to any Tomcat 6 installation. As discussed <a href="https://issues.sonatype.org/browse/NEXUS-3003" target="_blank" rel="external">here</a>, <a href="http://stackoverflow.com/questions/1277378/how-to-configure-java-securitymanager-to-allow-to-read-all-properties-from-given" target="_blank" rel="external">here</a>, and lots of other places across the interwebs - the latest release of Nexus can't read its own plexus.properties under Tomcat 6. Rather than disabling the Tomcat Security Manager as a workaround, I recommend setting the applicable properties through system properties at startup. Just add something like the following to your tomcat's bin/setenv.sh script<code>-Dplexus.nexus-work=/opt/sonatype-work/nexus</code></div>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/" data-id="cj7lyjmjo002pcjoulfpg3115" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ericsimmerman.com/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-2011-01-13-resolving-illegalargumentexception" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -742,7 +742,7 @@ I installed on a Mac OS X server with Snow Leopard, but this applies to any Tomc
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2011/01/13/2011-01-13-resolving-illegalargumentexception/" data-id="cj66idqit002qg9ou3j5mvne5" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2011/01/13/2011-01-13-resolving-illegalargumentexception/" data-id="cj7lyjmjm002ncjounncdxx8b" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -871,7 +871,7 @@ I was fond of the stack <a href="http://www.apachefriends.org/en/xampp.html" tar
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2010/11/28/2010-11-28-ditch-mamp-on-snow-leopard/" data-id="cj66idqiq002ng9oukdu7gcpe" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2010/11/28/2010-11-28-ditch-mamp-on-snow-leopard/" data-id="cj7lyjmjh002icjou486y993k" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -995,7 +995,7 @@ I was fond of the stack <a href="http://www.apachefriends.org/en/xampp.html" tar
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2010/11/02/2010-11-02-support-chroot-for-scp-connections-on/" data-id="cj66idqiw002sg9ouj0vqlbvk" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2010/11/02/2010-11-02-support-chroot-for-scp-connections-on/" data-id="cj7lyjmjk002kcjouif4zhcnd" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1119,7 +1119,7 @@ There are number of posts on Seagate's user forums describing <a href="http://fo
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2010/10/29/2010-10-29-resolving-sleep-issues-with-seagate/" data-id="cj66idqip002lg9ou5u8rrgks" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2010/10/29/2010-10-29-resolving-sleep-issues-with-seagate/" data-id="cj7lyjmje002fcjou5gfi4xpp" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1248,7 +1248,7 @@ There are number of posts on Seagate's user forums describing <a href="http://fo
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2010/08/26/2010-08-26-how-to-undo-svn-commit-from-command-line/" data-id="cj66idqim002gg9ouqru1bl04" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2010/08/26/2010-08-26-how-to-undo-svn-commit-from-command-line/" data-id="cj7lyjmjc002dcjouimnuggqf" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1372,7 +1372,7 @@ There are number of posts on Seagate's user forums describing <a href="http://fo
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2010/08/19/2010-08-19-i-big-in-brazil/" data-id="cj66idqin002ig9ouur54s953" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2010/08/19/2010-08-19-i-big-in-brazil/" data-id="cj7lyjmja002acjouod4ingtp" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
