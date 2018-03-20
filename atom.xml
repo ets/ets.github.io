@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ericsimmerman.com/"/>
-  <updated>2018-03-20T23:26:41.000Z</updated>
+  <updated>2018-03-20T23:27:56.000Z</updated>
   <id>http://ericsimmerman.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://ericsimmerman.com/2017/05/18/2017-05-01-setting-up-bastion-host-aws/"/>
     <id>http://ericsimmerman.com/2017/05/18/2017-05-01-setting-up-bastion-host-aws/</id>
     <published>2017-05-18T21:01:41.000Z</published>
-    <updated>2018-03-20T23:26:41.000Z</updated>
+    <updated>2018-03-20T23:27:56.000Z</updated>
     
     <content type="html"><![CDATA[<p>When setting up my latest development environment at AWS, I wanted to deploy all EC2 services on a private VPC and simply route all traffic to them through a Bastion host (aka jump host). AWS maintains a an <a href="http://docs.aws.amazon.com/quickstart/latest/linux-bastion/welcome.html" target="_blank" rel="external">excellent CloudFormation quickstart guide &amp; template here</a> and it’s what I used to get started. After completing that guide I put a new entry for the Bastion host in my ssh config like so:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Host bastion</div><div class="line">  Hostname ec2-XX-XXX-XXX-XXX.compute-1.amazonaws.com</div><div class="line">  User ec2-user</div><div class="line">  IdentityFile ~/path/to/your/ssh-key.pem</div><div class="line">  AddKeysToAgent yes</div><div class="line">  UseKeychain yes</div></pre></td></tr></table></figure></p>
 <p>Those last two lines are optional - but I like to <a href="http://www.openssh.com/txt/release-7.2" target="_blank" rel="external">leverage the Keychain on my MacBookPro</a> for storing keys and their respective passphrases. Accepting the host key into your known_hosts file can avoid some pain going forward, so I recommend connecting directly to the bastion before continuing.</p>
@@ -172,7 +172,7 @@
     <link href="http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/"/>
     <id>http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/</id>
     <published>2016-04-06T23:18:04.000Z</published>
-    <updated>2018-03-20T23:20:49.000Z</updated>
+    <updated>2018-03-20T23:27:56.000Z</updated>
     
     <content type="html"><![CDATA[<p>I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.</p>
 <hr>
