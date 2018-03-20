@@ -11,7 +11,7 @@ I posted the following on an internal blog at Social Tables in an attempt to exp
 We've got a special subject this issue to take the edge off that geek-withdrawal : "Drawing Text with Signed Distance Fields" or using SDF text rendering for those in the know.
 
 ## What's SDF?
-Signed distance field (SDF) is a technique for rendering bitmap fonts without jagged edges even at high magnifications. It was first introduced in 2007 with this bit of light reading by Valve and couples the use of a bitmap and glyphs with a GLSL shader that can sample and sharpen said glyphs.
+Signed distance field (SDF) is a technique for rendering bitmap fonts without jagged edges even at high magnifications. It was first introduced in 2007 with [this bit of light reading by Valve](http://www.valvesoftware.com/publications/2007/SIGGRAPH2007_AlphaTestedMagnification.pdf) and couples the use of a bitmap and glyphs with a GLSL shader that can sample and sharpen said glyphs.
 
 ## What's SDF ... in English (preferably with pictures)?
 So...you know what sounds easy but is really really hard? Drawing legible letters in Venue Mapper. Wait - what? Why's that hard you ask?
