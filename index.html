@@ -242,7 +242,7 @@
 <p>Then I replaced the currently configured LaunchConfig on my AutoScaling group with my copy.</p>
 <p>Now simply asking SSH to connect to my new services in the private VPC worked transparently!<br>To make session more efficient using this type of proxy, I added the following to my Bastion host entry in ssh config:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ControlPath ~/.ssh/cm-%r@%h:%p</div><div class="line">ControlMaster auto</div><div class="line">ControlPersist 10m</div></pre></td></tr></table></figure></p>
 <p>If you’re an <a href="https://www.ansible.com/" target="_blank" rel="external">ansible</a> fan like me, you can take advantage of that same technique with a change to ansible.cfg:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh_args = -o ControlMaster=auto -o ControlPersist=30m</div><div class="line">control_path = ~/.ssh/ansible-%%r@%%h:%%p</div></pre></td></tr></table></figure></p>
-<p>If you’re curious how to further protect your Bastion host with a whitelist for port 22 while also supporting users who are behind dynamic IPs then you’ll want to <a href="./2017-05-16-aws-lambda-firewall.html">check out my aws-lambda-firewall project</a>.</p>
+<p>If you’re curious how to further protect your Bastion host with a whitelist for port 22 while also supporting users who are behind dynamic IPs then you’ll want to <a href="/2017/05/16/2017-05-16-aws-lambda-firewall/">check out my aws-lambda-firewall project</a>.</p>
 
         
         </div>
@@ -253,7 +253,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2017/05/18/2017-05-01-setting-up-bastion-host-aws/" data-id="cjf0aa722006d7houqbj2y0s5" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2017/05/18/2017-05-01-setting-up-bastion-host-aws/" data-id="cjf0abovr006a9fouy2bk66rq" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -381,7 +381,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2017/05/16/2017-05-16-aws-lambda-firewall/" data-id="cjf0aa721006b7hougclarh34" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2017/05/16/2017-05-16-aws-lambda-firewall/" data-id="cjf0abovr006c9fouoa8ucbs1" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -515,7 +515,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2017/01/23/2017-01-23-Social-Tables-Retrospective/" data-id="cjf0aa72100687hounb9ydw9u" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2017/01/23/2017-01-23-Social-Tables-Retrospective/" data-id="cjf0abovq00659foupkxy07ch" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -650,7 +650,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/" data-id="cjf0aa72000647houx28v2eoi" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/" data-id="cjf0abovo00609fou1v37xfqd" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -787,7 +787,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/" data-id="cjf0aa72000667hou01tzex92" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/" data-id="cjf0abovq00679fouo2ybhcov" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -925,7 +925,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/" data-id="cjf0aa71z00617houqw4swoo0" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/" data-id="cjf0abovp00639fouu5gwnkxi" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1048,7 +1048,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/" data-id="cjf0aa71y005z7houznbh1uji" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/" data-id="cjf0abovn005y9fouii3zlegp" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1172,7 +1172,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/" data-id="cjf0aa71y005w7houhlh72eiu" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/" data-id="cjf0abovn005v9fouovzlm92x" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1317,7 +1317,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/" data-id="cjf0aa71x005u7houxxdgj5nc" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/" data-id="cjf0abovm005t9foucgguix87" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1447,7 +1447,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/" data-id="cjf0aa71q005r7hou9jq9s1rz" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/" data-id="cjf0abovl005q9foundw7kz4y" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

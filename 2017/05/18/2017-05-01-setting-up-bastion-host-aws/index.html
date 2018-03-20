@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Technocracy">
 <meta property="og:description" content="When setting up my latest development environment at AWS, I wanted to deploy all EC2 services on a private VPC and simply route all traffic to them through a Bastion host (aka jump host). AWS maintain">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-08-10T13:24:02.000Z">
+<meta property="og:updated_time" content="2018-03-20T23:26:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Setting up a Bastion host on AWS">
 <meta name="twitter:description" content="When setting up my latest development environment at AWS, I wanted to deploy all EC2 services on a private VPC and simply route all traffic to them through a Bastion host (aka jump host). AWS maintain">
@@ -246,7 +246,7 @@
 <p>Then I replaced the currently configured LaunchConfig on my AutoScaling group with my copy.</p>
 <p>Now simply asking SSH to connect to my new services in the private VPC worked transparently!<br>To make session more efficient using this type of proxy, I added the following to my Bastion host entry in ssh config:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ControlPath ~/.ssh/cm-%r@%h:%p</div><div class="line">ControlMaster auto</div><div class="line">ControlPersist 10m</div></pre></td></tr></table></figure></p>
 <p>If you’re an <a href="https://www.ansible.com/" target="_blank" rel="external">ansible</a> fan like me, you can take advantage of that same technique with a change to ansible.cfg:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh_args = -o ControlMaster=auto -o ControlPersist=30m</div><div class="line">control_path = ~/.ssh/ansible-%%r@%%h:%%p</div></pre></td></tr></table></figure></p>
-<p>If you’re curious how to further protect your Bastion host with a whitelist for port 22 while also supporting users who are behind dynamic IPs then you’ll want to <a href="./2017-05-16-aws-lambda-firewall.html">check out my aws-lambda-firewall project</a>.</p>
+<p>If you’re curious how to further protect your Bastion host with a whitelist for port 22 while also supporting users who are behind dynamic IPs then you’ll want to <a href="/2017/05/16/2017-05-16-aws-lambda-firewall/">check out my aws-lambda-firewall project</a>.</p>
 
         
         </div>
@@ -257,7 +257,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2017/05/18/2017-05-01-setting-up-bastion-host-aws/" data-id="cjf0aa722006d7houqbj2y0s5" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2017/05/18/2017-05-01-setting-up-bastion-host-aws/" data-id="cjf0abovr006a9fouy2bk66rq" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

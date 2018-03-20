@@ -14,7 +14,7 @@
 <p>Then I replaced the currently configured LaunchConfig on my AutoScaling group with my copy.</p>
 <p>Now simply asking SSH to connect to my new services in the private VPC worked transparently!<br>To make session more efficient using this type of proxy, I added the following to my Bastion host entry in ssh config:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ControlPath ~/.ssh/cm-%r@%h:%p</div><div class="line">ControlMaster auto</div><div class="line">ControlPersist 10m</div></pre></td></tr></table></figure></p>
 <p>If you’re an <a href="https://www.ansible.com/" target="_blank" rel="external">ansible</a> fan like me, you can take advantage of that same technique with a change to ansible.cfg:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh_args = -o ControlMaster=auto -o ControlPersist=30m</div><div class="line">control_path = ~/.ssh/ansible-%%r@%%h:%%p</div></pre></td></tr></table></figure></p>
-<p>If you’re curious how to further protect your Bastion host with a whitelist for port 22 while also supporting users who are behind dynamic IPs then you’ll want to <a href="./2017-05-16-aws-lambda-firewall.html">check out my aws-lambda-firewall project</a>.</p>
+<p>If you’re curious how to further protect your Bastion host with a whitelist for port 22 while also supporting users who are behind dynamic IPs then you’ll want to <a href="/2017/05/16/2017-05-16-aws-lambda-firewall/">check out my aws-lambda-firewall project</a>.</p>
 ]]></content>
       
         
@@ -678,17 +678,6 @@ Currently - my favorite methods of testing web applications for Internet Explore
     </entry>
     
     <entry>
-      <title><![CDATA[Why you might want to exercise your vested ISOs this year...]]></title>
-      <url>/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/</url>
-      <content type="html"><![CDATA[
-<div class="post">
-<div class="posterous_bookmarklet_entry"><blockquote><div><p>The Small Business Jobs Act of 2010 (the "Jobs Act"), which was enacted September 27, 2010, contains a brief window of opportunity for non-corporate taxpayers to purchase Qualified Small Business ("QSB") stock (also known as "section 1202 stock") that, if the taxpayer holds the stock for more than five years, is <em>eligible for a 100 percent exclusion of capital gains from sale. This tax break only applies to QSB stock purchased after September 27, 2010 and before January 1, 2011.</em></p></div></blockquote><div class="posterous_quote_citation">via <a href="http://www.reedsmith.com/publications/search_publications.cfm?widCall1=customWidgets.content_view_1&amp;cit_id=29693" target="_blank" rel="external">reedsmith.com</a></div><p>The exclusion described above has been <a href="http://www.natlawreview.com/article/extension-100-gain-exclusion-qualified-small-business-stock" target="_blank" rel="external">extended to the end of 2011</a>.</p></div></div>
-]]></content>
-      
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Tax Article: Stock Options and Restricted Stock - MBBP.com]]></title>
       <url>/2011/03/11/2011-03-11-tax-article-stock-options-and/</url>
       <content type="html"><![CDATA[
@@ -702,6 +691,17 @@ Currently - my favorite methods of testing web applications for Internet Explore
             <tag> iso83bstockoptions </tag>
             
         </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Why you might want to exercise your vested ISOs this year...]]></title>
+      <url>/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/</url>
+      <content type="html"><![CDATA[
+<div class="post">
+<div class="posterous_bookmarklet_entry"><blockquote><div><p>The Small Business Jobs Act of 2010 (the "Jobs Act"), which was enacted September 27, 2010, contains a brief window of opportunity for non-corporate taxpayers to purchase Qualified Small Business ("QSB") stock (also known as "section 1202 stock") that, if the taxpayer holds the stock for more than five years, is <em>eligible for a 100 percent exclusion of capital gains from sale. This tax break only applies to QSB stock purchased after September 27, 2010 and before January 1, 2011.</em></p></div></blockquote><div class="posterous_quote_citation">via <a href="http://www.reedsmith.com/publications/search_publications.cfm?widCall1=customWidgets.content_view_1&amp;cit_id=29693" target="_blank" rel="external">reedsmith.com</a></div><p>The exclusion described above has been <a href="http://www.natlawreview.com/article/extension-100-gain-exclusion-qualified-small-business-stock" target="_blank" rel="external">extended to the end of 2011</a>.</p></div></div>
+]]></content>
+      
         
     </entry>
     
@@ -912,6 +912,29 @@ Consider a numeric CollectionOfElements held by a class Product such as:<div cla
     </entry>
     
     <entry>
+      <title><![CDATA[Missing MacOS X VM in Eclipse Galileo on Snow Leopard]]></title>
+      <url>/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/</url>
+      <content type="html"><![CDATA[
+<div class="post">
+I recently encountered an issue where I was unable to add a JVM to my Eclipse install on Snow Leopard. There was no MacOS X VM option under Installed JREs -&gt; Add and attempting to use the Standard VM resulted in an error. After digging around in Eclipse bug reports, I discovered this is a known issue with the Cocoa build of Galileo with PDT pre-installed.&nbsp; The easy fix is to install Eclipse without PDT (just install the Eclipse IDE for Java - Cocoa 64 bit) and add PDT plugin later. When you take this route, the MacOS X VM will be configured automagically.</div>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> macintosh </tag>
+            
+            <tag> eclipse </tag>
+            
+            <tag> snowleopard </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Eclipse Galileo unable to read Subversion repository]]></title>
       <url>/2010/01/18/2010-01-18-eclipse-galileo-unable-to-read/</url>
       <content type="html"><![CDATA[
@@ -929,29 +952,6 @@ After a clean Snow Leopard install on a new machine, I fired up a fresh Galileo 
             <tag> eclipse </tag>
             
             <tag> subversive </tag>
-            
-            <tag> snowleopard </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Missing MacOS X VM in Eclipse Galileo on Snow Leopard]]></title>
-      <url>/2010/01/18/2010-01-18-missing-macos-x-vm-in-eclipse-galileo/</url>
-      <content type="html"><![CDATA[
-<div class="post">
-I recently encountered an issue where I was unable to add a JVM to my Eclipse install on Snow Leopard. There was no MacOS X VM option under Installed JREs -&gt; Add and attempting to use the Standard VM resulted in an error. After digging around in Eclipse bug reports, I discovered this is a known issue with the Cocoa build of Galileo with PDT pre-installed.&nbsp; The easy fix is to install Eclipse without PDT (just install the Eclipse IDE for Java - Cocoa 64 bit) and add PDT plugin later. When you take this route, the MacOS X VM will be configured automagically.</div>
-]]></content>
-      
-        
-        <tags>
-            
-            <tag> java </tag>
-            
-            <tag> macintosh </tag>
-            
-            <tag> eclipse </tag>
             
             <tag> snowleopard </tag>
             
