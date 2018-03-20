@@ -172,12 +172,12 @@
     <link href="http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/"/>
     <id>http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/</id>
     <published>2016-04-06T23:18:04.000Z</published>
-    <updated>2017-08-10T14:06:34.000Z</updated>
+    <updated>2018-03-20T23:20:49.000Z</updated>
     
     <content type="html"><![CDATA[<p>I posted the following on an internal blog at Social Tables in an attempt to explain a bit about what our Software Engineering group was up to at the time.</p>
 <hr>
 <p>We’ve got a special subject this issue to take the edge off that geek-withdrawal : “Drawing Text with Signed Distance Fields” or using SDF text rendering for those in the know.</p>
-<h2 id="What’s-SDF"><a href="#What’s-SDF" class="headerlink" title="What’s SDF?"></a>What’s SDF?</h2><p>Signed distance field (SDF) is a technique for rendering bitmap fonts without jagged edges even at high magnifications. It was first introduced in 2007 with this bit of light reading by Valve and couples the use of a bitmap and glyphs with a GLSL shader that can sample and sharpen said glyphs.</p>
+<h2 id="What’s-SDF"><a href="#What’s-SDF" class="headerlink" title="What’s SDF?"></a>What’s SDF?</h2><p>Signed distance field (SDF) is a technique for rendering bitmap fonts without jagged edges even at high magnifications. It was first introduced in 2007 with <a href="http://www.valvesoftware.com/publications/2007/SIGGRAPH2007_AlphaTestedMagnification.pdf" target="_blank" rel="external">this bit of light reading by Valve</a> and couples the use of a bitmap and glyphs with a GLSL shader that can sample and sharpen said glyphs.</p>
 <h2 id="What’s-SDF-…-in-English-preferably-with-pictures"><a href="#What’s-SDF-…-in-English-preferably-with-pictures" class="headerlink" title="What’s SDF … in English (preferably with pictures)?"></a>What’s SDF … in English (preferably with pictures)?</h2><p>So…you know what sounds easy but is really really hard? Drawing legible letters in Venue Mapper. Wait - what? Why’s that hard you ask?</p>
 <p>Here’s a screenshot of “Social Tables” rendered in 12pt font by Microsoft Word:</p>
 <p><img src="/images/sdf-1.png"></p>
