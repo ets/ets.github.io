@@ -55,4 +55,4 @@ ssh_args = -o ControlMaster=auto -o ControlPersist=30m
 control_path = ~/.ssh/ansible-%%r@%%h:%%p
 ```
 
-If you're curious how to further protect your Bastion host with a whitelist for port 22 while also supporting users who are behind dynamic IPs then you'll want to [check out my aws-lambda-firewall project](./2017-05-16-aws-lambda-firewall.html).
+If you're curious how to further protect your Bastion host with a whitelist for port 22 while also supporting users who are behind dynamic IPs then you'll want to [check out my aws-lambda-firewall project](/2017/05/16/2017-05-16-aws-lambda-firewall/).
