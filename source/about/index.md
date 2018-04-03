@@ -20,6 +20,7 @@ Some of my favorite sources - in no particular order:
 * [Wait but Why](http://waitbutwhy.com/)
 * [Stratechery](https://stratechery.com/)
 * [The Atlantic](http://www.theatlantic.com/)
+* [Quillette](http://quillette.com/)
 * [Rands in Repose](http://randsinrepose.com/)
 * [LessWrong](http://lesswrong.com/)
 * [Nautilus](http://nautil.us/)
