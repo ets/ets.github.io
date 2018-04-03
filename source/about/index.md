@@ -22,10 +22,9 @@ Some of my favorite sources - in no particular order:
 * [The Atlantic](http://www.theatlantic.com/)
 * [Rands in Repose](http://randsinrepose.com/)
 * [LessWrong](http://lesswrong.com/)
+* [Nautilus](http://nautil.us/)
 
 # Insipiration
 
 * [What You'll Wish You'd Known](http://www.paulgraham.com/hs.html)
 * [My Meditation Collection](./meditation.html)
-
- 
