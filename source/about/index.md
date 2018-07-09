@@ -24,6 +24,7 @@ Some of my favorite sources - in no particular order:
 * [Rands in Repose](http://randsinrepose.com/)
 * [LessWrong](http://lesswrong.com/)
 * [Nautilus](http://nautil.us/)
+* [Science Research Network](https://www.ssrn.com/)
 
 # Insipiration
 
