@@ -241,7 +241,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/" data-id="cjoaj4uv50039strlzrf7u471" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/" data-id="cjoak7akj00352nrl78zq2rv7" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -370,7 +370,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2011/03/11/2011-03-11-tax-article-stock-options-and/" data-id="cjoaj4uv30032strl1iq1erbl" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2011/03/11/2011-03-11-tax-article-stock-options-and/" data-id="cjoak7akj00322nrl92s96egp" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -494,7 +494,7 @@ The Maven dependency plugin provides nice support for resolving dependency confl
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2011/02/14/2011-02-14-find-conflicting-dependencies-in-maven/" data-id="cjoaj4uv30030strle0cp37lw" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2011/02/14/2011-02-14-find-conflicting-dependencies-in-maven/" data-id="cjoak7aki00302nrl6sa5hjcq" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -572,130 +572,6 @@ The Maven dependency plugin provides nice support for resolving dependency confl
 
 
 
-    <article id="post-2011-01-21-install-php-535-with-fpm-fastcgi" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/">Install PHP 5.3.5 with FPM (FastCGI Process Manager) support on Apache2/Centos 5.5</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/">
-            <time datetime="2011-01-21T05:00:00.000Z" itemprop="datePublished">2011-01-21</time>
-        </a>
-    </div>
-
-
-                        
-                        
-                    </div>
-                
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            
-<div class="post">
-<p>$&gt; yum upgrade<br>$&gt; yum groupinstall "Development Tools"<br>$&gt; wget <a href="http://us2.php.net/get/php-5.3.5.tar.bz2/from/us.php.net/mirror" target="_blank" rel="external">http://us2.php.net/get/php-5.3.5.tar.bz2/from/us.php.net/mirror</a><br>$&gt; tar xvf php-5.3.5.tar.bz2<br>$&gt; yum install mysql-server httpd-devel-* libxml2-devel-* openssl-devel* xmlsec1-openssl-devel-* libpng* libjpeg* curl-devel libmcrypt* mysql-devel* mysql.* libevent libevent-devel libtool-ltdl-devel libtool apr-devel apr<br>$&gt; cd php-5.3.5<br>$&gt; ./configure --with-mysql=shared --with-openssl --enable-pdo --with-pdo-mysql=shared --with-mhash=shared --enable-soap=shared --with-config-file-path=/etc/ --with-mysqli --enable-zip --enable-shared --with-curl --enable-mbstring=all --enable-maintainer-zts --with-jpeg-dir=/usr/lib/ --with-libdir=lib64 --enable-soap --with-pdo-mysql --with-gd --with-mcrypt --enable-fpm --with-config-file-scan-dir=/etc/php.d<br>$&gt; make; make install;<br>$&gt; chmod 705 /var/log/httpd</p><p>Edit your php.ini to point to your new PHP's extension directory (printed as part of make install above):<br><code>extension_dir = "/usr/local/lib/php/extensions/no-debug-zts-20090626/"</code></p><p>Make certain your /etc/php.d directory is only loading extensions that have been built against your new php. I only load mysql and apc</p><p>Now you need to tell Apache to use php-fpm via mod_fastcgi.<br># wget <a href="http://www.fastcgi.com/dist/mod_fastcgi-current.tar.gz" target="_blank" rel="external">http://www.fastcgi.com/dist/mod_fastcgi-current.tar.gz</a><br># tar -zxvf mod_fastcgi-current.tar.gz<br># cd mod_fastcgi-2.4.6/<br># cp Makefile.AP2 Makefile</p><p>Compile and install mod_fastcgi for 32 bit system, enter:<br># make top_dir=/usr/lib/httpd<br># make install top_dir=/usr/lib/httpd</p><p>Compile and install mod_fastcgi for 64 bit system, enter:<br># make top_dir=/usr/lib64/httpd<br># make install top_dir=/usr/lib64/httpd</p><p>Sample output:<br><code>make install top_dir=/usr/lib64/httpdmake[1]: Entering directory `/tmp/mod_fastcgi-2.4.6'/usr/lib64/apr-1/build/libtool --silent --mode=install cp mod_fastcgi.la /usr/lib64/httpd/modules/make[1]: Leaving directory `/tmp/mod_fastcgi-2.4.6'</code></p><p>Edit your Apache config to configure mod_fastcgi:<br><code># mods-enabled/fastcgi.conf&lt;IfModule mod_fastcgi.c&gt;FastCGIExternalServer /usr/local/sbin/php-fpm -socket /tmp/php-fpm.sockAddHandler php-fastcgi .phpAction php-fastcgi /usr/local/sbin/php-fpm.fcgiScriptAlias /usr/local/sbin/php-fpm.fcgi /usr/local/sbin/php-fpm&lt;Directory /usr/local/sbin&gt;Options ExecCGI FollowSymLinksSetHandler fastcgi-scriptOrder allow,denyAllow from all&lt;/Directory&gt;&lt;/IfModule&gt;</code></p><p>Now edit your /usr/local/etc/php-fpm config file using settings like these:<br><code>[www]# socketlisten = /tmp/php-fpm.socklisten.owner = apachelisten.group = apachelisten.mode = 0666# user ID/GIDuser = apachegroup = apache</code></p><p>Finally, <a href="http://us2.php.net/manual/en/install.fpm.php" target="_blank" rel="external">configure an autostart script for your php-fpm daemon using these instructions</a>.</p></div>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ericsimmerman.com/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/" data-id="cjoaj4uv40035strluquxb55f" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ericsimmerman.com/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/">Comments</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <article id="post-2011-01-21-install-nexus-1801-on-tomcat-6" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -742,7 +618,7 @@ I installed on a Mac OS X server with Snow Leopard, but this applies to any Tomc
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/" data-id="cjoaj4uv2002xstrlq6ybc1o9" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/" data-id="cjoak7akh002v2nrl7gjuefgq" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -820,6 +696,130 @@ I installed on a Mac OS X server with Snow Leopard, but this applies to any Tomc
 
 
 
+    <article id="post-2011-01-21-install-php-535-with-fpm-fastcgi" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/">Install PHP 5.3.5 with FPM (FastCGI Process Manager) support on Apache2/Centos 5.5</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/">
+            <time datetime="2011-01-21T05:00:00.000Z" itemprop="datePublished">2011-01-21</time>
+        </a>
+    </div>
+
+
+                        
+                        
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+<div class="post">
+<p>$&gt; yum upgrade<br>$&gt; yum groupinstall "Development Tools"<br>$&gt; wget <a href="http://us2.php.net/get/php-5.3.5.tar.bz2/from/us.php.net/mirror" target="_blank" rel="external">http://us2.php.net/get/php-5.3.5.tar.bz2/from/us.php.net/mirror</a><br>$&gt; tar xvf php-5.3.5.tar.bz2<br>$&gt; yum install mysql-server httpd-devel-* libxml2-devel-* openssl-devel* xmlsec1-openssl-devel-* libpng* libjpeg* curl-devel libmcrypt* mysql-devel* mysql.* libevent libevent-devel libtool-ltdl-devel libtool apr-devel apr<br>$&gt; cd php-5.3.5<br>$&gt; ./configure --with-mysql=shared --with-openssl --enable-pdo --with-pdo-mysql=shared --with-mhash=shared --enable-soap=shared --with-config-file-path=/etc/ --with-mysqli --enable-zip --enable-shared --with-curl --enable-mbstring=all --enable-maintainer-zts --with-jpeg-dir=/usr/lib/ --with-libdir=lib64 --enable-soap --with-pdo-mysql --with-gd --with-mcrypt --enable-fpm --with-config-file-scan-dir=/etc/php.d<br>$&gt; make; make install;<br>$&gt; chmod 705 /var/log/httpd</p><p>Edit your php.ini to point to your new PHP's extension directory (printed as part of make install above):<br><code>extension_dir = "/usr/local/lib/php/extensions/no-debug-zts-20090626/"</code></p><p>Make certain your /etc/php.d directory is only loading extensions that have been built against your new php. I only load mysql and apc</p><p>Now you need to tell Apache to use php-fpm via mod_fastcgi.<br># wget <a href="http://www.fastcgi.com/dist/mod_fastcgi-current.tar.gz" target="_blank" rel="external">http://www.fastcgi.com/dist/mod_fastcgi-current.tar.gz</a><br># tar -zxvf mod_fastcgi-current.tar.gz<br># cd mod_fastcgi-2.4.6/<br># cp Makefile.AP2 Makefile</p><p>Compile and install mod_fastcgi for 32 bit system, enter:<br># make top_dir=/usr/lib/httpd<br># make install top_dir=/usr/lib/httpd</p><p>Compile and install mod_fastcgi for 64 bit system, enter:<br># make top_dir=/usr/lib64/httpd<br># make install top_dir=/usr/lib64/httpd</p><p>Sample output:<br><code>make install top_dir=/usr/lib64/httpdmake[1]: Entering directory `/tmp/mod_fastcgi-2.4.6'/usr/lib64/apr-1/build/libtool --silent --mode=install cp mod_fastcgi.la /usr/lib64/httpd/modules/make[1]: Leaving directory `/tmp/mod_fastcgi-2.4.6'</code></p><p>Edit your Apache config to configure mod_fastcgi:<br><code># mods-enabled/fastcgi.conf&lt;IfModule mod_fastcgi.c&gt;FastCGIExternalServer /usr/local/sbin/php-fpm -socket /tmp/php-fpm.sockAddHandler php-fastcgi .phpAction php-fastcgi /usr/local/sbin/php-fpm.fcgiScriptAlias /usr/local/sbin/php-fpm.fcgi /usr/local/sbin/php-fpm&lt;Directory /usr/local/sbin&gt;Options ExecCGI FollowSymLinksSetHandler fastcgi-scriptOrder allow,denyAllow from all&lt;/Directory&gt;&lt;/IfModule&gt;</code></p><p>Now edit your /usr/local/etc/php-fpm config file using settings like these:<br><code>[www]# socketlisten = /tmp/php-fpm.socklisten.owner = apachelisten.group = apachelisten.mode = 0666# user ID/GIDuser = apachegroup = apache</code></p><p>Finally, <a href="http://us2.php.net/manual/en/install.fpm.php" target="_blank" rel="external">configure an autostart script for your php-fpm daemon using these instructions</a>.</p></div>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/" data-id="cjoak7aki002x2nrlh1qs0eak" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ericsimmerman.com/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-2011-01-13-resolving-illegalargumentexception" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -866,7 +866,7 @@ I installed on a Mac OS X server with Snow Leopard, but this applies to any Tomc
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2011/01/13/2011-01-13-resolving-illegalargumentexception/" data-id="cjoaj4uv0002sstrll5l5m7az" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2011/01/13/2011-01-13-resolving-illegalargumentexception/" data-id="cjoak7akg002s2nrlmb7j2vzn" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -995,7 +995,7 @@ I was fond of the stack <a href="http://www.apachefriends.org/en/xampp.html" tar
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2010/11/28/2010-11-28-ditch-mamp-on-snow-leopard/" data-id="cjoaj4uv1002vstrlqf5upn34" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2010/11/28/2010-11-28-ditch-mamp-on-snow-leopard/" data-id="cjoak7akf002q2nrlfmnlx2zt" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1119,7 +1119,7 @@ I was fond of the stack <a href="http://www.apachefriends.org/en/xampp.html" tar
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2010/11/02/2010-11-02-support-chroot-for-scp-connections-on/" data-id="cjoaj4uuz002nstrlfpnv9uh2" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2010/11/02/2010-11-02-support-chroot-for-scp-connections-on/" data-id="cjoak7akd002j2nrlpjx65fdd" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1243,7 +1243,7 @@ There are number of posts on Seagate's user forums describing <a href="http://fo
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2010/10/29/2010-10-29-resolving-sleep-issues-with-seagate/" data-id="cjoaj4uv0002qstrleqhp8czt" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2010/10/29/2010-10-29-resolving-sleep-issues-with-seagate/" data-id="cjoak7ake002l2nrlkt4zaxrq" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1372,7 +1372,7 @@ There are number of posts on Seagate's user forums describing <a href="http://fo
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/2010/08/26/2010-08-26-how-to-undo-svn-commit-from-command-line/" data-id="cjoaj4uuy002lstrlfba2sovv" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/2010/08/26/2010-08-26-how-to-undo-svn-commit-from-command-line/" data-id="cjoak7akc002g2nrlz09zc8nt" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
