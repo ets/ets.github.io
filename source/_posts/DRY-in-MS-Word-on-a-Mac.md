@@ -58,6 +58,11 @@ Sub HPTPolicies()
     Selection.Find.Execute Replace:=wdReplaceAll
     Selection.Find.ClearFormatting
     Selection.Find.Replacement.ClearFormatting    
+
+    With ActiveDocument.ActiveWindow.View
+     .Type = wdPrintView
+     .Zoom.Percentage = 250
+    End With
 End Sub
 
 ```
