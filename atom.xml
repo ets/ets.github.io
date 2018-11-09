@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ericsimmerman.com/"/>
-  <updated>2018-03-20T23:27:56.000Z</updated>
+  <updated>2018-11-09T21:24:42.000Z</updated>
   <id>http://ericsimmerman.com/</id>
   
   <author>
@@ -14,6 +14,25 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DRY in MS Word on a Mac</title>
+    <link href="http://ericsimmerman.com/2018/11/09/DRY-in-MS-Word-on-a-Mac/"/>
+    <id>http://ericsimmerman.com/2018/11/09/DRY-in-MS-Word-on-a-Mac/</id>
+    <published>2018-11-09T21:19:04.000Z</published>
+    <updated>2018-11-09T21:24:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Lucky me had the opportunity to review &amp; adopt 60+ HITRUST policies for <a href="https://www.healthprize.com" target="_blank" rel="external">HealthPrize</a> this week. My friendly outside council delivered the policies as individual MS Word documents. So to make the process of inserting our logo, stamping the adoption date, and generally modifying the boilerplate to fit our needs I decided to apply a little macro magic. YMMV:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">Sub HPTPolicies()</div><div class="line">&apos;</div><div class="line">&apos; HPTPolicies Macro</div><div class="line">&apos;</div><div class="line">&apos;</div><div class="line">    With Selection</div><div class="line">    .HomeKey Unit:=wdStory</div><div class="line">        With .Find</div><div class="line">        .ClearFormatting</div><div class="line">        .Text = &quot;[[INSERT LOGO]]&quot;</div><div class="line">        Do While .Execute</div><div class="line">            Selection.MoveRight</div><div class="line">            Selection.InlineShapes.AddPicture fileName:=&quot;/Volumes/mydrive/afolder/HPTlogo.png&quot;, LinkToFile:=False, SaveWithDocument:=True</div><div class="line">        Loop</div><div class="line">        End With</div><div class="line">    End With</div><div class="line">    With Selection</div><div class="line">    .HomeKey Unit:=wdStory</div><div class="line">    With .Find</div><div class="line">        .ClearFormatting</div><div class="line">        .Text = &quot;[[INSERT LOGO]]&quot;</div><div class="line">        Do While .Execute</div><div class="line">            Selection.Delete</div><div class="line">        Loop</div><div class="line">        End With</div><div class="line">    End With</div><div class="line">    Selection.Find.ClearFormatting</div><div class="line">    Selection.Find.Replacement.ClearFormatting</div><div class="line">    With Selection.Find</div><div class="line">        .Text = &quot;[Insert Title Appointed Person]&quot;</div><div class="line">        .MatchCase = True</div><div class="line">        .Replacement.Text = &quot;Chief Technology Officer&quot;</div><div class="line">    End With</div><div class="line">    Selection.Find.Execute Replace:=wdReplaceAll</div><div class="line">    Selection.Find.ClearFormatting</div><div class="line">    Selection.Find.Replacement.ClearFormatting</div><div class="line">    With Selection.Find</div><div class="line">        .Text = &quot;[Insert Title of `Appointed Person]&quot;</div><div class="line">        .MatchCase = True</div><div class="line">        .Replacement.Text = &quot;Chief Technology Officer&quot;</div><div class="line">    End With</div><div class="line">    Selection.Find.Execute Replace:=wdReplaceAll</div><div class="line">    Selection.Find.ClearFormatting</div><div class="line">    Selection.Find.Replacement.ClearFormatting</div><div class="line">        With Selection.Find</div><div class="line">        .Text = &quot;ADD DATE&quot;</div><div class="line">        .MatchCase = True</div><div class="line">        .Replacement.Text = &quot;November 9, 2018&quot;</div><div class="line">    End With</div><div class="line">    Selection.Find.Execute Replace:=wdReplaceAll</div><div class="line">    Selection.Find.ClearFormatting</div><div class="line">    Selection.Find.Replacement.ClearFormatting    </div><div class="line">End Sub</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Lucky me had the opportunity to review &amp;amp; adopt 60+ HITRUST policies for &lt;a href=&quot;https://www.healthprize.com&quot; target=&quot;_blank&quot; rel=&quot;ex
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Setting up a Bastion host on AWS</title>
@@ -520,29 +539,6 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
       
 &lt;div class=&quot;post&quot;&gt;
 &lt;p&gt;My work with &lt;a href=&quot;http://foldergrid.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;FolderGrid&lt;/a&gt; has included quite a few v
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Compiling Maven project with JNLP API 1.6+ on Mac OS X</title>
-    <link href="http://ericsimmerman.com/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/"/>
-    <id>http://ericsimmerman.com/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/</id>
-    <published>2012-07-11T04:00:00.000Z</published>
-    <updated>2016-09-21T02:50:43.000Z</updated>
-    
-    <content type="html"><![CDATA[
-<div class="post">
-<p>To compile a project using JNLP API with Maven you'll need javaws.jar in the compile-time classpath. You'll find the jar under the lib folder of your JDK installation. Mine was here:</p><p>/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/javaws.jar</p><p>&nbsp;</p></div>
-]]></content>
-    
-    <summary type="html">
-    
-      
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;To compile a project using JNLP API with Maven you&#39;ll need javaws.jar in the compile-time classpath. You&#39;ll find the 
     
     </summary>
     
