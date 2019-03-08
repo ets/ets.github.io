@@ -63,6 +63,7 @@
       <title><![CDATA[Social Tables Retrospective]]></title>
       <url>/2017/01/23/2017-01-23-Social-Tables-Retrospective/</url>
       <content type="html"><![CDATA[<p>My last post was over a year and a half ago - just after I joined an interesting <a href="https://www.bvp.com/" target="_blank" rel="external">Bessemer Ventures</a> backed firm in the Hospitality sector called <a href="https://www.socialtables.com" target="_blank" rel="external">Social Tables</a>.<br>My role here has been 95% people / 5% tech and always intense. I’m retroactively posting some of the internal content I circulated as the technology leader at Social Tables - mostly high-level explanations of what my team was up to at the time.</p>
+<p><img style="width: 650px;" src="/images/social-tables-team.jpeg"></p>
 <p>It’s been a fun ride with unique challenges and <a href="https://healthprize.com/about-us/press-releases/healthprize-technologies-announces-new-chief-technology-officer/" target="_blank" rel="external">as I move on to my next post</a>, I wanted to capture a few takeaways for posterity:</p>
 <ul>
 <li><strong>Avoid greenfield rewrites of established applications.</strong> Specifics may warrant a true rewrite - but recognize the extreme risk to all involved if that’s the selected path. While I certainly <a href="https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/" target="_blank" rel="external">agree with what Joel says about this here</a>, I’ll add one more point of support - that a rewrite is a fight on two fronts. It’s up against the formidable foes of <a href="https://smile.amazon.com/Who-Moved-My-Cheese-Amazing/dp/0399144463" target="_blank" rel="external">customer adoption of a new thing</a> and the golden project phenomenon - where a golden (too big to fail) project’s scope continually increases without bound.</li>
@@ -687,17 +688,6 @@ Currently - my favorite methods of testing web applications for Internet Explore
     </entry>
     
     <entry>
-      <title><![CDATA[Why you might want to exercise your vested ISOs this year...]]></title>
-      <url>/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/</url>
-      <content type="html"><![CDATA[
-<div class="post">
-<div class="posterous_bookmarklet_entry"><blockquote><div><p>The Small Business Jobs Act of 2010 (the "Jobs Act"), which was enacted September 27, 2010, contains a brief window of opportunity for non-corporate taxpayers to purchase Qualified Small Business ("QSB") stock (also known as "section 1202 stock") that, if the taxpayer holds the stock for more than five years, is <em>eligible for a 100 percent exclusion of capital gains from sale. This tax break only applies to QSB stock purchased after September 27, 2010 and before January 1, 2011.</em></p></div></blockquote><div class="posterous_quote_citation">via <a href="http://www.reedsmith.com/publications/search_publications.cfm?widCall1=customWidgets.content_view_1&amp;cit_id=29693" target="_blank" rel="external">reedsmith.com</a></div><p>The exclusion described above has been <a href="http://www.natlawreview.com/article/extension-100-gain-exclusion-qualified-small-business-stock" target="_blank" rel="external">extended to the end of 2011</a>.</p></div></div>
-]]></content>
-      
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Tax Article: Stock Options and Restricted Stock - MBBP.com]]></title>
       <url>/2011/03/11/2011-03-11-tax-article-stock-options-and/</url>
       <content type="html"><![CDATA[
@@ -711,6 +701,17 @@ Currently - my favorite methods of testing web applications for Internet Explore
             <tag> iso83bstockoptions </tag>
             
         </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Why you might want to exercise your vested ISOs this year...]]></title>
+      <url>/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/</url>
+      <content type="html"><![CDATA[
+<div class="post">
+<div class="posterous_bookmarklet_entry"><blockquote><div><p>The Small Business Jobs Act of 2010 (the "Jobs Act"), which was enacted September 27, 2010, contains a brief window of opportunity for non-corporate taxpayers to purchase Qualified Small Business ("QSB") stock (also known as "section 1202 stock") that, if the taxpayer holds the stock for more than five years, is <em>eligible for a 100 percent exclusion of capital gains from sale. This tax break only applies to QSB stock purchased after September 27, 2010 and before January 1, 2011.</em></p></div></blockquote><div class="posterous_quote_citation">via <a href="http://www.reedsmith.com/publications/search_publications.cfm?widCall1=customWidgets.content_view_1&amp;cit_id=29693" target="_blank" rel="external">reedsmith.com</a></div><p>The exclusion described above has been <a href="http://www.natlawreview.com/article/extension-100-gain-exclusion-qualified-small-business-stock" target="_blank" rel="external">extended to the end of 2011</a>.</p></div></div>
+]]></content>
+      
         
     </entry>
     

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ericsimmerman.com/2017/01/23/2017-01-23-Social-Tables-Retrospective/</loc>
+    
+    <lastmod>2019-03-08T15:13:23.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ericsimmerman.com/2018/11/09/DRY-in-MS-Word-on-a-Mac/</loc>
     
     <lastmod>2018-11-09T21:54:30.000Z</lastmod>
@@ -65,21 +72,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2017/01/23/2017-01-23-Social-Tables-Retrospective/</loc>
-    
-    <lastmod>2017-08-10T13:30:19.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/2008/09/17/2008-09-17-running-synergy-client-automatically/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/2009/01/19/2009-01-19-linksys-wet54g-bridge-to-verizon-fios/</loc>
+    <loc>http://ericsimmerman.com/2009/01/28/2009-01-28-cisco-vpn-fix-for-error-51-unable-to/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -93,7 +86,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/02/21/2009-02-21-spring-mvc-checkboxes-tag-and-support/</loc>
+    <loc>http://ericsimmerman.com/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -107,7 +100,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/04/06/2009-04-06-fix-for-keepassx-window-positioning-off/</loc>
+    <loc>http://ericsimmerman.com/2009/02/21/2009-02-21-spring-mvc-checkboxes-tag-and-support/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -121,14 +114,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/06/01/2009-06-01-using-jquery-and-scriptaculousprototype/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/2009/05/13/2009-05-13-connecting-to-netscreen-series/</loc>
+    <loc>http://ericsimmerman.com/2009/04/06/2009-04-06-fix-for-keepassx-window-positioning-off/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -142,14 +128,28 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/06/17/2009-06-17-resolve-foreign-key-constraint/</loc>
+    <loc>http://ericsimmerman.com/2009/05/13/2009-05-13-connecting-to-netscreen-series/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2017/05/16/2017-05-16-aws-lambda-firewall/</loc>
+    <loc>http://ericsimmerman.com/2009/06/01/2009-06-01-using-jquery-and-scriptaculousprototype/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2007/10/20/2007-10-20-mounting-ubuntu-nfs-share-on-redhat/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2009/06/17/2009-06-17-resolve-foreign-key-constraint/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -177,13 +177,6 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/09/05/2009-09-05-running-skype-on-snow-leopard-resolved/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2009/08/14/2009-08-14-improving-virtualbox-performance/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
@@ -191,7 +184,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/10/22/2009-10-22-resolving-key-usage-check-failed/</loc>
+    <loc>http://ericsimmerman.com/2009/09/05/2009-09-05-running-skype-on-snow-leopard-resolved/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -205,7 +198,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/</loc>
+    <loc>http://ericsimmerman.com/2009/10/22/2009-10-22-resolving-key-usage-check-failed/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -220,6 +213,13 @@
   
   <url>
     <loc>http://ericsimmerman.com/2009/12/19/2009-12-19-copypaste-clipboard-broken-on-snow/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -261,14 +261,21 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2007/10/20/2007-10-20-mounting-ubuntu-nfs-share-on-redhat/</loc>
+    <loc>http://ericsimmerman.com/2010/06/13/2010-06-13-import-gnucash-data-into-moneydance/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2010/06/13/2010-06-13-import-gnucash-data-into-moneydance/</loc>
+    <loc>http://ericsimmerman.com/2008/05/28/2008-05-28-spring-jms-remoting-support-for-async/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2017/05/16/2017-05-16-aws-lambda-firewall/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -283,13 +290,6 @@
   
   <url>
     <loc>http://ericsimmerman.com/2006/01/01/2006-01-01-migrated-from-jroller/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/2008/05/28/2008-05-28-spring-jms-remoting-support-for-async/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -317,13 +317,6 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2008/10/28/2008-10-28-removing-duplicate-music-files-with/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
@@ -331,7 +324,21 @@
   </url>
   
   <url>
+    <loc>http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ericsimmerman.com/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2008/09/17/2008-09-17-running-synergy-client-automatically/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -352,13 +359,6 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/01/28/2009-01-28-cisco-vpn-fix-for-error-51-unable-to/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2007/10/29/2007-10-29-java-webbrowser-plugin-for-amd64-ubuntu/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
@@ -366,7 +366,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/</loc>
+    <loc>http://ericsimmerman.com/2009/01/19/2009-01-19-linksys-wet54g-bridge-to-verizon-fios/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -380,7 +380,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/</loc>
+    <loc>http://ericsimmerman.com/2012/05/21/2012-05-21-great-explanation-of-infamous-loop/</loc>
+    
+    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2011/04/11/2011-04-11-resolving-firefox-4-issues-on-mac-os-x/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -394,14 +401,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/04/13/2011-04-13-stopping-tcp-split-handshake-spoof/</loc>
-    
-    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/2011/04/11/2011-04-11-resolving-firefox-4-issues-on-mac-os-x/</loc>
+    <loc>http://ericsimmerman.com/2011/04/08/2011-04-08-enhanced-mysqldump-to-support-data/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -422,13 +422,6 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/08/17/2011-08-17-testing-local-web-application-with/</loc>
-    
-    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2011/08/19/2011-08-19-jsp-tricks-to-make-templating-easier-on/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
@@ -443,14 +436,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/08/26/2011-08-26-resolving-connect-to-window-server-not/</loc>
+    <loc>http://ericsimmerman.com/2011/08/17/2011-08-17-testing-local-web-application-with/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/09/13/2011-09-13-winner-takes-all-network-effect/</loc>
+    <loc>http://ericsimmerman.com/2011/08/26/2011-08-26-resolving-connect-to-window-server-not/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -464,6 +457,13 @@
   </url>
   
   <url>
+    <loc>http://ericsimmerman.com/2011/09/13/2011-09-13-winner-takes-all-network-effect/</loc>
+    
+    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ericsimmerman.com/2011/09/22/2011-09-22-upgrading-snow-leopard-development/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
@@ -471,14 +471,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/10/05/2011-10-05-listening-to-sensefm-while-they-fix/</loc>
+    <loc>http://ericsimmerman.com/2011/10/17/2011-10-17-mac-1065-snow-leopard-server-ldap-bug/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/10/17/2011-10-17-mac-1065-snow-leopard-server-ldap-bug/</loc>
+    <loc>http://ericsimmerman.com/2011/10/05/2011-10-05-listening-to-sensefm-while-they-fix/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -499,6 +499,13 @@
   </url>
   
   <url>
+    <loc>http://ericsimmerman.com/2012/01/08/2012-01-08-play-framework-on-aws/</loc>
+    
+    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ericsimmerman.com/2011/12/11/2011-12-11-loading-fixtures-for-functionaltest-in/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
@@ -513,21 +520,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2012/01/08/2012-01-08-play-framework-on-aws/</loc>
-    
-    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2012/01/19/2012-01-19-resolving-git-gc-error-on-mac/</loc>
-    
-    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/2012/01/24/2012-01-24-configure-my-amazon-ec2-instances-to/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -541,14 +534,21 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2012/05/21/2012-05-21-great-explanation-of-infamous-loop/</loc>
+    <loc>http://ericsimmerman.com/2012/01/24/2012-01-24-configure-my-amazon-ec2-instances-to/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/04/06/2011-04-06-minimizing-expense-when-testing-webapps/</loc>
+    <loc>http://ericsimmerman.com/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/</loc>
+    
+    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2011/04/13/2011-04-13-stopping-tcp-split-handshake-spoof/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -604,13 +604,6 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/03/28/2011-03-28-solution-for-firefox-4-installation/</loc>
-    
-    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2013/03/07/2013-03-07-moved-to-blogger/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
@@ -619,6 +612,13 @@
   
   <url>
     <loc>http://ericsimmerman.com/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/</loc>
+    
+    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2011/04/06/2011-04-06-minimizing-expense-when-testing-webapps/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -667,7 +667,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2010/08/19/2010-08-19-i-big-in-brazil/</loc>
+    <loc>http://ericsimmerman.com/2010/11/02/2010-11-02-support-chroot-for-scp-connections-on/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -681,7 +681,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2010/11/02/2010-11-02-support-chroot-for-scp-connections-on/</loc>
+    <loc>http://ericsimmerman.com/2010/08/19/2010-08-19-i-big-in-brazil/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -709,7 +709,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/04/08/2011-04-08-enhanced-mysqldump-to-support-data/</loc>
+    <loc>http://ericsimmerman.com/2011/03/28/2011-03-28-solution-for-firefox-4-installation/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     

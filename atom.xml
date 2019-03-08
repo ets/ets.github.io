@@ -99,9 +99,10 @@
     <link href="http://ericsimmerman.com/2017/01/23/2017-01-23-Social-Tables-Retrospective/"/>
     <id>http://ericsimmerman.com/2017/01/23/2017-01-23-Social-Tables-Retrospective/</id>
     <published>2017-01-23T16:29:10.000Z</published>
-    <updated>2017-08-10T13:30:19.000Z</updated>
+    <updated>2019-03-08T15:13:23.000Z</updated>
     
     <content type="html"><![CDATA[<p>My last post was over a year and a half ago - just after I joined an interesting <a href="https://www.bvp.com/" target="_blank" rel="external">Bessemer Ventures</a> backed firm in the Hospitality sector called <a href="https://www.socialtables.com" target="_blank" rel="external">Social Tables</a>.<br>My role here has been 95% people / 5% tech and always intense. I’m retroactively posting some of the internal content I circulated as the technology leader at Social Tables - mostly high-level explanations of what my team was up to at the time.</p>
+<p><img style="width: 650px;" src="/images/social-tables-team.jpeg"></p>
 <p>It’s been a fun ride with unique challenges and <a href="https://healthprize.com/about-us/press-releases/healthprize-technologies-announces-new-chief-technology-officer/" target="_blank" rel="external">as I move on to my next post</a>, I wanted to capture a few takeaways for posterity:</p>
 <ul>
 <li><strong>Avoid greenfield rewrites of established applications.</strong> Specifics may warrant a true rewrite - but recognize the extreme risk to all involved if that’s the selected path. While I certainly <a href="https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/" target="_blank" rel="external">agree with what Joel says about this here</a>, I’ll add one more point of support - that a rewrite is a fight on two fronts. It’s up against the formidable foes of <a href="https://smile.amazon.com/Who-Moved-My-Cheese-Amazing/dp/0399144463" target="_blank" rel="external">customer adoption of a new thing</a> and the golden project phenomenon - where a golden (too big to fail) project’s scope continually increases without bound.</li>
