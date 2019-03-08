@@ -10,3 +10,9 @@ hexo generate
 
 ## If you want to run a dev server locally
 npm install hexo-server --save
+
+
+## View a local update
+
+hexo server
+hexo deploy
