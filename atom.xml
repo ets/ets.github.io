@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ericsimmerman.com/"/>
-  <updated>2018-11-09T21:54:30.000Z</updated>
+  <updated>2019-03-11T00:53:12.000Z</updated>
   <id>http://ericsimmerman.com/</id>
   
   <author>
@@ -14,6 +14,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Granting a new user permissions on RDS Maria/Mysql</title>
+    <link href="http://ericsimmerman.com/2019/03/10/Granting-a-new-user-permissions-on-RDS-Maria-Mysql/"/>
+    <id>http://ericsimmerman.com/2019/03/10/Granting-a-new-user-permissions-on-RDS-Maria-Mysql/</id>
+    <published>2019-03-11T00:48:13.000Z</published>
+    <updated>2019-03-11T00:53:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>You cannot use GRANT ALL for any user on an Amazon AWS RDS instance of Mysql/Maria (Aurora Mysql). When you use the GRANT ALL statement you are also attempting to provide Global Super Permissions such as File and this is not allowed on AWS RDS.</p>
+<p>So you need to break out the permissions instead of using GRANT ALL. As of this writing, the most you can grant are:</p>
+<p>SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER </p>
+<p>Using them in a statement such as:</p>
+<p>GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER ON my_database . * TO ‘my_user’@’localhost’;</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;You cannot use GRANT ALL for any user on an Amazon AWS RDS instance of Mysql/Maria (Aurora Mysql). When you use the GRANT ALL statement y
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>DRY in MS Word on a Mac</title>
@@ -517,29 +540,6 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
       
 &lt;div class=&quot;post&quot;&gt;
 &lt;p&gt;I was just burned by an issue in Play Framework&#39;s JPA support of orphanRemovals. The issue manifests as a &quot;collection
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Cautionary tale regarding cloud security</title>
-    <link href="http://ericsimmerman.com/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/"/>
-    <id>http://ericsimmerman.com/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/</id>
-    <published>2012-07-25T04:00:00.000Z</published>
-    <updated>2016-09-21T02:50:43.000Z</updated>
-    
-    <content type="html"><![CDATA[
-<div class="post">
-<p>My work with <a href="http://foldergrid.com" target="_blank" rel="external">FolderGrid</a> has included quite a few very interesting technical problems that have resulted in material for this blog.&nbsp;I just&nbsp;<a href="http://blog.foldergrid.com/2012/07/why-we-stopped&amp;hellip;cloud-services/" target="_blank" rel="external">posted an interesting read for anyone using cloud services</a>&nbsp;to store or transport sensitive data.&nbsp;</p></div>
-]]></content>
-    
-    <summary type="html">
-    
-      
-&lt;div class=&quot;post&quot;&gt;
-&lt;p&gt;My work with &lt;a href=&quot;http://foldergrid.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;FolderGrid&lt;/a&gt; has included quite a few v
     
     </summary>
     
