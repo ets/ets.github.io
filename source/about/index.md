@@ -3,7 +3,7 @@ title: about me
 date: 2016-06-20 23:03:23
 ---
 
-[I work here](https://healthprize.com "Motivate Patients; Improve Outcomes")
+[I work here](https://interos.ai "Automating Supply Chain Risk Management")
 [I built this](https://foldergrid.com "End-to-End Encryption atop cloud storage")
 [I founded this](https://bitacuity.com "Closely held technical services firm")
 [I blog here](https://ets.github.io "But not very often...")
