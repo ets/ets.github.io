@@ -9,13 +9,6 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2019/07/19/HealthPrize-Retrospective/</loc>
-    
-    <lastmod>2019-08-03T12:06:28.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2019/03/10/Granting-a-new-user-permissions-on-RDS-Maria-Mysql/</loc>
     
     <lastmod>2019-03-11T00:53:12.000Z</lastmod>
@@ -86,14 +79,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2007/10/20/2007-10-20-mounting-ubuntu-nfs-share-on-redhat/</loc>
+    <loc>http://ericsimmerman.com/2006/01/01/2006-01-01-migrated-from-jroller/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2006/01/01/2006-01-01-migrated-from-jroller/</loc>
+    <loc>http://ericsimmerman.com/2007/10/20/2007-10-20-mounting-ubuntu-nfs-share-on-redhat/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -156,14 +149,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/02/18/2009-02-18-hibernate-annotations/</loc>
+    <loc>http://ericsimmerman.com/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/02/08/2009-02-08-import-stock-sales-from-microsoft-money/</loc>
+    <loc>http://ericsimmerman.com/2009/02/18/2009-02-18-hibernate-annotations/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -177,14 +170,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/04/06/2009-04-06-fix-for-keepassx-window-positioning-off/</loc>
+    <loc>http://ericsimmerman.com/2009/04/03/2009-04-03-resolving-synergy-mouse-issues-with/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/04/03/2009-04-03-resolving-synergy-mouse-issues-with/</loc>
+    <loc>http://ericsimmerman.com/2009/04/06/2009-04-06-fix-for-keepassx-window-positioning-off/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -205,21 +198,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/05/14/2009-05-14-rolling-back-from-subversive-078-in/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/2009/07/18/2009-07-18-malfunctioning-mouse-after-upgrade-to/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2009/06/01/2009-06-01-using-jquery-and-scriptaculousprototype/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2009/05/14/2009-05-14-rolling-back-from-subversive-078-in/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -233,7 +219,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/07/23/2009-07-23-openssl-alert-40-handshake-error-common/</loc>
+    <loc>http://ericsimmerman.com/2009/07/18/2009-07-18-malfunctioning-mouse-after-upgrade-to/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -241,6 +227,20 @@
   
   <url>
     <loc>http://ericsimmerman.com/2009/08/13/2009-08-13-spring-security-acl-intercept-methods/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2009/07/23/2009-07-23-openssl-alert-40-handshake-error-common/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2009/08/14/2009-08-14-improving-virtualbox-performance/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -261,7 +261,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/08/14/2009-08-14-improving-virtualbox-performance/</loc>
+    <loc>http://ericsimmerman.com/2009/10/22/2009-10-22-resolving-key-usage-check-failed/</loc>
+    
+    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -275,21 +282,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2009/10/22/2009-10-22-resolving-key-usage-check-failed/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2009/12/19/2009-12-19-copypaste-clipboard-broken-on-snow/</loc>
-    
-    <lastmod>2017-08-10T13:24:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/</loc>
     
     <lastmod>2017-08-10T13:24:02.000Z</lastmod>
     
@@ -422,13 +415,6 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2010/10/29/2010-10-29-resolving-sleep-issues-with-seagate/</loc>
-    
-    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2010/11/02/2010-11-02-support-chroot-for-scp-connections-on/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
@@ -436,14 +422,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/</loc>
-    
-    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/2011/02/14/2011-02-14-find-conflicting-dependencies-in-maven/</loc>
+    <loc>http://ericsimmerman.com/2010/10/29/2010-10-29-resolving-sleep-issues-with-seagate/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -457,6 +436,13 @@
   </url>
   
   <url>
+    <loc>http://ericsimmerman.com/2011/01/21/2011-01-21-install-nexus-1801-on-tomcat-6/</loc>
+    
+    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ericsimmerman.com/2011/01/21/2011-01-21-install-php-535-with-fpm-fastcgi/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
@@ -464,7 +450,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/03/25/2011-03-25-installing-gerrit2-on-mac-os-x-server/</loc>
+    <loc>http://ericsimmerman.com/2011/02/14/2011-02-14-find-conflicting-dependencies-in-maven/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -472,6 +458,13 @@
   
   <url>
     <loc>http://ericsimmerman.com/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/</loc>
+    
+    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2011/03/25/2011-03-25-installing-gerrit2-on-mac-os-x-server/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -492,14 +485,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/04/11/2011-04-11-resolving-firefox-4-issues-on-mac-os-x/</loc>
+    <loc>http://ericsimmerman.com/2011/04/08/2011-04-08-enhanced-mysqldump-to-support-data/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/04/08/2011-04-08-enhanced-mysqldump-to-support-data/</loc>
+    <loc>http://ericsimmerman.com/2011/04/11/2011-04-11-resolving-firefox-4-issues-on-mac-os-x/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -520,14 +513,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/08/06/2011-08-06-macports-mysql-upgrade-from-50x-to-51x/</loc>
+    <loc>http://ericsimmerman.com/2011/07/30/2011-07-30-publish-openlaszlo-swf-using-swfobject2/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/07/30/2011-07-30-publish-openlaszlo-swf-using-swfobject2/</loc>
+    <loc>http://ericsimmerman.com/2011/08/06/2011-08-06-macports-mysql-upgrade-from-50x-to-51x/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -555,14 +548,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/09/13/2011-09-13-winner-takes-all-network-effect/</loc>
+    <loc>http://ericsimmerman.com/2011/08/26/2011-08-26-resolving-connect-to-window-server-not/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/08/26/2011-08-26-resolving-connect-to-window-server-not/</loc>
+    <loc>http://ericsimmerman.com/2011/09/13/2011-09-13-winner-takes-all-network-effect/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -597,14 +590,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/11/14/2011-11-14-gae-price-increases-lead-to-hard/</loc>
+    <loc>http://ericsimmerman.com/2011/11/05/2011-11-05-secure-file-storage-in-the/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2011/11/05/2011-11-05-secure-file-storage-in-the/</loc>
+    <loc>http://ericsimmerman.com/2011/11/14/2011-11-14-gae-price-increases-lead-to-hard/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -660,13 +653,6 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/</loc>
-    
-    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/2012/06/30/2012-06-30-resolving-spring-security-acl-deadlock/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
@@ -682,6 +668,13 @@
   
   <url>
     <loc>http://ericsimmerman.com/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/</loc>
+    
+    <lastmod>2016-09-21T02:50:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
@@ -716,14 +709,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/</loc>
+    <loc>http://ericsimmerman.com/2013/03/07/2013-03-07-moved-to-blogger/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/2013/03/07/2013-03-07-moved-to-blogger/</loc>
+    <loc>http://ericsimmerman.com/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/</loc>
     
     <lastmod>2016-09-21T02:50:43.000Z</lastmod>
     

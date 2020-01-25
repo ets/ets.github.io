@@ -3,29 +3,6 @@
   
     
     <entry>
-      <title><![CDATA[HealthPrize Retrospective]]></title>
-      <url>/2019/07/19/HealthPrize-Retrospective/</url>
-      <content type="html"><![CDATA[<p> Key achievements<br> Distributed team musings<br> Pharma/healthcare musings<br> Shoutouts for HITRUST certification<br> DRI methodology</p>
-]]></content>
-      
-        
-        <tags>
-            
-            <tag> AWS </tag>
-            
-            <tag> healthcare </tag>
-            
-            <tag> HITRUST </tag>
-            
-            <tag> Distributed </tag>
-            
-            <tag> Pharma </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Granting a new user permissions on RDS Maria/Mysql]]></title>
       <url>/2019/03/10/Granting-a-new-user-permissions-on-RDS-Maria-Mysql/</url>
       <content type="html"><![CDATA[<p>You cannot use GRANT ALL for any user on an Amazon AWS RDS instance of Mysql/Maria (Aurora Mysql). When you use the GRANT ALL statement you are also attempting to provide Global Super Permissions such as File and this is not allowed on AWS RDS.</p>
@@ -724,6 +701,17 @@ Currently - my favorite methods of testing web applications for Internet Explore
     </entry>
     
     <entry>
+      <title><![CDATA[Why you might want to exercise your vested ISOs this year...]]></title>
+      <url>/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/</url>
+      <content type="html"><![CDATA[
+<div class="post">
+<div class="posterous_bookmarklet_entry"><blockquote><div><p>The Small Business Jobs Act of 2010 (the "Jobs Act"), which was enacted September 27, 2010, contains a brief window of opportunity for non-corporate taxpayers to purchase Qualified Small Business ("QSB") stock (also known as "section 1202 stock") that, if the taxpayer holds the stock for more than five years, is <em>eligible for a 100 percent exclusion of capital gains from sale. This tax break only applies to QSB stock purchased after September 27, 2010 and before January 1, 2011.</em></p></div></blockquote><div class="posterous_quote_citation">via <a href="http://www.reedsmith.com/publications/search_publications.cfm?widCall1=customWidgets.content_view_1&amp;cit_id=29693" target="_blank" rel="external">reedsmith.com</a></div><p>The exclusion described above has been <a href="http://www.natlawreview.com/article/extension-100-gain-exclusion-qualified-small-business-stock" target="_blank" rel="external">extended to the end of 2011</a>.</p></div></div>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Tax Article: Stock Options and Restricted Stock - MBBP.com]]></title>
       <url>/2011/03/11/2011-03-11-tax-article-stock-options-and/</url>
       <content type="html"><![CDATA[
@@ -737,17 +725,6 @@ Currently - my favorite methods of testing web applications for Internet Explore
             <tag> iso83bstockoptions </tag>
             
         </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Why you might want to exercise your vested ISOs this year...]]></title>
-      <url>/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/</url>
-      <content type="html"><![CDATA[
-<div class="post">
-<div class="posterous_bookmarklet_entry"><blockquote><div><p>The Small Business Jobs Act of 2010 (the "Jobs Act"), which was enacted September 27, 2010, contains a brief window of opportunity for non-corporate taxpayers to purchase Qualified Small Business ("QSB") stock (also known as "section 1202 stock") that, if the taxpayer holds the stock for more than five years, is <em>eligible for a 100 percent exclusion of capital gains from sale. This tax break only applies to QSB stock purchased after September 27, 2010 and before January 1, 2011.</em></p></div></blockquote><div class="posterous_quote_citation">via <a href="http://www.reedsmith.com/publications/search_publications.cfm?widCall1=customWidgets.content_view_1&amp;cit_id=29693" target="_blank" rel="external">reedsmith.com</a></div><p>The exclusion described above has been <a href="http://www.natlawreview.com/article/extension-100-gain-exclusion-qualified-small-business-stock" target="_blank" rel="external">extended to the end of 2011</a>.</p></div></div>
-]]></content>
-      
         
     </entry>
     

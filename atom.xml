@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ericsimmerman.com/"/>
-  <updated>2019-08-03T12:06:28.000Z</updated>
+  <updated>2019-03-11T00:53:12.000Z</updated>
   <id>http://ericsimmerman.com/</id>
   
   <author>
@@ -14,35 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>HealthPrize Retrospective</title>
-    <link href="http://ericsimmerman.com/2019/07/19/HealthPrize-Retrospective/"/>
-    <id>http://ericsimmerman.com/2019/07/19/HealthPrize-Retrospective/</id>
-    <published>2019-07-19T18:42:42.000Z</published>
-    <updated>2019-08-03T12:06:28.000Z</updated>
-    
-    <content type="html"><![CDATA[<p> Key achievements<br> Distributed team musings<br> Pharma/healthcare musings<br> Shoutouts for HITRUST certification<br> DRI methodology</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt; Key achievements&lt;br&gt; Distributed team musings&lt;br&gt; Pharma/healthcare musings&lt;br&gt; Shoutouts for HITRUST certification&lt;br&gt; DRI methodology&lt;
-    
-    </summary>
-    
-    
-      <category term="AWS" scheme="http://ericsimmerman.com/tags/AWS/"/>
-    
-      <category term="healthcare" scheme="http://ericsimmerman.com/tags/healthcare/"/>
-    
-      <category term="HITRUST" scheme="http://ericsimmerman.com/tags/HITRUST/"/>
-    
-      <category term="Distributed" scheme="http://ericsimmerman.com/tags/Distributed/"/>
-    
-      <category term="Pharma" scheme="http://ericsimmerman.com/tags/Pharma/"/>
-    
-  </entry>
   
   <entry>
     <title>Granting a new user permissions on RDS Maria/Mysql</title>
@@ -546,6 +517,29 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot; targe
       
 &lt;div class=&quot;post&quot;&gt;
 &lt;p&gt;These are simply updated instructions based upon &lt;a href=&quot;http://www.amaxus.com/cms-blog/automatically-finding-javasc
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>orphanRemoval issues in Play Framework &#39;collection owner not associated with session&#39;</title>
+    <link href="http://ericsimmerman.com/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/"/>
+    <id>http://ericsimmerman.com/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/</id>
+    <published>2012-08-03T04:00:00.000Z</published>
+    <updated>2016-09-21T02:50:43.000Z</updated>
+    
+    <content type="html"><![CDATA[
+<div class="post">
+<p>I was just burned by an issue in Play Framework's JPA support of orphanRemovals. The issue manifests as a "collection owner not associated with session" JPAException within Play Framework 1.2.x &nbsp;- it was supposed to be <a href="https://play.lighthouseapp.com/projects/57987/tickets/1503-nested-onetomany-relationships-with-orphanremoval-fails-to-commit" target="_blank" rel="external">addressed in 1.2.5 with this patch,</a> but I'm running 1.2.5 and am still running into it.</p><p>I didn't take the time to diagnose or file a report - for now I'm punting by restricting the use of 'orphanRemoval'.</p></div>
+]]></content>
+    
+    <summary type="html">
+    
+      
+&lt;div class=&quot;post&quot;&gt;
+&lt;p&gt;I was just burned by an issue in Play Framework&#39;s JPA support of orphanRemovals. The issue manifests as a &quot;collection
     
     </summary>
     
