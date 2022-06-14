@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ericsimmerman.com/about/index.html</loc>
+    
+    <lastmod>2022-06-14T23:42:02.358Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ericsimmerman.com/about/meditation.html</loc>
     
     <lastmod>2022-06-14T23:36:27.311Z</lastmod>
@@ -10,13 +17,6 @@
   
   <url>
     <loc>http://ericsimmerman.com/2019/03/10/Granting-a-new-user-permissions-on-RDS-Maria-Mysql/</loc>
-    
-    <lastmod>2022-06-14T23:36:27.310Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ericsimmerman.com/about/index.html</loc>
     
     <lastmod>2022-06-14T23:36:27.310Z</lastmod>
     
