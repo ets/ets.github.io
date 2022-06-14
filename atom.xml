@@ -3,11 +3,11 @@
   <title>Technocracy</title>
   
   <subtitle>Posts on whatever your host deems relevant.</subtitle>
-  <link href="/atom.xml" rel="self"/>
+  <link href="/blog/atom.xml" rel="self"/>
   
-  <link href="http://ericsimmerman.com/"/>
+  <link href="http://ericsimmerman.com/blog/"/>
   <updated>2022-06-14T22:25:40.450Z</updated>
-  <id>http://ericsimmerman.com/</id>
+  <id>http://ericsimmerman.com/blog/</id>
   
   <author>
     <name>Eric Simmerman</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Granting a new user permissions on RDS Maria/Mysql</title>
-    <link href="http://ericsimmerman.com/2019/03/10/Granting-a-new-user-permissions-on-RDS-Maria-Mysql/"/>
-    <id>http://ericsimmerman.com/2019/03/10/Granting-a-new-user-permissions-on-RDS-Maria-Mysql/</id>
+    <link href="http://ericsimmerman.com/blog/2019/03/10/Granting-a-new-user-permissions-on-RDS-Maria-Mysql/"/>
+    <id>http://ericsimmerman.com/blog/2019/03/10/Granting-a-new-user-permissions-on-RDS-Maria-Mysql/</id>
     <published>2019-03-11T00:48:13.000Z</published>
     <updated>2022-06-14T22:25:40.450Z</updated>
     
@@ -39,8 +39,8 @@
   
   <entry>
     <title>DRY in MS Word on a Mac</title>
-    <link href="http://ericsimmerman.com/2018/11/09/DRY-in-MS-Word-on-a-Mac/"/>
-    <id>http://ericsimmerman.com/2018/11/09/DRY-in-MS-Word-on-a-Mac/</id>
+    <link href="http://ericsimmerman.com/blog/2018/11/09/DRY-in-MS-Word-on-a-Mac/"/>
+    <id>http://ericsimmerman.com/blog/2018/11/09/DRY-in-MS-Word-on-a-Mac/</id>
     <published>2018-11-09T21:19:04.000Z</published>
     <updated>2022-06-14T22:25:40.450Z</updated>
     
@@ -60,8 +60,8 @@
   
   <entry>
     <title>Setting up a Bastion host on AWS</title>
-    <link href="http://ericsimmerman.com/2017/05/18/2017-05-01-setting-up-bastion-host-aws/"/>
-    <id>http://ericsimmerman.com/2017/05/18/2017-05-01-setting-up-bastion-host-aws/</id>
+    <link href="http://ericsimmerman.com/blog/2017/05/18/2017-05-01-setting-up-bastion-host-aws/"/>
+    <id>http://ericsimmerman.com/blog/2017/05/18/2017-05-01-setting-up-bastion-host-aws/</id>
     <published>2017-05-18T21:01:41.000Z</published>
     <updated>2022-06-14T22:25:40.449Z</updated>
     
@@ -77,18 +77,18 @@
     </summary>
     
     
-      <category term="AWS" scheme="http://ericsimmerman.com/tags/AWS/"/>
+      <category term="AWS" scheme="http://ericsimmerman.com/blog/tags/AWS/"/>
     
-      <category term="bastion" scheme="http://ericsimmerman.com/tags/bastion/"/>
+      <category term="bastion" scheme="http://ericsimmerman.com/blog/tags/bastion/"/>
     
-      <category term="jumphost" scheme="http://ericsimmerman.com/tags/jumphost/"/>
+      <category term="jumphost" scheme="http://ericsimmerman.com/blog/tags/jumphost/"/>
     
   </entry>
   
   <entry>
     <title>Knock first firewall for AWS Security Groups</title>
-    <link href="http://ericsimmerman.com/2017/05/16/2017-05-16-aws-lambda-firewall/"/>
-    <id>http://ericsimmerman.com/2017/05/16/2017-05-16-aws-lambda-firewall/</id>
+    <link href="http://ericsimmerman.com/blog/2017/05/16/2017-05-16-aws-lambda-firewall/"/>
+    <id>http://ericsimmerman.com/blog/2017/05/16/2017-05-16-aws-lambda-firewall/</id>
     <published>2017-05-17T02:21:53.000Z</published>
     <updated>2022-06-14T22:25:40.450Z</updated>
     
@@ -104,18 +104,18 @@
     </summary>
     
     
-      <category term="AWS" scheme="http://ericsimmerman.com/tags/AWS/"/>
+      <category term="AWS" scheme="http://ericsimmerman.com/blog/tags/AWS/"/>
     
-      <category term="AWS lambda" scheme="http://ericsimmerman.com/tags/AWS-lambda/"/>
+      <category term="AWS lambda" scheme="http://ericsimmerman.com/blog/tags/AWS-lambda/"/>
     
-      <category term="AWS API Gateway" scheme="http://ericsimmerman.com/tags/AWS-API-Gateway/"/>
+      <category term="AWS API Gateway" scheme="http://ericsimmerman.com/blog/tags/AWS-API-Gateway/"/>
     
   </entry>
   
   <entry>
     <title>Social Tables Retrospective</title>
-    <link href="http://ericsimmerman.com/2017/01/23/2017-01-23-Social-Tables-Retrospective/"/>
-    <id>http://ericsimmerman.com/2017/01/23/2017-01-23-Social-Tables-Retrospective/</id>
+    <link href="http://ericsimmerman.com/blog/2017/01/23/2017-01-23-Social-Tables-Retrospective/"/>
+    <id>http://ericsimmerman.com/blog/2017/01/23/2017-01-23-Social-Tables-Retrospective/</id>
     <published>2017-01-23T16:29:10.000Z</published>
     <updated>2022-06-14T22:25:40.449Z</updated>
     
@@ -131,18 +131,18 @@
     </summary>
     
     
-      <category term="AWS" scheme="http://ericsimmerman.com/tags/AWS/"/>
+      <category term="AWS" scheme="http://ericsimmerman.com/blog/tags/AWS/"/>
     
-      <category term="bastion" scheme="http://ericsimmerman.com/tags/bastion/"/>
+      <category term="bastion" scheme="http://ericsimmerman.com/blog/tags/bastion/"/>
     
-      <category term="jumphost" scheme="http://ericsimmerman.com/tags/jumphost/"/>
+      <category term="jumphost" scheme="http://ericsimmerman.com/blog/tags/jumphost/"/>
     
   </entry>
   
   <entry>
     <title>Explaining Docker to suits</title>
-    <link href="http://ericsimmerman.com/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/"/>
-    <id>http://ericsimmerman.com/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/</id>
+    <link href="http://ericsimmerman.com/blog/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/"/>
+    <id>http://ericsimmerman.com/blog/2016/05/14/2016-03-22-Explaining-Docker-to-Suits/</id>
     <published>2016-05-14T23:18:04.000Z</published>
     <updated>2022-06-14T22:25:40.448Z</updated>
     
@@ -158,14 +158,14 @@
     </summary>
     
     
-      <category term="Docker" scheme="http://ericsimmerman.com/tags/Docker/"/>
+      <category term="Docker" scheme="http://ericsimmerman.com/blog/tags/Docker/"/>
     
   </entry>
   
   <entry>
     <title>Explaining Query Tuning to suits</title>
-    <link href="http://ericsimmerman.com/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/"/>
-    <id>http://ericsimmerman.com/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/</id>
+    <link href="http://ericsimmerman.com/blog/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/"/>
+    <id>http://ericsimmerman.com/blog/2016/04/20/2016-04-20-Explaining-Query-Tuning-to-Suits/</id>
     <published>2016-04-20T23:18:04.000Z</published>
     <updated>2022-06-14T22:25:40.449Z</updated>
     
@@ -181,14 +181,14 @@
     </summary>
     
     
-      <category term="query tuning" scheme="http://ericsimmerman.com/tags/query-tuning/"/>
+      <category term="query tuning" scheme="http://ericsimmerman.com/blog/tags/query-tuning/"/>
     
   </entry>
   
   <entry>
     <title>Explaining SDF to suits</title>
-    <link href="http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/"/>
-    <id>http://ericsimmerman.com/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/</id>
+    <link href="http://ericsimmerman.com/blog/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/"/>
+    <id>http://ericsimmerman.com/blog/2016/04/06/2016-04-06-Explaining-SDF-to-Suits/</id>
     <published>2016-04-06T23:18:04.000Z</published>
     <updated>2022-06-14T22:25:40.448Z</updated>
     
@@ -204,14 +204,14 @@
     </summary>
     
     
-      <category term="Signed Distance Fields" scheme="http://ericsimmerman.com/tags/Signed-Distance-Fields/"/>
+      <category term="Signed Distance Fields" scheme="http://ericsimmerman.com/blog/tags/Signed-Distance-Fields/"/>
     
   </entry>
   
   <entry>
     <title>MySQL Identifying Blocking Transactions</title>
-    <link href="http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/"/>
-    <id>http://ericsimmerman.com/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/</id>
+    <link href="http://ericsimmerman.com/blog/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/"/>
+    <id>http://ericsimmerman.com/blog/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/</id>
     <published>2015-08-10T16:29:15.000Z</published>
     <updated>2022-06-14T22:25:40.448Z</updated>
     
@@ -231,8 +231,8 @@
   
   <entry>
     <title>Fix YAML parsing errors in WebGen</title>
-    <link href="http://ericsimmerman.com/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/"/>
-    <id>http://ericsimmerman.com/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/</id>
+    <link href="http://ericsimmerman.com/blog/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/"/>
+    <id>http://ericsimmerman.com/blog/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/</id>
     <published>2015-01-07T17:20:34.000Z</published>
     <updated>2022-06-14T22:25:40.448Z</updated>
     
@@ -252,8 +252,8 @@
   
   <entry>
     <title>Resolving H2 table lock during JUnitRunner test</title>
-    <link href="http://ericsimmerman.com/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/"/>
-    <id>http://ericsimmerman.com/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/</id>
+    <link href="http://ericsimmerman.com/blog/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/"/>
+    <id>http://ericsimmerman.com/blog/2014/02/01/2014-02-01-resolving-h2-table-lock-during-junitrunner-test/</id>
     <published>2014-02-01T20:36:00.000Z</published>
     <updated>2022-06-14T22:25:40.447Z</updated>
     
@@ -273,8 +273,8 @@
   
   <entry>
     <title>Moved again ... this time to github.io</title>
-    <link href="http://ericsimmerman.com/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/"/>
-    <id>http://ericsimmerman.com/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/</id>
+    <link href="http://ericsimmerman.com/blog/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/"/>
+    <id>http://ericsimmerman.com/blog/2013/11/26/2013-11-26-moved-again-dot-dot-dot-this-time-to-github-dot-io/</id>
     <published>2013-11-27T00:22:00.000Z</published>
     <updated>2022-06-14T22:25:40.447Z</updated>
     
@@ -290,16 +290,16 @@
     </summary>
     
     
-      <category term="Blogger" scheme="http://ericsimmerman.com/tags/Blogger/"/>
+      <category term="Blogger" scheme="http://ericsimmerman.com/blog/tags/Blogger/"/>
     
-      <category term="Octopress" scheme="http://ericsimmerman.com/tags/Octopress/"/>
+      <category term="Octopress" scheme="http://ericsimmerman.com/blog/tags/Octopress/"/>
     
   </entry>
   
   <entry>
     <title>Plesk 11 Upgrade Unable to run Perl scripts in cgi-bin</title>
-    <link href="http://ericsimmerman.com/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/"/>
-    <id>http://ericsimmerman.com/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/</id>
+    <link href="http://ericsimmerman.com/blog/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/"/>
+    <id>http://ericsimmerman.com/blog/2013/10/29/2013-10-29-plesk-11-upgrade-unable-to-run-perl/</id>
     <published>2013-10-29T04:00:00.000Z</published>
     <updated>2022-06-14T22:25:40.447Z</updated>
     
@@ -317,16 +317,16 @@ After an upgrade to Plesk 11, my Perl scripts  located under cgi-bin/ for a spec
     </summary>
     
     
-      <category term="perl" scheme="http://ericsimmerman.com/tags/perl/"/>
+      <category term="perl" scheme="http://ericsimmerman.com/blog/tags/perl/"/>
     
-      <category term="plesk" scheme="http://ericsimmerman.com/tags/plesk/"/>
+      <category term="plesk" scheme="http://ericsimmerman.com/blog/tags/plesk/"/>
     
   </entry>
   
   <entry>
     <title>Using iStat 2.x on Mountain Lion</title>
-    <link href="http://ericsimmerman.com/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/"/>
-    <id>http://ericsimmerman.com/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/</id>
+    <link href="http://ericsimmerman.com/blog/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/"/>
+    <id>http://ericsimmerman.com/blog/2013/04/29/2013-04-29-using-istat-2x-on-mountain-lion/</id>
     <published>2013-04-29T04:00:00.000Z</published>
     <updated>2022-06-14T22:25:40.447Z</updated>
     
@@ -348,8 +348,8 @@ Shawn Hooton wrote a piece on &lt;a href=&quot;http://codingogre.wordpress.com/2
   
   <entry>
     <title>Moved to Blogger</title>
-    <link href="http://ericsimmerman.com/2013/03/07/2013-03-07-moved-to-blogger/"/>
-    <id>http://ericsimmerman.com/2013/03/07/2013-03-07-moved-to-blogger/</id>
+    <link href="http://ericsimmerman.com/blog/2013/03/07/2013-03-07-moved-to-blogger/"/>
+    <id>http://ericsimmerman.com/blog/2013/03/07/2013-03-07-moved-to-blogger/</id>
     <published>2013-03-07T05:00:00.000Z</published>
     <updated>2022-06-14T22:25:40.447Z</updated>
     
@@ -371,8 +371,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot;&gt;Ag
   
   <entry>
     <title>Compressing MySQL client-server communication with Play Framework</title>
-    <link href="http://ericsimmerman.com/2012/12/19/2012-12-19-compressing-mysql-client-server/"/>
-    <id>http://ericsimmerman.com/2012/12/19/2012-12-19-compressing-mysql-client-server/</id>
+    <link href="http://ericsimmerman.com/blog/2012/12/19/2012-12-19-compressing-mysql-client-server/"/>
+    <id>http://ericsimmerman.com/blog/2012/12/19/2012-12-19-compressing-mysql-client-server/</id>
     <published>2012-12-19T05:00:00.000Z</published>
     <updated>2022-06-14T22:25:40.446Z</updated>
     
@@ -394,8 +394,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot;&gt;Ag
   
   <entry>
     <title>When not to front your application with nginx HttpProxyModule</title>
-    <link href="http://ericsimmerman.com/2012/11/19/2012-11-19-when-not-to-front-your-application-with/"/>
-    <id>http://ericsimmerman.com/2012/11/19/2012-11-19-when-not-to-front-your-application-with/</id>
+    <link href="http://ericsimmerman.com/blog/2012/11/19/2012-11-19-when-not-to-front-your-application-with/"/>
+    <id>http://ericsimmerman.com/blog/2012/11/19/2012-11-19-when-not-to-front-your-application-with/</id>
     <published>2012-11-19T05:00:00.000Z</published>
     <updated>2022-06-14T22:25:40.446Z</updated>
     
@@ -417,8 +417,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot;&gt;Ag
   
   <entry>
     <title>Supporting multiple file upload runtimes with pupload inside ExtJS 4</title>
-    <link href="http://ericsimmerman.com/2012/08/07/2012-08-07-supporting-multiple-file-upload/"/>
-    <id>http://ericsimmerman.com/2012/08/07/2012-08-07-supporting-multiple-file-upload/</id>
+    <link href="http://ericsimmerman.com/blog/2012/08/07/2012-08-07-supporting-multiple-file-upload/"/>
+    <id>http://ericsimmerman.com/blog/2012/08/07/2012-08-07-supporting-multiple-file-upload/</id>
     <published>2012-08-07T04:00:00.000Z</published>
     <updated>2022-06-14T22:25:40.446Z</updated>
     
@@ -440,8 +440,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot;&gt;Ag
   
   <entry>
     <title>Automatically find trailing commas in your javascript project</title>
-    <link href="http://ericsimmerman.com/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/"/>
-    <id>http://ericsimmerman.com/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/</id>
+    <link href="http://ericsimmerman.com/blog/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/"/>
+    <id>http://ericsimmerman.com/blog/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/</id>
     <published>2012-08-05T04:00:00.000Z</published>
     <updated>2022-06-14T22:25:40.446Z</updated>
     
@@ -463,8 +463,8 @@ I started this &lt;a href=&quot;http://www.jroller.com/agileanswers/&quot;&gt;Ag
   
   <entry>
     <title>orphanRemoval issues in Play Framework &#39;collection owner not associated with session&#39;</title>
-    <link href="http://ericsimmerman.com/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/"/>
-    <id>http://ericsimmerman.com/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/</id>
+    <link href="http://ericsimmerman.com/blog/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/"/>
+    <id>http://ericsimmerman.com/blog/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/</id>
     <published>2012-08-03T04:00:00.000Z</published>
     <updated>2022-06-14T22:25:40.446Z</updated>
     
