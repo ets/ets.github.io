@@ -255,7 +255,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/blog/2011/11/14/2011-11-14-gae-price-increases-lead-to-hard/" data-id="cl4er5uwa004740c9d7hx9zra" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/blog/2011/11/14/2011-11-14-gae-price-increases-lead-to-hard/" data-id="cl4er7jab0048ewc98d8qgqzv" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -379,7 +379,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/blog/2011/11/05/2011-11-05-secure-file-storage-in-the/" data-id="cl4er5uw9004340c9d6vr2tl8" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/blog/2011/11/05/2011-11-05-secure-file-storage-in-the/" data-id="cl4er7jaa0045ewc95kqpfoyu" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -503,7 +503,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/blog/2011/10/17/2011-10-17-mac-1065-snow-leopard-server-ldap-bug/" data-id="cl4er5uw9004240c9fc95gul5" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/blog/2011/10/17/2011-10-17-mac-1065-snow-leopard-server-ldap-bug/" data-id="cl4er7jaa0043ewc9atyl877p" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -627,7 +627,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/blog/2011/10/05/2011-10-05-listening-to-sensefm-while-they-fix/" data-id="cl4er5uw8004040c9hzpzd2r4" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/blog/2011/10/05/2011-10-05-listening-to-sensefm-while-they-fix/" data-id="cl4er7ja90040ewc93fbjc4at" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -705,130 +705,6 @@
 
 
 
-    <article id="post-2011-09-22-slf4jlocationawarelog-serialization" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/blog/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/">SLF4JLocationAwareLog serialization exception</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/blog/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/">
-            <time datetime="2011-09-22T04:00:00.000Z" itemprop="datePublished">2011-09-22</time>
-        </a>
-    </div>
-
-
-                        
-                        
-                    </div>
-                
-            </header>
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            
-<div class='post'>
-<p>While attempting to make a large object graph serializable I kept encountering NotSerializableExceptions regarding my Log references which were instances of&nbsp;SLF4JLocationAwareLog. The references were declared transient so I beat my head on a wall for a few hours before upgrading my slf4j version from 1.4.2 to 1.5.8</p><p>Somewhat frustratingly - that resolved the issue. No idea why.</p></div>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://ericsimmerman.com/blog/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/" data-id="cl4er5uw7003x40c98sfh4e4c" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://ericsimmerman.com/blog/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/blog/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/">Comments</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <article id="post-2011-09-22-upgrading-snow-leopard-development" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -875,7 +751,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/blog/2011/09/22/2011-09-22-upgrading-snow-leopard-development/" data-id="cl4er5uw8003z40c9fhqbdraz" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/blog/2011/09/22/2011-09-22-upgrading-snow-leopard-development/" data-id="cl4er7ja9003xewc97xcj76tf" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -953,6 +829,130 @@
 
 
 
+    <article id="post-2011-09-22-slf4jlocationawarelog-serialization" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/blog/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/">SLF4JLocationAwareLog serialization exception</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/blog/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/">
+            <time datetime="2011-09-22T04:00:00.000Z" itemprop="datePublished">2011-09-22</time>
+        </a>
+    </div>
+
+
+                        
+                        
+                    </div>
+                
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            
+<div class='post'>
+<p>While attempting to make a large object graph serializable I kept encountering NotSerializableExceptions regarding my Log references which were instances of&nbsp;SLF4JLocationAwareLog. The references were declared transient so I beat my head on a wall for a few hours before upgrading my slf4j version from 1.4.2 to 1.5.8</p><p>Somewhat frustratingly - that resolved the issue. No idea why.</p></div>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://ericsimmerman.com/blog/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/" data-id="cl4er7ja9003zewc96jp0czud" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://ericsimmerman.com/blog/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://ericsimmerman.com/blog/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-2011-09-13-winner-takes-all-network-effect" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -999,7 +999,7 @@
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/blog/2011/09/13/2011-09-13-winner-takes-all-network-effect/" data-id="cl4er5uw7003v40c9ec8fhi31" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/blog/2011/09/13/2011-09-13-winner-takes-all-network-effect/" data-id="cl4er7ja8003uewc96qib1tl5" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1123,7 +1123,7 @@ Our CI server (we use Jenkins) recently began bombing on several new tests that 
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/blog/2011/08/26/2011-08-26-resolving-connect-to-window-server-not/" data-id="cl4er5uw6003t40c94nk7bmq7" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/blog/2011/08/26/2011-08-26-resolving-connect-to-window-server-not/" data-id="cl4er7ja8003sewc9e6un3yja" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1247,7 +1247,7 @@ Our CI server (we use Jenkins) recently began bombing on several new tests that 
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/blog/2011/08/23/2011-08-23-resolving-has-already-been-called-when/" data-id="cl4er5uw6003q40c98jj63usi" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/blog/2011/08/23/2011-08-23-resolving-has-already-been-called-when/" data-id="cl4er7ja7003pewc9b819aise" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1371,7 +1371,7 @@ Our CI server (we use Jenkins) recently began bombing on several new tests that 
 
 </div>
 
-    <a data-url="http://ericsimmerman.com/blog/2011/08/19/2011-08-19-jsp-tricks-to-make-templating-easier-on/" data-id="cl4er5uw5003o40c907g73j6w" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://ericsimmerman.com/blog/2011/08/19/2011-08-19-jsp-tricks-to-make-templating-easier-on/" data-id="cl4er7ja7003newc99poy9d60" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding

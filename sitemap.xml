@@ -2,14 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://ericsimmerman.com/blog/about/index.html</loc>
+    <loc>http://ericsimmerman.com/blog/about/meditation.html</loc>
     
     <lastmod>2022-06-14T22:25:40.451Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/about/meditation.html</loc>
+    <loc>http://ericsimmerman.com/blog/about/index.html</loc>
     
     <lastmod>2022-06-14T22:25:40.451Z</lastmod>
     
@@ -58,7 +58,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/</loc>
+    <loc>http://ericsimmerman.com/blog/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/</loc>
     
     <lastmod>2022-06-14T22:25:40.448Z</lastmod>
     
@@ -72,7 +72,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2015/08/10/2015-08-10-mysql-identifying-blocking-transactions/</loc>
+    <loc>http://ericsimmerman.com/blog/2015/01/07/2015-01-07-fix-yaml-parsing-errors-in-webgen/</loc>
     
     <lastmod>2022-06-14T22:25:40.448Z</lastmod>
     
@@ -121,13 +121,6 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/</loc>
-    
-    <lastmod>2022-06-14T22:25:40.446Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/blog/2012/08/05/2012-08-05-automatically-find-trailing-commas-in/</loc>
     
     <lastmod>2022-06-14T22:25:40.446Z</lastmod>
@@ -135,7 +128,7 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2012/11/19/2012-11-19-when-not-to-front-your-application-with/</loc>
+    <loc>http://ericsimmerman.com/blog/2012/08/03/2012-08-03-orphanremoval-issues-in-play-framework/</loc>
     
     <lastmod>2022-06-14T22:25:40.446Z</lastmod>
     
@@ -143,6 +136,13 @@
   
   <url>
     <loc>http://ericsimmerman.com/blog/2012/08/07/2012-08-07-supporting-multiple-file-upload/</loc>
+    
+    <lastmod>2022-06-14T22:25:40.446Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/blog/2012/11/19/2012-11-19-when-not-to-front-your-application-with/</loc>
     
     <lastmod>2022-06-14T22:25:40.446Z</lastmod>
     
@@ -191,14 +191,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/</loc>
+    <loc>http://ericsimmerman.com/blog/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/</loc>
     
     <lastmod>2022-06-14T22:25:40.445Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2012/07/11/2012-07-11-compiling-maven-project-with-jnlp-api/</loc>
+    <loc>http://ericsimmerman.com/blog/2012/07/25/2012-07-25-cautionary-tale-regarding-cloud-security/</loc>
     
     <lastmod>2022-06-14T22:25:40.445Z</lastmod>
     
@@ -247,14 +247,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/</loc>
+    <loc>http://ericsimmerman.com/blog/2011/09/22/2011-09-22-upgrading-snow-leopard-development/</loc>
     
     <lastmod>2022-06-14T22:25:40.443Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2011/09/22/2011-09-22-upgrading-snow-leopard-development/</loc>
+    <loc>http://ericsimmerman.com/blog/2011/09/22/2011-09-22-slf4jlocationawarelog-serialization/</loc>
     
     <lastmod>2022-06-14T22:25:40.443Z</lastmod>
     
@@ -366,14 +366,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2011/03/25/2011-03-25-installing-gerrit2-on-mac-os-x-server/</loc>
+    <loc>http://ericsimmerman.com/blog/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/</loc>
     
     <lastmod>2022-06-14T22:25:40.439Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2011/03/11/2011-03-11-why-you-might-want-to-exercise-your/</loc>
+    <loc>http://ericsimmerman.com/blog/2011/03/25/2011-03-25-installing-gerrit2-on-mac-os-x-server/</loc>
     
     <lastmod>2022-06-14T22:25:40.439Z</lastmod>
     
@@ -387,13 +387,6 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2011/01/13/2011-01-13-resolving-illegalargumentexception/</loc>
-    
-    <lastmod>2022-06-14T22:25:40.438Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/blog/2010/11/02/2010-11-02-support-chroot-for-scp-connections-on/</loc>
     
     <lastmod>2022-06-14T22:25:40.438Z</lastmod>
@@ -402,6 +395,13 @@
   
   <url>
     <loc>http://ericsimmerman.com/blog/2010/11/28/2010-11-28-ditch-mamp-on-snow-leopard/</loc>
+    
+    <lastmod>2022-06-14T22:25:40.438Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/blog/2011/01/13/2011-01-13-resolving-illegalargumentexception/</loc>
     
     <lastmod>2022-06-14T22:25:40.438Z</lastmod>
     
@@ -443,14 +443,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2010/08/26/2010-08-26-how-to-undo-svn-commit-from-command-line/</loc>
+    <loc>http://ericsimmerman.com/blog/2010/10/29/2010-10-29-resolving-sleep-issues-with-seagate/</loc>
     
     <lastmod>2022-06-14T22:25:40.437Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2010/10/29/2010-10-29-resolving-sleep-issues-with-seagate/</loc>
+    <loc>http://ericsimmerman.com/blog/2010/08/26/2010-08-26-how-to-undo-svn-commit-from-command-line/</loc>
     
     <lastmod>2022-06-14T22:25:40.437Z</lastmod>
     
@@ -478,13 +478,6 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2010/06/08/2010-06-08-activate-maven-profile-using-hudson/</loc>
-    
-    <lastmod>2022-06-14T22:25:40.436Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/blog/2010/03/14/2010-03-14-customize-article-row-count-for/</loc>
     
     <lastmod>2022-06-14T22:25:40.436Z</lastmod>
@@ -492,14 +485,21 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2009/10/23/2009-10-23-installing-python-mysql-connector/</loc>
+    <loc>http://ericsimmerman.com/blog/2010/06/08/2010-06-08-activate-maven-profile-using-hudson/</loc>
+    
+    <lastmod>2022-06-14T22:25:40.436Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/blog/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/</loc>
     
     <lastmod>2022-06-14T22:25:40.435Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2009/11/06/2009-11-06-subversion-jira-sonar-hudson-fisheye-on/</loc>
+    <loc>http://ericsimmerman.com/blog/2009/10/23/2009-10-23-installing-python-mysql-connector/</loc>
     
     <lastmod>2022-06-14T22:25:40.435Z</lastmod>
     
@@ -548,14 +548,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2009/06/28/2009-06-28-belkin-surge-protector-fire-hazard/</loc>
+    <loc>http://ericsimmerman.com/blog/2009/07/18/2009-07-18-malfunctioning-mouse-after-upgrade-to/</loc>
     
     <lastmod>2022-06-14T22:25:40.433Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2009/07/18/2009-07-18-malfunctioning-mouse-after-upgrade-to/</loc>
+    <loc>http://ericsimmerman.com/blog/2009/06/28/2009-06-28-belkin-surge-protector-fire-hazard/</loc>
     
     <lastmod>2022-06-14T22:25:40.433Z</lastmod>
     
@@ -681,13 +681,6 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2006/01/01/2006-01-01-migrated-from-jroller/</loc>
-    
-    <lastmod>2022-06-14T22:25:40.429Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://ericsimmerman.com/blog/2007/10/20/2007-10-20-mounting-ubuntu-nfs-share-on-redhat/</loc>
     
     <lastmod>2022-06-14T22:25:40.429Z</lastmod>
@@ -695,14 +688,14 @@
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2007/10/29/2007-10-29-java-webbrowser-plugin-for-amd64-ubuntu/</loc>
+    <loc>http://ericsimmerman.com/blog/2006/01/01/2006-01-01-migrated-from-jroller/</loc>
     
     <lastmod>2022-06-14T22:25:40.429Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ericsimmerman.com/blog/2008/01/15/2008-01-15-hilight-current-post-on-threaded-view/</loc>
+    <loc>http://ericsimmerman.com/blog/2007/10/29/2007-10-29-java-webbrowser-plugin-for-amd64-ubuntu/</loc>
     
     <lastmod>2022-06-14T22:25:40.429Z</lastmod>
     
@@ -717,6 +710,13 @@
   
   <url>
     <loc>http://ericsimmerman.com/blog/2008/06/05/2008-06-05-mathml-support-in-openlaszlo/</loc>
+    
+    <lastmod>2022-06-14T22:25:40.429Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://ericsimmerman.com/blog/2008/01/15/2008-01-15-hilight-current-post-on-threaded-view/</loc>
     
     <lastmod>2022-06-14T22:25:40.429Z</lastmod>
     
