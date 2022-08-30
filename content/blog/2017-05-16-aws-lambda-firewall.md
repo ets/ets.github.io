@@ -1,6 +1,6 @@
 ---
 title: Knock first firewall for AWS Security Groups
-date: 2017-05-16 22:21:53
+date: 2017-05-16
 type: posts
 tags:
  - AWS

@@ -1,6 +1,6 @@
 ---
 title: Explaining SDF to suits
-date: 2016-04-06 19:18:04
+date: 2016-04-06
 type: posts
 tags:
 - Signed Distance Fields

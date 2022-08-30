@@ -1,6 +1,6 @@
 ---
 title: Granting a new user permissions on RDS Maria/Mysql
-date: 2019-03-10 20:48:13
+date: 2019-03-10
 type: posts
 tags:
 ---

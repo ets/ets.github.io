@@ -1,6 +1,6 @@
 ---
 title: Explaining Docker to suits
-date: 2016-05-14 19:18:04
+date: 2016-05-14
 type: posts
 tags:
 - Docker

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Fix YAML parsing errors in WebGen"
-date: 2015-01-07 12:20:34 -0500
+date: 2015-01-07
 type: posts
 tags:
 ---

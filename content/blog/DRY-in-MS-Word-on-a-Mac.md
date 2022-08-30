@@ -1,6 +1,6 @@
 ---
 title: DRY in MS Word on a Mac
-date: 2018-11-09 16:19:04
+date: 2018-11-09
 type: posts
 tags:
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Migrated from JRoller"
-date: 2006-01-01 11:35:32 -0400
+date: 2006-01-01
 type: posts
 tags:
 ---

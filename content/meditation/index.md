@@ -1,6 +1,6 @@
 ---
 title: Meditation
-date: 2017-12-09 23:03:23
+date: 2017-12-09
 ---
 
 > Until you make the unconscious conscious, it will direct your life and you will call it fate. ― C.G. Jung

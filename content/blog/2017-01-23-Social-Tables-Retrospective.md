@@ -1,11 +1,10 @@
 ---
 title: Social Tables Retrospective
-date: 2017-01-23 11:29:10
+date: 2017-01-23
 type: posts
 tags:
- - AWS
- - bastion
- - jumphost
+ - Startups
+ - events
 ---
 My last post was over a year and a half ago - just after I joined an interesting [Bessemer Ventures](https://www.bvp.com/) backed firm in the Hospitality sector called [Social Tables](https://www.socialtables.com).
 My role here has been 95% people / 5% tech and always intense. I'm retroactively posting some of the internal content I circulated as the technology leader at Social Tables - mostly high-level explanations of what my team was up to at the time.

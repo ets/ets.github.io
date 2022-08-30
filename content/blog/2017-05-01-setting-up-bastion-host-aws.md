@@ -1,6 +1,6 @@
 ---
 title: Setting up a Bastion host on AWS
-date: 2017-05-18 17:01:41
+date: 2017-05-18
 type: posts
 tags:
  - AWS

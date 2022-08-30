@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "MySQL Identifying Blocking Transactions"
-date: 2015-08-10 12:29:15 -0400
+date: 2015-08-10
 type: posts
 tags:
 ---

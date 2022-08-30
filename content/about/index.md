@@ -1,6 +1,6 @@
 ---
 title: about me
-date: 2016-06-20 23:03:23
+date: 2016-06-20
 ---
 
 [I work here](https://qualytics.co "Automating Data Quality at Scale")

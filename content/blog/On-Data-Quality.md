@@ -1,6 +1,6 @@
 ---
 title: On Data Quality
-date: 2022-02-01 14:59:17
+date: 2022-02-01
 type: posts
 tags:
 - Qualytics

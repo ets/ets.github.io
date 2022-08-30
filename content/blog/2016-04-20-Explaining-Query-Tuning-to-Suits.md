@@ -1,6 +1,6 @@
 ---
 title: Explaining Query Tuning to suits
-date: 2016-04-20 19:18:04
+date: 2016-04-20
 type: posts
 tags:
 - query tuning
