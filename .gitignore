@@ -8,3 +8,4 @@ resources/
 .deploy*/
 .idea/
 .pygments-cache
+.hugo*
