@@ -1,0 +1,9 @@
+---
+layout: post
+title: "Resolving git-gc error on Mac"
+date: 2012-01-19
+type: posts
+---
+
+<div class='post'>
+<p>During today's maintenance run of git-gc on our Mac hosted repo I encountered screenfulls of nasty fatal error messages - but the last two were a clue to the root cause:</p><p><p>fatal: Unable to create temporary file: Too many open files<br />error: failed to run repack</p><p>This <a href="http://git.661346.n2.nabble.com/Intriguing-error-with-Git-1-6-3-1-Too-many-open-files-td7174697.html">related post helped me</a> find a quick cure which involved simply bumping the ulimit up temporarily.</p><p># ulimit -n 10024<br />&gt; git gc</p><p>Easy fix for a potentially bad day.</p></p></div>

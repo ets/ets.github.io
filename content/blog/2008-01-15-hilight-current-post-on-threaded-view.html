@@ -1,0 +1,9 @@
+---
+layout: post
+title: "Hilight current post on threaded view in Fireboard 1.0.4"
+date: 2008-01-15
+type: posts
+---
+
+<div class='post'>
+In the 1.0.4 release, there is no indicator of which post you are currently viewing within a threaded tree of posts. Here's my hack to implement such an indicator.<p />Under your chosen template directory (ex: components/com_fireboard/templates/default), edit the thread.php file. Look for the TR with class="fb_threadview_row" and modify it like so:<br /><div class="CodeRay">  <div class="code"><pre>&lt;tr class=&quot;fb_threadview_row&quot; &lt;? if($leaf-&gt;id == (int)$id){ echo &quot;style='background-color:yellow'&quot;; } ?&gt; &gt;</pre></div></div>You can use any background-color value you desire. I used "yellow" in the above example.</div>

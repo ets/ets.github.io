@@ -1,0 +1,13 @@
+---
+layout: post
+title: "Resolve foreign key constraint error/conflict with DBUnit CLEAN_INSERT operation (MySQLIntegrityConstraintViolationException)"
+date: 2009-06-17
+type: posts
+tags:
+ - java
+ - softwaredevelopment
+ - dbunit
+---
+
+<div class='post'>
+<p>If DBUnit starts throwing MySQLIntegrityConstraintViolationException while performing a CLEAN_INSERT you can lose quite a bit of sleep attempting to resolve it or you can cheat and get back to work. The shortcut is to simply disable constraints for the INSERT operation by disabling constraints for DBUnit altogether. You can do that by adding sessionVariables=FOREIGN_KEY_CHECKS=0 to your JDBC connection string to MySQL. I use maven and in pom.xml my configuration for the dbunit plugin looks like this</p><div class="CodeRay">  <div class="code"><pre>&lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;&lt;artifactId&gt;dbunit-maven-plugin&lt;/artifactId&gt;&lt;version&gt;1.0-beta-1&lt;/version&gt;&lt;configuration&gt;    &lt;dataTypeFactoryName&gt;${dbunit.dataTypeFactoryName}&lt;/dataTypeFactoryName&gt;    &lt;driver&gt;${jdbc.driverClassName}&lt;/driver&gt;    &lt;username&gt;${jdbc.username}&lt;/username&gt;    &lt;password&gt;${jdbc.password}&lt;/password&gt;    &lt;url&gt;${jdbc.url}&amp;amp;sessionVariables=FOREIGN_KEY_CHECKS=0&lt;/url&gt;    &lt;src&gt;src/test/resources/sample-data.xml&lt;/src&gt;    &lt;type&gt;${dbunit.operation.type}&lt;/type&gt;    &lt;schema&gt;${dbunit.schema}&lt;/schema&gt;    &lt;skip&gt;${maven.test.skip}&lt;/skip&gt;&lt;/configuration&gt;</pre></div></div><p>Keep in mind that if you choose to do this your dbunit tests will run with constraints disabled....generally not a recommended approach. Caveat Emptor.</p></div>

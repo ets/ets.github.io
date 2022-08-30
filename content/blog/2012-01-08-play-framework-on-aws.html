@@ -1,0 +1,9 @@
+---
+layout: post
+title: "Play framework on AWS"
+date: 2012-01-08
+type: posts
+---
+
+<div class='post'>
+<p>Steps I took to get a Play framework app up and running on a micro AWS instance running Ubuntu 11.10</p><ol><li>sudo add-apt-repository "deb <a href="http://archive.canonical.com/">http://archive.canonical.com/</a> lucid partner"</li><li>sudo apt-get update</li><li>sudo apt-get install sun-java6-jdk unzip</li><li>wget <a href="http://download.playframework.org/releases/play-1.2.4.zip">http://download.playframework.org/releases/play-1.2.4.zip</a></li><li>sudo unzip play-1.2.4.zip -d /usr/local/share/</li><li>install&nbsp;<a href="https://gist.github.com/1289753">Dominik Dorn's startup script</a><ol><li>wget <a href="https://raw.github.com/gist/1290012/a31b1d079705ea7ccf6d1fdc866027b674e62841/playframework">https://raw.github.com/gist/1290012/a31b1d079705ea7ccf6d1fdc866027b674e62841/...</a></li><li>sudo mv playframework /etc/init/</li><li>update the script with proper paths&nbsp;</li></ol></li><li>useradd username -g www-data -m -d /home/username&nbsp;-s /bin/bash</li><li>install your app</li><li>initctl start playframework</li></ol></div>

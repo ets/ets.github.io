@@ -1,0 +1,13 @@
+---
+layout: post
+title: "Resolving a 'CA key usage check failed: keyCertSign bit is not set'
+error in Tomcat"
+date: 2009-10-22
+type: posts
+tags:
+ - java
+ - softwaredevelopment
+---
+
+<div class='post'>
+After installing a new GoDaddy SSL certificate in Tomcat 5.5.x my web browsers were able to properly negotiate SSL connections, but when back-end code  attempted (specifically when CAS attempted to validate a ticket through Cas20ServiceTicketValidator) to connect using SSL the "CA key usage check failed: keyCertSign bit is not set" error was being thrown. <p />My tomcat server is fronted by Apache2 and Apache handles SSL negotiation. I discovered that I had improperly installed the intermediate certificate for GoDaddy and while modern browsers just ignored the resulting misconfiguration, Java was complaining.<p />I had set the SSLCertificateChainFile directive to point to the "cert-chain.crt" file. The mistake is understandable given the near identical naming of the directive and the file...but alas that intuitive connection is erroneous. The directive instead needs to point to the gd_intermediate.crt file that GoDaddy also provides. Here's what my correct config looks like on RHEL5: <p /><div class="CodeRay">  <div class="code"><pre>SSLCertificateChainFile /etc/pki/tls/certs/gd_intermediate.crt</pre></div></div></div>

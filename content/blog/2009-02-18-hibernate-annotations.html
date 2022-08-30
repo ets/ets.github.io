@@ -1,0 +1,13 @@
+---
+layout: post
+title: "Hibernate Annotations - IdentifierGenerationException: attempted to assign id from null one-to-one property"
+date: 2009-02-18
+type: posts
+tags:
+ - java
+ - hibernate
+ - softwaredevelopment
+---
+
+<div class='post'>
+While using Hibernate annotations to implement a @OneToOne relationship where the entities are joined by primary key (@PrimaryKeyJoinColumn) I kept encountering a relatively infamous Exception:<div class="CodeRay">  <div class="code"><pre>IdentifierGenerationException: attempted to assign id from null one-to-one property</pre></div></div>I discovered that my issue could easily be resolved by adding "optional=false" to the dependent side of the relation. Here's a brief summary of the relevant related code.<div class="CodeRay">  <div class="code"><pre>@Entitypublic class Profile implements Serializable {   @OneToOne(mappedBy=&quot;profile&quot;, optional=false, fetch=FetchType.LAZY)    public Hospital getHospital() {        return hospital;    }    @Id @GeneratedValue(generator=&quot;foreign&quot;)    @GenericGenerator(name=&quot;foreign&quot;, strategy = &quot;foreign&quot;, parameters={            @Parameter(name=&quot;property&quot;, value=&quot;hospital&quot;)    })    public Long getId() {        return this.id;    }}@Entitypublic class Hospital implements Serializable {    @OneToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)    @PrimaryKeyJoinColumn    public Profile getProfile() {        return profile;    }    @Id @GeneratedValue(strategy=GenerationType.AUTO)    public Long getId() {        return id;    }}</pre></div></div></div>

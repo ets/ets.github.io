@@ -1,0 +1,9 @@
+---
+layout: post
+title: "Automatically find trailing commas in your javascript project"
+date: 2012-08-05
+type: posts
+---
+
+<div class='post'>
+<p>These are simply updated instructions based upon <a href="http://www.amaxus.com/cms-blog/automatically-finding-javascript-errors-ie7">the original Amaxus writeup here</a>.</p><ul><li>Install Rhino &nbsp;(I used "port install rhino")</li><li>Grab the <a href="https://raw.github.com/mikewest/jslint-utils/master/lib/rhinoed_jslint.js">Rhinoized JSLint script here</a>.</li><li>Create a script named checkForJsErrors.sh with the following two lines:</li></ul><p>echo $1<br />rhino&nbsp;rhinoed_jslint.js $1 | fgrep -e 'Unexpected' --color=always&nbsp;</p><ul><li>Create an alias in your bashrc</li></ul><p><p>alias checkjs='find . -name '''*.js''' -exec ~/bin/checkForJsErrors.sh {} ;'</p><p /><div>Now when you execuate that alias in your project's root directory - all of your .js files will be scanned for trailing commas.</div><p /><div>You're welcome.</div></p><p>&nbsp;</p></div>

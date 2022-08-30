@@ -1,0 +1,11 @@
+---
+layout: post
+title: "Mounting an Ubuntu NFS share on RedHat Enterprise with firewalls on both"
+date: 2007-10-20
+type: posts
+tags:
+ - ubuntu
+---
+
+<div class='post'>
+It can be tough making NFS play nice amongst different distros and firewalls. I'm sharing my Eclipse workspace on my Ubuntu (Debian) desktop with my CentOS (Redhat Enterprise) server. (That's not a mistake, my server is actually my NFS client in this scenario. You could easily swap these roles if you wish)<div class="CodeRay">  <div class="code"><pre>DEBIAN:I used port numbers and config instructions at http://wiki.debian.org/?SecuringNFSFollow those instructions exactly and you'll have a NFS server configuration that uses static ports (instead of random assignements)REDHAT:1. Create the file &quot;/etc/sysconfig/nfs&quot; and add the following contents:STATD_PORT=32765STATD_OUTGOING_PORT=32766LOCKD_TCPPORT=32768LOCKD_UDPPORT=32768MOUNTD_PORT=327672. (Probably not necessary for most, but here for completeness) Append the following to the file &quot;/etc/services&quot;:rquotad 32769/tcp # rpc.rquotad tcp portrquotad 32769/udp # rpc.rquotad udp port3. Restart the nfslock service:/etc/init.d/nfslock restart4. Run /usr/sbin/rpcinfo -p and make sure all the ports above have changed and match their ubuntu numbers. (/usr/bin/rpcinfo on ubuntu)5. I run firestarter on Ubuntu which is exporting my NFS share. I added the following policy rules for inbound traffic:Allow 32767 (from my client machine's IP)Allow 2049 (from my client machine's IP)Allow 111 (from my client machine's IP)</pre></div></div>Assuming you allow all outbound traffic on your client (I recommend this excellent iptables config file <a href="http://www.linuxguruz.com/iptables/scripts/rc.firewall_023.txt">rc.firewall_023.txt</a>), you should now be able to mount the NFS share on the Redhat box.</div>

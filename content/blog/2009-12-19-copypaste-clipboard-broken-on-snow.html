@@ -1,0 +1,12 @@
+---
+layout: post
+title: "Copy/Paste clipboard broken on Snow Leopard"
+date: 2009-12-19
+type: posts
+tags:
+ - macintosh
+ - synergy
+---
+
+<div class='post'>
+After a recent Apple update, copy and paste quit functioning on my Snow Leopard install. After a number of red herrings, I eventually traced the issue to <a href="http://synergy2.sourceforge.net/">Synergy</a> and noticed that synergyc constantly emptied my clipboard immediately after any copy operation. I was running synergy 1.3.1 at the time which was released back in 2006 - I was hopeful that the latest release of the Synergy fork <a href="http://code.google.com/p/synergy-plus/">Synergy Plus</a> might provide a quick solution.An install of synergy-plus 1.3.4 Darwin binary did not resolve the issue and a build of the latest from subversion (r252) would not run for me (separate issue - synergyc unable to resolve server address).I happened upon <a href="http://code.google.com/p/synergy-plus/issues/detail?id=67#c85">this thread</a> in my search for an answer and based on comments there decided to build revision 242 for my Mac client and run 252 on my Ubuntu server. Happy to report it resolved my issues.One note - I was thrown for a bit when my first Xcode build resulted in 14 compile time errors. Turns out it was necessary for me to build for i386 as the 64-bit build would not compile for me.UPDATE: After a couple weeks use, I found the synergy-plus binary to be rather buggy and went in search of a solution. MacPorts supports a patched build of synergy 1.3.1 for Snow Leopard and so far it is working beautifully. Assuming you have ports installed, the following will install the tried and true synergy.<blockquote class="posterous_short_quote">port clean synergy ; port install synergy +universal</blockquote></div>

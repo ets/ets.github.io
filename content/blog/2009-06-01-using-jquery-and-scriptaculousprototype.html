@@ -1,0 +1,13 @@
+---
+layout: post
+title: "Using jQuery and Scriptaculous/prototype together"
+date: 2009-06-01
+type: posts
+tags:
+ - scriptaculous
+ - softwaredevelopment
+ - jquery
+---
+
+<div class='post'>
+<p>Congratulations to the jQuery crew for <a href="http://docs.jquery.com/Using_jQuery_with_Other_Libraries">properly documenting this one in their official documentation</a>. However, I didn't find that page with my first search so consider this post my effort to propagate the knowledge.</p><p>jQuery uses "$" as a shortcut for "jQuery" and that is generally its only point of conflict with other javascript libraries. You can override that behavior so that jQuery will play nice with others by calling</p><div class="CodeRay">  <div class="code"><pre>jQuery.noConflict();</pre></div></div>and then explicitly calling "jQuery" where you would have used "$" to invoke jQuery behavior. Read more on the page referenced above.</div>

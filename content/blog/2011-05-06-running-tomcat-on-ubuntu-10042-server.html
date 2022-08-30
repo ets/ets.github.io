@@ -1,0 +1,9 @@
+---
+layout: post
+title: "Running Tomcat on Ubuntu 10.04.2 Server"
+date: 2011-05-06
+type: posts
+---
+
+<div class='post'>
+<p>1. Install Oracle's JDK using the following commands:</p><p><code>sudo apt-get install python-software-propertiessudo add-apt-repository ppa:sun-java-community-team/sun-java6sudo apt-get updatesudo apt-get install sun-java6-jdk</code></p><p>2. Install APR:</p><p><code>wget http://www.ecoficial.com/apachemirror//apr/apr-1.4.2.tar.gztar -xzf apr-1.4.2.tar.gzrm apr-1.4.2.tar.gzcd apr-1.4.2/sudo apt-get install makesudo ./configuresudo makesudo make install</code></p><p>3. apt-get install libssl-dev</p><p>4. Configure and Install the jni/native package that comes with your Tomcat tarball</p><p>&nbsp;</p></div>

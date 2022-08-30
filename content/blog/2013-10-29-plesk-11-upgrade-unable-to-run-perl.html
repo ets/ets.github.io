@@ -1,0 +1,19 @@
+---
+layout: post
+title: "Plesk 11 Upgrade Unable to run Perl scripts in cgi-bin"
+date: 2013-10-29
+type: posts
+tags:
+- plesk
+- perl
+---
+
+After an upgrade to Plesk 11, my Perl scripts  located under cgi-bin/ for a specific domain were not executing properly.
+	Requests generated HTTP response code 500 and my error logs showed the unhelpful message "Premature end of script headers"
+	I verified all permissions and even disabled / re-enabled cgi-bin support through Plesk which installs a test script under cgi-bin/test/test.cgi
+	Even the test script failed to run. It also generated the message "Premature end of script headers: test.cgi"
+	I eventually resolved the issue with two changes:<br><br>
+<ol>
+<li>The domain's root folder in /var/www/vhosts was not owned by the domain user. So I fixed that with a chown command.</li>
+<li>Within the Plesk control panel, I had to disable "Perl" support and enable "CGI" support to get my perl scripts with the ".pl" extension to run under cgi-bin</li>
+</ol>

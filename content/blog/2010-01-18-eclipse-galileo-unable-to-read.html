@@ -1,0 +1,15 @@
+---
+layout: post
+title: "Eclipse Galileo unable to read Subversion repository"
+date: 2010-01-18
+type: posts
+tags:
+ - java
+ - macintosh
+ - snowleopard
+ - eclipse
+ - subversive
+---
+
+<div class='post'>
+After a clean Snow Leopard install on a new machine, I fired up a fresh Galileo Eclipse and pointed it at a copy of my old workspace.&nbsp; I first encountered and resolved the missing Mac OS X JRE issue described in my last post, only to then find that my existing subversion repositories were inaccessible in the new Eclipse install. I hopefully added "-clean" as the first parameter of my eclipse.ini file and restarted but the situation remained unchanged. Undeterred, I launched eclipse from the command line with a -clean startup parameter and this did the trick:/Applications/&lt;your install dir/Eclipse.app/Contents/MacOS/eclipse -clean</div>

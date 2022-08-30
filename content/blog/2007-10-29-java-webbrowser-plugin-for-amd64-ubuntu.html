@@ -1,0 +1,12 @@
+---
+layout: post
+title: "Java webbrowser plugin for AMD64 Ubuntu"
+date: 2007-10-29
+type: posts
+tags:
+ - java
+ - ubuntu
+---
+
+<div class='post'>
+There is now (finally) a fix for Java applet support on AMD64 Ubuntu. Try the following:<div class="CodeRay">  <div class="code"><pre>sudo apt-get build-dep icedtea-java7-pluginsudo apt-get -b source icedtea-java7-plugin icedtea-java7-bin icedtea-java7-jre icedtea-java7-jdksudo dpkg -i icedtea-java7-*deb</pre></div></div>Thanks to Fabien Lusseau for the tip in his comment <a href="https://bugs.launchpad.net/ubuntu/+source/icedtea-java7/+bug/152362">here</a></div>

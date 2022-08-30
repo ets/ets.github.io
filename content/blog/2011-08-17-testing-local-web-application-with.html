@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Testing a local web application with multiple operatings systems using
+VirtualBox"
+date: 2011-08-17
+type: posts
+---
+
+<div class='post'>
+<p>I develop on Mac OS X and frequently need to test my local build using Internet Explorer on a flavor of MS Windows. VirtualBox has supported an easy method of doing so since version 2.2&nbsp;</p><p>Add a new Network Adapter to each of your VirtualBox Guests (I run Windows XP and Windows 7 as Guests) and choose "Host-only Adapter" for the "Attached to:" option. This will result in the creation of a new loopback interface on your Host and a private network interface on each Guest.</p><p>On Windows use the command line "ipconfig" to determine the new interface settings. On Mac run "ifconfig" to do the same. &nbsp;</p><p>With my setup the host (my mac) was assigned the vboxnet0 interface with private IP address&nbsp;192.168.56.1 so&nbsp;I punched a hole in my host's firewall to allow each Guest to access ports 80,443,8080,8443 on that subnet. Now I can simply open a browser on any guest and access the webserver running my local build on my host like - <a href="https://192.168.56.1:8443/">https://192.168.56.1:8443/</a></p><p>&nbsp;</p></div>

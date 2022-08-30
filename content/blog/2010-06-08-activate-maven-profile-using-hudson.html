@@ -1,0 +1,9 @@
+---
+layout: post
+title: "Activate a Maven Profile using Hudson"
+date: 2010-06-08
+type: posts
+---
+
+<div class='post'>
+Environment properties weren't available to me on my Mac server for some reason. The solution I eventually adopted was the one used in the <a href="http://wiki.hudson-ci.org/display/HUDSON/Cobertura+Plugin">Cobertura Plugin docs here</a>. Hudson by default defines a property BUILD_NUMBER which is used to enable the profile.<div class="CodeRay">  <div class="code"><pre>&lt;profile&gt;     &lt;id&gt;hudson&lt;/id&gt;     &lt;activation&gt;         &lt;property&gt;             &lt;name&gt;BUILD_NUMBER&lt;/name&gt;         &lt;/property&gt;     &lt;/activation&gt;        ...&lt;/profile&gt;</pre></div></div></div>

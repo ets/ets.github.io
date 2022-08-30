@@ -1,0 +1,12 @@
+---
+layout: post
+title: "Connecting to Netscreen Series (NetScreen-5) VPN with Ubuntu 9.04 (Jaunty - AMD64)"
+date: 2009-05-13
+type: posts
+tags:
+ - vpn
+ - ubuntu
+---
+
+<div class='post'>
+<p>I recently struggled through the details of establishing a VPN connection from my Ubuntu 64 desktop to a Juniper Networks Netscreen-5. There are a number of ways to skin the VPN cat in linux and I'm not going to detail them all here. I'll just tell you how I solved it.</p>My Netscreen-5 was configured with some typical settings:<div class="CodeRay">  <div class="code"><pre>Phase 1Pre-shared key &quot;your-pre-shared-key-here&quot;Encryption &quot;pre-g2-aes128-sha&quot;Phase 2Encryption &quot;g2-esp-3des-sha&quot;</pre></div></div>To configure the client-side, I decided to use Racoon and KVpnc:<ol><li>On my Jaunty install (Ubuntu 9.04) I first installed the repository version of racoon: <div class="CodeRay">  <div class="code"><pre>apt-get install racoon</pre></div></div></li><li>Then I downloaded the latest build of KVpnc. They only had an intrepid build when I wrote this (kvpnc_0.9.1_intrepid-1_amd64.deb) and it worked for me, but it's worth <a href="http://home.gna.org/kvpnc/en/download.html">checking if a Jaunty build is available</a>.</li><li>My Netscreen config translates to the following choices under KVpnc's Racoon options:<ul><li>sha1</li><li>aes</li><li>hmac_sha1</li><li>aes</li><li>agressive</li><li>modp1024</li><li>modp1024</li><li>Remote Identifier Type: asn1dn</li><li>Local Identifier Type: user_fqdn</li><li>Local Identifier Value: (we used email addresses for client ids on the netscreen so the Local Identifier value in KVpnc is an email address)</li></ul></li></ol><p>Your VPN gateway is entered under General and don't forget to complete the Network/General portion of your KVpnc profile as well. That's where your destination network goes (for a Host to Network configuration like mine).</p></div>

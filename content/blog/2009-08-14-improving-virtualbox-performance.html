@@ -1,0 +1,11 @@
+---
+layout: post
+title: "Improving VirtualBox performance"
+date: 2009-08-14
+type: posts
+tags:
+ - ubuntu
+---
+
+<div class='post'>
+I run VirtualBox on an Ubuntu 64-bit Host with a 32-bit Windows XP guest. I was searching for a way to boost performance and came across <a href="http://matt.bottrell.com.au/archives/265-Improving-VirtualBox-performance.html">this post related to configuring a SATA controller</a> for drive access. Matt includes some great info there, but the step-by-step left something to be desired IMHO. Here are my revised instructions for configuring SATA support on your Win XP guest:<ol><li>Start VirtualBox, but do not boot your guest.</li><li>Open Settings for your Win XP guest and select "Hard Disks"</li><li>Check "Enable Additional Controller" and choose "SATA (AHCI)"</li><li>Save your Settings changes and boot your guest</li><li>Inside your guest, download the <a href="http://downloadcenter.intel.com/Product_Filter.aspx?ProductID=2101">appropriate SATA controller software from Intel</a></li><li>Install the Intel software</li><li>Shutdown your guest</li><li>Go back into VirtualBox Settings for your guest. Select Harddrives again.</li><li>Now change the slot associated with your Windows XP attachments/harddisk(s) from IDE to "SATA Port 0"</li><li>Save your settings</li><li>Start your guest and enjoy the performance boost!<br /></li></ol></div>

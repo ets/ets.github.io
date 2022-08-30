@@ -1,0 +1,9 @@
+---
+layout: post
+title: "Install APC on CentOS 5.6"
+date: 2012-01-05
+type: posts
+---
+
+<div class='post'>
+<div>The following resolved a few gotchas I encountered installing APC on an old instance of CentOS 5.6</div><p /><ol><li><span style="font-family:Verdana, Arial, Helvetica, sans-serif;background-color:#e6e6e6;font-size:small;">mount -o remount,exec /tmp</span></li><li><span style="font-family:Verdana, Arial, Helvetica, sans-serif;background-color:#e6e6e6;font-size:small;"><span style="color:#333333;font-family:Georgia, Bitstream Charter, serif;line-height:24px;background-color:#ffffff;">yum install pcre-devel</span></span></li><li><span style="font-family:Verdana, Arial, Helvetica, sans-serif;background-color:#e6e6e6;font-size:small;"><span style="color:#333333;font-family:Georgia, Bitstream Charter, serif;line-height:24px;background-color:#ffffff;">pecl install apc</span></span></li><li><span style="font-family:Verdana, Arial, Helvetica, sans-serif;background-color:#e6e6e6;font-size:small;"><span style="color:#333333;font-family:Georgia, Bitstream Charter, serif;line-height:24px;background-color:#ffffff;"><span style="color:#000000;font-family:Verdana, Arial, Helvetica, sans-serif;line-height:normal;background-color:#e6e6e6;">mount -o remount,noexec /tmp</span></span></span></li></ol></div>

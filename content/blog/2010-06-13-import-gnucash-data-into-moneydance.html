@@ -1,0 +1,14 @@
+---
+layout: post
+title: "Import GnuCash data into MoneyDance"
+date: 2010-06-13
+type: posts
+tags:
+ - softwaredevelopment
+ - gnucash
+ - moneydance
+ - perl
+---
+
+<div class='post'>
+<a href="http://www.gnucash.org/">GnuCash</a> served me well while I was running Ubuntu as my primary desktop but since moving to a Mac Pro I've been disappointed in the performance and non-native nature of the GnuCash Mac port. I decided to migrate to <a href="http://moneydance.com/">MoneyDance</a> and was quickly dismayed to discover GnuCash's poor support for standards based exporting.This GnuCash wiki-entry <a href="http://wiki.gnucash.org/wiki/FAQ#Q:_How_can_I_export_data.3F">describes a few convoluted approaches to data export</a> but the items it references are hopelessly outdated and generally do not function for the latest stable release - reason enough to ditch GnuCash.MoneyDance hadn't solved the problem on their end either but their wiki does <a href="http://moneydance.com/trac/wiki/Frequently_Asked_Questions#CanIimportmyGnuCashdata">reference a Perl script that converts the deprecated GnuCash Postgre storage format into a MoneyDance XML file</a>. Since I knew that the development release of GnuCash supports a SQLite storage format I decided to see if I could update Sid Reed's aforementioned script for this new SQLite container.I'm no Perl Monger, but <a href="http://xkcd.com/208/">I do know regular expressions</a>. My updated script worked well for me and seamlessly converted several years of GnuCash data.  Please read the pre-requisites section in the header of this&nbsp;<a href="http://www.ericsimmerman.com/wp-content/uploads/2010/06/GnuCash-MoneyDance-Importer.zip">GnuCash to MoneyDance Migration Script</a> before attempting to run it. In addition to the linked zip archive, <a href="http://github.com/ets/MoneyDance-GnuCash-Importer">this script is also available on github</a>. Enjoy!</div>

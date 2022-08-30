@@ -1,0 +1,11 @@
+---
+layout: post
+title: "Removing duplicate music files with different names from a large directory free"
+date: 2008-10-28
+type: posts
+tags:
+ - ubuntu
+---
+
+<div class='post'>
+During a recent Mac migration, I hosed my iTunes library and unintentionally generated hundreds of duplicate songs (the actual media files). The problem was exacerbated by the fact that a numeric was generally appended to the duplicate filenames so that I had directories full of files like the following:<div class="CodeRay">  <div class="code"><pre>/artist/album/song.mp3/artist/album/song 1.mp3/artist/album/song 2.mp3</pre></div></div>Apple wasn't doing me any favors by injecting a space in the new names either....what a mess!<p>I stole a few ideas from <a href="http://ubuntuforums.org/archive/index.php/t-97701.html">this excellent forum thread</a> and cobbled together a script to remove files based on exact byte counts and md5sum signatures. Here's the good stuff:</p><div class="CodeRay">  <div class="code"><pre>#!/bin/bashfind . ! -empty -type f -printf &quot;%s &quot; -exec ls -dQ {} ; | sort -n | cut -d&quot; &quot; -f2- | xargs md5sum | sort | uniq -w32 -d | cut -c35- | while read filenamedo echo &quot;Removing $filenamen&quot; rm &quot;$filename&quot;done</pre></div></div>Now here's the play-by-play:<ol><li>Prints out the size and filename of each file found on the path and sorts using the filesize as the key</li><li>Trims off the file size in preparation for next stage</li><li>Creates the checksum for the files of the same size and then sorts by result</li><li>Strip out any checksums that are unique, leaving only the duplicates</li><li>Strips out the checksum part, just leaving the duplicate filenames</li><li>Loops through the results removing the first duplicate file of each set.</li></ol>You'll need to run the script multiple times if you've managed to generate more than one copy of any given file. Good luck!</div>

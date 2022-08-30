@@ -1,0 +1,12 @@
+---
+layout: post
+title: "Cisco VPN - Fix for Error 51: Unable to communicate with the VPN subsystem"
+date: 2009-01-28
+type: posts
+tags:
+ - softwaredevelopment
+ - vpn
+---
+
+<div class='post'>
+I run Leopard on my Mac and encountered the dreaded Error 51 issue today. The simple fix that worked for me was to run the following two commands as root:<p /><div class="CodeRay">  <div class="code"><pre># ifconfig fw0 down# /System/Library/StartupItems/CiscoVPN/CiscoVPN restart</pre></div></div>Afterwords, the VPN client started just fine...no Error 51.</div>

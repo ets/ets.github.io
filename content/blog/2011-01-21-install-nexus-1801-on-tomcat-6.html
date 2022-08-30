@@ -1,0 +1,9 @@
+---
+layout: post
+title: "Install Nexus 1.8.0.1 on Tomcat 6"
+date: 2011-01-21
+type: posts
+---
+
+<div class='post'>
+I installed on a Mac OS X server with Snow Leopard, but this applies to any Tomcat 6 installation. As discussed <a href="https://issues.sonatype.org/browse/NEXUS-3003">here</a>, <a href="http://stackoverflow.com/questions/1277378/how-to-configure-java-securitymanager-to-allow-to-read-all-properties-from-given">here</a>, and lots of other places across the interwebs - the latest release of Nexus can't read its own plexus.properties under Tomcat 6. Rather than disabling the Tomcat Security Manager as a workaround, I recommend setting the applicable properties through system properties at startup. Just add something like the following to your tomcat's bin/setenv.sh script<code>-Dplexus.nexus-work=/opt/sonatype-work/nexus</code></div>

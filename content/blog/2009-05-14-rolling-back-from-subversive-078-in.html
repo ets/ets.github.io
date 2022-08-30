@@ -1,0 +1,13 @@
+---
+layout: post
+title: "Rolling back from Subversive 0.7.8 in Eclipse Ganymede"
+date: 2009-05-14
+type: posts
+tags:
+ - softwaredevelopment
+ - eclipse
+ - subversive
+---
+
+<div class='post'>
+<p>I've had automatic updates enabled on my Ganymede install of Eclipse. Huge mistake. Today a Subversive upgrade moved me into an unworkable state and I lost some development time recovering. My experience seems similar to <a href="http://dev.eclipse.org/newslists/news.eclipse.technology.equinox/msg06188.html">the problem discussed here</a>. Even a fresh install of Eclipse failed to correct the situation. Maddening!</p><p>In any event, here's how I was able to finally recover:</p><ul><li>Open Time Machine</li><li>Restore ~/.eclipse</li><li>Pat self on back for using a Mac</li></ul><p>What? You don't use a Mac? Why?  Well, you might be able to use Eclipse's Software Updates -&gt; Installed Software -&gt; Revert Configuration button to rollback the upgrade. Good luck with that...</p></div>

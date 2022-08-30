@@ -1,0 +1,13 @@
+---
+layout: post
+title: "Connecting to Netscreen Series (NetScreen-5) VPN with Mac OS X (Snow
+Leopard)"
+date: 2010-03-05
+type: posts
+tags:
+ - macintosh
+ - networks
+---
+
+<div class='post'>
+(Followup to my <a href="http://www.ericsimmerman.com/connecting_to_netscreen_series_netscreen/45/">NetScreen-5 from Ubuntu article</a>) I recently struggled through the details of establishing a VPN connection from my Mac OS X desktop to a Juniper Networks Netscreen-5. Here's how I solved it. My Netscreen-5 was configured with some typical settings:Phase 1Pre-shared key "your-pre-shared-key-here"Encryption "pre-g2-aes128-sha"Phase 2 Encryption "g2-esp-3des-sha"To configure the client-side using an Ubuntu desktop, I used Racoon and KVpnc but didn't have the luxury of KVpnc on my Mac desktop so I had to manually edit my racoon.conf:<div class="CodeRay">  <div class="code"><pre>log debug2;path pre_shared_key &quot;/etc/racoon/psk.txt&quot;;path certificate &quot;/etc/racoon/certs&quot;;timer{        natt_keepalive 10 sec;}remote VPN.GATEWAY{        exchange_mode aggressive;        nat_traversal on;          ike_frag on;        peers_identifier asn1dn;        proposal_check obey;        my_identifier user_fqdn &quot;YOUR.EMAIL.ADDRESS&quot;;        proposal {                encryption_algorithm aes;                hash_algorithm sha1;                authentication_method pre_shared_key;                dh_group modp1024;        }}sainfo address DESKTOP.IP.ADDRESS/32 any address VPN.GATEWAY/28 any{        pfs_group modp1024;        encryption_algorithm 3des;        authentication_algorithm hmac_sha1;        compression_algorithm deflate;}listen{ adminsock &quot;/var/run/racoon.sock&quot; &quot;root&quot; &quot;operator&quot; 0660;}</pre></div></div></div>

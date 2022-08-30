@@ -1,0 +1,11 @@
+---
+layout: post
+title: "Running Skype on Snow Leopard - RESOLVED"
+date: 2009-09-05
+type: posts
+tags:
+ - macintosh
+---
+
+<div class='post'>
+After installing the latest Mac OSX upgrade Skype began giving me trouble. I found <a href="http://forum.skype.com/index.php?showtopic=409531">this thread</a> in Skype's forums which attests to the issue. Downgrading to 2.7.0 is suggested as a solution there, but it did not work for me. The downgraded version still locked-up and refused to quit without a force. However, I kept 2.7.0.330 installed and convinced OS X to install <a href="http://www.apple.com/rosetta/">Rosetta</a> (it prompted me for the install automatically when I attempted to launch Photoshop). After the Rosetta install and reboot, Skype 2.7.0.330 functioned properly for a few sessions and then fell down taking the whole kernel with it via the black screen of death. I've since upgraded to 2.8.0.659 which doesn't seem to crash but just stops working occasionally. The symptom exhibited is that messages stay in the "pending..." state and are simply never delivered.<p />UPDATE: I've resolved my issues by explicitly opening the Skype inbound port (the default is 65269 and it's configurable under Preferences -&gt; Advanced) in my firewall. This was not needed until I upgraded to Snow Leopard but apparently is now required to keep Skype functioning properly. I maintain a custom firewall configuration using /sbin/ipfw and I added the following line to /etc/rc.firewall to open the Skype inbound port.<div class="CodeRay">  <div class="code"><pre>add 3020 allow log tcp from any to any 65269 in</pre></div></div><br />After saving that and restarting ipfw Skype is functioning as expected.</div>

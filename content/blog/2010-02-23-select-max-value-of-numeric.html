@@ -1,0 +1,12 @@
+---
+layout: post
+title: "Select max value of numeric CollectionOfElements with Hibernate"
+date: 2010-02-23
+type: posts
+tags:
+ - java
+ - hibernate
+---
+
+<div class='post'>
+Consider a numeric CollectionOfElements held by a class Product such as:<div class="CodeRay">  <div class="code"><pre>@Entity(name=&quot;Product&quot;)public class Product {protected Set serialNumbers = new HashSet();@CollectionOfElements@JoinTable(name=&quot;product_serialnumbers&quot;)public Set getSerialNumbers() {  return serialNumbers;}public void setSerialNumbers(Set serialNumbers) {  this.serialNumbers = serialNumbers;}}</pre></div></div>You can use a NamedQuery to determine the maximum SerialNumber held by any Product like this:<div class="CodeRay">  <div class="code"><pre>@Entity(name=&quot;Product&quot;)@NamedQueries ({    @NamedQuery(        name = &quot;maxSerialNumber&quot;,        query = &quot;select max(elements(p.serialNumbers)) as value from Product p&quot;        )})public class Product {protected Set serialNumbers = new HashSet();@CollectionOfElements@JoinTable(name=&quot;product_serialnumbers&quot;)public Set getSerialNumbers() {  return serialNumbers;}public void setSerialNumbers(Set serialNumbers) {  this.serialNumbers = serialNumbers;}}</pre></div></div></div>

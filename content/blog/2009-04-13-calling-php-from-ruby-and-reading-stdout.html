@@ -1,0 +1,13 @@
+---
+layout: post
+title: "Calling PHP from Ruby and reading STDOUT"
+date: 2009-04-13
+type: posts
+tags:
+ - ruby
+ - softwaredevelopment
+ - php
+---
+
+<div class='post'>
+PHP and Ruby syntax are far enough apart that I was loathe to attempt a port of some working PHP scripts in my arsenal, but I needed to call said scripts from a relatively complex Ruby program. Fast &amp; dirty integration of this type is generally performed using a system call, but unlike most things Ruby I didn't find the Ruby way in this case to be all that intuitive.<br />The %x technique for the system call made it easy to read the output of my PHP program into a variable in the calling script. The real trick was finding the correct syntax for passing a parameter to the %x call as shown below.<br />Learn from my studies grasshopper:<div class="CodeRay">  <div class="code"><pre>avariableparameter = &quot;--o ipso -v lorem&quot;result = %x[php /path/to/script.php &quot;#{avariableparameter}&quot;]</pre></div></div></div>

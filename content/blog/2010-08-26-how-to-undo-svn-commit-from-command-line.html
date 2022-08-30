@@ -1,0 +1,11 @@
+---
+layout: post
+title: "How to undo a SVN commit from the command line"
+date: 2010-08-26
+type: posts
+tags:
+ - softwaredevelopment
+---
+
+<div class='post'>
+<p>SVN 1.4 added a feature to support easy rollback of a SVN commit. It's documented in SVN help, but unfortunately SVN help only makes sense if you already understand what it's trying to explain. Here's the easy commit revert command to run against your working copy:</p><p>svn merge -c -[REV] [REPO]</p><p>Replace the brackets with the offending revision number and your SVN repository respectively. For example, to undo the changes made by revision 42:</p><p>svn merge -c -42 <a href="http://example.com/svn/trunk">http://example.com/svn/trunk</a> .</p></div>

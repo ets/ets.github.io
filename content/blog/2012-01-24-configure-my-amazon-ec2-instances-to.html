@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Configure my Amazon EC2 instances to only accept traffic from the
+Elastic Load Balancer"
+date: 2012-01-24
+type: posts
+---
+
+<div class='post'>
+<p>The AWS&nbsp;Elastic Load Balancing FAQ has this very relevant question:</p><blockquote class="posterous_short_quote"><p>Can I configure my Amazon EC2 instances to only accept traffic from the Elastic Load Balancer?</p></blockquote><p>followed by an ever so helpful response:</p><blockquote class="posterous_short_quote"><p>Yes.</p></blockquote><p>Seriously - no links, no reference to documentation, nothing. With such a tremendous investment in infrastructure you'd think Amazon might spend a day or two on documentation...alas.</p><p>Insult to injury it's also not at all obvious what you need to do to configure your Security Group to support this very commonly desired configuration. I'm here to help.</p><p>Use the not-so-documented 'amazon-elb/amazon-elb-sg' Security Group name as the Inbound Source for your Security Group rule to filter on traffic coming from your AWS ELB. Enjoy!</p></div>

@@ -1,0 +1,14 @@
+---
+layout: post
+title: "Missing MacOS X VM in Eclipse Galileo on Snow Leopard"
+date: 2010-01-18
+type: posts
+tags:
+ - java
+ - macintosh
+ - snowleopard
+ - eclipse
+---
+
+<div class='post'>
+I recently encountered an issue where I was unable to add a JVM to my Eclipse install on Snow Leopard. There was no MacOS X VM option under Installed JREs -&gt; Add and attempting to use the Standard VM resulted in an error. After digging around in Eclipse bug reports, I discovered this is a known issue with the Cocoa build of Galileo with PDT pre-installed.&nbsp; The easy fix is to install Eclipse without PDT (just install the Eclipse IDE for Java - Cocoa 64 bit) and add PDT plugin later. When you take this route, the MacOS X VM will be configured automagically.</div>

@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Resolving 'Connection.close() has already been called.' when running
+long db-migration"
+date: 2011-08-23
+type: posts
+---
+
+<div class='post'>
+<p>I tune my datasource appropriate for runtime but also use the same datasource for db-migration activities on application startup. For some particularly long db-migration runs - I began encountering a "Connection.close() has already been called." error. &nbsp;The easy workaround was to bump the value of MySQL's wait_timeout parameter.</p><p>Don't for get to restart MySQL afterwards.</p><p>Also - if you're using a dbcp datasource try setting&nbsp;testOnBorrow to true if you have it explicitly set to false.</p><p>You're welcome.</p></div>

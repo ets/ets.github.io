@@ -1,0 +1,12 @@
+---
+layout: post
+title: "Subversion, Jira, Sonar, Hudson & Fisheye on Mac OSX Server with Snow
+Leopard"
+date: 2009-11-06
+type: posts
+tags:
+ - macintosh
+---
+
+<div class='post'>
+Here are some notes from the field on setting up all these development services to play nice on Mac OS X Server 10.6:<ul><li>Use <a href="http://developer.apple.com/mac/articles/server/subversionwithxcode3.html">this excellent writeup from Apple</a> to get Subversion setup as a webservice. Note the comment about how the DAV setting can revert to DAV no and need correction. I've found that it sometimes reverts to "DAV On" and this will break your subversion service...it must always be set to DAV svn</li><li>Configure Jira using Server Admin's "Sites" panel for configuring the Web service. Under Sites-&gt;Proxy configure an ajp worker to talk to your Jira instance. I installed jira on its own context /jira as opposed to root and therefore set the worker URL path as well as the Proxy Path to /jira</li><li>For running under the same hostname/virtual host any additional balancer groups will need to be configured manually. I was able to configure an ajp balancer for sonar but had to use a http balancer for hudson. Avoid using 8443 for your ports for any customer services as Apple's iCal is configured for this one by default.</li></ul></div>

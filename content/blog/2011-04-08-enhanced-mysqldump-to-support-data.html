@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Enhanced mysqldump to support data cleansing compliance requirements by
+nullifying specific fields"
+date: 2011-04-08
+type: posts
+---
+
+<div class='post'>
+<p>At Pascal Metrics, my team collects large sets of data including ePHI. That subjects us to <a href="http://en.wikipedia.org/wiki/Health_Insurance_Portability_and_Accountability_Act">HIPAA</a> and federal law dictates how we handle said data. Before I can even consider moving a database export out of our hardened production environment, I need to cleanse the export of any personally identifying information - including but not limited to any ePHI.</p><p>There are number of ways to achieve that aim, but once our database crossed the threshold into "large" territory - cleansing the data became a real chore. I decided to roll my own mysqldump binary and add a parameter called "nullify-field" which is based upon the "ignore-table" parameter from the official release.</p><p>I've posted my modified source to <a href="https://github.com/ets/mysqldump">my GitHub account</a> for any who may be interested.</p><p>You'll have to compile your own copy - but that's relatively easy:</p><ol><li>Grab <a href="http://dev.mysql.com/downloads/mysql/5.0.html">the latest mysql 5.0.X source</a>&nbsp;</li><li>Copy my 2 modified source files over the ones that come with your source tarball</li><li>Run "./configure --without-server" to build just the mysql clients</li><li>Run "make" to generate your custom mysqldump under ./client/</li></ol><p>Example Usage:</p><p><code> ./client/mysqldump -u backupuser -p --nullify-field=my_db.my_sensitive_table.name --nullify-field=my_db.my_sensitive_table.email my_db  </code></p><p>I love open source software.</p></div>

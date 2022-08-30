@@ -1,0 +1,9 @@
+---
+layout: post
+title: "Resolving Spring Security ACL deadlock in MySQL"
+date: 2012-06-30
+type: posts
+---
+
+<div class='post'>
+<p>The default JDBCTemplate based implementation of Spring Security ACLs removes and recreates the entire ACL for each update. That requires both deletes and inserts into the same table within the same JPA transaction and is a recipe for deadlock when using the default MySQL transaction isolation level of REPEATABLE_READ.&nbsp;</p><p>Setting your transaction isolation level to READ_COMMITTED is a viable alternative to MySQL's default but be certain you are not using the default bin-log format of Statement as this is not compatible with READ_COMMITTED isolation. You'll need to use Mixed or Row level bin-log format instead.&nbsp;</p></div>

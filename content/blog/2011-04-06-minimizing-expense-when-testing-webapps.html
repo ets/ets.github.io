@@ -1,0 +1,9 @@
+---
+layout: post
+title: "Minimizing expense when testing webapps on Internet Explorer"
+date: 2011-04-06
+type: posts
+---
+
+<div class='post'>
+Currently - my favorite methods of testing web applications for Internet Explorer compatibility at minimal expenditure of time, money, and pain are:<br /> <ul> <li><a href="http://www.virtualbox.org/">Virtualbox</a> installations <br /> </li> <ul> <li>PROS: Great performance and virtually zero hassle after initial setup<br /> </li> <li>CONS: These are not easily shared, so every developer needs his own virtual machine which needs to be individually licensed<br /> </li> </ul> <li><a href="http://www.gogrid.com/">GoGrid</a> on-demand servers</li> <ul> <li>PROS: Instances can be shared by multiple developers so you only need to configure each virtual machine environment once. MS Windows Licensing is built into the on-demand pricing. <br /> </li> <li>CONS: Performance is adequate, but screen refreshes are slow enough to be distracting. It takes about 15 minutes to spin an instance up. <br /> </li> </ul> </ul> With either method of obtaining a virtual machine, you'll have to decide how to handle testing for all the permutations you need to support. The "brute force" method is to create a virtual machine for each permutation of OS, Browser, Flash Player, etc...&nbsp; There are some other options though:<br /> <ul> <ul> <li><a href="http://www.softpedia.com/get/Internet/WEB-Design/Web-Design-related/Expression-Web-SuperPreview.shtml">Microsoft Expression Web SuperPreview</a> for Windows Internet Explorer&nbsp;</li> <ul> <li>can be used to test basic IE6 support on a machine with a more recent version installed - but not a terribly accurate emulator<br /> </li> </ul> <li>Internet Explorer 8 with Developer Tools installed <br /> </li> <ul> <li>using "Compatibility" mode to emulate IE7 works well enough to debug javascript</li> </ul> </ul> </ul></div>

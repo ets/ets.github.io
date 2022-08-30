@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Resolving 'org.hibernate.PropertyAccessException:
+IllegalArgumentException occurred calling getter'"
+date: 2011-01-13
+type: posts
+---
+
+<div class='post'>
+<p>After updating a named query using HQL to constrain on a Collection of objects determined at runtime, Hibernate began throwing "org.hibernate.PropertyAccessException: IllegalArgumentException occurred calling getter" while apparently attempting to access the "id" property of an object in my model.<p />My named query looked something like this:<br /><code>select p from Parent p where p.child in (:children)</code><br />and I was calling it like so:<br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Query query = session.getNamedQuery(queryName);query.setParameter("children", aCollectionOfChildren);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;query.list();</code><br />It took me a bit of trial and error to realize that Hibernate expected the Collection to be passed in using "query.setParameterList" instead of "query.setParameter". Changing my call to the following resolved the issue:<br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Query query = session.getNamedQuery(queryName);query.setParameterList("children", aCollectionOfChildren);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;query.list();</code><br />Certainly my mistake, but I sure would have appreciated a clearer error message.</p></div>

@@ -1,0 +1,12 @@
+---
+layout: post
+title: "Compiling mod_caucho on RHEL 5.3"
+date: 2009-09-14
+type: posts
+tags:
+ - java
+ - softwaredevelopment
+---
+
+<div class='post'>
+<p>There is <a href="http://mail-archives.apache.org/mod_mbox/apr-dev/200410.mbox/%3C20041022090014.GA9117@redhat.com%3E">a known issue with APR</a> that <a href="http://maillist.caucho.com/pipermail/resin-interest/2007-April/000969.html">prevents the compilation of mod_caucho on RHEL 5.3</a> out of the box. Additionally, for some reason my installation of APR uses the name "apr-1-config" instead of "apr-config" so that to compile mod_caucho I had to do the following:</p><ol><li>Run configure --with-apxs</li><li>Execute 'apr-config --cppflags --cflags'</li><li>On my server this resulted in '-DLINUX=2 -D_REENTRANT -D_GNU_SOURCE -D_LARGEFILE64_SOURCE  -pthread'</li><li>Append the output of the above command to the "CFLAGS" line in config.status</li><li>Run make; make install;</li></ol>FYI, I also had to overwrite the "plugins" variable in the Resin configure script to manually set apache2 because the script was detecting and using apache1</div>

@@ -1,0 +1,13 @@
+---
+layout: post
+title: "Customize article row count for Cerberus public knowledgebase community"
+date: 2010-03-14
+type: posts
+tags:
+ - softwaredevelopment
+ - php
+ - cerberus
+---
+
+<div class='post'>
+I've been evaluating the opensource <a href="http://www.cerberusweb.com/">Cerberus Helpdesk</a> as an alternative to the closed source Kayako esupport. I like how Cerberus separates the creation of multiple knowledgebases that can then be published across multiple community portals. Instead of one comprehensive knowledgebase presented to all customers, I can use Cerberus to present product specific knowledgebases. It's a nice concept that should make it much easier for a customer to locate support information and thereby reduce the number of support tickets generated.Customizing the public facing portals for my Cerberus installation was straightforward.  The admin console provided a good degree of flexibility, but I wanted a bit more so I manually modified usermeet.core/templates/portal/sc/module/index.tpl in order to insert analytics scripts and some more detailed customization. That was easy, but my next mod proved more difficult. By default, Cerberus displays 10 articles on each page of search results and I wanted to increase that count to 20. Cerberus' architecture actually makes it a bit tricky to determine the control flow used by the community portals but I eventually traced the article retrieval flow to the DAO_KbArticle class in plugins/cerberusweb.kb/api/App.php and changed the default limit on the search method from 10 to 20. The limit is set as a hardcoded constant in the method signature....yuck. After the change, 20 articles were pulled from the database on each request, but there were still only 10 displayed in the portal.It took a lot of searching to find the missing piece and it was yet another hardcoded value in plugins/cerberusweb.kb/api/sc/kb.php where $view-&gt;renderLimit was set to 10. Changing this gave me the desired row count on the portal.The Cerberus team has put together a nice product but given that one of its core competitive features is its opensource nature, I'd like to see the codebase refactored to better facilitate this type of customization. Values like these limits could easily be defined in framework.config.php instead of scattering hardcoded settings across multiple files. That said, at least I had to option to manipulate the software - something I can't do with Kayako's offering.</div>

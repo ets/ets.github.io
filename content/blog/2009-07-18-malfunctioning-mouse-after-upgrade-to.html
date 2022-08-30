@@ -1,0 +1,11 @@
+---
+layout: post
+title: "Malfunctioning mouse after upgrade to Ubuntu 8.10"
+date: 2009-07-18
+type: posts
+tags:
+ - ubuntu
+---
+
+<div class='post'>
+<p>I experienced some intermittent and infuriating mouse malfunctions after my upgrade to Ubuntu 8.10. Single-clicks were interpreted as double-clicks, hilighted selections would lose focus, etc...</p><p>The root cause was an incomplete transition to HAL. Upgrade manager attempted but failed to comment out all my pointer and keyboard configuration in xorg.conf and my mouse was thus configured twice (once using the old-school xorg method and a second time by HAL). The fix was simple:</p><ul><li>Edit /etc/X11/xorg.conf and remove any references to keyboard or mouse devices in the "ServerLayout" section<ul><li>InputDevice    "Generic Keyboard"</li><li>InputDevice    "Configured Mouse"</li></ul></li><li>Also remove any Keyboard or Mouse sections within the xorg.conf</li><li>Hit Ctrl+Alt+F1 to drop to a shell and type "sudo xinit -- :2" to test your new config<ul><li>Correct any errors as needed until the above starts a new windows session with a simple command prompt</li></ul></li><li>Hit Ctrl+Alt+F1 to switch back to your test session and Ctrl-C to kill the second windows instance</li><li>Restart your primary GDM with your new config "sudo /etc/init.d/gdm restart"</li></ul></div>
