@@ -6,7 +6,7 @@ date: 2016-06-20
 [I work here](https://qualytics.co "Automating Data Quality at Scale")
 [I built this](https://foldergrid.com "End-to-End Encryption atop cloud storage")
 [I blog here](https://ets.github.io "But not very often...")
-[I code here](https://bitbucket.org/ets/ "Atlassian rocks!") and [here](https://github.com/ets/ "who doesn't ?")
+[I code here](https://github.com/ets/ "who doesn't ?")
 [My LinkedIn Profile](https://www.linkedin.com/in/ericsimmerman)
 [My GPG Key](https://keybase.io/ets)
 
@@ -26,7 +26,7 @@ Some of my goto sources for thought provocation - in no particular order:
 * [Nautilus](http://nautil.us/)
 * [Science Research Network](https://www.ssrn.com/)
 
-# Insipiration
+# Inspiration
 
 * [What You'll Wish You'd Known](http://www.paulgraham.com/hs.html)
 * [My Meditation Collection](/meditation/)

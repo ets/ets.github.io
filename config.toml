@@ -114,9 +114,7 @@ hardWraps = true
   [params.social]
     GitHub = "ets"
     Linkedin = "ericsimmerman"
-    Twitter = "ericsimmerman"
     Gitlab = "ets1"
-    Bitbucket = "ets"
     RSS = true # LoveIt NEW | 0.2.0
 
   [params.app]
