@@ -37,7 +37,7 @@ My real world code was far more complicated, but this was exactly what I was obs
   )
   .as[Person]
 ```
-Nothing looks wrong there.  The dataset is explicitly typed with the case class...so what would cause a union to fail? Further down the rabbit hole we go... In prior logic, the `df` was generating the value of `a_name` using a a UDF like this:
+Nothing looks wrong there.  The dataset is explicitly typed with the case class...so what would cause a union to fail? Further down the rabbit hole we go... In prior logic, the `df` was generating the value of `a_name` using a UDF like this:
 ```
   val df = anotherDf.select(nameGenerator().as("a_name"), $"*").persist(MEMORY_AND_DISK),
 ```
@@ -69,6 +69,6 @@ The fix was incredibly easy and honestly I was a little surprised it worked give
   ) // ensure the resulting dataset marks name as non nullable
   .as[Person]
 ```
-
+Set math logic was restored and the universe once again in balance.
 
 
