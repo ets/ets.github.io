@@ -3,8 +3,7 @@ title: about me
 date: 2016-06-20
 ---
 
-[I work here](https://qualytics.co "Automating Data Quality at Scale")
-[I built this](https://foldergrid.com "End-to-End Encryption atop cloud storage")
+[I work on this](https://qualytics.co "Automating Data Quality at Scale")
 [I blog here](https://ets.github.io "But not very often...")
 [I code here](https://github.com/ets/ "who doesn't ?")
 [My LinkedIn Profile](https://www.linkedin.com/in/ericsimmerman)
