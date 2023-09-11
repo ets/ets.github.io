@@ -32,9 +32,21 @@ This philosophy breeds a symbiotic relationship. Richer data transformation enha
 
 ## A Tale of Transformation: A Financial Institution's Odyssey
 
-Our collaboration with a major financial institution paints a vivid picture. Their initial data quality mechanisms, reliant on custom Python scripts, blurred transformation and assertion lines. This murkiness led to mistrust.
+Our collaboration with a major financial institution paints a vivid picture of the complexities faced when intertwining data transformation with assertion checks.
 
-With [**Qualytics**](https://www.qualytics.co), a clear distinction between these processes was established, fostering transparency. Stakeholders could directly validate business alignment, transforming a once opaque system into a transparent, expert-led initiative.
+### Anti-patterns Observed:
+
+- **Muddled Accountability**: With the conflation of transformation and assertion, when a data quality issue was flagged, it was hard to determine whether the root cause was due to an error in the transformation logic or if the data genuinely represented an unexpected characteristic.
+
+- **Extended Debugging Time**: Teams often spent excessive time in troubleshooting mode. Was the transformation logic flawed, or was the original data source compromised?
+
+- **Lack of Clear Metrics**: Due to the overlapping processes, it was challenging to pinpoint specific metrics that contributed to failed assertions. This obscured visibility into the data's journey, making it tough to identify improvement areas.
+
+- **Eroding Trust**: With every false alarm or prolonged debugging session, stakeholders’ faith in the system was eroded. It became common to question the system’s outputs, leading to increased manual checks and double validations.
+
+With [**Qualytics**](https://www.qualytics.co), we untangled this web. A clear boundary was set between transformation and assertion, creating individualized zones of accountability. This not only enhanced transparency but also boosted efficiency. Data issues could now be diagnosed rapidly and precisely.
+
+What emerged was a robust system where stakeholders no longer had to play detective. The once cloudy and suspicious landscape transformed into a transparent, expert-led narrative, where each phase of data's journey was clearly marked, validated, and trusted.
 
 ## Conclusion
 
