@@ -20,21 +20,21 @@ In this realm, our software platform at [**Qualytics**](https://www.qualytics.co
 
 By separating these activities, each is optimized for a proactive approach to ensuring data quality for the enterprise.
 
-## Unpacking the Philosophy
+### Unpacking the Philosophy
 
 At the heart of [**Qualytics**](https://www.qualytics.co) is the distinct separation of data transformation from assertion. By doing so, our platform's machine learning algorithms are able to discern patterns and relationships within the rich context of the transformed data. This boosts the efficacy of the platform's fully automated efforts to detect future anomalies (unknown unknowns).
 
 Further complementing this is the application of data quality checks on the transformed data. The platform's intuitive interface empowers data stewards to craft precise controls addressing those 'known unknowns', aligning with business requirements due to the enriched context of the data.
 
-## The Symbiotic Relationship
+### The Symbiotic Relationship
 
 This philosophy breeds a symbiotic relationship. Richer data transformation enhances machine learning performance. In contrast, clear transformed data facilitates the creation of precise human-authored controls. Thus, [**Qualytics**](https://www.qualytics.co) offers a dual advantage: robust automated checks due to machine learning and an intuitive interface for addressing specific known issues.
 
-## A Tale of Transformation: A Financial Institution's Odyssey
+### A Tale of Transformation: A Financial Institution's Odyssey
 
 Our collaboration with a major financial institution paints a vivid picture of the complexities faced when intertwining data transformation with assertion checks.
 
-### Anti-patterns Observed:
+#### Anti-patterns Observed:
 
 - **Muddled Accountability**: With the conflation of transformation and assertion, when a data quality issue was flagged, it was hard to determine whether the root cause was due to an error in the transformation logic or if the data genuinely represented an unexpected characteristic.
 
@@ -48,6 +48,6 @@ With [**Qualytics**](https://www.qualytics.co), we untangled this web. A clear b
 
 What emerged was a robust system where stakeholders no longer had to play detective. The once cloudy and suspicious landscape transformed into a transparent, expert-led narrative, where each phase of data's journey was clearly marked, validated, and trusted.
 
-## Conclusion
+### Conclusion
 
 Separating data transformation from assertion goes beyond technicalities; it's foundational. And with [**Qualytics**](https://www.qualytics.co), businesses don’t just get reliable data; they glean insights with unmatched precision and clarity.
