@@ -10,6 +10,7 @@ date: 2017-12-09
 > You must never confuse faith that you will prevail in the end – which you cannot afford to lose – with the discipline to confront the most brutal facts of your current reality,
 > whatever they might be. ― James Bond Stockdale
 
+> The probability of the actual is absolute. ― Cormac McCarthy
 
 <p>
 “Tis a Fearful Thing
