@@ -9,3 +9,5 @@ resources/
 .idea/
 .pygments-cache
 .hugo*
+.claude
+.claude/**

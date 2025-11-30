@@ -12,4 +12,4 @@ Our data came from everywhere and just ensuring we received what we were paying 
 
 No coincidence...I've been developing just such a service with the team at Qualytics. The Qualytics platform observes what the shape & characteristics (to the field level) of your data are and deploys deductive learning to infer data quality checks from your actual data values. Those checks are then asserted against newly arriving data to identify anomalies. If that's not compelling enough, the platform will automatically update those data quality checks as your data evolves.
 
-[Automated Unit testing for your data](https://qualytics.co).
+[Automated Unit testing for your data](https://qualytics.ai).

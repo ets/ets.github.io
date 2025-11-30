@@ -1,5 +1,8 @@
 ######################## default configuration ####################
 baseURL = "https://www.ericsimmerman.com/"
+
+# Ignore deprecation warnings from LoveIt theme (requires theme update to fix)
+ignoreLogs = ['deprecated']
 # language code ["en", "zh-CN", "fr", "pl", ...]
 languageCode = "en"
 # language name ["English", "简体中文", "Français", "Polski", ...]
@@ -10,18 +13,21 @@ hasCJKLanguage = false
 title = "technocracy"
 theme = "LoveIt"
 summaryLength = "10"
-paginate = 12
+[pagination]
+  pagerSize = 12
 
-pygmentsstyle = "bw"
-pygmentsCodeFencesGuessSyntax = true
-pygmentsUseClasses=true
-pygmentsCodeFences=true
+[markup.highlight]
+  style = "bw"
+  guessSyntax = true
+  noClasses = false
+  codeFences = true
 
 enableRobotsTXT = true
 # Internal GA v4
 #googleAnalytics = ""
 
-[author]
+# Author moved to params.author (Site.Author deprecated in Hugo v0.124.0)
+[params.author]
   name = "Eric Simmerman"
 
 [permalinks]
@@ -30,6 +36,7 @@ enableRobotsTXT = true
 
 [markup.goldmark.renderer]
 hardWraps = true
+unsafe = true
 
 # Menu config
 [menu]
