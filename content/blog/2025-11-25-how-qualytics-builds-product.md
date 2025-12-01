@@ -59,10 +59,9 @@ This is harder. It requires understanding not just what users want to accomplish
 
 ### The Compound Effect
 
-None of this is revolutionary. Learn from users. Stay close to customer pain. You've heard it before.
+There's nothing new under the sun here. Learn from users. Stay close to customer pain. You've heard it before. It's not about your product strategy.  It's about execution and the team doing the executing. Culture eats strategy for breakfast.
 
-What I've learned is that the magic isn't in any single practice - it's in doing all of them consistently, over time. Each iteration builds on the last. Customer understanding compounds. Product intuition sharpens. The team develops shared context that lets us move faster with more confidence.
+At the start, we were guessing and following my personal intuition. Now we're informed guessing with more real-world data driving our work. Quality data. Trusted data. That trust drives our confidence in what we deliver, which is a platform to help users build trust in their data, which brings us full circle.
 
-At the start, we were guessing and following my personal intuition. Now we're informed guessing with more real world data driving our work. Quality data. Trusted data. That trust drives our confidence in what we deliver. The results speak for themselves.
 
 Onward & Upward!
